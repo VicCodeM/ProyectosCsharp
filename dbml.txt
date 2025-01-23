@@ -1,0 +1,63 @@
+Table Departamentos {
+    Id_Departamento INT [pk, increment]
+    Nombre_Departamento VARCHAR(255) [not null]
+}
+
+Table Empleados {
+    Id_Empleado INT [pk, increment]
+    Id_Departamento INT [not null]
+    Nombre_Empleado VARCHAR(255) [not null]
+    Apellido_Paterno VARCHAR(255) [not null]
+    Apellido_Materno VARCHAR(255) [not null]
+    Correo_Electronico VARCHAR(255) [not null]
+}
+
+Table Login {
+    Usuario VARCHAR(255) [pk]
+    Password VARCHAR(255) [not null]
+    Tipo_Usuario VARCHAR(50) [not null, note: "Admin, Empleado, Cliente"]
+    Id_Empleado INT [unique, not null]
+}
+
+Table TiposFallaHardware {
+    Id_TipoFallaHardware INT [pk, increment]
+    Descripcion VARCHAR(255) [not null]
+}
+
+Table TiposFallaSoftware {
+    Id_TipoFallaSoftware INT [pk, increment]
+    Descripcion VARCHAR(255) [not null]
+}
+
+Table OrdenServicio {
+    Id_Orden INT [pk, increment]
+    Fecha_Creacion DATETIME [not null, default: `GETDATE()`]
+    Fecha_Atendida DATETIME [not null, default: `GETDATE()`]
+    Fecha_Cerrada DATETIME [not null, default: `GETDATE()`]
+    Id_Empleado INT [not null]
+    Id_TipoFallaHardware INT [not null]
+    Id_TipoFallaSoftware INT [not null]
+    Descripcion_Problema TEXT [not null]
+    Observaciones TEXT [not null]
+    Estado VARCHAR(50) [not null, note: "Pendiente, En Proceso, Completada"]
+}
+
+Table Bitacora {
+    Id_Bitacora INT [pk, increment]
+    Fecha_Accion DATETIME [not null, default: `GETDATE()`]
+    Id_Usuario VARCHAR(255) [not null]
+    Accion VARCHAR(255) [not null]
+    Descripcion TEXT [not null]
+}
+
+Ref: Departamentos.Id_Departamento < Empleados.Id_Departamento
+
+Ref: Empleados.Id_Empleado < Login.Id_Empleado [delete: cascade, update: cascade]
+
+Ref: Empleados.Id_Empleado < OrdenServicio.Id_Empleado
+
+Ref: TiposFallaHardware.Id_TipoFallaHardware < OrdenServicio.Id_TipoFallaHardware
+
+Ref: TiposFallaSoftware.Id_TipoFallaSoftware < OrdenServicio.Id_TipoFallaSoftware
+
+Ref: Login.Usuario < Bitacora.Id_Usuario
