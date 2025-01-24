@@ -59,6 +59,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Datos\ConexionDB.cs" />
+    <Compile Include="Datos\ConsultasDB.cs" />
     <Compile Include="FormInicial.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -101,7 +103,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Datos\" />
     <Folder Include="Modelos\" />
     <Folder Include="Negocio\" />
     <Folder Include="Recursos\" />

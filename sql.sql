@@ -56,3 +56,175 @@ CREATE TABLE Bitacora (
   Descripcion TEXT NOT NULL,
   CONSTRAINT FK_Bitacora_Login FOREIGN KEY (Id_Usuario) REFERENCES Login(Id_Usuario)
 );
+------------------------------------------------------------------------------------------------------------------
+--procedimeintos ordenes de OrdenServicio
+CREATE PROCEDURE sp_InsertarOrdenServicio
+    @Id_Usuario INT,
+    @Descripcion_Problema TEXT,
+    @Id_TipoFallaHardware INT,
+    @Id_TipoFallaSoftware INT,
+    @Estado VARCHAR(50)
+AS
+BEGIN
+    INSERT INTO OrdenServicio (Id_Usuario, Descripcion_Problema, Id_TipoFallaHardware, Id_TipoFallaSoftware, Estado)
+    VALUES (@Id_Usuario, @Descripcion_Problema, @Id_TipoFallaHardware, @Id_TipoFallaSoftware, @Estado)
+END
+GO
+--actualizar orden
+CREATE PROCEDURE sp_ActualizarOrdenServicio
+    @Id_Orden INT,
+    @Id_Usuario INT,
+    @Descripcion_Problema TEXT,
+    @Id_TipoFallaHardware INT,
+    @Id_TipoFallaSoftware INT,
+    @Estado VARCHAR(50)
+AS
+BEGIN
+    UPDATE OrdenServicio
+    SET Id_Usuario = @Id_Usuario,
+        Descripcion_Problema = @Descripcion_Problema,
+        Id_TipoFallaHardware = @Id_TipoFallaHardware,
+        Id_TipoFallaSoftware = @Id_TipoFallaSoftware,
+        Estado = @Estado
+    WHERE Id_Orden = @Id_Orden
+END
+GO
+
+-- eliminar orden
+CREATE PROCEDURE sp_EliminarOrdenServicio
+    @Id_Orden INT
+AS
+BEGIN
+    DELETE FROM OrdenServicio
+    WHERE Id_Orden = @Id_Orden
+END
+GO
+--------------------------------------------------------------------
+-- CONSULTAS 
+-- consulta general
+SELECT 
+  o.Id_Orden AS 'ID de Orden',
+  l.Usuario AS 'Usuario',
+  o.Fecha_Creacion AS 'Fecha de Creación',
+  o.Fecha_Atendida AS 'Fecha de Atención',
+  o.Fecha_Cerrada AS 'Fecha de Cierre',
+  CASE 
+    WHEN tfh.Descripcion IS NOT NULL THEN tfh.Descripcion
+    ELSE tfs.Descripcion
+  END AS 'Tipo de Falla',
+  o.Descripcion_Problema AS 'Descripción del Problema',
+  o.Observaciones AS 'Observaciones',
+  o.Estado AS 'Estado (Status)'
+FROM 
+  OrdenServicio o
+  INNER JOIN Login l ON o.Id_Usuario = l.Id_Usuario
+  LEFT JOIN TiposFallaHardware tfh ON o.Id_TipoFallaHardware = tfh.Id_TipoFallaHardware
+  LEFT JOIN TiposFallaSoftware tfs ON o.Id_TipoFallaSoftware = tfs.Id_TipoFallaSoftware
+ORDER BY 
+  o.Fecha_Creacion DESC;
+
+  -- consulta por usuario
+
+  SELECT 
+  o.Id_Orden AS 'ID de Orden',
+  l.Usuario AS 'Usuario',
+  o.Fecha_Creacion AS 'Fecha de Creación',
+  CASE 
+    WHEN tfh.Descripcion IS NOT NULL THEN tfh.Descripcion
+    ELSE tfs.Descripcion
+  END AS 'Tipo de Falla',
+  o.Descripcion_Problema AS 'Descripción del Problema',
+  o.Observaciones AS 'Observaciones',
+  o.Fecha_Atendida AS 'Fecha de Atención',
+  o.Estado AS 'Estado (Status)',
+  o.Fecha_Cerrada AS 'Fecha de Cierre'
+FROM 
+  OrdenServicio o
+  INNER JOIN Login l ON o.Id_Usuario = l.Id_Usuario
+  LEFT JOIN TiposFallaHardware tfh ON o.Id_TipoFallaHardware = tfh.Id_TipoFallaHardware
+  LEFT JOIN TiposFallaSoftware tfs ON o.Id_TipoFallaSoftware = tfs.Id_TipoFallaSoftware
+WHERE 
+  l.Usuario = 'nombre_de_usuario'
+ORDER BY 
+  o.Fecha_Creacion DESC;
+
+  --CONSULTA POR HADAWARE
+  SELECT 
+  o.Id_Orden AS 'ID de Orden',
+  l.Usuario AS 'Usuario',
+  o.Fecha_Creacion AS 'Fecha de Creación',
+  o.Fecha_Atendida AS 'Fecha de Atención',
+  o.Fecha_Cerrada AS 'Fecha de Cierre',
+  tfh.Descripcion AS 'Tipo de Falla de Hardware',
+  o.Descripcion_Problema AS 'Descripción del Problema',
+  o.Observaciones AS 'Observaciones',
+  o.Estado AS 'Estado (Status)'
+FROM 
+  OrdenServicio o
+  INNER JOIN Login l ON o.Id_Usuario = l.Id_Usuario
+  INNER JOIN TiposFallaHardware tfh ON o.Id_TipoFallaHardware = tfh.Id_TipoFallaHardware
+ORDER BY 
+  o.Fecha_Creacion DESC;
+
+  --CONSULTA POR SOFWARE
+  SELECT 
+  o.Id_Orden AS 'ID de Orden',
+  l.Usuario AS 'Usuario',
+  o.Fecha_Creacion AS 'Fecha de Creación',
+  o.Fecha_Atendida AS 'Fecha de Atención',
+  o.Fecha_Cerrada AS 'Fecha de Cierre',
+  tfs.Descripcion AS 'Tipo de Falla de Software',
+  o.Descripcion_Problema AS 'Descripción del Problema',
+  o.Observaciones AS 'Observaciones',
+  o.Estado AS 'Estado (Status)'
+FROM 
+  OrdenServicio o
+  INNER JOIN Login l ON o.Id_Usuario = l.Id_Usuario
+  INNER JOIN TiposFallaSoftware tfs ON o.Id_TipoFallaSoftware = tfs.Id_TipoFallaSoftware
+ORDER BY 
+  o.Fecha_Creacion DESC;
+
+  -- Consulta por fechas
+  SELECT 
+  o.Id_Orden AS 'ID de Orden',
+  l.Usuario AS 'Usuario',
+  o.Fecha_Creacion AS 'Fecha de Creación',
+  o.Fecha_Atendida AS 'Fecha de Atención',
+  o.Fecha_Cerrada AS 'Fecha de Cierre',
+  tfh.Descripcion AS 'Tipo de Falla de Hardware',
+  tfs.Descripcion AS 'Tipo de Falla de Software',
+  o.Descripcion_Problema AS 'Descripción del Problema',
+  o.Observaciones AS 'Observaciones',
+  o.Estado AS 'Estado (Status)'
+FROM 
+  OrdenServicio o
+  INNER JOIN Login l ON o.Id_Usuario = l.Id_Usuario
+  LEFT JOIN TiposFallaHardware tfh ON o.Id_TipoFallaHardware = tfh.Id_TipoFallaHardware
+  LEFT JOIN TiposFallaSoftware tfs ON o.Id_TipoFallaSoftware = tfs.Id_TipoFallaSoftware
+WHERE 
+  o.Fecha_Creacion BETWEEN '2022-01-01' AND '2022-12-31'
+ORDER BY 
+  o.Fecha_Creacion DESC;
+
+  -- por estado
+
+SELECT 
+  o.Id_Orden AS 'ID de Orden',
+  l.Usuario AS 'Usuario',
+  o.Fecha_Creacion AS 'Fecha de Creación',
+  o.Fecha_Atendida AS 'Fecha de Atención',
+  o.Fecha_Cerrada AS 'Fecha de Cierre',
+  tfh.Descripcion AS 'Tipo de Falla de Hardware',
+  tfs.Descripcion AS 'Tipo de Falla de Software',
+  o.Descripcion_Problema AS 'Descripción del Problema',
+  o.Observaciones AS 'Observaciones',
+  o.Estado AS 'Estado (Status)'
+FROM 
+  OrdenServicio o
+  INNER JOIN Login l ON o.Id_Usuario = l.Id_Usuario
+  LEFT JOIN TiposFallaHardware tfh ON o.Id_TipoFallaHardware = tfh.Id_TipoFallaHardware
+  LEFT JOIN TiposFallaSoftware tfs ON o.Id_TipoFallaSoftware = tfs.Id_TipoFallaSoftware
+WHERE 
+  o.Estado = 'Pendiente'  -- Filtrar por estado 'Pendiente'
+ORDER BY 
+  o.Fecha_Creacion DESC;
