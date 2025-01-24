@@ -102,3 +102,4 @@ C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.csproj.CoreC
 C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.csproj.Up2Date
 C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.exe
 C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.pdb
+C:\Users\vicom\Documents\GitHub\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.Forms.prueba.resources

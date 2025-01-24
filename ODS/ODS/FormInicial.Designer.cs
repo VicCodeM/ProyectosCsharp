@@ -50,9 +50,9 @@
             // 
             this.fluentDesignFormContainer1.Controls.Add(this.panelControl1);
             this.fluentDesignFormContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fluentDesignFormContainer1.Location = new System.Drawing.Point(260, 31);
+            this.fluentDesignFormContainer1.Location = new System.Drawing.Point(48, 31);
             this.fluentDesignFormContainer1.Name = "fluentDesignFormContainer1";
-            this.fluentDesignFormContainer1.Size = new System.Drawing.Size(431, 442);
+            this.fluentDesignFormContainer1.Size = new System.Drawing.Size(643, 442);
             this.fluentDesignFormContainer1.TabIndex = 0;
             // 
             // panelControl1
@@ -61,13 +61,17 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(431, 442);
+            this.panelControl1.Size = new System.Drawing.Size(643, 442);
             this.panelControl1.TabIndex = 0;
+            this.panelControl1.SizeChanged += new System.EventHandler(this.panelControl1_SizeChanged);
             // 
             // dateTimeOffsetEdit1
             // 
+            this.dateTimeOffsetEdit1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dateTimeOffsetEdit1.EditValue = null;
-            this.dateTimeOffsetEdit1.Location = new System.Drawing.Point(121, 57);
+            this.dateTimeOffsetEdit1.Location = new System.Drawing.Point(6, 57);
             this.dateTimeOffsetEdit1.MenuManager = this.fluentFormDefaultManager1;
             this.dateTimeOffsetEdit1.Name = "dateTimeOffsetEdit1";
             this.dateTimeOffsetEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -83,7 +87,7 @@
             this.dateTimeOffsetEdit1.Properties.MaskSettings.Set("mask", "");
             this.dateTimeOffsetEdit1.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.dateTimeOffsetEdit1.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.False;
-            this.dateTimeOffsetEdit1.Size = new System.Drawing.Size(264, 20);
+            this.dateTimeOffsetEdit1.Size = new System.Drawing.Size(612, 20);
             this.dateTimeOffsetEdit1.TabIndex = 0;
             // 
             // fluentFormDefaultManager1
@@ -98,8 +102,9 @@
             this.accordionControl1.Location = new System.Drawing.Point(0, 31);
             this.accordionControl1.Name = "accordionControl1";
             this.accordionControl1.OptionsMinimizing.AllowMinimizeMode = DevExpress.Utils.DefaultBoolean.True;
+            this.accordionControl1.OptionsMinimizing.State = DevExpress.XtraBars.Navigation.AccordionControlState.Minimized;
             this.accordionControl1.ScrollBarMode = DevExpress.XtraBars.Navigation.ScrollBarMode.Touch;
-            this.accordionControl1.Size = new System.Drawing.Size(260, 442);
+            this.accordionControl1.Size = new System.Drawing.Size(48, 442);
             this.accordionControl1.TabIndex = 1;
             this.accordionControl1.ViewType = DevExpress.XtraBars.Navigation.AccordionControlViewType.HamburgerMenu;
             // 

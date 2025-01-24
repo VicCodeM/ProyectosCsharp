@@ -9,7 +9,7 @@ namespace ODS.Datos
     {
         public ConexionDB() { }
 
-        private string connectionString = "Data Source=VICTOR-PC\\SQLVICTOR;Initial Catalog=OBS1;User ID=sa;Password=6433"; // Tu cadena de conexión
+        private string connectionString = "Data Source=VICTOR-HP\\SQLVICTOR;Initial Catalog=ods5;User ID=sa;Password=6433"; // Tu cadena de conexión
 
         // Método para conectar a SQL Server
         public SqlConnection ConectarSQL()

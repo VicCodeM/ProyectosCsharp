@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ODS.Forms
 {
@@ -18,6 +19,10 @@ namespace ODS.Forms
         public FormRegistrar()
         {
             InitializeComponent();
+            // Configurar el formulario para adaptarse correctamente
+            this.Dock = DockStyle.Fill;
+            this.Margin = new Padding(0); // Elimina márgenes adicionales
+           // this.AutoScaleMode = AutoScaleMode.None; // Desactivar el escalado automático si es innecesario
             ConexionDB conexionDB = new ConexionDB();
             SqlConnection conexion = conexionDB.ConectarSQL();
 
@@ -36,9 +41,44 @@ namespace ODS.Forms
                         XtraMessageBox.Show($"ID: {reader["Id_Usuario"]}, Nombre: {reader["Usuario"]}");
                     }
                 }
+
+                UpdateControls(checkEdit1.Checked, checkEdit2.Checked);
+
+            }
+
+        }
+
+        private void UpdateControls(bool isCheckEdit1Checked, bool isCheckEdit2Checked)
+        {
+            // Si checkEdit1 está marcado
+            if (isCheckEdit1Checked)
+            {
+                checkEdit2.Checked = false;
+                checkEdit2.Enabled = false;
+                dateTimeOffsetEdit2.Enabled = false;
+            }
+            else
+            {
+                checkEdit2.Enabled = true;
+                dateTimeOffsetEdit2.Enabled = true;
+            }
+
+            // Si checkEdit2 está marcado
+            if (isCheckEdit2Checked)
+            {
+                checkEdit1.Checked = false;
+                checkEdit1.Enabled = false;
+                dateTimeOffsetEdit1.Enabled = false;
+            }
+            else
+            {
+                checkEdit1.Enabled = true;
+                dateTimeOffsetEdit1.Enabled = true;
             }
         }
-     
-        }
+
+
+
+    }
 }
 
