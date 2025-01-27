@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors;
+using DevExpress.XtraGrid.Views.Grid;
 using ODS.Datos;
 using System;
 using System.Collections.Generic;
@@ -22,9 +23,13 @@ namespace ODS.Forms
             // Configurar el formulario para adaptarse correctamente
             this.Dock = DockStyle.Fill;
             this.Margin = new Padding(0); // Elimina márgenes adicionales
+            //evitar editar el datagrid
+            ((GridView)gridControl1.MainView).OptionsBehavior.Editable = false;
+
 
             ConexionDB conexionDB = new ConexionDB();
             SqlConnection conexion = conexionDB.ConectarSQL();
+            CargarOrdenesPorUsuario(2);
 
             // Verificar si la conexión está abierta
             if (conexion.State == ConnectionState.Open)
@@ -48,29 +53,29 @@ namespace ODS.Forms
             rbSoftware.CheckedChanged += (s, e) => ActualizarEstadoRadioButton(!rbSoftware.Checked);
         }
 
-        //Com´parar estado de  los radiobutton 
-        private void ActualizarEstadoRadioButton(bool isRadioButton1Checked)
+        private void ActualizarEstadoRadioButton(bool isHardwareChecked)
         {
-            // Si radioButton1 está seleccionado
-            if (isRadioButton1Checked)
+            if (isHardwareChecked)
             {
-                // Habilitar controles asociados a radioButton1
-                controlHadware.Enabled = true;
+                // Si rbHardware está seleccionado
+                rbHardware.Checked = true;
+                CargarTiposFallaHardware(); // Cargar datos de hardware en comboHadware
 
-                // Deshabilitar controles asociados a radioButton2
+                // Desactivar rbSoftware y limpiar comboHadware si no aplica
                 rbSoftware.Checked = false;
-                resourcesComboBoxControl2.Enabled = false;
             }
             else
             {
-                // Habilitar controles asociados a radioButton2
-                resourcesComboBoxControl2.Enabled = true;
+                // Si rbSoftware está seleccionado
+                rbSoftware.Checked = true;
+                CargarTiposFallaSoftware(); // Cargar datos de software en comboHadware
 
-                // Deshabilitar controles asociados a radioButton1
+                // Desactivar rbHardware y limpiar comboHadware si no aplica
                 rbHardware.Checked = false;
-                controlHadware.Enabled = false;
             }
         }
+
+
 
         private void FormRegistrar_Load(object sender, EventArgs e)
         {
@@ -78,7 +83,7 @@ namespace ODS.Forms
             ConsultasDB consultas = new ConsultasDB();
 
             // Obtener el nombre del usuario con el ID 1 (puedes cambiar este valor según sea necesario)
-            int idUsuario = 1; // ID de usuario que deseas consultar
+            int idUsuario = 2; // ID de usuario que deseas consultar
             string nombreUsuario = consultas.ObtenerNombreUsuario(idUsuario);
 
             // Mostrar el nombre del usuario en el label
@@ -91,29 +96,78 @@ namespace ODS.Forms
                 labelUsuario.Text = "No se encontró el nombre de usuario.";
             }
 
-            CargarTiposFallaHardware();
+          
 
         }
+
+        private void CargarOrdenesPorUsuario(int idUsuario)
+        {
+            ConsultasDB consulta = new ConsultasDB();
+            DataTable tablaOrdenes = consulta.ObtenerOrdenesPorUsuario(idUsuario);
+
+            if (tablaOrdenes.Rows.Count > 0)
+            {
+                // Carga los datos en un DataGridView o un control similar
+                gridControl1.DataSource = tablaOrdenes;
+            }
+            else
+            {
+                XtraMessageBox.Show("No se encontraron órdenes para el usuario seleccionado.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
 
         private void CargarTiposFallaHardware()
         {
             try
             {
-                // Instanciar la clase ConsultasDB
                 ConsultasDB consultas = new ConsultasDB();
 
-                // Obtener la lista de descripciones de los tipos de falla de hardware
+                // Obtener la lista de descripciones de fallas de hardware
                 List<string> tiposFallaHardware = consultas.ObtenerTiposFallaHardware();
 
-                // Cargar el combobox con la lista de descripciones
-                comboBox1.DataSource = tiposFallaHardware;
+                if (tiposFallaHardware != null && tiposFallaHardware.Count > 0)
+                {
+                    comboFallos.DataSource = tiposFallaHardware;
+                }
+                else
+                {
+                    comboFallos.DataSource = null;
+                    XtraMessageBox.Show("No se encontraron tipos de falla de hardware.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
             catch (Exception ex)
             {
-                // Manejo de excepciones
-                XtraMessageBox.Show($"Error al cargar los tipos de falla de hardware: {ex.Message}", "Error de carga", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show($"Error al cargar tipos de falla de hardware: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
+        private void CargarTiposFallaSoftware()
+        {
+            try
+            {
+                ConsultasDB consultas = new ConsultasDB();
+
+                // Obtener la lista de descripciones de fallas de software
+                List<string> tiposFallaSoftware = consultas.ObtenerTiposFallaSoftware();
+
+                if (tiposFallaSoftware != null && tiposFallaSoftware.Count > 0)
+                {
+                    comboFallos.DataSource = tiposFallaSoftware; // Actualiza comboHadware
+                }
+                else
+                {
+                    comboFallos.DataSource = null;
+                    XtraMessageBox.Show("No se encontraron tipos de falla de software.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show($"Error al cargar tipos de falla de software: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
     }
 }
 

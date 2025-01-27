@@ -39,22 +39,18 @@
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.resourcesComboBoxControl2 = new DevExpress.XtraScheduler.UI.ResourcesComboBoxControl();
-            this.controlHadware = new DevExpress.XtraScheduler.UI.ResourcesComboBoxControl();
             this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
+            this.comboFallos = new System.Windows.Forms.ComboBox();
             this.labelEstado = new System.Windows.Forms.Label();
             this.btnRegistrar = new DevExpress.XtraEditors.SimpleButton();
             this.labelUsuario = new System.Windows.Forms.Label();
             this.labelFecha = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.txtObservaciones = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.resourcesComboBoxControl2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.controlHadware.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
             this.SuspendLayout();
@@ -95,7 +91,7 @@
             this.rbSoftware.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.rbSoftware.AutoSize = true;
             this.rbSoftware.BackColor = System.Drawing.Color.Transparent;
-            this.rbSoftware.Location = new System.Drawing.Point(510, 130);
+            this.rbSoftware.Location = new System.Drawing.Point(300, 159);
             this.rbSoftware.Name = "rbSoftware";
             this.rbSoftware.Size = new System.Drawing.Size(69, 17);
             this.rbSoftware.TabIndex = 2;
@@ -108,7 +104,7 @@
             this.rbHardware.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.rbHardware.AutoSize = true;
             this.rbHardware.BackColor = System.Drawing.Color.Transparent;
-            this.rbHardware.Location = new System.Drawing.Point(316, 129);
+            this.rbHardware.Location = new System.Drawing.Point(400, 159);
             this.rbHardware.Name = "rbHardware";
             this.rbHardware.Size = new System.Drawing.Size(72, 17);
             this.rbHardware.TabIndex = 1;
@@ -151,35 +147,13 @@
             this.gridView3.GridControl = this.gridControl1;
             this.gridView3.Name = "gridView3";
             // 
-            // resourcesComboBoxControl2
-            // 
-            this.resourcesComboBoxControl2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.resourcesComboBoxControl2.Location = new System.Drawing.Point(585, 129);
-            this.resourcesComboBoxControl2.Name = "resourcesComboBoxControl2";
-            this.resourcesComboBoxControl2.Properties.Appearance.BackColor = System.Drawing.Color.White;
-            this.resourcesComboBoxControl2.Properties.Appearance.Options.UseBackColor = true;
-            this.resourcesComboBoxControl2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.resourcesComboBoxControl2.Size = new System.Drawing.Size(100, 20);
-            this.resourcesComboBoxControl2.TabIndex = 4;
-            // 
-            // controlHadware
-            // 
-            this.controlHadware.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.controlHadware.Location = new System.Drawing.Point(394, 128);
-            this.controlHadware.Name = "controlHadware";
-            this.controlHadware.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.controlHadware.Size = new System.Drawing.Size(100, 20);
-            this.controlHadware.TabIndex = 3;
-            // 
             // txtDescripcion
             // 
             this.txtDescripcion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDescripcion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtDescripcion.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDescripcion.Location = new System.Drawing.Point(22, 205);
+            this.txtDescripcion.Location = new System.Drawing.Point(19, 182);
             this.txtDescripcion.Multiline = true;
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(765, 46);
@@ -194,20 +168,18 @@
             this.groupControl2.Appearance.Options.UseBorderColor = true;
             this.groupControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.groupControl2.CaptionImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("groupControl2.CaptionImageOptions.Image")));
-            this.groupControl2.Controls.Add(this.comboBox2);
-            this.groupControl2.Controls.Add(this.comboBox1);
+            this.groupControl2.Controls.Add(this.txtObservaciones);
+            this.groupControl2.Controls.Add(this.comboFallos);
             this.groupControl2.Controls.Add(this.labelEstado);
             this.groupControl2.Controls.Add(this.btnRegistrar);
             this.groupControl2.Controls.Add(this.labelUsuario);
             this.groupControl2.Controls.Add(this.labelFecha);
             this.groupControl2.Controls.Add(this.gridControl1);
             this.groupControl2.Controls.Add(this.label1);
-            this.groupControl2.Controls.Add(this.resourcesComboBoxControl2);
             this.groupControl2.Controls.Add(this.label2);
             this.groupControl2.Controls.Add(this.simpleButton1);
             this.groupControl2.Controls.Add(this.txtDescripcion);
             this.groupControl2.Controls.Add(this.rbHardware);
-            this.groupControl2.Controls.Add(this.controlHadware);
             this.groupControl2.Controls.Add(this.rbSoftware);
             this.groupControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControl2.Location = new System.Drawing.Point(0, 0);
@@ -216,12 +188,21 @@
             this.groupControl2.TabIndex = 12;
             this.groupControl2.Text = "groupControl2";
             // 
+            // comboFallos
+            // 
+            this.comboFallos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.comboFallos.FormattingEnabled = true;
+            this.comboFallos.Location = new System.Drawing.Point(300, 133);
+            this.comboFallos.Name = "comboFallos";
+            this.comboFallos.Size = new System.Drawing.Size(227, 21);
+            this.comboFallos.TabIndex = 16;
+            // 
             // labelEstado
             // 
             this.labelEstado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.labelEstado.AutoSize = true;
             this.labelEstado.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelEstado.Location = new System.Drawing.Point(704, 132);
+            this.labelEstado.Location = new System.Drawing.Point(645, 138);
             this.labelEstado.Name = "labelEstado";
             this.labelEstado.Size = new System.Drawing.Size(110, 16);
             this.labelEstado.TabIndex = 15;
@@ -244,7 +225,7 @@
             this.labelUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.labelUsuario.AutoSize = true;
             this.labelUsuario.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelUsuario.Location = new System.Drawing.Point(29, 130);
+            this.labelUsuario.Location = new System.Drawing.Point(30, 121);
             this.labelUsuario.Name = "labelUsuario";
             this.labelUsuario.Size = new System.Drawing.Size(92, 16);
             this.labelUsuario.TabIndex = 13;
@@ -255,27 +236,25 @@
             this.labelFecha.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.labelFecha.AutoSize = true;
             this.labelFecha.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelFecha.Location = new System.Drawing.Point(127, 130);
+            this.labelFecha.Location = new System.Drawing.Point(30, 147);
             this.labelFecha.Name = "labelFecha";
             this.labelFecha.Size = new System.Drawing.Size(172, 16);
             this.labelFecha.TabIndex = 12;
             this.labelFecha.Text = "Fecha: 26/01/2025 4:08 p.m";
             // 
-            // comboBox1
+            // txtObservaciones
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(355, 174);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 16;
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(207, 173);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 21);
-            this.comboBox2.TabIndex = 17;
+            this.txtObservaciones.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtObservaciones.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtObservaciones.Enabled = false;
+            this.txtObservaciones.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtObservaciones.Location = new System.Drawing.Point(33, 234);
+            this.txtObservaciones.Multiline = true;
+            this.txtObservaciones.Name = "txtObservaciones";
+            this.txtObservaciones.Size = new System.Drawing.Size(765, 32);
+            this.txtObservaciones.TabIndex = 17;
+            this.txtObservaciones.Text = "no se corrige el problema hasta...";
             // 
             // FormRegistrar
             // 
@@ -295,8 +274,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.resourcesComboBoxControl2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.controlHadware.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
             this.groupControl2.ResumeLayout(false);
             this.groupControl2.PerformLayout();
@@ -314,15 +291,13 @@
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView3;
-        private DevExpress.XtraScheduler.UI.ResourcesComboBoxControl resourcesComboBoxControl2;
-        private DevExpress.XtraScheduler.UI.ResourcesComboBoxControl controlHadware;
         private System.Windows.Forms.TextBox txtDescripcion;
         private DevExpress.XtraEditors.GroupControl groupControl2;
         private System.Windows.Forms.Label labelFecha;
         private System.Windows.Forms.Label labelUsuario;
         private DevExpress.XtraEditors.SimpleButton btnRegistrar;
         private System.Windows.Forms.Label labelEstado;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox comboFallos;
+        private System.Windows.Forms.TextBox txtObservaciones;
     }
 }
