@@ -1,0 +1,18 @@
+        //mostrar nombre usuario
+        
+                    // Instanciar la clase ConsultasDB
+            ConsultasDB consultas = new ConsultasDB();
+
+            // Obtener el nombre del usuario con el ID 1 (puedes cambiar este valor según sea necesario)
+            int idUsuario = 1; // ID de usuario que deseas consultar
+            string nombreUsuario = consultas.ObtenerNombreUsuario(idUsuario);
+
+            // Mostrar el nombre del usuario en el label
+            if (!string.IsNullOrEmpty(nombreUsuario))
+            {
+                labelNombreUsuario.Text = $"Nombre de usuario: {nombreUsuario}";
+            }
+            else
+            {
+                labelNombreUsuario.Text = "No se encontró el nombre de usuario.";
+            }

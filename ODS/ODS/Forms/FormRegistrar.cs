@@ -22,7 +22,7 @@ namespace ODS.Forms
             // Configurar el formulario para adaptarse correctamente
             this.Dock = DockStyle.Fill;
             this.Margin = new Padding(0); // Elimina márgenes adicionales
-           // this.AutoScaleMode = AutoScaleMode.None; // Desactivar el escalado automático si es innecesario
+
             ConexionDB conexionDB = new ConexionDB();
             SqlConnection conexion = conexionDB.ConectarSQL();
 
@@ -30,55 +30,90 @@ namespace ODS.Forms
             if (conexion.State == ConnectionState.Open)
             {
                 XtraMessageBox.Show("Conexión exitosa a la base de datos.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                // Aquí puedes ejecutar consultas o realizar operaciones con la base de datos
-                // Por ejemplo:
-                using (SqlCommand command = new SqlCommand("SELECT * FROM Login", conexion))
-                {
-                    SqlDataReader reader = command.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        XtraMessageBox.Show($"ID: {reader["Id_Usuario"]}, Nombre: {reader["Usuario"]}");
-                    }
-                }
-
-                UpdateControls(checkEdit1.Checked, checkEdit2.Checked);
-
+            }
+            conexion.Close();
+            if (conexion != null && conexion.State == System.Data.ConnectionState.Closed)
+            {
+                // La conexión se cerró correctamente
+                MessageBox.Show("La conexión se cerró correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                // La conexión no se cerró correctamente
+                MessageBox.Show("La conexión no se cerró correctamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+            //los radiobutton cambi de true a false
+            rbHardware.CheckedChanged += (s, e) => ActualizarEstadoRadioButton(rbHardware.Checked);
+            rbSoftware.CheckedChanged += (s, e) => ActualizarEstadoRadioButton(!rbSoftware.Checked);
         }
 
-        private void UpdateControls(bool isCheckEdit1Checked, bool isCheckEdit2Checked)
+        //Com´parar estado de  los radiobutton 
+        private void ActualizarEstadoRadioButton(bool isRadioButton1Checked)
         {
-            // Si checkEdit1 está marcado
-            if (isCheckEdit1Checked)
+            // Si radioButton1 está seleccionado
+            if (isRadioButton1Checked)
             {
-                checkEdit2.Checked = false;
-                checkEdit2.Enabled = false;
-                dateTimeOffsetEdit2.Enabled = false;
-            }
-            else
-            {
-                checkEdit2.Enabled = true;
-                dateTimeOffsetEdit2.Enabled = true;
-            }
+                // Habilitar controles asociados a radioButton1
+                controlHadware.Enabled = true;
 
-            // Si checkEdit2 está marcado
-            if (isCheckEdit2Checked)
-            {
-                checkEdit1.Checked = false;
-                checkEdit1.Enabled = false;
-                dateTimeOffsetEdit1.Enabled = false;
+                // Deshabilitar controles asociados a radioButton2
+                rbSoftware.Checked = false;
+                resourcesComboBoxControl2.Enabled = false;
             }
             else
             {
-                checkEdit1.Enabled = true;
-                dateTimeOffsetEdit1.Enabled = true;
+                // Habilitar controles asociados a radioButton2
+                resourcesComboBoxControl2.Enabled = true;
+
+                // Deshabilitar controles asociados a radioButton1
+                rbHardware.Checked = false;
+                controlHadware.Enabled = false;
             }
         }
 
+        private void FormRegistrar_Load(object sender, EventArgs e)
+        {
+            //Instanciar la clase ConsultasDB
+            ConsultasDB consultas = new ConsultasDB();
 
+            // Obtener el nombre del usuario con el ID 1 (puedes cambiar este valor según sea necesario)
+            int idUsuario = 1; // ID de usuario que deseas consultar
+            string nombreUsuario = consultas.ObtenerNombreUsuario(idUsuario);
 
+            // Mostrar el nombre del usuario en el label
+            if (!string.IsNullOrEmpty(nombreUsuario))
+            {
+                labelUsuario.Text = $"Nombre de usuario: {nombreUsuario}";
+            }
+            else
+            {
+                labelUsuario.Text = "No se encontró el nombre de usuario.";
+            }
+
+            CargarTiposFallaHardware();
+
+        }
+
+        private void CargarTiposFallaHardware()
+        {
+            try
+            {
+                // Instanciar la clase ConsultasDB
+                ConsultasDB consultas = new ConsultasDB();
+
+                // Obtener la lista de descripciones de los tipos de falla de hardware
+                List<string> tiposFallaHardware = consultas.ObtenerTiposFallaHardware();
+
+                // Cargar el combobox con la lista de descripciones
+                comboBox1.DataSource = tiposFallaHardware;
+            }
+            catch (Exception ex)
+            {
+                // Manejo de excepciones
+                XtraMessageBox.Show($"Error al cargar los tipos de falla de hardware: {ex.Message}", "Error de carga", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
 

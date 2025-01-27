@@ -103,3 +103,4 @@ C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.csproj.Up2Da
 C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.exe
 C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.pdb
 C:\Users\vicom\Documents\GitHub\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.Forms.prueba.resources
+C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\obj\Debug\CapaPresentacion.frmLogin.resources

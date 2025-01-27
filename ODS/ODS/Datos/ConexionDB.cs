@@ -7,15 +7,14 @@ namespace ODS.Datos
 {
     public class ConexionDB
     {
-        public ConexionDB() { }
+        private string connectionString = "Data Source=VICTOR-PC\\SQLVICTOR;Initial Catalog=obs2;User ID=sa;Password=6433"; // Tu cadena de conexión
+        private SqlConnection conexion; // Declarar la variable conexión a nivel de clase
 
-        private string connectionString = "Data Source=VICTOR-HP\\SQLVICTOR;Initial Catalog=ods5;User ID=sa;Password=6433"; // Tu cadena de conexión
+        public ConexionDB() { }
 
         // Método para conectar a SQL Server
         public SqlConnection ConectarSQL()
         {
-            SqlConnection conexion = null; // Inicializar la conexión como null
-
             try
             {
                 // Crear una nueva instancia de SqlConnection
@@ -36,6 +35,45 @@ namespace ODS.Datos
                 }
 
                 throw; // Lanza la excepción para ser manejada por el código que llama a este método
+            }
+        }
+
+        // Método para abrir la conexión
+        public void AbrirConexion()
+        {
+            try
+            {
+                if (conexion == null)
+                {
+                    ConectarSQL(); // Llamar al método ConectarSQL para inicializar la conexión
+                }
+
+                if (conexion.State != System.Data.ConnectionState.Open)
+                {
+                    conexion.Open(); // Abrir la conexión
+                    XtraMessageBox.Show("Conexión abierta exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show($"Error al abrir la conexión: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // Método para cerrar la conexión
+        public void CerrarConexion()
+        {
+            try
+            {
+                if (conexion != null && conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close(); // Cerrar la conexión
+                    XtraMessageBox.Show("Conexión cerrada exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show($"Error al cerrar la conexión: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
