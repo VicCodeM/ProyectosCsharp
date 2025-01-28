@@ -233,14 +233,13 @@ namespace ODS.Datos
                     using (SqlCommand comando = new SqlCommand(query, conexion))
                     {
                         // Agregar parámetro para evitar inyección SQL
-                        comando.Parameters.Add("@IdUsuario", SqlDbType.VarChar).Value = idUsuario.ToString();
+                        comando.Parameters.Add("@IdUsuario", SqlDbType.Int).Value = idUsuario; // Cambié VarChar a Int
 
                         // Llena la tabla con los resultados
                         using (SqlDataAdapter adapter = new SqlDataAdapter(comando))
                         {
                             adapter.Fill(tablaOrdenes);
                         }
-                        conexion.Close();
                     }
                 }
             }
@@ -259,6 +258,74 @@ namespace ODS.Datos
         }
 
 
+
+        //incertar ordenees usuarios
+        // Método para cargar fallas de hardware
+        //public DataTable ObtenerTiposFallaHardware()
+        //{
+        //    string query = "SELECT Id_TipoFallaHardware, Descripcion FROM TiposFallaHardware";
+
+        //    using (SqlConnection conn = conexionBD.ConectarSQL())
+        //    {
+        //        SqlDataAdapter da = new SqlDataAdapter(query, conn);
+        //        DataTable dt = new DataTable();
+        //        da.Fill(dt);
+        //        return dt;
+        //    }
+        //}
+
+        //// Método para cargar fallas de software
+        //public DataTable ObtenerTiposFallaSoftware()
+        //{
+        //    string query = "SELECT Id_TipoFallaSoftware, Descripcion FROM TiposFallaSoftware";
+
+        //    using (SqlConnection conn = conexionBD.ConectarSQL())
+        //    {
+        //        SqlDataAdapter da = new SqlDataAdapter(query, conn);
+        //        DataTable dt = new DataTable();
+        //        da.Fill(dt);
+        //        return dt;
+        //    }
+        //}
+
+        // Método para validar si un usuario existe
+        public bool UsuarioExiste(int idUsuario)
+        {
+            string query = "SELECT COUNT(1) FROM Login WHERE Id_Usuario = @Id_Usuario";
+
+            using (SqlConnection conn = conexionBD.ConectarSQL())
+            {
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@Id_Usuario", idUsuario);
+
+                return Convert.ToInt32(cmd.ExecuteScalar()) > 0;
+            }
+        }
+
+        // Método para insertar una orden de servicio
+        public void InsertarOrdenServicio(int idUsuario, int? idFallaHardware, int? idFallaSoftware, string descripcionProblema, string estado)
+        {
+            string query = @"
+        INSERT INTO OrdenServicio 
+        (Id_Usuario, Id_TipoFallaHardware, Id_TipoFallaSoftware, Descripcion_Problema, Estado, Fecha_Creacion) 
+        VALUES (@Id_Usuario, @Id_TipoFallaHardware, @Id_TipoFallaSoftware, @Descripcion_Problema, @Estado, @Fecha_Creacion)";
+
+            using (SqlConnection conn = conexionBD.ConectarSQL())
+            {
+                SqlCommand cmd = new SqlCommand(query, conn);
+
+                cmd.Parameters.AddWithValue("@Id_Usuario", idUsuario);
+                cmd.Parameters.AddWithValue("@Id_TipoFallaHardware", idFallaHardware.HasValue ? (object)idFallaHardware.Value : DBNull.Value);
+                cmd.Parameters.AddWithValue("@Id_TipoFallaSoftware", idFallaSoftware.HasValue ? (object)idFallaSoftware.Value : DBNull.Value);
+                cmd.Parameters.AddWithValue("@Descripcion_Problema", descripcionProblema);
+                cmd.Parameters.AddWithValue("@Estado", estado);
+
+                // Agregar la fecha actual con la hora
+                cmd.Parameters.AddWithValue("@Fecha_Creacion", DateTime.Now);  // Fecha y hora actuales
+
+                cmd.ExecuteNonQuery();
+            }
+        }
 
     }
 }

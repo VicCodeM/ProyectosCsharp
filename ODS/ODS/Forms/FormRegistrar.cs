@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors;
+using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Grid;
 using ODS.Datos;
 using System;
@@ -20,7 +21,7 @@ namespace ODS.Forms
         #region Instanciar Objetos
         //instancias de las calses 
         ConexionDB conexionDB = new ConexionDB();
-        ConsultasDB consultas = new ConsultasDB();
+        ConsultasDB consultasDB = new ConsultasDB();
         ProcedimientosAlmacenadosDB procedimientosDB = new ProcedimientosAlmacenadosDB();
         #endregion
 
@@ -29,17 +30,20 @@ namespace ODS.Forms
         {
             InitializeComponent();
 
+            // Suscripción al evento en el constructor o en el método Load
+            ((GridView)gridCRegistrar.MainView).FocusedRowChanged += gridCRegistrar_FocusedRowChanged;
+
             #region Abrir Conexiones
             SqlConnection conexion = conexionDB.ConectarSQL();
             #endregion
 
             #region Acciones de controles
 
-            CargarOrdenesPorUsuario(1);
+            CargarOrdenesPorUsuario(2);
             rbHardware.CheckedChanged += (s, e) => ActualizarEstadoRadioButton(rbHardware.Checked);
             rbSoftware.CheckedChanged += (s, e) => ActualizarEstadoRadioButton(!rbSoftware.Checked);
             //evitar editar el datagrid
-            ((GridView)gridControl1.MainView).OptionsBehavior.Editable = false;
+            ((GridView)gridCRegistrar.MainView).OptionsBehavior.Editable = false;
             #endregion
 
             //// Verificar si la conexión está abierta
@@ -69,7 +73,7 @@ namespace ODS.Forms
             conexionDB.CerrarConexion();
             // Obtener el nombre del usuario con el ID 1 (puedes cambiar este valor según sea necesario)
             int idUsuario = 2; // ID de usuario que deseas consultar
-            string nombreUsuario = consultas.ObtenerNombreUsuario(idUsuario);
+            string nombreUsuario = consultasDB.ObtenerNombreUsuario(idUsuario);
 
             // Mostrar el nombre del usuario en el label
             if (!string.IsNullOrEmpty(nombreUsuario))
@@ -80,7 +84,10 @@ namespace ODS.Forms
             {
                 labelUsuario.Text = "No se encontró el nombre de usuario.";
             }
-        } 
+
+       
+
+        }
         #endregion
 
         #region Métodos de la forma
@@ -107,6 +114,8 @@ namespace ODS.Forms
             }
         }
 
+
+
         //Cargar ordenes por usuario
         private void CargarOrdenesPorUsuario(int idUsuario)
         {
@@ -116,75 +125,136 @@ namespace ODS.Forms
             if (tablaOrdenes.Rows.Count > 0)
             {
                 // Carga los datos en un DataGridView o un control similar
-                gridControl1.DataSource = tablaOrdenes;
+                gridCRegistrar.DataSource = tablaOrdenes;
             }
             else
             {
                 XtraMessageBox.Show("No se encontraron órdenes para el usuario seleccionado.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+
+            gridCRegistrar.Refresh();
         }
 
-        //Cargar tipos de falla de hardware
         private void CargarTiposFallaHardware()
         {
+            string query = "SELECT Id_TipoFallaHardware, Descripcion FROM TiposFallaHardware";
+
             try
             {
-                ConsultasDB consultas = new ConsultasDB();
-
-                // Obtener la lista de descripciones de fallas de hardware
-                List<string> tiposFallaHardware = consultas.ObtenerTiposFallaHardware();
-
-                if (tiposFallaHardware != null && tiposFallaHardware.Count > 0)
+                using (SqlConnection conn = conexionDB.ConectarSQL())
                 {
-                    comboFallos.DataSource = tiposFallaHardware;
-                }
-                else
-                {
-                    comboFallos.DataSource = null;
-                    XtraMessageBox.Show("No se encontraron tipos de falla de hardware.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    SqlDataAdapter da = new SqlDataAdapter(query, conn);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+
+                    comboFallos.DataSource = dt;
+                    comboFallos.DisplayMember = "Descripcion";
+                    comboFallos.ValueMember = "Id_TipoFallaHardware";
                 }
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show($"Error al cargar tipos de falla de hardware: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show($"Error al cargar fallas de hardware: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        //Cargar tipos de falla de software
         private void CargarTiposFallaSoftware()
         {
+            string query = "SELECT Id_TipoFallaSoftware, Descripcion FROM TiposFallaSoftware";
+
             try
             {
-
-
-                // Obtener la lista de descripciones de fallas de software
-                List<string> tiposFallaSoftware = consultas.ObtenerTiposFallaSoftware();
-
-                if (tiposFallaSoftware != null && tiposFallaSoftware.Count > 0)
+                using (SqlConnection conn = conexionDB.ConectarSQL())
                 {
-                    comboFallos.DataSource = tiposFallaSoftware; // Actualiza comboHadware
-                }
-                else
-                {
-                    comboFallos.DataSource = null;
-                    XtraMessageBox.Show("No se encontraron tipos de falla de software.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    SqlDataAdapter da = new SqlDataAdapter(query, conn);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+
+                    comboFallos.DataSource = dt;
+                    comboFallos.DisplayMember = "Descripcion";
+                    comboFallos.ValueMember = "Id_TipoFallaSoftware";
                 }
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show($"Error al cargar tipos de falla de software: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show($"Error al cargar fallas de software: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-
-
 
         #endregion
 
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
+            if (comboFallos.SelectedValue == null || string.IsNullOrWhiteSpace(txtDescripcion.Text))
+            {
+                XtraMessageBox.Show("Por favor, selecciona un tipo de falla y describe el problema.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int idUsuario = 2; // Cambiar según el usuario logueado.
+            int idFalloSeleccionado = Convert.ToInt32(comboFallos.SelectedValue);
+            string descripcionProblema = txtDescripcion.Text.Trim();
+            string estado = "Pendiente";
+
+            try
+            {
+                if (!consultasDB.UsuarioExiste(idUsuario))
+                {
+                    XtraMessageBox.Show("El usuario no existe. Verifique el ID de usuario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (rbHardware.Checked)
+                {
+                    consultasDB.InsertarOrdenServicio(idUsuario, idFalloSeleccionado, null, descripcionProblema, estado);
+                }
+                else
+                {
+                    consultasDB.InsertarOrdenServicio(idUsuario, null, idFalloSeleccionado, descripcionProblema, estado);
+                }
+
+                XtraMessageBox.Show("Orden de servicio registrada exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show($"Error al registrar la orden de servicio: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            CargarOrdenesPorUsuario(idUsuario);
 
         }
+
+        private void gridCRegistrar_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        {
+            //GridView view = sender as GridView;
+
+            //if (view != null)
+            //{
+            //    // Obtén los valores de las columnas con una comprobación de nulos
+            //    var idFallo = view.GetFocusedRowCellValue("IdFallo");
+            //    var descripcion = view.GetFocusedRowCellValue("Descripcion");
+            //    var estado = view.GetFocusedRowCellValue("Estado");
+            //    var observaciones = view.GetFocusedRowCellValue("Observaciones");
+
+            //    // Verificar si los valores son nulos antes de usarlos
+            //    if (idFallo == DBNull.Value || descripcion == DBNull.Value || estado == DBNull.Value || observaciones == DBNull.Value)
+            //    {
+            //        XtraMessageBox.Show("Hay valores nulos en la fila seleccionada.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //        return;
+            //    }
+
+            //    // Asigna los valores a los controles
+            //    comboFallos.SelectedValue = idFallo;
+            //    txtDescripcion.Text = descripcion?.ToString();
+            //    labelEstado.Text = estado?.ToString();
+            //    txtObservaciones.Text = observaciones?.ToString();
+            //}
+        }
+
+
+
+
+
     }
 }
 

@@ -58,7 +58,7 @@ namespace ODS
         private void FormInicial_Load(object sender, EventArgs e)
         {
             // Obtener el nombre del usuario con el ID 1 (puedes cambiar este valor según sea necesario)
-            int idUsuario = 1; // ID de usuario que deseas consultar
+            int idUsuario = 2; // ID de usuario que deseas consultar
 
             // Obtener el departamento del usuario
             string nombreDepartamento = consultas.ObtenerDepartamentoPorUsuario(idUsuario);

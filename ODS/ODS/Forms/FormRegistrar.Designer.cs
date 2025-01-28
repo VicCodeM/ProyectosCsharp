@@ -37,7 +37,7 @@
             this.rbHardware = new System.Windows.Forms.RadioButton();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
+            this.gridCRegistrar = new DevExpress.XtraGrid.GridControl();
             this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
@@ -49,7 +49,7 @@
             this.labelFecha = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridCRegistrar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
@@ -125,26 +125,26 @@
             // 
             // gridView1
             // 
-            this.gridView1.GridControl = this.gridControl1;
+            this.gridView1.GridControl = this.gridCRegistrar;
             this.gridView1.Name = "gridView1";
             // 
-            // gridControl1
+            // gridCRegistrar
             // 
-            this.gridControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.gridCRegistrar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gridControl1.Location = new System.Drawing.Point(0, 272);
-            this.gridControl1.MainView = this.gridView1;
-            this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(832, 237);
-            this.gridControl1.TabIndex = 11;
-            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridCRegistrar.Location = new System.Drawing.Point(0, 272);
+            this.gridCRegistrar.MainView = this.gridView1;
+            this.gridCRegistrar.Name = "gridCRegistrar";
+            this.gridCRegistrar.Size = new System.Drawing.Size(832, 237);
+            this.gridCRegistrar.TabIndex = 11;
+            this.gridCRegistrar.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1,
             this.gridView3});
             // 
             // gridView3
             // 
-            this.gridView3.GridControl = this.gridControl1;
+            this.gridView3.GridControl = this.gridCRegistrar;
             this.gridView3.Name = "gridView3";
             // 
             // txtDescripcion
@@ -156,7 +156,7 @@
             this.txtDescripcion.Location = new System.Drawing.Point(19, 182);
             this.txtDescripcion.Multiline = true;
             this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(765, 46);
+            this.txtDescripcion.Size = new System.Drawing.Size(790, 46);
             this.txtDescripcion.TabIndex = 0;
             this.txtDescripcion.Text = "Ejmplo: la Impresora no prende...";
             // 
@@ -174,7 +174,7 @@
             this.groupControl2.Controls.Add(this.btnRegistrar);
             this.groupControl2.Controls.Add(this.labelUsuario);
             this.groupControl2.Controls.Add(this.labelFecha);
-            this.groupControl2.Controls.Add(this.gridControl1);
+            this.groupControl2.Controls.Add(this.gridCRegistrar);
             this.groupControl2.Controls.Add(this.label1);
             this.groupControl2.Controls.Add(this.label2);
             this.groupControl2.Controls.Add(this.simpleButton1);
@@ -195,10 +195,10 @@
             this.txtObservaciones.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtObservaciones.Enabled = false;
             this.txtObservaciones.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtObservaciones.Location = new System.Drawing.Point(33, 234);
+            this.txtObservaciones.Location = new System.Drawing.Point(19, 234);
             this.txtObservaciones.Multiline = true;
             this.txtObservaciones.Name = "txtObservaciones";
-            this.txtObservaciones.Size = new System.Drawing.Size(765, 32);
+            this.txtObservaciones.Size = new System.Drawing.Size(790, 32);
             this.txtObservaciones.TabIndex = 17;
             this.txtObservaciones.Text = "no se corrige el problema hasta...";
             // 
@@ -228,9 +228,9 @@
             this.btnRegistrar.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRegistrar.Appearance.Options.UseFont = true;
             this.btnRegistrar.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnRegistrar.ImageOptions.Image")));
-            this.btnRegistrar.Location = new System.Drawing.Point(189, 515);
+            this.btnRegistrar.Location = new System.Drawing.Point(33, 515);
             this.btnRegistrar.Name = "btnRegistrar";
-            this.btnRegistrar.Size = new System.Drawing.Size(137, 37);
+            this.btnRegistrar.Size = new System.Drawing.Size(117, 37);
             this.btnRegistrar.TabIndex = 14;
             this.btnRegistrar.Text = "Registrar";
             this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
@@ -273,7 +273,7 @@
             this.Load += new System.EventHandler(this.FormRegistrar_Load);
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridCRegistrar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
             this.groupControl2.ResumeLayout(false);
@@ -290,7 +290,7 @@
         private System.Windows.Forms.RadioButton rbHardware;
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private DevExpress.XtraGrid.GridControl gridControl1;
+        private DevExpress.XtraGrid.GridControl gridCRegistrar;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView3;
         private System.Windows.Forms.TextBox txtDescripcion;
         private DevExpress.XtraEditors.GroupControl groupControl2;
