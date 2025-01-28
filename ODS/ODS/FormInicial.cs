@@ -114,7 +114,7 @@ namespace ODS
         //eventos del menu
         private void ControlINICIO_Click(object sender, EventArgs e)
         {
-            FormInicial formularioSecundario = new FormInicial();
+            frmInicio formularioSecundario = new frmInicio();
 
             // Llamar al método para mostrar el formulario dentro del PanelControl
             MostrarFormularioEnPanel(groupControl1, formularioSecundario);

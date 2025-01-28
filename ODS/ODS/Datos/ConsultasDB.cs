@@ -202,15 +202,15 @@ namespace ODS.Datos
                     string query = @"
                 SELECT 
                     os.Id_Orden AS Id,
-                    os.Fecha_Creacion AS FechaC,
-                    os.Fecha_Atendida AS FechaA,
-                    os.Fecha_Cerrada AS FechaCi,
+                    os.Fecha_Creacion AS Fecha_Registro,
+                    os.Fecha_Atendida AS Fecha_Atencion,
+                    os.Fecha_Cerrada AS Fecha_Cierre,
                     l.Usuario AS Usuario,
                     d.Nombre_Departamento AS Departamento,
                     th.Descripcion AS Hardware,
                     ts.Descripcion AS Software,
                     os.Descripcion_Problema AS Descripcion,
-                    os.Observaciones AS Observ,
+                    os.Observaciones AS Observaciones,
                     os.Estado
                 FROM 
                     OrdenServicio os

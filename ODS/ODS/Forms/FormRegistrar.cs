@@ -124,8 +124,49 @@ namespace ODS.Forms
 
             if (tablaOrdenes.Rows.Count > 0)
             {
-                // Carga los datos en un DataGridView o un control similar
+                // Agregar una columna para la hora
+                if (!tablaOrdenes.Columns.Contains("Hora"))
+                {
+                    tablaOrdenes.Columns.Add("Hora", typeof(string));
+                }
+
+                // Llenar la columna "Hora" con la hora extraída
+                foreach (DataRow row in tablaOrdenes.Rows)
+                {
+                    if (row["Fecha_Registro"] != DBNull.Value)
+                    {
+                        DateTime fecha = Convert.ToDateTime(row["Fecha_Registro"]);
+                        row["Hora"] = fecha.ToString("hh:mm tt"); // Solo la hora en formato de 12 horas
+                    }
+                }
+
+                // Asignar el DataTable al grid
                 gridCRegistrar.DataSource = tablaOrdenes;
+
+                // Configurar el GridView
+                GridView gridViewOrdenes = (GridView)gridCRegistrar.MainView;
+
+                gridViewOrdenes.Columns["Fecha_Atencion"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+                gridViewOrdenes.Columns["Fecha_Atencion"].DisplayFormat.FormatString = "yyyy-MM-dd hh:mm tt";
+
+                gridViewOrdenes.Columns["Fecha_Cierre"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+                gridViewOrdenes.Columns["Fecha_Cierre"].DisplayFormat.FormatString = "yyyy-MM-dd hh:mm tt";
+
+
+                // Formato para las columnas existentes
+                gridViewOrdenes.Columns["Fecha_Registro"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+                gridViewOrdenes.Columns["Fecha_Registro"].DisplayFormat.FormatString = "yyyy-MM-dd";
+
+                // Formato para la nueva columna "Hora"
+                gridViewOrdenes.Columns["Hora"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+                gridViewOrdenes.Columns["Hora"].DisplayFormat.FormatString = "hh:mm tt";
+
+                // Ajustar el orden: colocar la columna "Hora" después de "FechaC"
+                gridViewOrdenes.Columns["Fecha_Registro"].VisibleIndex = 1; // Primera columna (si es necesario, ajusta este índice)
+                gridViewOrdenes.Columns["Hora"].VisibleIndex = 2;   // Segunda columna, justo después de "FechaC"
+
+                // Opcional: Ajustar ancho de columnas
+                gridViewOrdenes.BestFitColumns();
             }
             else
             {
@@ -133,7 +174,11 @@ namespace ODS.Forms
             }
 
             gridCRegistrar.Refresh();
+
         }
+
+
+
 
         private void CargarTiposFallaHardware()
         {
