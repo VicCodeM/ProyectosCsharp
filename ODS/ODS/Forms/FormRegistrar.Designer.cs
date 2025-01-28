@@ -41,12 +41,12 @@
             this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
+            this.txtObservaciones = new System.Windows.Forms.TextBox();
             this.comboFallos = new System.Windows.Forms.ComboBox();
             this.labelEstado = new System.Windows.Forms.Label();
             this.btnRegistrar = new DevExpress.XtraEditors.SimpleButton();
             this.labelUsuario = new System.Windows.Forms.Label();
             this.labelFecha = new System.Windows.Forms.Label();
-            this.txtObservaciones = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -188,6 +188,20 @@
             this.groupControl2.TabIndex = 12;
             this.groupControl2.Text = "groupControl2";
             // 
+            // txtObservaciones
+            // 
+            this.txtObservaciones.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtObservaciones.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtObservaciones.Enabled = false;
+            this.txtObservaciones.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtObservaciones.Location = new System.Drawing.Point(33, 234);
+            this.txtObservaciones.Multiline = true;
+            this.txtObservaciones.Name = "txtObservaciones";
+            this.txtObservaciones.Size = new System.Drawing.Size(765, 32);
+            this.txtObservaciones.TabIndex = 17;
+            this.txtObservaciones.Text = "no se corrige el problema hasta...";
+            // 
             // comboFallos
             // 
             this.comboFallos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
@@ -219,6 +233,7 @@
             this.btnRegistrar.Size = new System.Drawing.Size(137, 37);
             this.btnRegistrar.TabIndex = 14;
             this.btnRegistrar.Text = "Registrar";
+            this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
             // 
             // labelUsuario
             // 
@@ -241,20 +256,6 @@
             this.labelFecha.Size = new System.Drawing.Size(172, 16);
             this.labelFecha.TabIndex = 12;
             this.labelFecha.Text = "Fecha: 26/01/2025 4:08 p.m";
-            // 
-            // txtObservaciones
-            // 
-            this.txtObservaciones.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtObservaciones.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtObservaciones.Enabled = false;
-            this.txtObservaciones.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtObservaciones.Location = new System.Drawing.Point(33, 234);
-            this.txtObservaciones.Multiline = true;
-            this.txtObservaciones.Name = "txtObservaciones";
-            this.txtObservaciones.Size = new System.Drawing.Size(765, 32);
-            this.txtObservaciones.TabIndex = 17;
-            this.txtObservaciones.Text = "no se corrige el problema hasta...";
             // 
             // FormRegistrar
             // 

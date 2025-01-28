@@ -131,6 +131,8 @@ namespace ODS.Datos
 
             return nombreCompleto;
         }
+
+
         // Método para obtener los tipos de falla de hardware
         public List<string> ObtenerTiposFallaHardware()
         {
@@ -186,6 +188,7 @@ namespace ODS.Datos
             return tiposFallaSoftware;
         }
 
+        // Método para obtener las órdenes de servicio por Id_Usuario   
         public DataTable ObtenerOrdenesPorUsuario(int idUsuario)
         {
             DataTable tablaOrdenes = new DataTable();
@@ -195,63 +198,66 @@ namespace ODS.Datos
                 // Configura tu conexión a la base de datos
                 using (SqlConnection conexion = conexionBD.ConectarSQL())
                 {
-                    // Asegúrate de que la conexión esté abierta
-                   // conexion.Open();
-
                     // Consulta SQL para obtener las órdenes del usuario
                     string query = @"
-SELECT 
-    os.Id_Orden AS Id,
-    os.Fecha_Creacion AS FechaC,
-    os.Fecha_Atendida AS FechaA,
-    os.Fecha_Cerrada AS FechaCi,
-    l.Usuario AS Usuario,
-    d.Nombre_Departamento AS Departamento,
-    th.Descripcion AS Hardware,
-    ts.Descripcion AS Software,
-    os.Descripcion_Problema AS Descripcion,
-    os.Observaciones AS Observ,
-    os.Estado
-FROM 
-    OrdenServicio os
-LEFT JOIN 
-    Login l ON os.Id_Usuario = l.Id_Usuario
-LEFT JOIN 
-    Empleados e ON l.Id_Empleado = e.Id_Empleado
-LEFT JOIN 
-    Departamentos d ON e.Id_Departamento = d.Id_Departamento
-LEFT JOIN 
-    TiposFallaHardware th ON os.Id_TipoFallaHardware = th.Id_TipoFallaHardware
-LEFT JOIN 
-    TiposFallaSoftware ts ON os.Id_TipoFallaSoftware = ts.Id_TipoFallaSoftware
-WHERE 
-    os.Id_Usuario = @IdUsuario
-ORDER BY 
-    os.Fecha_Creacion DESC;
-";
+                SELECT 
+                    os.Id_Orden AS Id,
+                    os.Fecha_Creacion AS FechaC,
+                    os.Fecha_Atendida AS FechaA,
+                    os.Fecha_Cerrada AS FechaCi,
+                    l.Usuario AS Usuario,
+                    d.Nombre_Departamento AS Departamento,
+                    th.Descripcion AS Hardware,
+                    ts.Descripcion AS Software,
+                    os.Descripcion_Problema AS Descripcion,
+                    os.Observaciones AS Observ,
+                    os.Estado
+                FROM 
+                    OrdenServicio os
+                LEFT JOIN 
+                    Login l ON os.Id_Usuario = l.Id_Usuario
+                LEFT JOIN 
+                    Empleados e ON l.Id_Empleado = e.Id_Empleado
+                LEFT JOIN 
+                    Departamentos d ON e.Id_Departamento = d.Id_Departamento
+                LEFT JOIN 
+                    TiposFallaHardware th ON os.Id_TipoFallaHardware = th.Id_TipoFallaHardware
+                LEFT JOIN 
+                    TiposFallaSoftware ts ON os.Id_TipoFallaSoftware = ts.Id_TipoFallaSoftware
+                WHERE 
+                    os.Id_Usuario = @IdUsuario
+                ORDER BY 
+                    os.Fecha_Creacion DESC;
+            ";
 
                     using (SqlCommand comando = new SqlCommand(query, conexion))
                     {
-                        // Parámetro para evitar inyección SQL
-                        comando.Parameters.AddWithValue("@IdUsuario", idUsuario);
+                        // Agregar parámetro para evitar inyección SQL
+                        comando.Parameters.Add("@IdUsuario", SqlDbType.VarChar).Value = idUsuario.ToString();
 
                         // Llena la tabla con los resultados
                         using (SqlDataAdapter adapter = new SqlDataAdapter(comando))
                         {
                             adapter.Fill(tablaOrdenes);
                         }
+                        conexion.Close();
                     }
-                    conexion.Close();
                 }
             }
             catch (Exception ex)
             {
                 // Manejo de errores
-                XtraMessageBox.Show($"Error al obtener las órdenes: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show(
+                    $"Error al obtener las órdenes: {ex.Message}",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
             }
 
             return tablaOrdenes;
         }
+
 
 
     }

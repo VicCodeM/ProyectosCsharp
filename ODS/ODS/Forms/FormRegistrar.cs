@@ -17,42 +17,74 @@ namespace ODS.Forms
 {
     public partial class FormRegistrar : DevExpress.XtraEditors.XtraUserControl
     {
+        #region Instanciar Objetos
+        //instancias de las calses 
+        ConexionDB conexionDB = new ConexionDB();
+        ConsultasDB consultas = new ConsultasDB();
+        ProcedimientosAlmacenadosDB procedimientosDB = new ProcedimientosAlmacenadosDB();
+        #endregion
+
+        #region Principal del Form
         public FormRegistrar()
         {
             InitializeComponent();
-            // Configurar el formulario para adaptarse correctamente
-            this.Dock = DockStyle.Fill;
-            this.Margin = new Padding(0); // Elimina márgenes adicionales
+
+            #region Abrir Conexiones
+            SqlConnection conexion = conexionDB.ConectarSQL();
+            #endregion
+
+            #region Acciones de controles
+
+            CargarOrdenesPorUsuario(1);
+            rbHardware.CheckedChanged += (s, e) => ActualizarEstadoRadioButton(rbHardware.Checked);
+            rbSoftware.CheckedChanged += (s, e) => ActualizarEstadoRadioButton(!rbSoftware.Checked);
             //evitar editar el datagrid
             ((GridView)gridControl1.MainView).OptionsBehavior.Editable = false;
+            #endregion
 
+            //// Verificar si la conexión está abierta
+            //if (conexion.State == ConnectionState.Open)
+            //{
+            //    XtraMessageBox.Show("Conexión exitosa a la base de datos.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //}
+            //conexion.Close();
+            //if (conexion != null && conexion.State == System.Data.ConnectionState.Closed)
+            //{
+            //    // La conexión se cerró correctamente
+            //    MessageBox.Show("La conexión se cerró correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //}
+            //else
+            //{
+            //    // La conexión no se cerró correctamente
+            //    MessageBox.Show("La conexión no se cerró correctamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
 
-            ConexionDB conexionDB = new ConexionDB();
-            SqlConnection conexion = conexionDB.ConectarSQL();
-            CargarOrdenesPorUsuario(2);
+            //los radiobutton cambi de true a false
 
-            // Verificar si la conexión está abierta
-            if (conexion.State == ConnectionState.Open)
+        }
+
+        private void FormRegistrar_Load(object sender, EventArgs e)
+        {
+            //cerrar cualquier conexion abierta
+            conexionDB.CerrarConexion();
+            // Obtener el nombre del usuario con el ID 1 (puedes cambiar este valor según sea necesario)
+            int idUsuario = 2; // ID de usuario que deseas consultar
+            string nombreUsuario = consultas.ObtenerNombreUsuario(idUsuario);
+
+            // Mostrar el nombre del usuario en el label
+            if (!string.IsNullOrEmpty(nombreUsuario))
             {
-                XtraMessageBox.Show("Conexión exitosa a la base de datos.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            conexion.Close();
-            if (conexion != null && conexion.State == System.Data.ConnectionState.Closed)
-            {
-                // La conexión se cerró correctamente
-                MessageBox.Show("La conexión se cerró correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                labelUsuario.Text = $"Nombre de usuario: {nombreUsuario}";
             }
             else
             {
-                // La conexión no se cerró correctamente
-                MessageBox.Show("La conexión no se cerró correctamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                labelUsuario.Text = "No se encontró el nombre de usuario.";
             }
+        } 
+        #endregion
 
-            //los radiobutton cambi de true a false
-            rbHardware.CheckedChanged += (s, e) => ActualizarEstadoRadioButton(rbHardware.Checked);
-            rbSoftware.CheckedChanged += (s, e) => ActualizarEstadoRadioButton(!rbSoftware.Checked);
-        }
-
+        #region Métodos de la forma
+        //Actualizar los radio button
         private void ActualizarEstadoRadioButton(bool isHardwareChecked)
         {
             if (isHardwareChecked)
@@ -75,31 +107,7 @@ namespace ODS.Forms
             }
         }
 
-
-
-        private void FormRegistrar_Load(object sender, EventArgs e)
-        {
-            //Instanciar la clase ConsultasDB
-            ConsultasDB consultas = new ConsultasDB();
-
-            // Obtener el nombre del usuario con el ID 1 (puedes cambiar este valor según sea necesario)
-            int idUsuario = 2; // ID de usuario que deseas consultar
-            string nombreUsuario = consultas.ObtenerNombreUsuario(idUsuario);
-
-            // Mostrar el nombre del usuario en el label
-            if (!string.IsNullOrEmpty(nombreUsuario))
-            {
-                labelUsuario.Text = $"Nombre de usuario: {nombreUsuario}";
-            }
-            else
-            {
-                labelUsuario.Text = "No se encontró el nombre de usuario.";
-            }
-
-          
-
-        }
-
+        //Cargar ordenes por usuario
         private void CargarOrdenesPorUsuario(int idUsuario)
         {
             ConsultasDB consulta = new ConsultasDB();
@@ -116,7 +124,7 @@ namespace ODS.Forms
             }
         }
 
-
+        //Cargar tipos de falla de hardware
         private void CargarTiposFallaHardware()
         {
             try
@@ -142,12 +150,12 @@ namespace ODS.Forms
             }
         }
 
-
+        //Cargar tipos de falla de software
         private void CargarTiposFallaSoftware()
         {
             try
             {
-                ConsultasDB consultas = new ConsultasDB();
+
 
                 // Obtener la lista de descripciones de fallas de software
                 List<string> tiposFallaSoftware = consultas.ObtenerTiposFallaSoftware();
@@ -168,6 +176,15 @@ namespace ODS.Forms
             }
         }
 
+
+
+
+        #endregion
+
+        private void btnRegistrar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 

@@ -70,6 +70,7 @@
   <ItemGroup>
     <Compile Include="Datos\ConexionDB.cs" />
     <Compile Include="Datos\ConsultasDB.cs" />
+    <Compile Include="Datos\ProcedimientosAlmacenadosDB.cs" />
     <Compile Include="Forms\frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>

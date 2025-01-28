@@ -7,7 +7,7 @@ namespace ODS.Datos
 {
     public class ConexionDB
     {
-        private string connectionString = "Data Source=VICTOR-HP\\SQLVICTOR;Initial Catalog=test1;User ID=sa;Password=6433"; // Tu cadena de conexión
+        private string connectionString = "Data Source=VICTOR-PC\\SQLVICTOR;Initial Catalog=test1;User ID=sa;Password=6433"; // Tu cadena de conexión
         private SqlConnection conexion; // Declarar la variable conexión a nivel de clase
 
         public ConexionDB() { }
@@ -43,20 +43,30 @@ namespace ODS.Datos
         {
             try
             {
-                if (conexion == null)
+                if (conexion == null || string.IsNullOrEmpty(conexion.ConnectionString))
                 {
                     ConectarSQL(); // Llamar al método ConectarSQL para inicializar la conexión
                 }
 
-                if (conexion.State != System.Data.ConnectionState.Open)
+                if (conexion?.State != System.Data.ConnectionState.Open)
                 {
                     conexion.Open(); // Abrir la conexión
-                    XtraMessageBox.Show("Conexión abierta exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                   // XtraMessageBox.Show("Conexión abierta exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+                else
+                {
+                    XtraMessageBox.Show("La conexión ya está abierta.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (SqlException ex)
+            {
+                XtraMessageBox.Show($"Error al abrir la conexión: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // Considera registrar el error en un log para futuras investigaciones
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show($"Error al abrir la conexión: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show($"Error inesperado al abrir la conexión: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // Considera registrar el error en un log para futuras investigaciones
             }
         }
 
@@ -65,15 +75,26 @@ namespace ODS.Datos
         {
             try
             {
-                if (conexion != null && conexion.State == System.Data.ConnectionState.Open)
+                if (conexion?.State == System.Data.ConnectionState.Open)
                 {
-                    conexion.Close(); // Cerrar la conexión
-                    XtraMessageBox.Show("Conexión cerrada exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    conexion.Close();
+                    conexion.Dispose(); // Liberar recursos
+                    //XtraMessageBox.Show("Conexión cerrada exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                   // XtraMessageBox.Show("La conexión ya está cerrada.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
             {
                 XtraMessageBox.Show($"Error al cerrar la conexión: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // Considera registrar el error en un log para futuras investigaciones
+            }
+            finally
+            {
+                // Siempre intenta liberar recursos
+                conexion?.Dispose();
             }
         }
     }

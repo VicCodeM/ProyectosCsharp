@@ -228,3 +228,54 @@ WHERE
   o.Estado = 'Pendiente'  -- Filtrar por estado 'Pendiente'
 ORDER BY 
   o.Fecha_Creacion DESC;
+
+
+  --incert prueba
+  INSERT INTO Departamentos (Nombre_Departamento)
+VALUES 
+('Recursos Humanos'),
+('Desarrollo de Software'),
+('Soporte Técnico'),
+('Finanzas'),
+('Marketing');
+
+INSERT INTO Empleados (Id_Departamento, Nombre_Empleado, Apellido_Paterno, Apellido_Materno, Correo_Electronico)
+VALUES 
+(1, 'Juan', 'Pérez', 'Gómez', 'juan.perez@empresa.com'),
+(2, 'María', 'López', 'Martínez', 'maria.lopez@empresa.com'),
+(3, 'Carlos', 'García', 'Hernández', 'carlos.garcia@empresa.com'),
+(4, 'Ana', 'Rodríguez', 'Díaz', 'ana.rodriguez@empresa.com'),
+(5, 'Luis', 'Sánchez', 'González', 'luis.sanchez@empresa.com');
+
+
+INSERT INTO Login (Usuario, Password, Tipo_Usuario, Id_Empleado)
+VALUES 
+('juanperez', '123456', 'Empleado', 1),
+('marialopez', '123456', 'Empleado', 2),
+('carlosgarcia', '123456', 'Empleado', 3),
+('anrodriguez', '123456', 'Empleado', 4),
+('lssanchez', '123456', 'Admin', 5);
+
+INSERT INTO TiposFallaHardware (Descripcion)
+VALUES 
+('Falla en el disco duro'),
+('Falla en la tarjeta gráfica'),
+('Falla en la placa base'),
+('Falla en la memoria RAM'),
+('Falla en el procesador');
+
+INSERT INTO TiposFallaSoftware (Descripcion)
+VALUES 
+('Error en el sistema operativo'),
+('Error en la aplicación de software'),
+('Error en la configuración del sistema'),
+('Error en la actualización del software'),
+('Error en la instalación del software');
+
+INSERT INTO OrdenServicio (Fecha_Creacion, Fecha_Atendida, Fecha_Cerrada, Id_Usuario, Id_TipoFallaHardware, Id_TipoFallaSoftware, Descripcion_Problema, Observaciones, Estado)
+VALUES 
+(GETDATE(), NULL, NULL, 1, 1, NULL, 'El disco duro de mi computadora no funciona', NULL, 'Pendiente'),
+(GETDATE(), NULL, NULL, 2, NULL, 2, 'La aplicación de software no se ejecuta correctamente', NULL, 'Pendiente'),
+(GETDATE(), NULL, NULL, 3, 3, NULL, 'La placa base de mi computadora está dañada', NULL, 'Pendiente'),
+(GETDATE(), NULL, NULL, 4, NULL, 4, 'El sistema operativo no se actualiza correctamente', NULL, 'Pendiente'),
+(GETDATE(), NULL, NULL, 5, 5, NULL, 'El procesador de mi computadora está sobrecargado', NULL, 'Pendiente');

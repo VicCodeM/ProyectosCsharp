@@ -50,6 +50,7 @@ C:\Users\vicom\Documents\GitHub\ProyectosCsharp\ODS\ODS\bin\Debug\DevExpress.Xtr
 C:\Users\vicom\Documents\GitHub\ProyectosCsharp\ODS\ODS\bin\Debug\DevExpress.RichEdit.v22.2.Core.xml
 C:\Users\vicom\Documents\GitHub\ProyectosCsharp\ODS\ODS\bin\Debug\DevExpress.XtraTreeList.v22.2.xml
 C:\Users\vicom\Documents\GitHub\ProyectosCsharp\ODS\ODS\bin\Debug\DevExpress.Office.v22.2.Core.xml
+C:\Users\vicom\Documents\GitHub\ProyectosCsharp\ODS\ODS\obj\Debug\CapaPresentacion.frmLogin.resources
 C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\bin\Debug\ODS.exe.config
 C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\bin\Debug\ODS.exe
 C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\bin\Debug\ODS.pdb
@@ -57,6 +58,7 @@ C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\bin\Debug\DevExpress.Bonus
 C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\bin\Debug\DevExpress.Data.Desktop.v22.2.dll
 C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\bin\Debug\DevExpress.Data.v22.2.dll
 C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\bin\Debug\DevExpress.Drawing.v22.2.dll
+C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\bin\Debug\DevExpress.Images.v22.2.dll
 C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\bin\Debug\DevExpress.Printing.v22.2.Core.dll
 C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\bin\Debug\DevExpress.Sparkline.v22.2.Core.dll
 C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\bin\Debug\DevExpress.Utils.v22.2.dll
@@ -72,7 +74,6 @@ C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\bin\Debug\DevExpress.Pdf.v
 C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\bin\Debug\DevExpress.Pdf.v22.2.Drawing.dll
 C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\bin\Debug\DevExpress.RichEdit.v22.2.Core.dll
 C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\bin\Debug\DevExpress.XtraTreeList.v22.2.dll
-C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\bin\Debug\DevExpress.Images.v22.2.dll
 C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\bin\Debug\DevExpress.Office.v22.2.Core.dll
 C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\bin\Debug\DevExpress.Data.Desktop.v22.2.xml
 C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\bin\Debug\DevExpress.Data.v22.2.xml
@@ -95,6 +96,7 @@ C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\bin\Debug\DevExpress.Offic
 C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.csproj.AssemblyReference.cache
 C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.FormInicial.resources
 C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.Forms.FormRegistrar.resources
+C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\obj\Debug\CapaPresentacion.frmLogin.resources
 C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.Properties.Resources.resources
 C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.csproj.GenerateResource.cache
 C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.exe.licenses
@@ -102,5 +104,3 @@ C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.csproj.CoreC
 C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.csproj.Up2Date
 C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.exe
 C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.pdb
-C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\obj\Debug\CapaPresentacion.frmLogin.resources
-C:\Users\vicom\Documents\GitHub\ProyectosCsharp\ODS\ODS\obj\Debug\CapaPresentacion.frmLogin.resources
