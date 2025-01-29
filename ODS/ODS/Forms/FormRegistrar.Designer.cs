@@ -133,10 +133,10 @@
             this.gridCRegistrar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gridCRegistrar.Location = new System.Drawing.Point(0, 272);
+            this.gridCRegistrar.Location = new System.Drawing.Point(0, 323);
             this.gridCRegistrar.MainView = this.gridView1;
             this.gridCRegistrar.Name = "gridCRegistrar";
-            this.gridCRegistrar.Size = new System.Drawing.Size(832, 237);
+            this.gridCRegistrar.Size = new System.Drawing.Size(832, 186);
             this.gridCRegistrar.TabIndex = 11;
             this.gridCRegistrar.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1,
@@ -156,7 +156,7 @@
             this.txtDescripcion.Location = new System.Drawing.Point(19, 182);
             this.txtDescripcion.Multiline = true;
             this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(790, 46);
+            this.txtDescripcion.Size = new System.Drawing.Size(790, 72);
             this.txtDescripcion.TabIndex = 0;
             this.txtDescripcion.Text = "Ejmplo: la Impresora no prende...";
             // 
@@ -195,10 +195,10 @@
             this.txtObservaciones.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtObservaciones.Enabled = false;
             this.txtObservaciones.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtObservaciones.Location = new System.Drawing.Point(19, 234);
+            this.txtObservaciones.Location = new System.Drawing.Point(19, 260);
             this.txtObservaciones.Multiline = true;
             this.txtObservaciones.Name = "txtObservaciones";
-            this.txtObservaciones.Size = new System.Drawing.Size(790, 32);
+            this.txtObservaciones.Size = new System.Drawing.Size(790, 57);
             this.txtObservaciones.TabIndex = 17;
             this.txtObservaciones.Text = "no se corrige el problema hasta...";
             // 
@@ -228,7 +228,7 @@
             this.btnRegistrar.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRegistrar.Appearance.Options.UseFont = true;
             this.btnRegistrar.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnRegistrar.ImageOptions.Image")));
-            this.btnRegistrar.Location = new System.Drawing.Point(33, 515);
+            this.btnRegistrar.Location = new System.Drawing.Point(19, 515);
             this.btnRegistrar.Name = "btnRegistrar";
             this.btnRegistrar.Size = new System.Drawing.Size(117, 37);
             this.btnRegistrar.TabIndex = 14;

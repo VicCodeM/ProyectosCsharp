@@ -42,7 +42,7 @@ CREATE TABLE OrdenServicio (
   Id_TipoFallaSoftware INT NULL,
   Descripcion_Problema TEXT NOT NULL,
   Observaciones TEXT NULL,
-  Estado VARCHAR(50) NOT NULL CHECK(Estado IN ('Pendiente', 'En Proceso', 'Completada')),
+  Estado VARCHAR(50) NOT NULL CHECK(Estado IN ('Abierto' , 'Pendiente', 'Completado', 'Cancelado')),
   CONSTRAINT FK_OrdenServicio_Login FOREIGN KEY (Id_Usuario) REFERENCES Login(Id_Usuario),
   CONSTRAINT FK_OrdenServicio_TiposFallaHardware FOREIGN KEY (Id_TipoFallaHardware) REFERENCES TiposFallaHardware(Id_TipoFallaHardware),
   CONSTRAINT FK_OrdenServicio_TiposFallaSoftware FOREIGN KEY (Id_TipoFallaSoftware) REFERENCES TiposFallaSoftware(Id_TipoFallaSoftware)
@@ -279,3 +279,9 @@ VALUES
 (GETDATE(), NULL, NULL, 3, 3, NULL, 'La placa base de mi computadora está dañada', NULL, 'Pendiente'),
 (GETDATE(), NULL, NULL, 4, NULL, 4, 'El sistema operativo no se actualiza correctamente', NULL, 'Pendiente'),
 (GETDATE(), NULL, NULL, 5, 5, NULL, 'El procesador de mi computadora está sobrecargado', NULL, 'Pendiente');
+
+
+
+SELECT DISTINCT Estado
+FROM dbo.OrdenServicio
+WHERE Estado NOT IN ('Abierto', 'Pendiente', 'Completado', 'Cancelado');

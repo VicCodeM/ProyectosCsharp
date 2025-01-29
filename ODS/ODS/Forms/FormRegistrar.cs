@@ -147,15 +147,15 @@ namespace ODS.Forms
                 GridView gridViewOrdenes = (GridView)gridCRegistrar.MainView;
 
                 gridViewOrdenes.Columns["Fecha_Atencion"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-                gridViewOrdenes.Columns["Fecha_Atencion"].DisplayFormat.FormatString = "yyyy-MM-dd hh:mm tt";
+                gridViewOrdenes.Columns["Fecha_Atencion"].DisplayFormat.FormatString = "dd-MM-yyyy hh:mm tt";
 
                 gridViewOrdenes.Columns["Fecha_Cierre"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-                gridViewOrdenes.Columns["Fecha_Cierre"].DisplayFormat.FormatString = "yyyy-MM-dd hh:mm tt";
+                gridViewOrdenes.Columns["Fecha_Cierre"].DisplayFormat.FormatString = "dd-MM-yyyy hh:mm tt";
 
 
                 // Formato para las columnas existentes
                 gridViewOrdenes.Columns["Fecha_Registro"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-                gridViewOrdenes.Columns["Fecha_Registro"].DisplayFormat.FormatString = "yyyy-MM-dd";
+                gridViewOrdenes.Columns["Fecha_Registro"].DisplayFormat.FormatString = "dd-MM-yyyy";
 
                 // Formato para la nueva columna "Hora"
                 gridViewOrdenes.Columns["Hora"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
@@ -239,7 +239,7 @@ namespace ODS.Forms
             int idUsuario = 2; // Cambiar según el usuario logueado.
             int idFalloSeleccionado = Convert.ToInt32(comboFallos.SelectedValue);
             string descripcionProblema = txtDescripcion.Text.Trim();
-            string estado = "Pendiente";
+            string estado = "Activo";
 
             try
             {

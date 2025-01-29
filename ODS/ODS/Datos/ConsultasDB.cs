@@ -257,6 +257,69 @@ namespace ODS.Datos
             return tablaOrdenes;
         }
 
+        //Mostrar todas las ordenes
+        public DataTable ObtenerTodasLasOrdenes()
+        {
+            DataTable tablaOrdenes = new DataTable();
+
+            try
+            {
+                // Configura tu conexión a la base de datos
+                using (SqlConnection conexion = conexionBD.ConectarSQL())
+                {
+                    // Consulta SQL para obtener todas las órdenes
+                    string query = @"
+                SELECT 
+                    os.Id_Orden AS Id,
+                    os.Fecha_Creacion AS Fecha_Registro,
+                    os.Fecha_Atendida AS Fecha_Atencion,
+                    os.Fecha_Cerrada AS Fecha_Cierre,
+                    l.Usuario AS Usuario,
+                    d.Nombre_Departamento AS Departamento,
+                    th.Descripcion AS Hardware,
+                    ts.Descripcion AS Software,
+                    os.Descripcion_Problema AS Descripcion,
+                    os.Observaciones AS Observaciones,
+                    os.Estado
+                FROM 
+                    OrdenServicio os
+                LEFT JOIN 
+                    Login l ON os.Id_Usuario = l.Id_Usuario
+                LEFT JOIN 
+                    Empleados e ON l.Id_Empleado = e.Id_Empleado
+                LEFT JOIN 
+                    Departamentos d ON e.Id_Departamento = d.Id_Departamento
+                LEFT JOIN 
+                    TiposFallaHardware th ON os.Id_TipoFallaHardware = th.Id_TipoFallaHardware
+                LEFT JOIN 
+                    TiposFallaSoftware ts ON os.Id_TipoFallaSoftware = ts.Id_TipoFallaSoftware
+                ORDER BY 
+                    os.Fecha_Creacion DESC;
+            ";
+
+                    using (SqlCommand comando = new SqlCommand(query, conexion))
+                    {
+                        // Llena la tabla con los resultados
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(comando))
+                        {
+                            adapter.Fill(tablaOrdenes);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejo de errores
+                XtraMessageBox.Show(
+                    $"Error al obtener las órdenes: {ex.Message}",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+            }
+
+            return tablaOrdenes;
+        }
 
 
         //incertar ordenees usuarios
@@ -302,6 +365,73 @@ namespace ODS.Datos
             }
         }
 
+        // Método para obtener los datos de la orden seleccionada
+        public DataRow CargarDatosOrdenSeleccionada(int idOrden)
+        {
+            DataTable tablaOrden = new DataTable();
+
+            using (SqlConnection conexion = conexionBD.ConectarSQL())
+            {
+                string consulta = @"
+            SELECT 
+                os.Id_Orden,
+                os.Fecha_Creacion,
+                os.Fecha_Atendida,
+                os.Fecha_Cerrada,
+                os.Id_Usuario,
+                os.Id_TipoFallaHardware,
+                os.Id_TipoFallaSoftware,
+                os.Descripcion_Problema,
+                os.Observaciones,
+                os.Estado
+            FROM 
+                OrdenServicio os
+            WHERE 
+                os.Id_Orden = @IdOrden";
+
+                SqlCommand comando = new SqlCommand(consulta, conexion);
+                comando.Parameters.AddWithValue("@IdOrden", idOrden);
+
+                // Ejecutar el comando y llenar el DataTable
+                SqlDataAdapter adapter = new SqlDataAdapter(comando);
+                adapter.Fill(tablaOrden);
+            }
+
+            // Verificar si se ha obtenido alguna fila
+            if (tablaOrden.Rows.Count > 0)
+            {
+                return tablaOrden.Rows[0]; // Retornar la primera fila
+            }
+
+            return null; // Si no se encontró la orden
+        }
+
+        // Método para cargar las listas desplegables
+        public void CargarListasDesplegables(out DataTable tablaUsuarios, out DataTable tablaHardware, out DataTable tablaSoftware)
+        {
+            tablaUsuarios = new DataTable();
+            tablaHardware = new DataTable();
+            tablaSoftware = new DataTable();
+
+            using (SqlConnection conexion = conexionBD.ConectarSQL())
+            {
+                // Llenar DataTable para usuarios
+                string consultaUsuarios = "SELECT Id_Usuario, Usuario FROM Login";
+                SqlDataAdapter adaptadorUsuarios = new SqlDataAdapter(consultaUsuarios, conexion);
+                adaptadorUsuarios.Fill(tablaUsuarios);
+
+                // Llenar DataTable para Tipos de Falla Hardware
+                string consultaHardware = "SELECT Id_TipoFallaHardware, Descripcion FROM TiposFallaHardware";
+                SqlDataAdapter adaptadorHardware = new SqlDataAdapter(consultaHardware, conexion);
+                adaptadorHardware.Fill(tablaHardware);
+
+                // Llenar DataTable para Tipos de Falla Software
+                string consultaSoftware = "SELECT Id_TipoFallaSoftware, Descripcion FROM TiposFallaSoftware";
+                SqlDataAdapter adaptadorSoftware = new SqlDataAdapter(consultaSoftware, conexion);
+                adaptadorSoftware.Fill(tablaSoftware);
+            }
+        }
+
         // Método para insertar una orden de servicio
         public void InsertarOrdenServicio(int idUsuario, int? idFallaHardware, int? idFallaSoftware, string descripcionProblema, string estado)
         {
@@ -327,5 +457,44 @@ namespace ODS.Datos
             }
         }
 
+
+        // Método para actualizar una orden de servicio
+        public void ActualizarOrden(int idOrden, DateTime? fechaAtendida, DateTime? fechaCerrada,
+            int idUsuario, int? idFallaHardware, int? idFallaSoftware, string descripcion,
+             string observaciones, string estado)
+        {
+            using (SqlConnection conexion = conexionBD.ConectarSQL())
+            {
+                string consultaActualizar = @"
+                UPDATE OrdenServicio
+                SET
+                    Fecha_Atendida = @FechaAtendida,
+                    Fecha_Cerrada = @FechaCerrada,
+                    Id_Usuario = @IdUsuario,
+                    Id_TipoFallaHardware = @IdFallaHardware,
+                    Id_TipoFallaSoftware = @IdFallaSoftware,
+                    Descripcion_Problema = @Descripcion,
+                    Observaciones = @Observaciones,
+                    Estado = @Estado
+                WHERE
+                    Id_Orden = @IdOrden";
+
+                SqlCommand comando = new SqlCommand(consultaActualizar, conexion);
+
+                // Agregar los parámetros
+                comando.Parameters.AddWithValue("@IdOrden", idOrden);
+                comando.Parameters.AddWithValue("@FechaAtendida", fechaAtendida ?? (object)DBNull.Value);
+                comando.Parameters.AddWithValue("@FechaCerrada", fechaCerrada ?? (object)DBNull.Value);
+                comando.Parameters.AddWithValue("@IdUsuario", idUsuario);
+                comando.Parameters.AddWithValue("@IdFallaHardware", idFallaHardware ?? (object)DBNull.Value);
+                comando.Parameters.AddWithValue("@IdFallaSoftware", idFallaSoftware ?? (object)DBNull.Value);
+                comando.Parameters.AddWithValue("@Descripcion", descripcion);
+                comando.Parameters.AddWithValue("@Observaciones", observaciones);
+                comando.Parameters.AddWithValue("@Estado", estado);
+
+                // Ejecutar el comando
+                comando.ExecuteNonQuery();
+            }
+        }
     }
 }
