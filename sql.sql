@@ -285,3 +285,8 @@ VALUES
 SELECT DISTINCT Estado
 FROM dbo.OrdenServicio
 WHERE Estado NOT IN ('Abierto', 'Pendiente', 'Completado', 'Cancelado');
+
+
+ALTER TABLE dbo.OrdenServicio
+ADD CONSTRAINT CK__OrdenServ__Estad__46E78A0C
+CHECK (Estado IN ('Abierto', 'Pendiente', 'Completado', 'Cancelado'));

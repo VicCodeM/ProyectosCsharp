@@ -28,7 +28,6 @@ C:\Users\vicom\Documents\GitHub\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.csproj.Cor
 C:\Users\vicom\Documents\GitHub\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.csproj.Up2Date
 C:\Users\vicom\Documents\GitHub\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.exe
 C:\Users\vicom\Documents\GitHub\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.pdb
-C:\Users\vicom\Documents\GitHub\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.FormInicial.resources
 C:\Users\vicom\Documents\GitHub\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.Forms.FormRegistrar.resources
 C:\Users\vicom\Documents\GitHub\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.exe.licenses
 C:\Users\vicom\Documents\GitHub\ProyectosCsharp\ODS\ODS\bin\Debug\DevExpress.XtraGrid.v22.2.dll
@@ -52,3 +51,5 @@ C:\Users\vicom\Documents\GitHub\ProyectosCsharp\ODS\ODS\bin\Debug\DevExpress.Xtr
 C:\Users\vicom\Documents\GitHub\ProyectosCsharp\ODS\ODS\bin\Debug\DevExpress.Office.v22.2.Core.xml
 C:\Users\vicom\Documents\GitHub\ProyectosCsharp\ODS\ODS\obj\Debug\CapaPresentacion.frmLogin.resources
 C:\Users\vicom\Documents\GitHub\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.Forms.frmInicio.resources
+C:\Users\vicom\Documents\GitHub\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.FormPanel.resources
+C:\Users\vicom\Documents\GitHub\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.Forms.frmRegistro.resources

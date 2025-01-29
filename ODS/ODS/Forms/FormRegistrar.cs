@@ -30,8 +30,16 @@ namespace ODS.Forms
         {
             InitializeComponent();
 
+            
+
+
             // Suscripción al evento en el constructor o en el método Load
             ((GridView)gridCRegistrar.MainView).FocusedRowChanged += gridCRegistrar_FocusedRowChanged;
+
+            //caragar radio button
+            radioGroupFallos.Properties.Items.Add(new DevExpress.XtraEditors.Controls.RadioGroupItem("Software", "Software"));
+            radioGroupFallos.Properties.Items.Add(new DevExpress.XtraEditors.Controls.RadioGroupItem("Hardware", "Hardware"));
+            radioGroupFallos.EditValue = "Hardware"; // O "Software", según lo que prefieras
 
             #region Abrir Conexiones
             SqlConnection conexion = conexionDB.ConectarSQL();
@@ -69,6 +77,18 @@ namespace ODS.Forms
 
         private void FormRegistrar_Load(object sender, EventArgs e)
         {
+            ObtenerUsuario();
+       
+
+        }
+        #endregion
+
+        #region Métodos de la forma
+
+        //Obtener usuario
+
+        public void ObtenerUsuario()
+        {
             //cerrar cualquier conexion abierta
             conexionDB.CerrarConexion();
             // Obtener el nombre del usuario con el ID 1 (puedes cambiar este valor según sea necesario)
@@ -84,35 +104,31 @@ namespace ODS.Forms
             {
                 labelUsuario.Text = "No se encontró el nombre de usuario.";
             }
-
-       
-
         }
-        #endregion
 
-        #region Métodos de la forma
-        //Actualizar los radio button
         private void ActualizarEstadoRadioButton(bool isHardwareChecked)
         {
             if (isHardwareChecked)
             {
-                // Si rbHardware está seleccionado
-                rbHardware.Checked = true;
-                CargarTiposFallaHardware(); // Cargar datos de hardware en comboHadware
+                // Si isHardwareChecked es verdadero, seleccionamos la opción "Hardware"
+                radioGroupFallos.EditValue = "Hardware"; // Esto seleccionará "Hardware" en el RadioGroup
+                CargarTiposFallaHardware(); // Cargar datos de hardware en el lookUpEdit1
 
-                // Desactivar rbSoftware y limpiar comboHadware si no aplica
-                rbSoftware.Checked = false;
+                // Si es necesario, puedes limpiar o actualizar otros controles relacionados con "Hardware"
+                lookUpEdit1.Properties.NullText = "Seleccione un tipo de falla de hardware"; // Cambiar texto a algo relacionado
             }
             else
             {
-                // Si rbSoftware está seleccionado
-                rbSoftware.Checked = true;
-                CargarTiposFallaSoftware(); // Cargar datos de software en comboHadware
+                // Si isHardwareChecked es falso, seleccionamos la opción "Software"
+                radioGroupFallos.EditValue = "Software"; // Esto seleccionará "Software" en el RadioGroup
+                CargarTiposFallaSoftware(); // Cargar datos de software en el lookUpEdit1
 
-                // Desactivar rbHardware y limpiar comboHadware si no aplica
-                rbHardware.Checked = false;
+                // Si es necesario, puedes limpiar o actualizar otros controles relacionados con "Software"
+                lookUpEdit1.Properties.NullText = "Seleccione un tipo de falla de software"; // Cambiar texto a algo relacionado
             }
         }
+
+
 
 
 
@@ -177,69 +193,136 @@ namespace ODS.Forms
 
         }
 
+        private DataTable ConvertirListaADatatable(List<string> lista, string nombreColumna)
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add(nombreColumna, typeof(string));
 
+            foreach (var item in lista)
+            {
+                dt.Rows.Add(item);
+            }
 
+            return dt;
+        }
 
         private void CargarTiposFallaHardware()
         {
-            string query = "SELECT Id_TipoFallaHardware, Descripcion FROM TiposFallaHardware";
-
             try
             {
-                using (SqlConnection conn = conexionDB.ConectarSQL())
+                // Verificar si lookUpEdit1 está correctamente instanciado
+                if (lookUpEdit1 == null)
                 {
-                    SqlDataAdapter da = new SqlDataAdapter(query, conn);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
+                    MessageBox.Show("lookUpEdit1 no está disponible.");
+                    return;
+                }
 
-                    comboFallos.DataSource = dt;
-                    comboFallos.DisplayMember = "Descripcion";
-                    comboFallos.ValueMember = "Id_TipoFallaHardware";
+                ConsultasDB consulta = new ConsultasDB();
+                List<string> listaHardware = consulta.ObtenerTiposFallaHardware(); // Obtener las fallas de hardware de la base de datos
+
+                if (listaHardware != null && listaHardware.Count > 0)
+                {
+                    // Crear un DataTable para llenar el lookUpEdit1
+                    DataTable tablaHardware = new DataTable();
+                    tablaHardware.Columns.Add("ID", typeof(int)); // Columna ID
+                    tablaHardware.Columns.Add("Descripcion", typeof(string)); // Columna Descripcion
+
+                    // Llenamos el DataTable con los datos de las fallas de hardware
+                    for (int i = 0; i < listaHardware.Count; i++)
+                    {
+                        tablaHardware.Rows.Add(i + 1, listaHardware[i]);
+                    }
+
+                    // Asignamos el DataTable al lookUpEdit1
+                    lookUpEdit1.Properties.DataSource = tablaHardware;
+                    lookUpEdit1.Properties.DisplayMember = "Descripcion"; // Mostrar la descripción
+                    lookUpEdit1.Properties.ValueMember = "ID"; // Usar el ID como valor
+                    lookUpEdit1.Properties.NullText = "Seleccione un tipo de falla de hardware";
+                }
+                else
+                {
+                    MessageBox.Show("No se encontraron fallas de hardware.");
                 }
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show($"Error al cargar fallas de hardware: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al cargar los tipos de falla de hardware: " + ex.Message);
             }
         }
 
         private void CargarTiposFallaSoftware()
         {
-            string query = "SELECT Id_TipoFallaSoftware, Descripcion FROM TiposFallaSoftware";
-
             try
             {
-                using (SqlConnection conn = conexionDB.ConectarSQL())
+                // Verificar si lookUpEdit1 está correctamente instanciado
+                if (lookUpEdit1 == null)
                 {
-                    SqlDataAdapter da = new SqlDataAdapter(query, conn);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
+                    MessageBox.Show("lookUpEdit1 no está disponible.");
+                    return;
+                }
 
-                    comboFallos.DataSource = dt;
-                    comboFallos.DisplayMember = "Descripcion";
-                    comboFallos.ValueMember = "Id_TipoFallaSoftware";
+                ConsultasDB consulta = new ConsultasDB();
+                List<string> listaSoftware = consulta.ObtenerTiposFallaSoftware(); // Obtener las fallas de software de la base de datos
+
+                if (listaSoftware != null && listaSoftware.Count > 0)
+                {
+                    // Crear un DataTable para llenar el lookUpEdit1
+                    DataTable tablaSoftware = new DataTable();
+                    tablaSoftware.Columns.Add("ID", typeof(int)); // Columna ID
+                    tablaSoftware.Columns.Add("Descripcion", typeof(string)); // Columna Descripcion
+
+                    // Llenamos el DataTable con los datos de las fallas de software
+                    for (int i = 0; i < listaSoftware.Count; i++)
+                    {
+                        tablaSoftware.Rows.Add(i + 1, listaSoftware[i]);
+                    }
+
+                    // Asignamos el DataTable al lookUpEdit1
+                    lookUpEdit1.Properties.DataSource = tablaSoftware;
+                    lookUpEdit1.Properties.DisplayMember = "Descripcion"; // Mostrar la descripción
+                    lookUpEdit1.Properties.ValueMember = "ID"; // Usar el ID como valor
+                    lookUpEdit1.Properties.NullText = "Seleccione un tipo de falla de software";
+                }
+                else
+                {
+                    MessageBox.Show("No se encontraron fallas de software.");
                 }
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show($"Error al cargar fallas de software: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al cargar los tipos de falla de software: " + ex.Message);
             }
         }
 
-        #endregion
 
+
+
+        #endregion
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
-            if (comboFallos.SelectedValue == null || string.IsNullOrWhiteSpace(txtDescripcion.Text))
+            // Verificar que se haya escrito la descripción
+            if (string.IsNullOrWhiteSpace(memoEditDescripcion.Text))
             {
-                XtraMessageBox.Show("Por favor, selecciona un tipo de falla y describe el problema.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                XtraMessageBox.Show("Por favor, describe el problema.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            int idUsuario = 2; // Cambiar según el usuario logueado.
-            int idFalloSeleccionado = Convert.ToInt32(comboFallos.SelectedValue);
-            string descripcionProblema = txtDescripcion.Text.Trim();
-            string estado = "Activo";
+            int idUsuario = 2; // Cambiar según el usuario logueado
+            string descripcionProblema = memoEditDescripcion.Text.Trim();
+            string estado = "Abierto";
+
+            // Intenta obtener el valor de lookUpEdit1 (ahora un ID numérico)
+            int idFalloSeleccionado = 0; // Inicializa con 0 como valor predeterminado
+            if (lookUpEdit1.EditValue != null)
+            {
+                // Intenta convertir el valor de EditValue a int
+                bool esValido = int.TryParse(lookUpEdit1.EditValue.ToString(), out idFalloSeleccionado);
+                if (!esValido || idFalloSeleccionado == 0)
+                {
+                    XtraMessageBox.Show("El tipo de falla seleccionado no es válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+            }
 
             try
             {
@@ -249,6 +332,7 @@ namespace ODS.Forms
                     return;
                 }
 
+                // Registrar la orden según el tipo de falla (Hardware o Software)
                 if (rbHardware.Checked)
                 {
                     consultasDB.InsertarOrdenServicio(idUsuario, idFalloSeleccionado, null, descripcionProblema, estado);
@@ -265,41 +349,72 @@ namespace ODS.Forms
                 XtraMessageBox.Show($"Error al registrar la orden de servicio: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+            // Actualiza las órdenes por el usuario
             CargarOrdenesPorUsuario(idUsuario);
-
         }
+
+
+
+
+
 
         private void gridCRegistrar_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
-            //GridView view = sender as GridView;
+            GridView view = sender as GridView;
+            if (view != null)
+            {
+                var tipoFalla = view.GetFocusedRowCellValue("TipoFalla"); // Asumiendo que esta columna indica Hardware o Software
 
-            //if (view != null)
-            //{
-            //    // Obtén los valores de las columnas con una comprobación de nulos
-            //    var idFallo = view.GetFocusedRowCellValue("IdFallo");
-            //    var descripcion = view.GetFocusedRowCellValue("Descripcion");
-            //    var estado = view.GetFocusedRowCellValue("Estado");
-            //    var observaciones = view.GetFocusedRowCellValue("Observaciones");
-
-            //    // Verificar si los valores son nulos antes de usarlos
-            //    if (idFallo == DBNull.Value || descripcion == DBNull.Value || estado == DBNull.Value || observaciones == DBNull.Value)
-            //    {
-            //        XtraMessageBox.Show("Hay valores nulos en la fila seleccionada.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //        return;
-            //    }
-
-            //    // Asigna los valores a los controles
-            //    comboFallos.SelectedValue = idFallo;
-            //    txtDescripcion.Text = descripcion?.ToString();
-            //    labelEstado.Text = estado?.ToString();
-            //    txtObservaciones.Text = observaciones?.ToString();
-            //}
+                // Actualizamos el RadioGroup en función del tipo de falla
+                if (tipoFalla != DBNull.Value)
+                {
+                    string tipoFallaString = tipoFalla.ToString().Trim();
+                    radioGroupFallos.EditValue = tipoFallaString.Equals("Hardware", StringComparison.OrdinalIgnoreCase) ? "Hardware" : "Software";
+                }
+            }
         }
 
+        private void radioGroupFallos_EditValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                // Verificamos si hay un valor seleccionado
+                if (radioGroupFallos.EditValue == null)
+                {
+                    MessageBox.Show("Debe seleccionar una opción.");
+                    return; // Salir de la función si no hay opción seleccionada
+                }
 
+                string valorSeleccionado = radioGroupFallos.EditValue.ToString();
+
+                // Limpiamos el lookUpEdit1 antes de cargar nuevos datos
+                lookUpEdit1.Properties.DataSource = null;
+
+                if (valorSeleccionado == "Hardware")
+                {
+                    CargarTiposFallaHardware();
+                }
+                else if (valorSeleccionado == "Software")
+                {
+                    CargarTiposFallaSoftware();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al actualizar el tipo de falla: " + ex.Message);
+            }
+        }
 
 
 
     }
+
 }
+
+
+
+
+
+
+
 

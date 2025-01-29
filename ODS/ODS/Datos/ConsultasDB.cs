@@ -496,5 +496,23 @@ namespace ODS.Datos
                 comando.ExecuteNonQuery();
             }
         }
+
+
+        //Metodo de Eliniar orden
+            public bool EliminarOrden(int idOrden)
+            {
+                using (SqlConnection conexion = conexionBD.ConectarSQL())
+                {
+                    string consultaEliminar = "DELETE FROM OrdenServicio WHERE Id_Orden = @IdOrden";
+                    SqlCommand comando = new SqlCommand(consultaEliminar, conexion);
+                    comando.Parameters.AddWithValue("@IdOrden", idOrden);
+
+                    // Ejecutar comando y verificar si se eliminó algún registro
+                    int filasAfectadas = comando.ExecuteNonQuery();
+                    return filasAfectadas > 0; // Devuelve true si se eliminó correctamente
+                }
+            }
+
+
     }
 }

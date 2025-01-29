@@ -39,20 +39,25 @@
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridCRegistrar = new DevExpress.XtraGrid.GridControl();
             this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
-            this.txtObservaciones = new System.Windows.Forms.TextBox();
-            this.comboFallos = new System.Windows.Forms.ComboBox();
             this.labelEstado = new System.Windows.Forms.Label();
             this.btnRegistrar = new DevExpress.XtraEditors.SimpleButton();
             this.labelUsuario = new System.Windows.Forms.Label();
             this.labelFecha = new System.Windows.Forms.Label();
+            this.lookUpEdit1 = new DevExpress.XtraEditors.LookUpEdit();
+            this.memoEditObsevacion = new DevExpress.XtraEditors.MemoEdit();
+            this.memoEditDescripcion = new DevExpress.XtraEditors.MemoEdit();
+            this.radioGroupFallos = new DevExpress.XtraEditors.RadioGroup();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridCRegistrar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.memoEditObsevacion.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.memoEditDescripcion.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radioGroupFallos.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // xtraTabbedMdiManager1
@@ -91,7 +96,7 @@
             this.rbSoftware.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.rbSoftware.AutoSize = true;
             this.rbSoftware.BackColor = System.Drawing.Color.Transparent;
-            this.rbSoftware.Location = new System.Drawing.Point(300, 159);
+            this.rbSoftware.Location = new System.Drawing.Point(145, 19);
             this.rbSoftware.Name = "rbSoftware";
             this.rbSoftware.Size = new System.Drawing.Size(69, 17);
             this.rbSoftware.TabIndex = 2;
@@ -104,7 +109,7 @@
             this.rbHardware.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.rbHardware.AutoSize = true;
             this.rbHardware.BackColor = System.Drawing.Color.Transparent;
-            this.rbHardware.Location = new System.Drawing.Point(400, 159);
+            this.rbHardware.Location = new System.Drawing.Point(145, 42);
             this.rbHardware.Name = "rbHardware";
             this.rbHardware.Size = new System.Drawing.Size(72, 17);
             this.rbHardware.TabIndex = 1;
@@ -133,10 +138,10 @@
             this.gridCRegistrar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gridCRegistrar.Location = new System.Drawing.Point(0, 323);
+            this.gridCRegistrar.Location = new System.Drawing.Point(0, 272);
             this.gridCRegistrar.MainView = this.gridView1;
             this.gridCRegistrar.Name = "gridCRegistrar";
-            this.gridCRegistrar.Size = new System.Drawing.Size(832, 186);
+            this.gridCRegistrar.Size = new System.Drawing.Size(832, 247);
             this.gridCRegistrar.TabIndex = 11;
             this.gridCRegistrar.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1,
@@ -147,19 +152,6 @@
             this.gridView3.GridControl = this.gridCRegistrar;
             this.gridView3.Name = "gridView3";
             // 
-            // txtDescripcion
-            // 
-            this.txtDescripcion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDescripcion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtDescripcion.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDescripcion.Location = new System.Drawing.Point(19, 182);
-            this.txtDescripcion.Multiline = true;
-            this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(790, 72);
-            this.txtDescripcion.TabIndex = 0;
-            this.txtDescripcion.Text = "Ejmplo: la Impresora no prende...";
-            // 
             // groupControl2
             // 
             this.groupControl2.Appearance.BackColor = System.Drawing.Color.Gainsboro;
@@ -168,8 +160,10 @@
             this.groupControl2.Appearance.Options.UseBorderColor = true;
             this.groupControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.groupControl2.CaptionImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("groupControl2.CaptionImageOptions.Image")));
-            this.groupControl2.Controls.Add(this.txtObservaciones);
-            this.groupControl2.Controls.Add(this.comboFallos);
+            this.groupControl2.Controls.Add(this.radioGroupFallos);
+            this.groupControl2.Controls.Add(this.memoEditObsevacion);
+            this.groupControl2.Controls.Add(this.memoEditDescripcion);
+            this.groupControl2.Controls.Add(this.lookUpEdit1);
             this.groupControl2.Controls.Add(this.labelEstado);
             this.groupControl2.Controls.Add(this.btnRegistrar);
             this.groupControl2.Controls.Add(this.labelUsuario);
@@ -178,7 +172,6 @@
             this.groupControl2.Controls.Add(this.label1);
             this.groupControl2.Controls.Add(this.label2);
             this.groupControl2.Controls.Add(this.simpleButton1);
-            this.groupControl2.Controls.Add(this.txtDescripcion);
             this.groupControl2.Controls.Add(this.rbHardware);
             this.groupControl2.Controls.Add(this.rbSoftware);
             this.groupControl2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -188,35 +181,12 @@
             this.groupControl2.TabIndex = 12;
             this.groupControl2.Text = "groupControl2";
             // 
-            // txtObservaciones
-            // 
-            this.txtObservaciones.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtObservaciones.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtObservaciones.Enabled = false;
-            this.txtObservaciones.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtObservaciones.Location = new System.Drawing.Point(19, 260);
-            this.txtObservaciones.Multiline = true;
-            this.txtObservaciones.Name = "txtObservaciones";
-            this.txtObservaciones.Size = new System.Drawing.Size(790, 57);
-            this.txtObservaciones.TabIndex = 17;
-            this.txtObservaciones.Text = "no se corrige el problema hasta...";
-            // 
-            // comboFallos
-            // 
-            this.comboFallos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.comboFallos.FormattingEnabled = true;
-            this.comboFallos.Location = new System.Drawing.Point(300, 133);
-            this.comboFallos.Name = "comboFallos";
-            this.comboFallos.Size = new System.Drawing.Size(227, 21);
-            this.comboFallos.TabIndex = 16;
-            // 
             // labelEstado
             // 
             this.labelEstado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.labelEstado.AutoSize = true;
             this.labelEstado.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelEstado.Location = new System.Drawing.Point(645, 138);
+            this.labelEstado.Location = new System.Drawing.Point(640, 41);
             this.labelEstado.Name = "labelEstado";
             this.labelEstado.Size = new System.Drawing.Size(110, 16);
             this.labelEstado.TabIndex = 15;
@@ -228,7 +198,7 @@
             this.btnRegistrar.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRegistrar.Appearance.Options.UseFont = true;
             this.btnRegistrar.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnRegistrar.ImageOptions.Image")));
-            this.btnRegistrar.Location = new System.Drawing.Point(19, 515);
+            this.btnRegistrar.Location = new System.Drawing.Point(19, 525);
             this.btnRegistrar.Name = "btnRegistrar";
             this.btnRegistrar.Size = new System.Drawing.Size(117, 37);
             this.btnRegistrar.TabIndex = 14;
@@ -240,7 +210,7 @@
             this.labelUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.labelUsuario.AutoSize = true;
             this.labelUsuario.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelUsuario.Location = new System.Drawing.Point(30, 121);
+            this.labelUsuario.Location = new System.Drawing.Point(16, 41);
             this.labelUsuario.Name = "labelUsuario";
             this.labelUsuario.Size = new System.Drawing.Size(92, 16);
             this.labelUsuario.TabIndex = 13;
@@ -251,11 +221,50 @@
             this.labelFecha.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.labelFecha.AutoSize = true;
             this.labelFecha.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelFecha.Location = new System.Drawing.Point(30, 147);
+            this.labelFecha.Location = new System.Drawing.Point(16, 67);
             this.labelFecha.Name = "labelFecha";
             this.labelFecha.Size = new System.Drawing.Size(172, 16);
             this.labelFecha.TabIndex = 12;
             this.labelFecha.Text = "Fecha: 26/01/2025 4:08 p.m";
+            // 
+            // lookUpEdit1
+            // 
+            this.lookUpEdit1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lookUpEdit1.Location = new System.Drawing.Point(622, 114);
+            this.lookUpEdit1.Name = "lookUpEdit1";
+            this.lookUpEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lookUpEdit1.Size = new System.Drawing.Size(189, 20);
+            this.lookUpEdit1.TabIndex = 18;
+            // 
+            // memoEditObsevacion
+            // 
+            this.memoEditObsevacion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.memoEditObsevacion.Location = new System.Drawing.Point(19, 194);
+            this.memoEditObsevacion.Name = "memoEditObsevacion";
+            this.memoEditObsevacion.Size = new System.Drawing.Size(582, 56);
+            this.memoEditObsevacion.TabIndex = 40;
+            // 
+            // memoEditDescripcion
+            // 
+            this.memoEditDescripcion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.memoEditDescripcion.Location = new System.Drawing.Point(19, 115);
+            this.memoEditDescripcion.Name = "memoEditDescripcion";
+            this.memoEditDescripcion.Size = new System.Drawing.Size(582, 56);
+            this.memoEditDescripcion.TabIndex = 39;
+            // 
+            // radioGroupFallos
+            // 
+            this.radioGroupFallos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.radioGroupFallos.Location = new System.Drawing.Point(622, 154);
+            this.radioGroupFallos.Name = "radioGroupFallos";
+            this.radioGroupFallos.Size = new System.Drawing.Size(189, 96);
+            this.radioGroupFallos.TabIndex = 41;
+            this.radioGroupFallos.EditValueChanged += new System.EventHandler(this.radioGroupFallos_EditValueChanged);
             // 
             // FormRegistrar
             // 
@@ -278,6 +287,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
             this.groupControl2.ResumeLayout(false);
             this.groupControl2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.memoEditObsevacion.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.memoEditDescripcion.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radioGroupFallos.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -292,13 +305,14 @@
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraGrid.GridControl gridCRegistrar;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView3;
-        private System.Windows.Forms.TextBox txtDescripcion;
         private DevExpress.XtraEditors.GroupControl groupControl2;
         private System.Windows.Forms.Label labelFecha;
         private System.Windows.Forms.Label labelUsuario;
         private DevExpress.XtraEditors.SimpleButton btnRegistrar;
         private System.Windows.Forms.Label labelEstado;
-        private System.Windows.Forms.ComboBox comboFallos;
-        private System.Windows.Forms.TextBox txtObservaciones;
+        private DevExpress.XtraEditors.LookUpEdit lookUpEdit1;
+        private DevExpress.XtraEditors.MemoEdit memoEditObsevacion;
+        private DevExpress.XtraEditors.MemoEdit memoEditDescripcion;
+        private DevExpress.XtraEditors.RadioGroup radioGroupFallos;
     }
 }

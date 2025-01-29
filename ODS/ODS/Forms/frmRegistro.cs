@@ -1,51 +1,73 @@
 ﻿using DevExpress.XtraEditors;
-using DevExpress.XtraExport.Helpers;
 using DevExpress.XtraGrid.Views.Grid;
 using ODS.Datos;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ODS.Forms
 {
     public partial class frmRegistro : DevExpress.XtraEditors.XtraUserControl
     {
-        ConsultasDB consultasDB = new ConsultasDB();
-        ConexionDB conexionBD = new ConexionDB();
+        #region Intaciar objetos Utilizados
+        ConexionDB conexionDB = new ConexionDB();
+        ConsultasDB consultasDB = new ConsultasDB(); 
+        #endregion
+
         public frmRegistro()
         {
             InitializeComponent();
+
+            #region Acciones al incio del form
+            //Cargar ordenes jutno con el formulario
             CargarOrdenes();
             CargarListasDesplegables();
-            // Esto en tu constructor o método de inicialización
 
+            //configuramos RadioButton para el tipo de estado de la orden
             radioGroupEstados.Properties.Items.Add(new DevExpress.XtraEditors.Controls.RadioGroupItem("Abierto", "Abierto"));
             radioGroupEstados.Properties.Items.Add(new DevExpress.XtraEditors.Controls.RadioGroupItem("Pendiente", "Pendiente"));
             radioGroupEstados.Properties.Items.Add(new DevExpress.XtraEditors.Controls.RadioGroupItem("Completado", "Completado"));
             radioGroupEstados.Properties.Items.Add(new DevExpress.XtraEditors.Controls.RadioGroupItem("Cancelado", "Cancelado"));
-
+            //Configuracion para el eveneto seleccionar datagrid y rellenar datos
             ((GridView)gridControl1.MainView).FocusedRowChanged += gridControl1_FocusedRowChanged;
-
+            //No se modifica desde el datagrid
             ((GridView)gridControl1.MainView).OptionsBehavior.Editable = false;
 
-
+            //cargar usuario dentro del label
+            ObtenerUsuario();
+            #endregion
         }
 
+        #region Métodos de form
 
+        //metodo caragar usuario
+        //Obtener usuario
+
+        public void ObtenerUsuario()
+        {
+            //cerrar cualquier conexion abierta
+            conexionDB.CerrarConexion();
+            // Obtener el nombre del usuario con el ID 1 (puedes cambiar este valor según sea necesario)
+            int idUsuario = 2; // ID de usuario que deseas consultar
+            string nombreUsuario = consultasDB.ObtenerNombreUsuario(idUsuario);
+
+            // Mostrar el nombre del usuario en el label
+            if (!string.IsNullOrEmpty(nombreUsuario))
+            {
+                labelUsuario.Text = $"Nombre de usuario: {nombreUsuario}";
+            }
+            else
+            {
+                labelUsuario.Text = "No se encontró el nombre de usuario.";
+            }
+        }
+
+        //caragra ordenes en grid
         private void CargarOrdenes()
         {
-            // ConsultasDB es la clase que contiene métodos de acceso a la base de datos
-            ConsultasDB consulta = new ConsultasDB();
 
             // Obtener todas las órdenes (puedes adaptar este método según cómo se obtienen en tu base de datos)
-            DataTable tablaOrdenes = consulta.ObtenerTodasLasOrdenes();
+            DataTable tablaOrdenes = consultasDB.ObtenerTodasLasOrdenes();
 
             if (tablaOrdenes.Rows.Count > 0)
             {
@@ -103,11 +125,8 @@ namespace ODS.Forms
 
         private void CargarDatosOrdenSeleccionada(int idOrden)
         {
-            // Crear una instancia de ConsultasDB
-            ConsultasDB consulta = new ConsultasDB();
-
             // Llamar al método de la clase ConsultasDB para obtener los datos
-            DataRow row = consulta.CargarDatosOrdenSeleccionada(idOrden);
+            DataRow row = consultasDB.CargarDatosOrdenSeleccionada(idOrden);
 
             if (row != null)
             {
@@ -133,17 +152,11 @@ namespace ODS.Forms
             }
         }
 
-
-
-
         private void CargarListasDesplegables()
         {
-            // Crear una instancia de ConsultasDB
-            ConsultasDB consulta = new ConsultasDB();
-
             // Llamar al método para obtener las tablas de los datos
             DataTable tablaUsuarios, tablaHardware, tablaSoftware;
-            consulta.CargarListasDesplegables(out tablaUsuarios, out tablaHardware, out tablaSoftware);
+            consultasDB.CargarListasDesplegables(out tablaUsuarios, out tablaHardware, out tablaSoftware);
 
             // Asignar los datos a los LookUpEdit
             lookUpEditListaUsuarios.Properties.DataSource = tablaUsuarios;
@@ -159,8 +172,10 @@ namespace ODS.Forms
             lookUpEditSofware.Properties.ValueMember = "Id_TipoFallaSoftware";
         }
 
+        #endregion
 
 
+        #region Eventos del Form
         private void gridControl1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
             GridView gridView = (GridView)sender;
@@ -197,11 +212,8 @@ namespace ODS.Forms
                 fechaCerrada = fechaCerrada.Value.Date.Add(DateTime.Now.TimeOfDay); // Asigna la fecha seleccionada y la hora actual
             }
 
-            // Instanciar ConsultasDB
-            ConsultasDB consulta = new ConsultasDB();
-
             // Llamar al método ActualizarOrden
-            consulta.ActualizarOrden(idOrden, fechaAtendida, fechaCerrada, idUsuario, idFallaHardware, idFallaSoftware, descripcion, observaciones, estado);
+            consultasDB.ActualizarOrden(idOrden, fechaAtendida, fechaCerrada, idUsuario, idFallaHardware, idFallaSoftware, descripcion, observaciones, estado);
 
             // Opcional: Mostrar un mensaje de éxito
             XtraMessageBox.Show("Orden de servicio actualizada con éxito", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -210,6 +222,40 @@ namespace ODS.Forms
             gridControl1.RefreshDataSource();
             CargarOrdenes();
         }
+
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if (txtIdOrden.EditValue == null || string.IsNullOrEmpty(txtIdOrden.Text))
+            {
+                XtraMessageBox.Show("Seleccione una orden para eliminar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int idOrden = Convert.ToInt32(txtIdOrden.EditValue);
+
+            // Confirmación antes de eliminar
+            DialogResult resultado = XtraMessageBox.Show("¿Está seguro de que desea eliminar esta orden?", "Confirmar Eliminación",
+                                                         MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (resultado == DialogResult.Yes)
+            {
+
+                bool eliminado = consultasDB.EliminarOrden(idOrden);
+
+                if (eliminado)
+                {
+                    XtraMessageBox.Show("Orden eliminada con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // Recargar el GridControl después de eliminar
+                    CargarOrdenes();
+                }
+                else
+                {
+                    XtraMessageBox.Show("No se pudo eliminar la orden. Verifique si existe.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        } 
+        #endregion
 
     }
 }
