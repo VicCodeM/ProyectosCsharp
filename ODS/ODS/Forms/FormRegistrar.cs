@@ -360,18 +360,18 @@ namespace ODS.Forms
 
         private void gridCRegistrar_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
-            GridView view = sender as GridView;
-            if (view != null)
-            {
-                var tipoFalla = view.GetFocusedRowCellValue("TipoFalla"); // Asumiendo que esta columna indica Hardware o Software
+            //GridView view = sender as GridView;
+            //if (view != null)
+            //{
+            //    var tipoFalla = view.GetFocusedRowCellValue("TipoFalla"); // Asumiendo que esta columna indica Hardware o Software
 
-                // Actualizamos el RadioGroup en función del tipo de falla
-                if (tipoFalla != DBNull.Value)
-                {
-                    string tipoFallaString = tipoFalla.ToString().Trim();
-                    radioGroupFallos.EditValue = tipoFallaString.Equals("Hardware", StringComparison.OrdinalIgnoreCase) ? "Hardware" : "Software";
-                }
-            }
+            //    // Actualizamos el RadioGroup en función del tipo de falla
+            //    if (tipoFalla != DBNull.Value)
+            //    {
+            //        string tipoFallaString = tipoFalla.ToString().Trim();
+            //        radioGroupFallos.EditValue = tipoFallaString.Equals("Hardware", StringComparison.OrdinalIgnoreCase) ? "Hardware" : "Software";
+            //    }
+            //}
         }
 
         private void radioGroupFallos_EditValueChanged(object sender, EventArgs e)

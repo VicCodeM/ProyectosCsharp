@@ -53,3 +53,4 @@ C:\Users\vicom\Documents\GitHub\ProyectosCsharp\ODS\ODS\obj\Debug\CapaPresentaci
 C:\Users\vicom\Documents\GitHub\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.Forms.frmInicio.resources
 C:\Users\vicom\Documents\GitHub\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.FormPanel.resources
 C:\Users\vicom\Documents\GitHub\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.Forms.frmRegistro.resources
+C:\Users\vicom\Documents\GitHub\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.Forms.frmUsuarios.resources
