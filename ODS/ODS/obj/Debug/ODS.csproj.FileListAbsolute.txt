@@ -110,3 +110,4 @@ C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\bin\Debug\DevExpress.RichE
 C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\bin\Debug\DevExpress.XtraTreeList.v22.2.xml
 C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\bin\Debug\DevExpress.Office.v22.2.Core.xml
 C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.csproj.Up2Date
+C:\Users\vicom\Documents\GitHub\ProyectosCsharp\ODS\ODS\bin\Debug\MaterialSkin.dll

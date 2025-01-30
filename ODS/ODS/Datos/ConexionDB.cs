@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
@@ -7,7 +8,7 @@ namespace ODS.Datos
 {
     public class ConexionDB
     {
-        private string connectionString = "Data Source=VICTOR-PC\\SQLVICTOR;Initial Catalog=test1;User ID=sa;Password=6433"; // Tu cadena de conexión
+        private string connectionString = "Data Source=VICTOR-HP\\SQLVICTOR;Initial Catalog=test1;User ID=sa;Password=6433"; // Tu cadena de conexión
         private SqlConnection conexion; // Declarar la variable conexión a nivel de clase
 
         public ConexionDB() { }
@@ -37,6 +38,50 @@ namespace ODS.Datos
                 throw; // Lanza la excepción para ser manejada por el código que llama a este método
             }
         }
+
+        //metodo para ejecutar consulta usuarios
+
+        public DataTable EjecutarConsulta(string consulta)
+        {
+            try
+            {
+                using (SqlConnection conn = ConectarSQL())
+                {
+                    using (SqlCommand cmd = new SqlCommand(consulta, conn))
+                    {
+                        SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                        DataTable dt = new DataTable();
+                        adapter.Fill(dt);
+                        return dt;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show($"Error al ejecutar la consulta: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+        }
+
+        public void EjecutarComando(string comando)
+        {
+            try
+            {
+                using (SqlConnection conn = ConectarSQL())
+                {
+                    using (SqlCommand cmd = new SqlCommand(comando, conn))
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show($"Error al ejecutar el comando: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
 
         // Método para abrir la conexión
         public void AbrirConexion()

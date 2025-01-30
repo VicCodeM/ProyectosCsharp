@@ -56,6 +56,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.txtIdOrden.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEditFechaCreacion.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEditFechaCreacion.Properties.CalendarTimeProperties)).BeginInit();
@@ -71,6 +72,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radioGroupEstados.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnActualizar
@@ -78,10 +80,10 @@
             this.btnActualizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnActualizar.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnActualizar.Appearance.Options.UseFont = true;
-            this.btnActualizar.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnActualizar.ImageOptions.SvgImage")));
-            this.btnActualizar.Location = new System.Drawing.Point(163, 571);
+            this.btnActualizar.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnActualizar.ImageOptions.Image")));
+            this.btnActualizar.Location = new System.Drawing.Point(27, 584);
             this.btnActualizar.Name = "btnActualizar";
-            this.btnActualizar.Size = new System.Drawing.Size(106, 37);
+            this.btnActualizar.Size = new System.Drawing.Size(96, 24);
             this.btnActualizar.TabIndex = 26;
             this.btnActualizar.Text = "Actualizar";
             this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
@@ -91,7 +93,7 @@
             this.labelUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.labelUsuario.AutoSize = true;
             this.labelUsuario.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelUsuario.Location = new System.Drawing.Point(46, 50);
+            this.labelUsuario.Location = new System.Drawing.Point(6, 22);
             this.labelUsuario.Name = "labelUsuario";
             this.labelUsuario.Size = new System.Drawing.Size(92, 16);
             this.labelUsuario.TabIndex = 25;
@@ -102,7 +104,7 @@
             this.labelFecha.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.labelFecha.AutoSize = true;
             this.labelFecha.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelFecha.Location = new System.Drawing.Point(46, 86);
+            this.labelFecha.Location = new System.Drawing.Point(6, 39);
             this.labelFecha.Name = "labelFecha";
             this.labelFecha.Size = new System.Drawing.Size(172, 16);
             this.labelFecha.TabIndex = 24;
@@ -116,7 +118,7 @@
             this.label1.BackColor = System.Drawing.Color.Gainsboro;
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(307, 13);
+            this.label1.Location = new System.Drawing.Point(327, 19);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(275, 32);
             this.label1.TabIndex = 21;
@@ -130,7 +132,7 @@
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(365, 49);
+            this.label2.Location = new System.Drawing.Point(406, 60);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(111, 19);
             this.label2.TabIndex = 22;
@@ -227,7 +229,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.memoEditDescripcion.Location = new System.Drawing.Point(25, 198);
             this.memoEditDescripcion.Name = "memoEditDescripcion";
-            this.memoEditDescripcion.Size = new System.Drawing.Size(666, 56);
+            this.memoEditDescripcion.Size = new System.Drawing.Size(706, 56);
             this.memoEditDescripcion.TabIndex = 37;
             // 
             // memoEditObsevacion
@@ -236,13 +238,13 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.memoEditObsevacion.Location = new System.Drawing.Point(25, 283);
             this.memoEditObsevacion.Name = "memoEditObsevacion";
-            this.memoEditObsevacion.Size = new System.Drawing.Size(666, 56);
+            this.memoEditObsevacion.Size = new System.Drawing.Size(706, 56);
             this.memoEditObsevacion.TabIndex = 38;
             // 
             // radioGroupEstados
             // 
             this.radioGroupEstados.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.radioGroupEstados.Location = new System.Drawing.Point(706, 199);
+            this.radioGroupEstados.Location = new System.Drawing.Point(746, 199);
             this.radioGroupEstados.Name = "radioGroupEstados";
             this.radioGroupEstados.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
             this.radioGroupEstados.Properties.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
@@ -260,7 +262,7 @@
             this.gridControl1.Location = new System.Drawing.Point(25, 365);
             this.gridControl1.MainView = this.gridView2;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(870, 200);
+            this.gridControl1.Size = new System.Drawing.Size(893, 213);
             this.gridControl1.TabIndex = 40;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
@@ -275,18 +277,18 @@
             this.btnEliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnEliminar.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEliminar.Appearance.Options.UseFont = true;
-            this.btnEliminar.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnEliminar.ImageOptions.SvgImage")));
-            this.btnEliminar.Location = new System.Drawing.Point(304, 571);
+            this.btnEliminar.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminar.ImageOptions.Image")));
+            this.btnEliminar.Location = new System.Drawing.Point(150, 584);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(106, 37);
+            this.btnEliminar.Size = new System.Drawing.Size(89, 24);
             this.btnEliminar.TabIndex = 41;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // label3
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(22, 120);
@@ -391,12 +393,25 @@
             this.label11.TabIndex = 50;
             this.label11.Text = "Observaciones";
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.labelUsuario);
+            this.groupBox1.Controls.Add(this.labelFecha);
+            this.groupBox1.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(25, 13);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(190, 66);
+            this.groupBox1.TabIndex = 51;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Información";
+            // 
             // frmRegistro
             // 
-            this.Appearance.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.Appearance.BackColor = System.Drawing.Color.Gainsboro;
             this.Appearance.Options.UseBackColor = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
@@ -419,12 +434,10 @@
             this.Controls.Add(this.dateEditFechaCreacion);
             this.Controls.Add(this.txtIdOrden);
             this.Controls.Add(this.btnActualizar);
-            this.Controls.Add(this.labelUsuario);
-            this.Controls.Add(this.labelFecha);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);
             this.Name = "frmRegistro";
-            this.Size = new System.Drawing.Size(898, 620);
+            this.Size = new System.Drawing.Size(938, 620);
             ((System.ComponentModel.ISupportInitialize)(this.txtIdOrden.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEditFechaCreacion.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEditFechaCreacion.Properties)).EndInit();
@@ -440,6 +453,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.radioGroupEstados.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -473,5 +488,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }

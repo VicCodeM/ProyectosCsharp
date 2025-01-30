@@ -169,5 +169,11 @@ namespace ODS
             // Llamar al método para mostrar el formulario dentro del PanelControl
             MostrarFormularioEnPanel(groupControl1, formularioSecundario);
         }
+
+        private void ControlUsuarios_Click(object sender, EventArgs e)
+        {
+            frmUsuarios formausuarios = new frmUsuarios();
+            MostrarFormularioEnPanel(groupControl1, formausuarios);
+        }
     }
 }

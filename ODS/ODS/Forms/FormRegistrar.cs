@@ -1,4 +1,5 @@
-﻿using DevExpress.XtraEditors;
+﻿using DevExpress.Data.ExpressionEditor;
+using DevExpress.XtraEditors;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Grid;
 using ODS.Datos;
@@ -31,6 +32,10 @@ namespace ODS.Forms
 
         private void FormRegistrar_Load(object sender, EventArgs e)
         {
+            //obserbaciones solo lectura
+            memoEditObsevacion.Properties.ReadOnly = true;
+            // Mostrar la fecha y hora actual en el Label
+            labelFecha.Text = DateTime.Now.ToString("dd-MM-yyyy hh:mm tt");
             ObtenerUsuario();
         }
 
@@ -256,8 +261,8 @@ namespace ODS.Forms
         {
             memoEditDescripcion.Text = row["Descripcion"]?.ToString() ?? string.Empty;
             memoEditObsevacion.Text = row["Observaciones"]?.ToString() ?? string.Empty;
-            labelEstado.Text = row["Estado"]?.ToString() ?? string.Empty;
-            labelFecha.Text = row["Fecha_Registro"] != DBNull.Value ? Convert.ToDateTime(row["Fecha_Registro"]).ToString("dd/MM/yyyy") : "Fecha no disponible";
+            labelEstado.Text = "Estado: " + row["Estado"]?.ToString() ?? string.Empty;
+           // labelFecha.Text = row["Fecha_Registro"] != DBNull.Value ? "Registro: " + Convert.ToDateTime(row["Fecha_Registro"]).ToString("dd/MM/yyyy hh:mm tt") : "Fecha no disponible";
             labelUsuario.Text = "Usuario: " + (row["Usuario"]?.ToString() ?? "Desconocido");
 
             if (row["Hardware"] != DBNull.Value && !string.IsNullOrEmpty(row["Hardware"].ToString()))
@@ -279,6 +284,7 @@ namespace ODS.Forms
             bool isHardwareChecked = radioGroupFallos.EditValue.ToString() == "Hardware";
             ActualizarEstadoRadioButton(isHardwareChecked);
         }
+
 
         #endregion
 

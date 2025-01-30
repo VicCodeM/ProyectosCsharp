@@ -35,6 +35,9 @@ namespace ODS.Forms
 
             //cargar usuario dentro del label
             ObtenerUsuario();
+
+            // Mostrar la fecha y hora actual en el Label
+            labelFecha.Text = DateTime.Now.ToString("dd-MM-yyyy hh:mm tt");
             #endregion
         }
 
@@ -54,7 +57,7 @@ namespace ODS.Forms
             // Mostrar el nombre del usuario en el label
             if (!string.IsNullOrEmpty(nombreUsuario))
             {
-                labelUsuario.Text = $"Nombre de usuario: {nombreUsuario}";
+                labelUsuario.Text = $"Usuario: {nombreUsuario}";
             }
             else
             {

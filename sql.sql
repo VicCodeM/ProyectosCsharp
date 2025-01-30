@@ -17,7 +17,7 @@ CREATE TABLE Login (
   Id_Usuario INT IDENTITY(1,1) PRIMARY KEY,
   Usuario VARCHAR(255) UNIQUE NOT NULL,
   Password VARCHAR(255) NOT NULL,
-  Tipo_Usuario VARCHAR(50) NOT NULL CHECK(Tipo_Usuario IN ('Admin', 'Empleado', 'Cliente')),
+  Tipo_Usuario VARCHAR(50) NOT NULL CHECK(Tipo_Usuario IN ('Admin', 'Nivel2', 'Nivel3','Nivel4')),
   Id_Empleado INT UNIQUE NOT NULL,
   CONSTRAINT FK_Login_Empleados FOREIGN KEY (Id_Empleado) REFERENCES Empleados(Id_Empleado) ON DELETE CASCADE ON UPDATE CASCADE
 );
