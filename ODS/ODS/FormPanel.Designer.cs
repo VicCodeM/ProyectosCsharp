@@ -43,14 +43,14 @@
             this.usuarioElement = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.departamentoElement = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.ControlINICIO = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.ControlRegistrar = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.adminregistrosElement = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlSeparator5 = new DevExpress.XtraBars.Navigation.AccordionControlSeparator();
-            this.fluentDesignFormControl1 = new DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormControl();
             this.accordionControlGestorOrdenes = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.ControlRegistrar = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlSeparator6 = new DevExpress.XtraBars.Navigation.AccordionControlSeparator();
+            this.adminregistrosElement = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlSeparator7 = new DevExpress.XtraBars.Navigation.AccordionControlSeparator();
             this.ControlUsuarios = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.fluentDesignFormControl1 = new DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormControl();
             this.fluentDesignFormContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -67,7 +67,7 @@
             this.fluentDesignFormContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.fluentDesignFormContainer1.Location = new System.Drawing.Point(250, 31);
             this.fluentDesignFormContainer1.Name = "fluentDesignFormContainer1";
-            this.fluentDesignFormContainer1.Size = new System.Drawing.Size(843, 563);
+            this.fluentDesignFormContainer1.Size = new System.Drawing.Size(886, 563);
             this.fluentDesignFormContainer1.TabIndex = 0;
             // 
             // panelControl1
@@ -76,7 +76,7 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(843, 563);
+            this.panelControl1.Size = new System.Drawing.Size(886, 563);
             this.panelControl1.TabIndex = 0;
             this.panelControl1.SizeChanged += new System.EventHandler(this.panelControl1_SizeChanged);
             // 
@@ -93,7 +93,7 @@
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControl1.Location = new System.Drawing.Point(2, 2);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(839, 559);
+            this.groupControl1.Size = new System.Drawing.Size(882, 559);
             this.groupControl1.TabIndex = 3;
             // 
             // labelUsuario
@@ -197,35 +197,9 @@
             this.ControlINICIO.Text = "INICIO";
             this.ControlINICIO.Click += new System.EventHandler(this.ControlINICIO_Click);
             // 
-            // ControlRegistrar
-            // 
-            this.ControlRegistrar.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ControlRegistrar.ImageOptions.Image")));
-            this.ControlRegistrar.Name = "ControlRegistrar";
-            this.ControlRegistrar.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.ControlRegistrar.Text = "REGISTRAR";
-            this.ControlRegistrar.Click += new System.EventHandler(this.accordionControlElement1_Click);
-            // 
-            // adminregistrosElement
-            // 
-            this.adminregistrosElement.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("registrosElement.ImageOptions.Image")));
-            this.adminregistrosElement.Name = "adminregistrosElement";
-            this.adminregistrosElement.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.adminregistrosElement.Text = "ADMINISTRAR REGISTROS";
-            this.adminregistrosElement.Click += new System.EventHandler(this.registrosElement_Click);
-            // 
             // accordionControlSeparator5
             // 
             this.accordionControlSeparator5.Name = "accordionControlSeparator5";
-            // 
-            // fluentDesignFormControl1
-            // 
-            this.fluentDesignFormControl1.FluentDesignForm = this;
-            this.fluentDesignFormControl1.Location = new System.Drawing.Point(0, 0);
-            this.fluentDesignFormControl1.Manager = this.fluentFormDefaultManager1;
-            this.fluentDesignFormControl1.Name = "fluentDesignFormControl1";
-            this.fluentDesignFormControl1.Size = new System.Drawing.Size(1093, 31);
-            this.fluentDesignFormControl1.TabIndex = 2;
-            this.fluentDesignFormControl1.TabStop = false;
             // 
             // accordionControlGestorOrdenes
             // 
@@ -239,13 +213,29 @@
             this.adminregistrosElement,
             this.accordionControlSeparator7});
             this.accordionControlGestorOrdenes.Expanded = true;
-            this.accordionControlGestorOrdenes.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("accordionControlUsuarios.ImageOptions.SvgImage")));
+            this.accordionControlGestorOrdenes.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("accordionControlGestorOrdenes.ImageOptions.SvgImage")));
             this.accordionControlGestorOrdenes.Name = "accordionControlGestorOrdenes";
             this.accordionControlGestorOrdenes.Text = "ORDENES DE SERVICIO";
+            // 
+            // ControlRegistrar
+            // 
+            this.ControlRegistrar.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ControlRegistrar.ImageOptions.Image")));
+            this.ControlRegistrar.Name = "ControlRegistrar";
+            this.ControlRegistrar.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.ControlRegistrar.Text = "REGISTRAR";
+            this.ControlRegistrar.Click += new System.EventHandler(this.accordionControlElement1_Click);
             // 
             // accordionControlSeparator6
             // 
             this.accordionControlSeparator6.Name = "accordionControlSeparator6";
+            // 
+            // adminregistrosElement
+            // 
+            this.adminregistrosElement.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("adminregistrosElement.ImageOptions.Image")));
+            this.adminregistrosElement.Name = "adminregistrosElement";
+            this.adminregistrosElement.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.adminregistrosElement.Text = "ADMINISTRAR REGISTROS";
+            this.adminregistrosElement.Click += new System.EventHandler(this.registrosElement_Click);
             // 
             // accordionControlSeparator7
             // 
@@ -257,11 +247,21 @@
             this.ControlUsuarios.Appearance.Default.ForeColor = System.Drawing.Color.White;
             this.ControlUsuarios.Appearance.Default.Options.UseFont = true;
             this.ControlUsuarios.Appearance.Default.Options.UseForeColor = true;
-            this.ControlUsuarios.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("accordionControlElement1.ImageOptions.SvgImage")));
+            this.ControlUsuarios.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("ControlUsuarios.ImageOptions.SvgImage")));
             this.ControlUsuarios.Name = "ControlUsuarios";
             this.ControlUsuarios.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.ControlUsuarios.Text = "USUARIOS";
             this.ControlUsuarios.Click += new System.EventHandler(this.ControlUsuarios_Click);
+            // 
+            // fluentDesignFormControl1
+            // 
+            this.fluentDesignFormControl1.FluentDesignForm = this;
+            this.fluentDesignFormControl1.Location = new System.Drawing.Point(0, 0);
+            this.fluentDesignFormControl1.Manager = this.fluentFormDefaultManager1;
+            this.fluentDesignFormControl1.Name = "fluentDesignFormControl1";
+            this.fluentDesignFormControl1.Size = new System.Drawing.Size(1136, 31);
+            this.fluentDesignFormControl1.TabIndex = 2;
+            this.fluentDesignFormControl1.TabStop = false;
             // 
             // FormPanel
             // 
@@ -269,7 +269,7 @@
             this.Appearance.Options.UseBackColor = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1093, 594);
+            this.ClientSize = new System.Drawing.Size(1136, 594);
             this.ControlContainer = this.fluentDesignFormContainer1;
             this.Controls.Add(this.fluentDesignFormContainer1);
             this.Controls.Add(this.accordionControl1);

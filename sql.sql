@@ -17,7 +17,7 @@ CREATE TABLE Login (
   Id_Usuario INT IDENTITY(1,1) PRIMARY KEY,
   Usuario VARCHAR(255) UNIQUE NOT NULL,
   Password VARCHAR(255) NOT NULL,
-  Tipo_Usuario VARCHAR(50) NOT NULL CHECK(Tipo_Usuario IN ('Admin', 'Nivel2', 'Nivel3','Nivel4')),
+  Tipo_Usuario VARCHAR(50) NOT NULL CHECK(Tipo_Usuario IN ('Admin', 'Nivel2', 'Nivel3','Nivel4','Nivel5', 'Nivel6')),
   Id_Empleado INT UNIQUE NOT NULL,
   CONSTRAINT FK_Login_Empleados FOREIGN KEY (Id_Empleado) REFERENCES Empleados(Id_Empleado) ON DELETE CASCADE ON UPDATE CASCADE
 );
@@ -290,3 +290,41 @@ WHERE Estado NOT IN ('Abierto', 'Pendiente', 'Completado', 'Cancelado');
 ALTER TABLE dbo.OrdenServicio
 ADD CONSTRAINT CK__OrdenServ__Estad__46E78A0C
 CHECK (Estado IN ('Abierto', 'Pendiente', 'Completado', 'Cancelado'));
+
+
+ALTER TABLE Login
+DROP CONSTRAINT CK__Login__Tipo_Usua__3E52440B;
+
+UPDATE Login
+SET Tipo_Usuario = 
+    CASE Tipo_Usuario
+        WHEN 'Admin' THEN 1
+        WHEN 'Nivel2' THEN 2
+        WHEN 'Nivel3' THEN 3
+        WHEN 'Nivel4' THEN 4
+        WHEN 'Nivel5' THEN 5
+        WHEN 'Nivel6' THEN 6
+        ELSE 0  -- o algún otro valor por defecto
+    END;
+
+ALTER TABLE Login
+ALTER COLUMN Tipo_Usuario INT;
+
+--elminar ck
+ALTER TABLE Login
+DROP CONSTRAINT CK__Login__Tipo_Usua__3E52440B;
+
+UPDATE Login
+SET Tipo_Usuario = 
+    CASE Tipo_Usuario
+        WHEN 'Admin' THEN 1
+        WHEN 'Nivel2' THEN 2
+        WHEN 'Nivel3' THEN 3
+        WHEN 'Nivel4' THEN 4
+        WHEN 'Nivel5' THEN 5
+        WHEN 'Nivel6' THEN 6
+        ELSE 0  -- o algún otro valor por defecto
+    END;
+
+ALTER TABLE Login
+ALTER COLUMN Tipo_Usuario INT;

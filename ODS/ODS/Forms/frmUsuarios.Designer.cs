@@ -38,6 +38,10 @@
             this.btnGuardar = new DevExpress.XtraEditors.SimpleButton();
             this.btnActualizar = new DevExpress.XtraEditors.SimpleButton();
             this.btnEiminar = new DevExpress.XtraEditors.SimpleButton();
+            this.txtNombreEmpleado = new DevExpress.XtraEditors.TextEdit();
+            this.txtApellidoPaterno = new DevExpress.XtraEditors.TextEdit();
+            this.txtApellidoMaterno = new DevExpress.XtraEditors.TextEdit();
+            this.txtCorreoElectronico = new DevExpress.XtraEditors.TextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.gridUsuarios)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUsuario.Properties)).BeginInit();
@@ -45,6 +49,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.comboTipoUsuario.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEmpleado.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpDepartamento.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNombreEmpleado.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtApellidoPaterno.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtApellidoMaterno.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCorreoElectronico.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // gridUsuarios
@@ -55,7 +63,7 @@
             this.gridUsuarios.Location = new System.Drawing.Point(0, 219);
             this.gridUsuarios.MainView = this.gridView1;
             this.gridUsuarios.Name = "gridUsuarios";
-            this.gridUsuarios.Size = new System.Drawing.Size(739, 215);
+            this.gridUsuarios.Size = new System.Drawing.Size(1004, 461);
             this.gridUsuarios.TabIndex = 0;
             this.gridUsuarios.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -108,7 +116,7 @@
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(168, 179);
+            this.btnGuardar.Location = new System.Drawing.Point(44, 190);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(75, 23);
             this.btnGuardar.TabIndex = 6;
@@ -117,7 +125,7 @@
             // 
             // btnActualizar
             // 
-            this.btnActualizar.Location = new System.Drawing.Point(329, 179);
+            this.btnActualizar.Location = new System.Drawing.Point(184, 190);
             this.btnActualizar.Name = "btnActualizar";
             this.btnActualizar.Size = new System.Drawing.Size(75, 23);
             this.btnActualizar.TabIndex = 7;
@@ -126,17 +134,49 @@
             // 
             // btnEiminar
             // 
-            this.btnEiminar.Location = new System.Drawing.Point(484, 179);
+            this.btnEiminar.Location = new System.Drawing.Point(329, 190);
             this.btnEiminar.Name = "btnEiminar";
             this.btnEiminar.Size = new System.Drawing.Size(75, 23);
             this.btnEiminar.TabIndex = 8;
             this.btnEiminar.Text = "Eliminar";
             this.btnEiminar.Click += new System.EventHandler(this.btnEiminar_Click);
             // 
+            // txtNombreEmpleado
+            // 
+            this.txtNombreEmpleado.Location = new System.Drawing.Point(632, 56);
+            this.txtNombreEmpleado.Name = "txtNombreEmpleado";
+            this.txtNombreEmpleado.Size = new System.Drawing.Size(100, 20);
+            this.txtNombreEmpleado.TabIndex = 9;
+            // 
+            // txtApellidoPaterno
+            // 
+            this.txtApellidoPaterno.Location = new System.Drawing.Point(632, 99);
+            this.txtApellidoPaterno.Name = "txtApellidoPaterno";
+            this.txtApellidoPaterno.Size = new System.Drawing.Size(100, 20);
+            this.txtApellidoPaterno.TabIndex = 10;
+            // 
+            // txtApellidoMaterno
+            // 
+            this.txtApellidoMaterno.Location = new System.Drawing.Point(632, 134);
+            this.txtApellidoMaterno.Name = "txtApellidoMaterno";
+            this.txtApellidoMaterno.Size = new System.Drawing.Size(100, 20);
+            this.txtApellidoMaterno.TabIndex = 11;
+            // 
+            // txtCorreoElectronico
+            // 
+            this.txtCorreoElectronico.Location = new System.Drawing.Point(632, 177);
+            this.txtCorreoElectronico.Name = "txtCorreoElectronico";
+            this.txtCorreoElectronico.Size = new System.Drawing.Size(100, 20);
+            this.txtCorreoElectronico.TabIndex = 12;
+            // 
             // frmUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.txtCorreoElectronico);
+            this.Controls.Add(this.txtApellidoMaterno);
+            this.Controls.Add(this.txtApellidoPaterno);
+            this.Controls.Add(this.txtNombreEmpleado);
             this.Controls.Add(this.btnEiminar);
             this.Controls.Add(this.btnActualizar);
             this.Controls.Add(this.btnGuardar);
@@ -147,8 +187,8 @@
             this.Controls.Add(this.txtUsuario);
             this.Controls.Add(this.gridUsuarios);
             this.Name = "frmUsuarios";
-            this.Size = new System.Drawing.Size(742, 449);
-            this.Load += new System.EventHandler(this.frmUsuarios_Load);
+            this.Size = new System.Drawing.Size(1007, 695);
+           // this.Load += new System.EventHandler(this.frmUsuarios_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridUsuarios)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUsuario.Properties)).EndInit();
@@ -156,6 +196,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.comboTipoUsuario.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEmpleado.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpDepartamento.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNombreEmpleado.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtApellidoPaterno.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtApellidoMaterno.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCorreoElectronico.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -172,5 +216,9 @@
         private DevExpress.XtraEditors.SimpleButton btnGuardar;
         private DevExpress.XtraEditors.SimpleButton btnActualizar;
         private DevExpress.XtraEditors.SimpleButton btnEiminar;
+        private DevExpress.XtraEditors.TextEdit txtNombreEmpleado;
+        private DevExpress.XtraEditors.TextEdit txtApellidoPaterno;
+        private DevExpress.XtraEditors.TextEdit txtApellidoMaterno;
+        private DevExpress.XtraEditors.TextEdit txtCorreoElectronico;
     }
 }
