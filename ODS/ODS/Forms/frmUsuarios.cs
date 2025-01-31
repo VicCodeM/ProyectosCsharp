@@ -73,9 +73,12 @@ namespace ODS.Forms
                 string usuario = txtUsuario.Text;
                 string password = txtPassword.Text;
                 string tipoUsuario = comboTipoUsuario.SelectedItem.ToString();
+                int idDepartamento = Convert.ToInt32(lookUpDepartamento.EditValue); // 🔥 Nuevo: Obtener el departamento seleccionado
+
 
                 // Actualizar los datos del usuario
-                string queryActualizar = $"UPDATE Login SET Usuario = '{usuario}', Password = '{password}', Tipo_Usuario = '{tipoUsuario}' WHERE Id_Usuario = {idUsuario}";
+                string queryActualizar = $"UPDATE Login SET Usuario = '{usuario}', Password = '{password}', Tipo_Usuario = '{tipoUsuario}' WHERE Id_Usuario = {idUsuario}; " +
+                                         $"UPDATE Empleados SET Id_Departamento = {lookUpDepartamento.EditValue} WHERE Id_Empleado = {idEmpleado};";
                 conexionDB.EjecutarComando(queryActualizar);
 
                 XtraMessageBox.Show("Usuario actualizado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -255,6 +258,7 @@ namespace ODS.Forms
                     txtPassword.Text = row["Password"].ToString();
                     comboTipoUsuario.SelectedItem = row["Tipo_Usuario"].ToString();
                    lookUpDepartamento.EditValue = row["Id_Departamento"]; // Asignar ID del departamento
+
 
                     // Mostrar nombre del departamento en el grid
                     gridView.Columns["Nombre_Departamento"].Visible = true;

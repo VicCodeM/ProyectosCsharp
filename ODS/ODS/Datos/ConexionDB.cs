@@ -8,7 +8,7 @@ namespace ODS.Datos
 {
     public class ConexionDB
     {
-        private string connectionString = "Data Source=VICTOR-PC\\SQLVICTOR;Initial Catalog=test1;User ID=sa;Password=6433"; // Tu cadena de conexión
+        private string connectionString = "Data Source=VICTOR-HP\\SQLVICTOR;Initial Catalog=test1;User ID=sa;Password=6433"; // Tu cadena de conexión
         private SqlConnection conexion; // Declarar la variable conexión a nivel de clase
 
         public ConexionDB() { }
