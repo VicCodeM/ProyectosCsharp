@@ -32,7 +32,8 @@ namespace ODS.Forms
             ((GridView)gridControl1.MainView).FocusedRowChanged += gridControl1_FocusedRowChanged;
             //No se modifica desde el datagrid
             ((GridView)gridControl1.MainView).OptionsBehavior.Editable = false;
-
+            ((GridView)gridControl1.MainView).BestFitColumns();
+            ((GridView)gridControl1.MainView).OptionsView.ShowDetailButtons = false;
             //cargar usuario dentro del label
             ObtenerUsuario();
 

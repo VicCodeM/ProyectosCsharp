@@ -28,6 +28,10 @@ namespace ODS.Forms
             InicializarRadioButton();
             InicializarConexiones();
             CargarOrdenesPorUsuario(2); // Cargar órdenes por usuario
+            //No se modifica desde el datagrid
+            ((GridView)gridCRegistrar.MainView).OptionsBehavior.Editable = false;
+            ((GridView)gridCRegistrar.MainView).BestFitColumns();
+            ((GridView)gridCRegistrar.MainView).OptionsView.ShowDetailButtons = false;
         }
 
         private void FormRegistrar_Load(object sender, EventArgs e)

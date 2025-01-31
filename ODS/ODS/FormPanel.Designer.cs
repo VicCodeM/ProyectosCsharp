@@ -212,7 +212,6 @@
             this.accordionControlSeparator6,
             this.adminregistrosElement,
             this.accordionControlSeparator7});
-            this.accordionControlGestorOrdenes.Expanded = true;
             this.accordionControlGestorOrdenes.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("accordionControlGestorOrdenes.ImageOptions.SvgImage")));
             this.accordionControlGestorOrdenes.Name = "accordionControlGestorOrdenes";
             this.accordionControlGestorOrdenes.Text = "ORDENES DE SERVICIO";

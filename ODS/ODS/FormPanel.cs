@@ -66,28 +66,47 @@ namespace ODS
             // Obtener el departamento del usuario
             string nombreDepartamento = consultas.ObtenerDepartamentoPorUsuario(idUsuario);
 
-            // Mostrar el resultado en un label
+            // Mostrar el resultado en un elemnt
             if (!string.IsNullOrEmpty(nombreDepartamento))
             {
-                departamentoElement.Text = nombreDepartamento;
+                departamentoElement.Text = "Departamento: " + nombreDepartamento;
             }
             else
-            {
-                departamentoElement.Text = "No se encontró el departamento para este usuario.";
+            {   //departamento no encontrado
+                departamentoElement.Text = "N/A";
             }
+
+
             //mostrar nombre aplliedo
             string nombreYApellido = consultas.ObtenerNombreCompletoUsuario(idUsuario);
+            string nombreUsuario = consultas.ObtenerNombreUsuario(idUsuario);
 
-            // Mostrar el resultado en el label
+            // Mostrar el nombre completo en el inicio
             if (!string.IsNullOrEmpty(nombreYApellido))
             {
-               // labelUsuario.Text = $"Usuario: {nombreYApellido}";
-                usuarioElement.Text = nombreYApellido;
+                // labelUsuario.Text = $"Usuario: {nombreYApellido}";
+                acordeonUsuario.Text = nombreYApellido.ToUpper();
             }
             else
             {
-              //  labelUsuario.Text = "No se encontró el nombre del usuario.";
+                //usuario no encontrado
+                acordeonUsuario.Text = "N/A";
             }
+
+            //mostrar solo nombre de uaurio registrado 
+            if (!string.IsNullOrEmpty(nombreUsuario))
+            {
+                // labelUsuario.Text = $"Usuario: {nombreYApellido}";
+                usuarioElement.Text = "Usuario: " + nombreUsuario;
+            }
+            else
+            {
+                //usuario no encontrado
+                usuarioElement.Text = "N/A";
+            }
+
+
+         
         } 
         #endregion
 
