@@ -30,6 +30,7 @@ namespace ODS.Forms
             // Inicializa el control GridControl
             ((GridView)gridUsuarios.MainView).Columns["Id_Departamento"].Visible = false;
             ((GridView)gridUsuarios.MainView).Columns["Id_Usuario"].Caption = "Id";
+            ((GridView)gridUsuarios.MainView).Columns["Id_Empleado"].Visible = false;
             ((GridView)gridUsuarios.MainView).OptionsBehavior.Editable = false;
             ((GridView)gridUsuarios.MainView).BestFitColumns();
             ((GridView)gridUsuarios.MainView).OptionsView.ShowDetailButtons = false;
@@ -37,33 +38,43 @@ namespace ODS.Forms
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
+            // Validar que se haya seleccionado un empleado
+            if (lookUpEmpleado.EditValue == null)
+            {
+                XtraMessageBox.Show("Debe seleccionar un empleado antes de guardar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Obtener los valores de los controles
             string usuario = txtUsuario.Text;
             string password = txtPassword.Text;
             string tipoUsuario = comboTipoUsuario.Text;
-            int idEmpleado;
 
-            if (lookUpEmpleado.EditValue == null) // 🔥 Si no seleccionó un empleado, se crea uno nuevo
-            {
-                string queryEmpleado = $"INSERT INTO Empleados (Id_Departamento, Nombre_Empleado, Apellido_Paterno, Apellido_Materno, Correo_Electronico) " +
-                                       $"VALUES ({lookUpDepartamento.EditValue}, '{txtNombreEmpleado.Text}', '{txtApellidoPaterno.Text}', '{txtApellidoMaterno.Text}', '{txtCorreoElectronico.Text}'); " +
-                                       $"SELECT SCOPE_IDENTITY();";
-                idEmpleado = Convert.ToInt32(conexionDB.EjecutarConsulta(queryEmpleado).Rows[0][0]);
-            }
-            else // 🔥 Si seleccionó un empleado, usamos su ID
-            {
-                idEmpleado = Convert.ToInt32(lookUpEmpleado.EditValue);
-            }
+            // Obtener el ID del empleado seleccionado
+            int idEmpleado = Convert.ToInt32(lookUpEmpleado.EditValue);
 
+            // Insertar el nuevo usuario en la tabla Login
             string queryLogin = $"INSERT INTO Login (Usuario, Password, Tipo_Usuario, Id_Empleado) " +
                                 $"VALUES ('{usuario}', '{password}', '{tipoUsuario}', {idEmpleado})";
 
-            conexionDB.EjecutarComando(queryLogin);
+            try
+            {
+                // Ejecutar la consulta
+                conexionDB.EjecutarComando(queryLogin);
 
-            XtraMessageBox.Show("Usuario y empleado guardados correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            CargarUsuarios();
-            CargarEmpleados();
+                // Mostrar mensaje de éxito
+                XtraMessageBox.Show("Usuario guardado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Recargar los datos en los controles
+                CargarUsuarios();
+                CargarEmpleados();
+            }
+            catch (Exception ex)
+            {
+                // Mostrar mensaje de error
+                XtraMessageBox.Show($"Error al guardar: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
-
         private void btnActualizar_Click(object sender, EventArgs e)
         {
             if (gridUsuarios.MainView is GridView gridView && gridView.FocusedRowHandle >= 0)
@@ -136,13 +147,13 @@ namespace ODS.Forms
 
         private void CargarUsuarios()
         {
-            string query = $"SELECT l.Id_Usuario, l.Usuario, l.Password, l.Tipo_Usuario, e.Nombre_Empleado + ' ' + e.Apellido_Paterno + ' ' + e.Apellido_Materno AS Nombre_Completo, e.Correo_Electronico, d.Nombre_Departamento, d.Id_Departamento " +
-                 $"FROM Login l " +
-                 $"INNER JOIN Empleados e ON l.Id_Empleado = e.Id_Empleado " +
-                 $"INNER JOIN Departamentos d ON e.Id_Departamento = d.Id_Departamento";
-
+            string query = $"SELECT l.Id_Usuario, l.Usuario, l.Password, l.Tipo_Usuario, " +
+                           $"e.Id_Empleado, e.Nombre_Empleado + ' ' + e.Apellido_Paterno + ' ' + e.Apellido_Materno AS Nombre_Completo, " +
+                           $"e.Correo_Electronico, d.Nombre_Departamento, d.Id_Departamento " +
+                           $"FROM Login l " +
+                           $"INNER JOIN Empleados e ON l.Id_Empleado = e.Id_Empleado " +
+                           $"INNER JOIN Departamentos d ON e.Id_Departamento = d.Id_Departamento";
             DataTable dt = conexionDB.EjecutarConsulta(query);
-
             gridUsuarios.DataSource = dt;
         }
 
@@ -151,13 +162,12 @@ namespace ODS.Forms
         {
             string query = "SELECT Id_Empleado, (Nombre_Empleado + ' ' + Apellido_Paterno + ' ' + Apellido_Materno) AS Nombre_Empleado FROM Empleados";
             DataTable dt = conexionDB.EjecutarConsulta(query);
-
             if (dt.Rows.Count > 0)
             {
                 lookUpEmpleado.Properties.DataSource = dt;
-                lookUpEmpleado.Properties.DisplayMember = "Nombre_Empleado";
-                lookUpEmpleado.Properties.ValueMember = "Id_Empleado";
-                lookUpEmpleado.EditValue = dt.Rows[0]["Id_Empleado"]; // 🔥 Seleccionar el primer empleado por defecto
+                lookUpEmpleado.Properties.DisplayMember = "Nombre_Empleado"; // Campo visible
+                lookUpEmpleado.Properties.ValueMember = "Id_Empleado";      // Valor interno
+                lookUpEmpleado.EditValue = null; // Limpiar selección inicial
             }
             else
             {
@@ -165,7 +175,6 @@ namespace ODS.Forms
                 XtraMessageBox.Show("No hay empleados en la base de datos.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-
 
         private void CargarDepartamentos()
         {
@@ -206,7 +215,7 @@ namespace ODS.Forms
                 DataRow row = dt.Rows[0];
 
                 // Rellenar datos del empleado
-                txtNombreEmpleado.Text = row["Nombre_Empleado"].ToString();
+               // txtNombreEmpleado.Text = row["Nombre_Empleado"].ToString();
                 txtCorreoElectronico.Text = row["Correo_Electronico"].ToString();
                 lookUpDepartamento.EditValue = row["Id_Departamento"];
 
@@ -246,24 +255,28 @@ namespace ODS.Forms
             {
                 GridView gridView = sender as GridView;
                 DataRow row = gridView.GetDataRow(e.FocusedRowHandle);
-
                 if (row != null)
                 {
                     // Rellenar datos del empleado
-                    txtNombreEmpleado.Text = row["Nombre_Completo"].ToString();
+                  //  txtNombreEmpleado.Text = row["Nombre_Completo"].ToString();
                     txtCorreoElectronico.Text = row["Correo_Electronico"].ToString();
+
+                    // Asignar el ID del empleado al LookUpEdit
+                    int idEmpleado = Convert.ToInt32(row["Id_Empleado"]);
+                    lookUpEmpleado.EditValue = idEmpleado;
 
                     // Rellenar datos del usuario
                     txtUsuario.Text = row["Usuario"].ToString();
                     txtPassword.Text = row["Password"].ToString();
                     comboTipoUsuario.SelectedItem = row["Tipo_Usuario"].ToString();
-                   lookUpDepartamento.EditValue = row["Id_Departamento"]; // Asignar ID del departamento
 
+                    // Asignar el ID del departamento
+                    lookUpDepartamento.EditValue = Convert.ToInt32(row["Id_Departamento"]);
 
                     // Mostrar nombre del departamento en el grid
                     gridView.Columns["Nombre_Departamento"].Visible = true;
                     gridView.Columns["Id_Departamento"].Visible = false;
-
+                    gridView.Columns["Id_Empleado"].Visible = false;
                 }
             }
         }
