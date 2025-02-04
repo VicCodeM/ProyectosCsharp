@@ -1,60 +1,62 @@
-﻿using System;
+﻿using DevExpress.XtraEditors;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-
-
-namespace CapaPresentacion
+namespace ODS.Forms
 {
-    public partial class frmLogin : Form
+    public partial class frmLogin : DevExpress.XtraEditors.XtraForm
     {
         public frmLogin()
         {
             InitializeComponent();
-            LblHora.Text = DateTime.Now.ToString();
+            //evento con devExpress para mover el formulario desde la parte de arriba 
+            panelControl2.MouseDown += panelBarraTitulo_MouseDown;
         }
 
-        private void frmLogin_Load(object sender, EventArgs e)
-        {
+        // Crear función para arrastrar formulario
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
 
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
+
+        //Eveto para mover formulario
+        private void panelBarraTitulo_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        
+
+        private void panelCerrar_Click(object sender, EventArgs e)
         {
-            LblHora.Text = DateTime.Now.ToString();
+            this.Close();
         }
 
-        private void BtnSalir_Click(object sender, EventArgs e)
+        private void panelMinimizar_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.WindowState = FormWindowState.Minimized;
         }
 
-        private void BtnIngresar_Click(object sender, EventArgs e)
+        private void btnLogin_Click(object sender, EventArgs e)
         {
-           // DataTable Datos = CapaNegocio.NTrabajador.Login(this.TxtUsuario.Text,this.TxtPassword.Text);
-            //Evaluar si existe el Usuario
-           // if (Datos.Rows.Count==0)
-           // {
-           //     MessageBox.Show("NO Tiene Acceso al Sistema","Sistema de Ventas",MessageBoxButtons.OK,MessageBoxIcon.Error);
-          //  }
-           // else
-           // {
-               // frmPrincipal frm = new frmPrincipal();
-               // frm.Idtrabajador = Datos.Rows[0][0].ToString();
-              //  frm.Apellidos = Datos.Rows[0][1].ToString();
-              //  frm.Nombre = Datos.Rows[0][2].ToString();
-             //   frm.Acceso = Datos.Rows[0][3].ToString();
+            //logica para iniciar secion y enviar tipo usuario
+        }
 
-              //  frm.Show();
-              //  this.Hide();
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            txtUsuario.Text = "";
+            txtPassword.Text = "";
 
-            }
         }
     }
-
+}
