@@ -33,6 +33,11 @@ namespace ODS
         public FormPanel()
         {
             InitializeComponent();
+
+            // Configurar el fondo transparente
+            this.Appearance.BackColor = Color.Transparent; // Fondo transparente
+            //this.LookAndFeel.UseDefaultLookAndFeel = false; // Desactivar el estilo predeterminado
+            this.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat; // Estilo plano
             // Abre el formulario
             frmInicio formularioSecundario = new frmInicio();
             MostrarFormularioEnPanel(groupControl1, formularioSecundario);

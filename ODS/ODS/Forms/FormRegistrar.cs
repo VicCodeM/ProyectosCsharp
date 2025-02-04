@@ -1,5 +1,4 @@
-﻿using DevExpress.Data.ExpressionEditor;
-using DevExpress.XtraEditors;
+﻿using DevExpress.XtraEditors;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Grid;
 using ODS.Datos;
@@ -16,7 +15,6 @@ namespace ODS.Forms
         #region Instanciar Objetos
         private readonly ConexionDB conexionDB = new ConexionDB();
         private readonly ConsultasDB consultasDB = new ConsultasDB();
-        private readonly ProcedimientosAlmacenadosDB procedimientosDB = new ProcedimientosAlmacenadosDB();
         #endregion
 
         #region Constructor y Eventos
@@ -36,11 +34,21 @@ namespace ODS.Forms
 
         private void FormRegistrar_Load(object sender, EventArgs e)
         {
-            //obserbaciones solo lectura
-            memoEditObsevacion.Properties.ReadOnly = true;
-            // Mostrar la fecha y hora actual en el Label
-            labelFecha.Text = DateTime.Now.ToString("dd-MM-yyyy hh:mm tt");
-            ObtenerUsuario();
+            try
+            {
+                // Observaciones solo lectura
+                memoEditObsevacion.Properties.ReadOnly = true;
+                memoEditObsevacion.Enabled = false;
+
+                // Mostrar la fecha y hora actual en el Label
+                labelFecha.Text = DateTime.Now.ToString("dd-MM-yyyy hh:mm tt");
+
+                ObtenerUsuario();
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show($"Error al cargar el formulario: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         #endregion
@@ -49,24 +57,44 @@ namespace ODS.Forms
 
         private void InicializarEventos()
         {
-            ((GridView)gridCRegistrar.MainView).FocusedRowChanged += gridCRegistrar_FocusedRowChanged;
-    
+            try
+            {
+                ((GridView)gridCRegistrar.MainView).FocusedRowChanged += gridCRegistrar_FocusedRowChanged;
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show($"Error al inicializar eventos: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void InicializarRadioButton()
         {
-            radioGroupFallos.Properties.Items.Add(new DevExpress.XtraEditors.Controls.RadioGroupItem("Software", "Software"));
-            radioGroupFallos.Properties.Items.Add(new DevExpress.XtraEditors.Controls.RadioGroupItem("Hardware", "Hardware"));
-            radioGroupFallos.EditValue = "Hardware";
-            ActualizarEstadoRadioButton(true);
+            try
+            {
+                radioGroupFallos.Properties.Items.Add(new DevExpress.XtraEditors.Controls.RadioGroupItem("Software", "Software"));
+                radioGroupFallos.Properties.Items.Add(new DevExpress.XtraEditors.Controls.RadioGroupItem("Hardware", "Hardware"));
+                radioGroupFallos.EditValue = "Hardware";
+                ActualizarEstadoRadioButton(true);
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show($"Error al inicializar los RadioButtons: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void InicializarConexiones()
         {
-            SqlConnection conexion = conexionDB.ConectarSQL();
-            if (conexion?.State == ConnectionState.Open)
+            try
             {
-                // Connection opened successfully, handle as needed
+                SqlConnection conexion = conexionDB.ConectarSQL();
+                if (conexion?.State == ConnectionState.Open)
+                {
+                    // Connection opened successfully, handle as needed
+                }
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show($"Error al conectar con la base de datos: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -76,79 +104,121 @@ namespace ODS.Forms
 
         public void ObtenerUsuario()
         {
-            conexionDB.CerrarConexion();
-            int idUsuario = 2;
-            string nombreUsuario = consultasDB.ObtenerNombreUsuario(idUsuario);
-            labelUsuario.Text = string.IsNullOrEmpty(nombreUsuario) ? "No se encontró el nombre de usuario." : $"Nombre de usuario: {nombreUsuario}";
+            try
+            {
+                conexionDB.CerrarConexion();
+                int idUsuario = 2;
+                string nombreUsuario = consultasDB.ObtenerNombreUsuario(idUsuario);
+                labelUsuario.Text = string.IsNullOrEmpty(nombreUsuario) ? "No se encontró el nombre de usuario." : $"Nombre de usuario: {nombreUsuario}";
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show($"Error al obtener el nombre de usuario: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void ActualizarEstadoRadioButton(bool isHardwareChecked)
         {
-            if (isHardwareChecked)
+            try
             {
-                radioGroupFallos.EditValue = "Hardware";
-                CargarTiposFallaHardware();
-                lookUpEdit1.Properties.NullText = "Seleccione un tipo de falla de hardware";
+                if (isHardwareChecked)
+                {
+                    radioGroupFallos.EditValue = "Hardware";
+                    CargarTiposFallaHardware();
+                    lookUpEdit1.Properties.NullText = "Seleccione un tipo de falla de hardware";
+                }
+                else
+                {
+                    radioGroupFallos.EditValue = "Software";
+                    CargarTiposFallaSoftware();
+                    lookUpEdit1.Properties.NullText = "Seleccione un tipo de falla de software";
+                }
             }
-            else
+            catch (Exception ex)
             {
-                radioGroupFallos.EditValue = "Software";
-                CargarTiposFallaSoftware();
-                lookUpEdit1.Properties.NullText = "Seleccione un tipo de falla de software";
+                XtraMessageBox.Show($"Error al actualizar el estado del RadioButton: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void CargarOrdenesPorUsuario(int idUsuario)
         {
-            DataTable tablaOrdenes = consultasDB.ObtenerOrdenesPorUsuario(idUsuario);
-            if (tablaOrdenes.Rows.Count > 0)
+            try
             {
-                AgregarHoraAOrdenes(tablaOrdenes);
-                AsignarDatosAlGrid(tablaOrdenes);
+                DataTable tablaOrdenes = consultasDB.ObtenerOrdenesPorUsuario(idUsuario);
+                if (tablaOrdenes.Rows.Count > 0)
+                {
+                    AgregarHoraAOrdenes(tablaOrdenes);
+                    AsignarDatosAlGrid(tablaOrdenes);
+                }
+                else
+                {
+                    XtraMessageBox.Show("No se encontraron órdenes para el usuario seleccionado.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                XtraMessageBox.Show("No se encontraron órdenes para el usuario seleccionado.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                XtraMessageBox.Show($"Error al cargar las órdenes del usuario: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void AgregarHoraAOrdenes(DataTable tablaOrdenes)
         {
-            if (!tablaOrdenes.Columns.Contains("Hora"))
+            try
             {
-                tablaOrdenes.Columns.Add("Hora", typeof(string));
-            }
-
-            foreach (DataRow row in tablaOrdenes.Rows)
-            {
-                if (row["Fecha_Registro"] != DBNull.Value)
+                if (!tablaOrdenes.Columns.Contains("Hora"))
                 {
-                    DateTime fecha = Convert.ToDateTime(row["Fecha_Registro"]);
-                    row["Hora"] = fecha.ToString("hh:mm tt");
+                    tablaOrdenes.Columns.Add("Hora", typeof(string));
                 }
+
+                foreach (DataRow row in tablaOrdenes.Rows)
+                {
+                    if (row["Fecha_Registro"] != DBNull.Value)
+                    {
+                        DateTime fecha = Convert.ToDateTime(row["Fecha_Registro"]);
+                        row["Hora"] = fecha.ToString("hh:mm tt");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show($"Error al agregar la hora a las órdenes: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void AsignarDatosAlGrid(DataTable tablaOrdenes)
         {
-            gridCRegistrar.DataSource = tablaOrdenes;
-            GridView gridViewOrdenes = (GridView)gridCRegistrar.MainView;
+            try
+            {
+                gridCRegistrar.DataSource = tablaOrdenes;
+                GridView gridViewOrdenes = (GridView)gridCRegistrar.MainView;
 
-            // Configuración de columnas de fechas y hora
-            ConfigurarFormatoColumnas(gridViewOrdenes);
-            gridViewOrdenes.BestFitColumns();
+                // Configuración de columnas de fechas y hora
+                ConfigurarFormatoColumnas(gridViewOrdenes);
+                gridViewOrdenes.BestFitColumns();
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show($"Error al asignar los datos al Grid: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void ConfigurarFormatoColumnas(GridView gridViewOrdenes)
         {
-            gridViewOrdenes.Columns["Fecha_Atencion"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            gridViewOrdenes.Columns["Fecha_Atencion"].DisplayFormat.FormatString = "dd-MM-yyyy hh:mm tt";
-            gridViewOrdenes.Columns["Fecha_Cierre"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            gridViewOrdenes.Columns["Fecha_Cierre"].DisplayFormat.FormatString = "dd-MM-yyyy hh:mm tt";
-            gridViewOrdenes.Columns["Fecha_Registro"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            gridViewOrdenes.Columns["Fecha_Registro"].DisplayFormat.FormatString = "dd-MM-yyyy";
-            gridViewOrdenes.Columns["Hora"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            gridViewOrdenes.Columns["Hora"].DisplayFormat.FormatString = "hh:mm tt";
+            try
+            {
+                gridViewOrdenes.Columns["Fecha_Atencion"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+                gridViewOrdenes.Columns["Fecha_Atencion"].DisplayFormat.FormatString = "dd-MM-yyyy hh:mm tt";
+                gridViewOrdenes.Columns["Fecha_Cierre"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+                gridViewOrdenes.Columns["Fecha_Cierre"].DisplayFormat.FormatString = "dd-MM-yyyy hh:mm tt";
+                gridViewOrdenes.Columns["Fecha_Registro"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+                gridViewOrdenes.Columns["Fecha_Registro"].DisplayFormat.FormatString = "dd-MM-yyyy";
+                gridViewOrdenes.Columns["Hora"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+                gridViewOrdenes.Columns["Hora"].DisplayFormat.FormatString = "hh:mm tt";
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show($"Error al configurar el formato de las columnas: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void CargarTiposFallaHardware()
@@ -160,7 +230,7 @@ namespace ODS.Forms
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show("Error al cargar los tipos de falla de hardware: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show($"Error al cargar los tipos de falla de hardware: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -173,49 +243,89 @@ namespace ODS.Forms
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show("Error al cargar los tipos de falla de software: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show($"Error al cargar los tipos de falla de software: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void CargarTiposDeFallaEnLookUpEdit(List<string> listaFalla, string columna, string textoNull)
         {
-            DataTable tabla = ConvertirListaADataTable(listaFalla, columna);
-            lookUpEdit1.Properties.DataSource = tabla;
-            lookUpEdit1.Properties.DisplayMember = columna;
-            lookUpEdit1.Properties.ValueMember = "Id";
-            lookUpEdit1.Properties.NullText = textoNull;
+            try
+            {
+                DataTable tabla = ConvertirListaADataTable(listaFalla, columna);
+                lookUpEdit1.Properties.DataSource = tabla;
+                lookUpEdit1.Properties.DisplayMember = columna;
+                lookUpEdit1.Properties.ValueMember = "Id";
+                lookUpEdit1.Properties.NullText = textoNull;
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show($"Error al cargar tipos de falla en LookUpEdit: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private DataTable ConvertirListaADataTable(List<string> lista, string nombreColumna)
         {
-            DataTable dataTable = new DataTable();
-            dataTable.Columns.Add("Id", typeof(int));
-            dataTable.Columns.Add(nombreColumna, typeof(string));
-
-            for (int i = 0; i < lista.Count; i++)
+            try
             {
-                dataTable.Rows.Add(i + 1, lista[i]);
-            }
+                DataTable dataTable = new DataTable();
+                dataTable.Columns.Add("Id", typeof(int));
+                dataTable.Columns.Add(nombreColumna, typeof(string));
 
-            return dataTable;
+                for (int i = 0; i < lista.Count; i++)
+                {
+                    dataTable.Rows.Add(i + 1, lista[i]);
+                }
+
+                return dataTable;
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show($"Error al convertir la lista a DataTable: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+        }
+
+        private void radioGroupFallos_EditValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                bool isHardwareChecked = radioGroupFallos.EditValue.ToString() == "Hardware";
+                ActualizarEstadoRadioButton(isHardwareChecked); // Actualizar estado
+                lookUpEdit1.EditValue = null; // Limpiar el valor del LookUpEdit antes de cargar nuevos datos
+
+                if (isHardwareChecked)
+                {
+                    CargarTiposFallaHardware(); // Cargar hardware si es seleccionado
+                    lookUpEdit1.Properties.NullText = "Seleccione un tipo de falla de hardware";
+                }
+                else
+                {
+                    CargarTiposFallaSoftware(); // Cargar software si es seleccionado
+                    lookUpEdit1.Properties.NullText = "Seleccione un tipo de falla de software";
+                }
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show($"Error al cambiar el valor del RadioButton: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(memoEditDescripcion.Text))
-            {
-                XtraMessageBox.Show("Por favor, describe el problema.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            int idUsuario = 2;
-            string descripcionProblema = memoEditDescripcion.Text.Trim();
-            string estado = "Abierto";
-            int? idFalloHardware = radioGroupFallos.EditValue.ToString() == "Hardware" ? (int?)lookUpEdit1.EditValue : null;
-            int? idFalloSoftware = radioGroupFallos.EditValue.ToString() == "Software" ? (int?)lookUpEdit1.EditValue : null;
-
             try
             {
+                if (string.IsNullOrWhiteSpace(memoEditDescripcion.Text))
+                {
+                    XtraMessageBox.Show("Por favor, describe el problema.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                int idUsuario = 2;
+                string descripcionProblema = memoEditDescripcion.Text.Trim();
+                string estado = "Abierto";
+                int? idFalloHardware = radioGroupFallos.EditValue.ToString() == "Hardware" ? (int?)lookUpEdit1.EditValue : null;
+                int? idFalloSoftware = radioGroupFallos.EditValue.ToString() == "Software" ? (int?)lookUpEdit1.EditValue : null;
+
                 if (!consultasDB.UsuarioExiste(idUsuario))
                 {
                     XtraMessageBox.Show("El usuario no existe.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -236,8 +346,15 @@ namespace ODS.Forms
 
         private void LimpiarCampos()
         {
-            memoEditDescripcion.Text = "";
-            lookUpEdit1.EditValue = null;
+            try
+            {
+                memoEditDescripcion.Text = "";
+                lookUpEdit1.EditValue = null;
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show($"Error al limpiar los campos: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         #endregion
@@ -257,41 +374,54 @@ namespace ODS.Forms
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show("Error al seleccionar la fila: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show($"Error al seleccionar la fila: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void AsignarDatosDeFilaAFormulario(DataRow row)
         {
-            memoEditDescripcion.Text = row["Descripcion"]?.ToString() ?? string.Empty;
-            memoEditObsevacion.Text = row["Observaciones"]?.ToString() ?? string.Empty;
-            labelEstado.Text = "Estado: " + row["Estado"]?.ToString() ?? string.Empty;
-           // labelFecha.Text = row["Fecha_Registro"] != DBNull.Value ? "Registro: " + Convert.ToDateTime(row["Fecha_Registro"]).ToString("dd/MM/yyyy hh:mm tt") : "Fecha no disponible";
-            labelUsuario.Text = "Usuario: " + (row["Usuario"]?.ToString() ?? "Desconocido");
+            try
+            {
+                memoEditDescripcion.Text = row["Descripcion"]?.ToString() ?? string.Empty;
+                memoEditObsevacion.Text = row["Observaciones"]?.ToString() ?? string.Empty;
+                labelEstado.Text = "Estado: " + (row["Estado"]?.ToString() ?? string.Empty);
+                labelUsuario.Text = "Usuario: " + (row["Usuario"]?.ToString() ?? "Desconocido");
 
-            if (row["Hardware"] != DBNull.Value && !string.IsNullOrEmpty(row["Hardware"].ToString()))
-            {
-                radioGroupFallos.EditValue = "Hardware";
-                CargarTiposFallaHardware();
-                lookUpEdit1.EditValue = row["Id"];
+                // Asignar correctamente el valor a EditValue
+                lookUpEdit1.EditValue = row["Id"] ?? string.Empty;
+
+                if (row["Hardware"] != DBNull.Value && !string.IsNullOrEmpty(row["Hardware"].ToString()))
+                {
+                    radioGroupFallos.EditValue = "Hardware"; // Establecer Hardware como el seleccionado
+                    CargarTiposFallaHardware();              // Cargar tipos de falla de hardware
+                    lookUpEdit1.EditValue = row["Hardware"]; // Asignar el valor correspondiente
+                }
+                else if (row["Software"] != DBNull.Value && !string.IsNullOrEmpty(row["Software"].ToString()))
+                {
+                    radioGroupFallos.EditValue = "Software"; // Establecer Software como el seleccionado
+                    CargarTiposFallaSoftware();              // Cargar tipos de falla de software
+                    lookUpEdit1.EditValue = row["Software"]; // Asignar el valor correspondiente
+                }
             }
-            else if (row["Software"] != DBNull.Value && !string.IsNullOrEmpty(row["Software"].ToString()))
+            catch (Exception ex)
             {
-                radioGroupFallos.EditValue = "Software";
-                CargarTiposFallaSoftware();
-                lookUpEdit1.EditValue = row["Id"];
+                XtraMessageBox.Show($"Error al asignar los datos de la fila: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void radioGroupFallos_EditValueChanged_1(object sender, EventArgs e)
         {
-            bool isHardwareChecked = radioGroupFallos.EditValue.ToString() == "Hardware";
-            ActualizarEstadoRadioButton(isHardwareChecked);
+            try
+            {
+                bool isHardwareChecked = radioGroupFallos.EditValue.ToString() == "Hardware";
+                ActualizarEstadoRadioButton(isHardwareChecked);
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show($"Error al cambiar el valor del RadioButton: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
-
         #endregion
-
-
     }
 }

@@ -53,7 +53,34 @@ namespace ODS.Forms
             // Obtener el ID del empleado seleccionado
             int idEmpleado = Convert.ToInt32(lookUpEmpleado.EditValue);
 
-            // Insertar el nuevo usuario en la tabla Login
+            // 🔴 1️⃣ Verificar si el empleado ya tiene un usuario registrado en la base de datos
+            string queryVerificarEmpleado = $"SELECT COUNT(*) FROM Login WHERE Id_Empleado = {idEmpleado}";
+            DataTable dtEmpleadoExistente = conexionDB.EjecutarConsulta(queryVerificarEmpleado);
+
+            // Si el empleado ya tiene un usuario, no permitir registrar otro
+            if (dtEmpleadoExistente.Rows.Count > 0 && Convert.ToInt32(dtEmpleadoExistente.Rows[0][0]) > 0)
+            {
+                XtraMessageBox.Show("Este empleado ya tiene un usuario asignado. No puede registrar otro.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // 🔴 2️⃣ Verificar si el usuario ya existe con otro empleado
+            string queryVerificarUsuario = $"SELECT Id_Empleado FROM Login WHERE Usuario = '{usuario}'";
+            DataTable dtUsuarioExistente = conexionDB.EjecutarConsulta(queryVerificarUsuario);
+
+            if (dtUsuarioExistente.Rows.Count > 0)
+            {
+                int empleadoExistente = Convert.ToInt32(dtUsuarioExistente.Rows[0]["Id_Empleado"]);
+
+                // Si el usuario ya existe pero con un empleado diferente, mostrar advertencia
+                if (empleadoExistente != idEmpleado)
+                {
+                    XtraMessageBox.Show("El nombre de usuario ya está registrado con otro empleado. Use otro nombre.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+            }
+
+            // 🔵 3️⃣ Insertar el nuevo usuario en la tabla Login si pasa las validaciones
             string queryLogin = $"INSERT INTO Login (Usuario, Password, Tipo_Usuario, Id_Empleado) " +
                                 $"VALUES ('{usuario}', '{password}', '{tipoUsuario}', {idEmpleado})";
 
@@ -75,21 +102,44 @@ namespace ODS.Forms
                 XtraMessageBox.Show($"Error al guardar: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
+
         private void btnActualizar_Click(object sender, EventArgs e)
         {
             if (gridUsuarios.MainView is GridView gridView && gridView.FocusedRowHandle >= 0)
             {
+                // 🔴 Validar que se haya seleccionado un empleado
+                if (lookUpEmpleado.EditValue == null)
+                {
+                    XtraMessageBox.Show("Debe seleccionar un empleado antes de actualizar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 int idUsuario = Convert.ToInt32(gridView.GetFocusedRowCellValue("Id_Usuario"));
                 int idEmpleado = Convert.ToInt32(lookUpEmpleado.EditValue);
                 string usuario = txtUsuario.Text;
                 string password = txtPassword.Text;
                 string tipoUsuario = comboTipoUsuario.SelectedItem.ToString();
-                int idDepartamento = Convert.ToInt32(lookUpDepartamento.EditValue); // 🔥 Nuevo: Obtener el departamento seleccionado
+                int idDepartamento = Convert.ToInt32(lookUpDepartamento.EditValue);
 
+                // Verificar si hay cambios antes de actualizar
+                string queryVerificarCambios = $"SELECT Usuario, Password, Tipo_Usuario FROM Login WHERE Id_Usuario = {idUsuario}";
+                DataTable dtUsuarioActual = conexionDB.EjecutarConsulta(queryVerificarCambios);
+
+                if (dtUsuarioActual.Rows.Count > 0)
+                {
+                    DataRow row = dtUsuarioActual.Rows[0];
+                    if (row["Usuario"].ToString() == usuario && row["Password"].ToString() == password && row["Tipo_Usuario"].ToString() == tipoUsuario)
+                    {
+                        XtraMessageBox.Show("Para actualizar, debe haber algún cambio en los datos.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                }
 
                 // Actualizar los datos del usuario
                 string queryActualizar = $"UPDATE Login SET Usuario = '{usuario}', Password = '{password}', Tipo_Usuario = '{tipoUsuario}' WHERE Id_Usuario = {idUsuario}; " +
-                                         $"UPDATE Empleados SET Id_Departamento = {lookUpDepartamento.EditValue} WHERE Id_Empleado = {idEmpleado};";
+                                         $"UPDATE Empleados SET Id_Departamento = {idDepartamento} WHERE Id_Empleado = {idEmpleado};";
                 conexionDB.EjecutarComando(queryActualizar);
 
                 XtraMessageBox.Show("Usuario actualizado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -100,6 +150,8 @@ namespace ODS.Forms
                 XtraMessageBox.Show("Seleccione un usuario para editar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
+
 
 
         private void btnEiminar_Click(object sender, EventArgs e)

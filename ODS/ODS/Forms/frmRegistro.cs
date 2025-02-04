@@ -1,9 +1,16 @@
-﻿using DevExpress.XtraEditors;
+﻿using DevExpress.DocumentServices.ServiceModel.DataContracts;
+using DevExpress.Export.Xl;
+using DevExpress.XtraEditors;
+using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraPrinting;
 using ODS.Datos;
 using System;
 using System.Data;
 using System.Windows.Forms;
+
+using ClosedXML.Excel;
+using DevExpress.XtraWaitForm;
 
 namespace ODS.Forms
 {
@@ -44,9 +51,11 @@ namespace ODS.Forms
 
         #region Métodos de form
 
+
+
+
         //metodo caragar usuario
         //Obtener usuario
-
         public void ObtenerUsuario()
         {
             //cerrar cualquier conexion abierta
@@ -65,6 +74,9 @@ namespace ODS.Forms
                 labelUsuario.Text = "No se encontró el nombre de usuario.";
             }
         }
+
+
+
 
         //caragra ordenes en grid
         private void CargarOrdenes()
@@ -158,9 +170,22 @@ namespace ODS.Forms
 
         private void CargarListasDesplegables()
         {
+
             // Llamar al método para obtener las tablas de los datos
             DataTable tablaUsuarios, tablaHardware, tablaSoftware;
             consultasDB.CargarListasDesplegables(out tablaUsuarios, out tablaHardware, out tablaSoftware);
+
+            // Crear fila "Ninguno" para Hardware
+            DataRow drHardware = tablaHardware.NewRow();
+            drHardware["Id_TipoFallaHardware"] = DBNull.Value;  // Este valor indica que no se ha seleccionado una falla de hardware
+            drHardware["Descripcion"] = "Ninguno";  // Texto que aparecerá en la lista
+            tablaHardware.Rows.InsertAt(drHardware, 0);  // Insertar al principio
+
+            // Crear fila "Ninguno" para Software
+            DataRow drSoftware = tablaSoftware.NewRow();
+            drSoftware["Id_TipoFallaSoftware"] = DBNull.Value;  // Este valor indica que no se ha seleccionado una falla de software
+            drSoftware["Descripcion"] = "Ninguno";  // Texto que aparecerá en la lista
+            tablaSoftware.Rows.InsertAt(drSoftware, 0);  // Insertar al principio
 
             // Asignar los datos a los LookUpEdit
             lookUpEditListaUsuarios.Properties.DataSource = tablaUsuarios;
@@ -170,10 +195,12 @@ namespace ODS.Forms
             lookUpEditHadware.Properties.DataSource = tablaHardware;
             lookUpEditHadware.Properties.DisplayMember = "Descripcion";
             lookUpEditHadware.Properties.ValueMember = "Id_TipoFallaHardware";
+            lookUpEditHadware.Properties.NullText = "Seleccione una falla de hardware";  // Texto cuando no hay valor seleccionado
 
             lookUpEditSofware.Properties.DataSource = tablaSoftware;
             lookUpEditSofware.Properties.DisplayMember = "Descripcion";
             lookUpEditSofware.Properties.ValueMember = "Id_TipoFallaSoftware";
+            lookUpEditSofware.Properties.NullText = "Seleccione una falla de software";  // Texto cuando no hay valor seleccionado
         }
 
         #endregion
@@ -194,39 +221,90 @@ namespace ODS.Forms
 
         private void btnActualizar_Click(object sender, EventArgs e)
         {
-            // Obtener los valores de los controles
-            int idOrden = Convert.ToInt32(txtIdOrden.EditValue);
-            DateTime? fechaAtendida = dateEditFechaAtendida.EditValue as DateTime?;
-            DateTime? fechaCerrada = dateEditFechaCerrada.EditValue as DateTime?;
-            int idUsuario = Convert.ToInt32(lookUpEditListaUsuarios.EditValue);
-            int? idFallaHardware = lookUpEditHadware.EditValue as int?;
-            int? idFallaSoftware = lookUpEditSofware.EditValue as int?;
-            string descripcion = memoEditDescripcion.Text;
-            string observaciones = memoEditObsevacion.Text;
-            string estado = radioGroupEstados.EditValue.ToString();
-
-            // Asignar la hora actual a las fechas si están presentes
-            if (fechaAtendida.HasValue)
+            try
             {
-                fechaAtendida = fechaAtendida.Value.Date.Add(DateTime.Now.TimeOfDay); // Asigna la fecha seleccionada y la hora actual
-            }
+                // Obtener los valores de los controles
+                int idOrden;
+                DateTime? fechaAtendida = dateEditFechaAtendida.EditValue as DateTime?;
+                DateTime? fechaCerrada = dateEditFechaCerrada.EditValue as DateTime?;
+                int idUsuario;
+                int? idFallaHardware = lookUpEditHadware.EditValue as int?;
+                int? idFallaSoftware = lookUpEditSofware.EditValue as int?;
+                string descripcion = memoEditDescripcion.Text;
+                string observaciones = memoEditObsevacion.Text;
+                string estado;
 
-            if (fechaCerrada.HasValue)
+                // Validar y convertir los valores necesarios
+                try
+                {
+                    idOrden = Convert.ToInt32(txtIdOrden.EditValue);
+                    idUsuario = Convert.ToInt32(lookUpEditListaUsuarios.EditValue);
+                    estado = radioGroupEstados.EditValue?.ToString();
+
+                    if (estado == null)
+                    {
+                        throw new InvalidOperationException("El estado no puede ser nulo.");
+                    }
+                }
+                catch (FormatException ex)
+                {
+                    XtraMessageBox.Show($"Error al convertir un valor: {ex.Message}", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                catch (InvalidCastException ex)
+                {
+                    XtraMessageBox.Show($"Error al obtener un valor de los controles: {ex.Message}", "Error de Conversión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Validación: Solo se debe seleccionar una falla (Hardware o Software)
+                if (idFallaHardware.HasValue && idFallaSoftware.HasValue)
+                {
+                    XtraMessageBox.Show("Solo puede seleccionar una de las fallas (Hardware o Software), no ambas.", "Error de Validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Asignar la hora actual a las fechas si están presentes
+                if (fechaAtendida.HasValue)
+                {
+                    fechaAtendida = fechaAtendida.Value.Date.Add(DateTime.Now.TimeOfDay); // Asigna la fecha seleccionada y la hora actual
+                }
+                if (fechaCerrada.HasValue)
+                {
+                    fechaCerrada = fechaCerrada.Value.Date.Add(DateTime.Now.TimeOfDay); // Asigna la fecha seleccionada y la hora actual
+                }
+
+                // Llamar al método ActualizarOrden dentro de un bloque try-catch para manejar errores de base de datos
+                try
+                {
+                    consultasDB.ActualizarOrden(idOrden, fechaAtendida, fechaCerrada, idUsuario, idFallaHardware, idFallaSoftware, descripcion, observaciones, estado);
+                }
+                catch (Exception ex)
+                {
+                    XtraMessageBox.Show($"Error al actualizar la orden en la base de datos: {ex.Message}", "Error de Base de Datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Mostrar un mensaje de éxito
+                XtraMessageBox.Show("Orden de servicio actualizada con éxito", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Refrescar el GridControl
+                try
+                {
+                    gridControl1.RefreshDataSource();
+                    CargarOrdenes();
+                }
+                catch (Exception ex)
+                {
+                    XtraMessageBox.Show($"Error al refrescar los datos: {ex.Message}", "Error de Refresco", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
             {
-                fechaCerrada = fechaCerrada.Value.Date.Add(DateTime.Now.TimeOfDay); // Asigna la fecha seleccionada y la hora actual
+                // Capturar cualquier otra excepción inesperada
+                XtraMessageBox.Show($"Ocurrió un error inesperado: {ex.Message}", "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            // Llamar al método ActualizarOrden
-            consultasDB.ActualizarOrden(idOrden, fechaAtendida, fechaCerrada, idUsuario, idFallaHardware, idFallaSoftware, descripcion, observaciones, estado);
-
-            // Opcional: Mostrar un mensaje de éxito
-            XtraMessageBox.Show("Orden de servicio actualizada con éxito", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            // Refrescar el GridControl
-            gridControl1.RefreshDataSource();
-            CargarOrdenes();
         }
-
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
@@ -258,8 +336,144 @@ namespace ODS.Forms
                     XtraMessageBox.Show("No se pudo eliminar la orden. Verifique si existe.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-        } 
+        }
         #endregion
 
+
+        // Método para exportar el GridControl a Excel
+        private void Exportar()
+        {
+            // Obtener el GridView del GridControl
+            GridView gridView = (GridView)gridControl1.MainView;
+
+            // Crear un objeto de opciones de exportación para el formato Xlsx
+            XlsxExportOptionsEx opcionesExportacion = new XlsxExportOptionsEx()
+            {
+                ExportMode = XlsxExportMode.SingleFile, // Exportar todo en un solo archivo
+                TextExportMode = TextExportMode.Text, // Exportar texto como texto
+                SheetName = "Reporte de Órdenes", // Nombre de la hoja de Excel
+                ExportType = DevExpress.Export.ExportType.WYSIWYG, // Exportar según lo que se ve en el Grid
+            };
+
+
+            // Mostrar un cuadro de diálogo para guardar el archivo Excel
+            SaveFileDialog guardarArchivo = new SaveFileDialog
+            {
+                Filter = "Archivos Excel (*.xlsx)|*.xlsx" // Filtro para guardar como .xlsx
+            };
+
+            if (guardarArchivo.ShowDialog() == DialogResult.OK)
+            {
+                // Exportar los datos de la vista del Grid a un archivo Excel
+                gridView.ExportToXlsx(guardarArchivo.FileName, opcionesExportacion);
+
+                // Mostrar mensaje de éxito
+                XtraMessageBox.Show("El reporte se ha exportado con éxito.", "Exportación exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void ExportarExcel()
+        {
+            try
+            {
+                // Crear un cuadro de diálogo para que el usuario elija dónde guardar el archivo
+                SaveFileDialog saveDialog = new SaveFileDialog
+                {
+                    Filter = "Archivos Excel (*.xlsx)|*.xlsx",
+                    Title = "Guardar Reporte en Excel"
+                };
+
+                // Verificar si el usuario seleccionó una ubicación para guardar
+                if (saveDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string rutaArchivo = saveDialog.FileName;
+
+                    // Crear un libro de trabajo de Excel
+                    using (XLWorkbook workbook = new XLWorkbook())
+                    {
+                        // Obtener la fuente de datos del GridControl
+                        DataTable dt = (DataTable)gridControl1.DataSource;
+
+                        // Crear una hoja de trabajo y agregar los datos de la tabla
+                        var hoja = workbook.Worksheets.Add("Órdenes");
+
+                        // Agregar el título y centrarlo
+                        hoja.Cell(1, 1).Value = "Nombre de la Empresa";
+                        hoja.Cell(1, 1).Style.Font.Bold = true;
+                        hoja.Cell(1, 1).Style.Font.FontColor = XLColor.White;
+                        hoja.Cell(1, 1).Style.Fill.BackgroundColor = XLColor.DarkBlue;
+                        hoja.Cell(1, 1).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+
+                        hoja.Cell(2, 1).Value = "Reporte de Órdenes";
+                        hoja.Cell(2, 1).Style.Font.Bold = true;
+                        hoja.Cell(2, 1).Style.Font.FontColor = XLColor.White;
+                        hoja.Cell(2, 1).Style.Fill.BackgroundColor = XLColor.DarkGreen;
+                        hoja.Cell(2, 1).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+
+                        hoja.Cell(3, 1).Value = "Fecha: " + DateTime.Now.ToString("dd/MM/yyyy");
+                        hoja.Cell(3, 1).Style.Font.Italic = true;
+                        hoja.Cell(3, 1).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+
+                        hoja.Row(1).Height = 25;
+                        hoja.Row(2).Height = 25;
+                        hoja.Row(3).Height = 20;
+
+                        // Espaciado entre el encabezado y los datos
+                        hoja.Row(4).Height = 10;
+
+                        // Insertar la tabla de datos a partir de la fila 5
+                        var encabezado = hoja.Cell(5, 1).InsertTable(dt)
+                            .Range(5, 1, 5, dt.Columns.Count).FirstRow();
+
+                        // Estilo del encabezado de la tabla
+                        encabezado.Style.Font.Bold = true;
+                        encabezado.Style.Fill.BackgroundColor = XLColor.CornflowerBlue;
+                        encabezado.Style.Font.FontColor = XLColor.White;
+                        encabezado.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+
+                        // Ajustar el encabezado para que ocupe todo el ancho de la tabla
+                        hoja.Range(1, 1, 1, dt.Columns.Count).Merge().Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                        hoja.Range(2, 1, 2, dt.Columns.Count).Merge().Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                        hoja.Range(3, 1, 3, dt.Columns.Count).Merge().Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+
+                        // Aplicar bordes y formato a la tabla de datos
+                        hoja.RangeUsed().Style.Border.OutsideBorder = XLBorderStyleValues.Thick;
+                        hoja.RangeUsed().Style.Border.InsideBorder = XLBorderStyleValues.Thin;
+
+                        // Ajustar el ancho de las columnas
+                        hoja.Columns().AdjustToContents();
+
+                        // Asegurarse de que la hoja se ajuste al tamaño de la página al imprimir
+                        hoja.PageSetup.FitToPages(1, 0);  // Ajusta el contenido para que quepa en una página
+
+                        // Guardar el archivo en la ubicación seleccionada
+                        workbook.SaveAs(rutaArchivo);
+                    }
+
+                    // Mostrar un mensaje de éxito
+                    XtraMessageBox.Show("Reporte exportado con éxito en Excel.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejar cualquier error que ocurra durante la exportación
+                XtraMessageBox.Show("Error al exportar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            
+
+        }
+
+        private void simpleButton1_Click_1(object sender, EventArgs e)
+        {
+            // Exportar();
+            ExportarExcel();
+        }
     }
 }

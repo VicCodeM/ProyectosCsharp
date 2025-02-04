@@ -57,6 +57,8 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnExportar = new DevExpress.XtraEditors.SimpleButton();
+            this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             ((System.ComponentModel.ISupportInitialize)(this.txtIdOrden.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEditFechaCreacion.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEditFechaCreacion.Properties.CalendarTimeProperties)).BeginInit();
@@ -73,18 +75,35 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
+            this.groupControl1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnActualizar
             // 
-            this.btnActualizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnActualizar.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnActualizar.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnActualizar.Appearance.BackColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Primary;
+            this.btnActualizar.Appearance.BorderColor = System.Drawing.Color.Lime;
+            this.btnActualizar.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnActualizar.Appearance.Options.UseBackColor = true;
+            this.btnActualizar.Appearance.Options.UseBorderColor = true;
             this.btnActualizar.Appearance.Options.UseFont = true;
-            this.btnActualizar.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnActualizar.ImageOptions.Image")));
-            this.btnActualizar.Location = new System.Drawing.Point(27, 584);
+            this.btnActualizar.Appearance.Options.UseTextOptions = true;
+            this.btnActualizar.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.btnActualizar.Appearance.TextOptions.Trimming = DevExpress.Utils.Trimming.None;
+            this.btnActualizar.AppearanceHovered.BackColor = System.Drawing.Color.Cyan;
+            this.btnActualizar.AppearanceHovered.BorderColor = System.Drawing.Color.Fuchsia;
+            this.btnActualizar.AppearanceHovered.ForeColor = System.Drawing.Color.White;
+            this.btnActualizar.AppearanceHovered.Options.UseBackColor = true;
+            this.btnActualizar.AppearanceHovered.Options.UseBorderColor = true;
+            this.btnActualizar.AppearanceHovered.Options.UseForeColor = true;
+            this.btnActualizar.AppearanceHovered.Options.UseTextOptions = true;
+            this.btnActualizar.AppearanceHovered.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.btnActualizar.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnActualizar.ImageOptions.SvgImage")));
+            this.btnActualizar.Location = new System.Drawing.Point(73, 7);
             this.btnActualizar.Name = "btnActualizar";
-            this.btnActualizar.Size = new System.Drawing.Size(96, 24);
-            this.btnActualizar.TabIndex = 26;
+            this.btnActualizar.Size = new System.Drawing.Size(130, 36);
+            this.btnActualizar.TabIndex = 10;
             this.btnActualizar.Text = "Actualizar";
             this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
             // 
@@ -118,7 +137,7 @@
             this.label1.BackColor = System.Drawing.Color.Gainsboro;
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(327, 19);
+            this.label1.Location = new System.Drawing.Point(337, 19);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(275, 32);
             this.label1.TabIndex = 21;
@@ -132,7 +151,7 @@
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(406, 60);
+            this.label2.Location = new System.Drawing.Point(416, 60);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(111, 19);
             this.label2.TabIndex = 22;
@@ -146,7 +165,7 @@
             this.txtIdOrden.Location = new System.Drawing.Point(25, 139);
             this.txtIdOrden.Name = "txtIdOrden";
             this.txtIdOrden.Size = new System.Drawing.Size(53, 20);
-            this.txtIdOrden.TabIndex = 30;
+            this.txtIdOrden.TabIndex = 1;
             // 
             // dateEditFechaCreacion
             // 
@@ -160,7 +179,7 @@
             this.dateEditFechaCreacion.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateEditFechaCreacion.Size = new System.Drawing.Size(121, 20);
-            this.dateEditFechaCreacion.TabIndex = 31;
+            this.dateEditFechaCreacion.TabIndex = 2;
             // 
             // dateEditFechaAtendida
             // 
@@ -174,7 +193,7 @@
             this.dateEditFechaAtendida.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateEditFechaAtendida.Size = new System.Drawing.Size(121, 20);
-            this.dateEditFechaAtendida.TabIndex = 32;
+            this.dateEditFechaAtendida.TabIndex = 3;
             // 
             // dateEditFechaCerrada
             // 
@@ -188,7 +207,7 @@
             this.dateEditFechaCerrada.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateEditFechaCerrada.Size = new System.Drawing.Size(121, 20);
-            this.dateEditFechaCerrada.TabIndex = 33;
+            this.dateEditFechaCerrada.TabIndex = 4;
             // 
             // lookUpEditListaUsuarios
             // 
@@ -199,7 +218,7 @@
             this.lookUpEditListaUsuarios.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.lookUpEditListaUsuarios.Size = new System.Drawing.Size(121, 20);
-            this.lookUpEditListaUsuarios.TabIndex = 34;
+            this.lookUpEditListaUsuarios.TabIndex = 5;
             // 
             // lookUpEditHadware
             // 
@@ -210,7 +229,7 @@
             this.lookUpEditHadware.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.lookUpEditHadware.Size = new System.Drawing.Size(121, 20);
-            this.lookUpEditHadware.TabIndex = 35;
+            this.lookUpEditHadware.TabIndex = 6;
             // 
             // lookUpEditSofware
             // 
@@ -221,7 +240,7 @@
             this.lookUpEditSofware.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.lookUpEditSofware.Size = new System.Drawing.Size(121, 20);
-            this.lookUpEditSofware.TabIndex = 36;
+            this.lookUpEditSofware.TabIndex = 7;
             // 
             // memoEditDescripcion
             // 
@@ -230,7 +249,7 @@
             this.memoEditDescripcion.Location = new System.Drawing.Point(25, 198);
             this.memoEditDescripcion.Name = "memoEditDescripcion";
             this.memoEditDescripcion.Size = new System.Drawing.Size(706, 56);
-            this.memoEditDescripcion.TabIndex = 37;
+            this.memoEditDescripcion.TabIndex = 8;
             // 
             // memoEditObsevacion
             // 
@@ -239,7 +258,7 @@
             this.memoEditObsevacion.Location = new System.Drawing.Point(25, 283);
             this.memoEditObsevacion.Name = "memoEditObsevacion";
             this.memoEditObsevacion.Size = new System.Drawing.Size(706, 56);
-            this.memoEditObsevacion.TabIndex = 38;
+            this.memoEditObsevacion.TabIndex = 9;
             // 
             // radioGroupEstados
             // 
@@ -251,7 +270,7 @@
             this.radioGroupEstados.Properties.Appearance.Options.UseBackColor = true;
             this.radioGroupEstados.Properties.Appearance.Options.UseBorderColor = true;
             this.radioGroupEstados.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            this.radioGroupEstados.Size = new System.Drawing.Size(172, 140);
+            this.radioGroupEstados.Size = new System.Drawing.Size(192, 140);
             this.radioGroupEstados.TabIndex = 39;
             // 
             // gridControl1
@@ -259,29 +278,40 @@
             this.gridControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gridControl1.Location = new System.Drawing.Point(25, 365);
+            this.gridControl1.Location = new System.Drawing.Point(25, 354);
             this.gridControl1.MainView = this.gridView2;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(893, 213);
+            this.gridControl1.Size = new System.Drawing.Size(913, 152);
             this.gridControl1.TabIndex = 40;
+            this.gridControl1.TabStop = false;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
             // 
             // gridView2
             // 
+            this.gridView2.Appearance.ColumnFilterButton.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.gridView2.Appearance.ColumnFilterButton.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.gridView2.Appearance.ColumnFilterButton.Options.UseBackColor = true;
+            this.gridView2.Appearance.ColumnFilterButton.Options.UseBorderColor = true;
+            this.gridView2.Appearance.ColumnFilterButton.Options.UseTextOptions = true;
+            this.gridView2.Appearance.ColumnFilterButton.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridView2.GridControl = this.gridControl1;
             this.gridView2.Name = "gridView2";
             // 
             // btnEliminar
             // 
-            this.btnEliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnEliminar.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEliminar.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnEliminar.Appearance.BackColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Danger;
+            this.btnEliminar.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEliminar.Appearance.Options.UseBackColor = true;
             this.btnEliminar.Appearance.Options.UseFont = true;
-            this.btnEliminar.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminar.ImageOptions.Image")));
-            this.btnEliminar.Location = new System.Drawing.Point(150, 584);
+            this.btnEliminar.Appearance.Options.UseTextOptions = true;
+            this.btnEliminar.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.btnEliminar.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnEliminar.ImageOptions.SvgImage")));
+            this.btnEliminar.Location = new System.Drawing.Point(406, 7);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(89, 24);
-            this.btnEliminar.TabIndex = 41;
+            this.btnEliminar.Size = new System.Drawing.Size(137, 37);
+            this.btnEliminar.TabIndex = 11;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
@@ -405,12 +435,43 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Información";
             // 
+            // btnExportar
+            // 
+            this.btnExportar.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnExportar.Appearance.BackColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Primary;
+            this.btnExportar.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExportar.Appearance.Options.UseBackColor = true;
+            this.btnExportar.Appearance.Options.UseFont = true;
+            this.btnExportar.Appearance.Options.UseTextOptions = true;
+            this.btnExportar.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.btnExportar.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnExportar.ImageOptions.Image")));
+            this.btnExportar.Location = new System.Drawing.Point(711, 7);
+            this.btnExportar.Name = "btnExportar";
+            this.btnExportar.Size = new System.Drawing.Size(139, 36);
+            this.btnExportar.TabIndex = 12;
+            this.btnExportar.Text = "Exportar";
+            this.btnExportar.Click += new System.EventHandler(this.simpleButton1_Click_1);
+            // 
+            // groupControl1
+            // 
+            this.groupControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.groupControl1.Controls.Add(this.btnExportar);
+            this.groupControl1.Controls.Add(this.btnActualizar);
+            this.groupControl1.Controls.Add(this.btnEliminar);
+            this.groupControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.groupControl1.Location = new System.Drawing.Point(0, 512);
+            this.groupControl1.Name = "groupControl1";
+            this.groupControl1.Size = new System.Drawing.Size(958, 50);
+            this.groupControl1.TabIndex = 52;
+            this.groupControl1.Text = "groupControl1";
+            // 
             // frmRegistro
             // 
-            this.Appearance.BackColor = System.Drawing.Color.Gainsboro;
+            this.Appearance.BackColor = System.Drawing.Color.White;
             this.Appearance.Options.UseBackColor = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.groupControl1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
@@ -421,7 +482,6 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.gridControl1);
             this.Controls.Add(this.radioGroupEstados);
             this.Controls.Add(this.memoEditObsevacion);
@@ -433,11 +493,10 @@
             this.Controls.Add(this.dateEditFechaAtendida);
             this.Controls.Add(this.dateEditFechaCreacion);
             this.Controls.Add(this.txtIdOrden);
-            this.Controls.Add(this.btnActualizar);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);
             this.Name = "frmRegistro";
-            this.Size = new System.Drawing.Size(938, 620);
+            this.Size = new System.Drawing.Size(958, 562);
             ((System.ComponentModel.ISupportInitialize)(this.txtIdOrden.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEditFechaCreacion.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEditFechaCreacion.Properties)).EndInit();
@@ -455,6 +514,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
+            this.groupControl1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -489,5 +550,7 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.GroupBox groupBox1;
+        private DevExpress.XtraEditors.SimpleButton btnExportar;
+        private DevExpress.XtraEditors.GroupControl groupControl1;
     }
 }
