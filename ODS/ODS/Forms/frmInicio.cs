@@ -1,5 +1,6 @@
 ﻿using DevExpress.XtraEditors;
 using ODS.Datos;
+using ODS.Modelo;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,6 +24,15 @@ namespace ODS.Forms
 
         FechaServicio fechaService = new FechaServicio();
         ConsultasDB consultas = new ConsultasDB();
+
+        // Obtener los datos del usuario logueado
+        int idUsuario = UsuarioLogueado.IdUsuario;
+        string nombre = UsuarioLogueado.NombreCompleto;
+        string tipoUsuario = UsuarioLogueado.TipoUsuario;
+        string departamento = UsuarioLogueado.Departamento;
+        string correo = UsuarioLogueado.Correo;
+        string nombreUsuario = UsuarioLogueado.NombreUsuario;
+
 
         public frmInicio()
         {
@@ -60,13 +70,13 @@ namespace ODS.Forms
 
             #endregion
             // Obtener el nombre del usuario con el ID 1 (puedes cambiar este valor según sea necesario)
-            int idUsuario = 2; // ID de usuario que deseas consultar
+            int idUsuario1 = Convert.ToInt32(idUsuario); // ID de usuario que deseas consultar
 
             // Obtener el departamento del usuario
-            string nombreDepartamento = consultas.ObtenerDepartamentoPorUsuario(idUsuario);
+            string nombreDepartamento = departamento;
 
             // Mostrar el resultado en un label
-            if (!string.IsNullOrEmpty(nombreDepartamento))
+            if (!string.IsNullOrEmpty(departamento))
             {
                // labelUsuario.Text = nombreDepartamento;
             }
@@ -75,12 +85,12 @@ namespace ODS.Forms
                
             }
             //mostrar nombre aplliedo
-            string nombreYApellido = consultas.ObtenerNombreCompletoUsuario(idUsuario);
+            string nombreYApellido = nombre;
 
             // Mostrar el resultado en el label
-            if (!string.IsNullOrEmpty(nombreYApellido))
+            if (!string.IsNullOrEmpty(nombre))
             {
-                labelUsuario.Text = $"Usuario: {nombreYApellido}";
+                labelUsuario.Text = $"Usuario: {nombre}";
               
             }
             else

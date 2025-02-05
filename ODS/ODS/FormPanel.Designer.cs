@@ -212,6 +212,7 @@
             this.accordionControlSeparator6,
             this.adminregistrosElement,
             this.accordionControlSeparator7});
+            this.accordionControlGestorOrdenes.Expanded = true;
             this.accordionControlGestorOrdenes.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("accordionControlGestorOrdenes.ImageOptions.SvgImage")));
             this.accordionControlGestorOrdenes.Name = "accordionControlGestorOrdenes";
             this.accordionControlGestorOrdenes.Text = "ORDENES DE SERVICIO";
@@ -278,6 +279,7 @@
             this.NavigationControl = this.accordionControl1;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "OREDENES DE SERVICIO -JMAS";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormPanel_FormClosed);
             this.Load += new System.EventHandler(this.FormInicial_Load);
             this.fluentDesignFormContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();

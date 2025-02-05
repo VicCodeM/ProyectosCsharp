@@ -8,7 +8,7 @@ namespace ODS.Datos
 {
     public class ConexionDB
     {
-        private string connectionString = "Data Source=VICTOR-HP\\SQLVICTOR;Initial Catalog=test1;User ID=sa;Password=6433"; // Tu cadena de conexión
+        private string connectionString = "Data Source=VICTOR-PC\\SQLVICTOR;Initial Catalog=test1;User ID=sa;Password=6433"; // Tu cadena de conexión
         private SqlConnection conexion; // Declarar la variable conexión a nivel de clase
 
         public ConexionDB() { }
@@ -155,5 +155,53 @@ namespace ODS.Datos
                 conexion?.Dispose();
             }
         }
+
+        public DataTable EjecutarConsultaConParametros(string consulta, SqlParameter[] parametros)
+        {
+            try
+            {
+                AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand(consulta, conexion))
+                {
+                    cmd.Parameters.AddRange(parametros);
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+                    return dt;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al ejecutar consulta con parámetros: " + ex.Message);
+            }
+            finally
+            {
+                CerrarConexion();
+            }
+        }
+
+
+        public string ValidarUsuario(string usuario, string password)
+        {
+            try
+            {
+                string query = "SELECT Tipo_Usuario FROM Login WHERE Usuario = @Usuario AND Password = @Password";
+                SqlParameter[] parametros =
+                {
+            new SqlParameter("@Usuario", usuario),
+            new SqlParameter("@Password", password) // Se recomienda encriptar la contraseña
+        };
+
+                DataTable resultado = EjecutarConsultaConParametros(query, parametros);
+
+                return resultado.Rows.Count > 0 ? resultado.Rows[0]["Tipo_Usuario"].ToString() : string.Empty;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al validar usuario: " + ex.Message);
+            }
+        }
+
+
     }
 }

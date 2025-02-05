@@ -2,6 +2,7 @@
 using DevExpress.XtraEditors;
 using ODS.Datos;
 using ODS.Forms;
+using ODS.Modelo;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,6 +23,9 @@ namespace ODS
         private ConexionDB conexionBD;
         #endregion
 
+        private string tipoUsuario;
+
+
         #region Intaciar objetos
         ConexionDB conexionDB = new ConexionDB();
         ConsultasDB consultas = new ConsultasDB();
@@ -30,7 +34,7 @@ namespace ODS
 
 
         #region Pricipal de Form
-        public FormPanel()
+        public FormPanel(string tipoUsuario)
         {
             InitializeComponent();
 
@@ -43,6 +47,9 @@ namespace ODS
             MostrarFormularioEnPanel(groupControl1, formularioSecundario);
             //cerrar cualquier conexion abierta
             conexionDB.CerrarConexion();
+
+            this.FormClosed += FormPanel_FormClosed; // Vincula el evento de cerrado
+
 
 
             #region Acciones inciales con  la forma
@@ -65,53 +72,27 @@ namespace ODS
 
         private void FormInicial_Load(object sender, EventArgs e)
         {
-            // Obtener el nombre del usuario con el ID 1 (puedes cambiar este valor según sea necesario)
-            int idUsuario = 2; // ID de usuario que deseas consultar
+            // Mostrar el departamento
+            departamentoElement.Text = "Departamento: " + (string.IsNullOrEmpty(UsuarioLogueado.Departamento) ? "N/A" : UsuarioLogueado.Departamento);
 
-            // Obtener el departamento del usuario
-            string nombreDepartamento = consultas.ObtenerDepartamentoPorUsuario(idUsuario);
+            // Mostrar nombre completo
+            acordeonUsuario.Text = string.IsNullOrEmpty(UsuarioLogueado.NombreCompleto) ? "N/A" : UsuarioLogueado.NombreCompleto.ToUpper();
 
-            // Mostrar el resultado en un elemnt
-            if (!string.IsNullOrEmpty(nombreDepartamento))
+            // Mostrar solo el nombre de usuario
+            usuarioElement.Text = "Usuario: " + (string.IsNullOrEmpty(UsuarioLogueado.NombreUsuario) ? "N/A" : UsuarioLogueado.NombreUsuario);
+
+
+            if (UsuarioLogueado.TipoUsuario != "Admin")
             {
-                departamentoElement.Text = "Departamento: " + nombreDepartamento;
-            }
-            else
-            {   //departamento no encontrado
-                departamentoElement.Text = "N/A";
-            }
-
-
-            //mostrar nombre aplliedo
-            string nombreYApellido = consultas.ObtenerNombreCompletoUsuario(idUsuario);
-            string nombreUsuario = consultas.ObtenerNombreUsuario(idUsuario);
-
-            // Mostrar el nombre completo en el inicio
-            if (!string.IsNullOrEmpty(nombreYApellido))
-            {
-                // labelUsuario.Text = $"Usuario: {nombreYApellido}";
-                acordeonUsuario.Text = nombreYApellido.ToUpper();
+                // Mostrar el tipo de usuario
+                adminregistrosElement.Visible = false;
             }
             else
             {
-                //usuario no encontrado
-                acordeonUsuario.Text = "N/A";
+                // Ocultar el tipo de usuario
+                adminregistrosElement.Visible = true;
             }
 
-            //mostrar solo nombre de uaurio registrado 
-            if (!string.IsNullOrEmpty(nombreUsuario))
-            {
-                // labelUsuario.Text = $"Usuario: {nombreYApellido}";
-                usuarioElement.Text = "Usuario: " + nombreUsuario;
-            }
-            else
-            {
-                //usuario no encontrado
-                usuarioElement.Text = "N/A";
-            }
-
-
-         
         } 
         #endregion
 
@@ -198,6 +179,12 @@ namespace ODS
         {
             frmUsuarios formausuarios = new frmUsuarios();
             MostrarFormularioEnPanel(groupControl1, formausuarios);
+        }
+
+        private void FormPanel_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit(); // Cierra toda la aplicación
+
         }
     }
 }

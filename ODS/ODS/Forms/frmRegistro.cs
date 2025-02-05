@@ -11,6 +11,7 @@ using System.Windows.Forms;
 
 using ClosedXML.Excel;
 using DevExpress.XtraWaitForm;
+using ODS.Modelo;
 
 namespace ODS.Forms
 {
@@ -18,8 +19,11 @@ namespace ODS.Forms
     {
         #region Intaciar objetos Utilizados
         ConexionDB conexionDB = new ConexionDB();
-        ConsultasDB consultasDB = new ConsultasDB(); 
+        ConsultasDB consultasDB = new ConsultasDB();
         #endregion
+
+
+     
 
         public frmRegistro()
         {
@@ -61,13 +65,13 @@ namespace ODS.Forms
             //cerrar cualquier conexion abierta
             conexionDB.CerrarConexion();
             // Obtener el nombre del usuario con el ID 1 (puedes cambiar este valor según sea necesario)
-            int idUsuario = 2; // ID de usuario que deseas consultar
-            string nombreUsuario = consultasDB.ObtenerNombreUsuario(idUsuario);
+            int idUsuario = UsuarioLogueado.IdUsuario; // ID de usuario que deseas consultar
+           //string nombreUsuario = consultasDB.ObtenerNombreUsuario(idUsuario);
 
             // Mostrar el nombre del usuario en el label
-            if (!string.IsNullOrEmpty(nombreUsuario))
+            if (!string.IsNullOrEmpty(UsuarioLogueado.NombreUsuario))
             {
-                labelUsuario.Text = $"Usuario: {nombreUsuario}";
+                labelUsuario.Text = $"Usuario: {UsuarioLogueado.NombreUsuario}";
             }
             else
             {
@@ -126,7 +130,15 @@ namespace ODS.Forms
                 // Ajustar el orden: colocar la columna "Hora" después de "Fecha_Registro"
                 gridViewOrdenes.Columns["Fecha_Registro"].VisibleIndex = 1; // Primera columna
                 gridViewOrdenes.Columns["Hora"].VisibleIndex = 2;   // Segunda columna
-
+                gridViewOrdenes.Columns["Usuario"].VisibleIndex = 3;
+                gridViewOrdenes.Columns["Descripcion"].VisibleIndex = 4;
+                gridViewOrdenes.Columns["Fecha_Atencion"].VisibleIndex = 5;
+                gridViewOrdenes.Columns["Observaciones"].VisibleIndex = 6;
+                gridViewOrdenes.Columns["Hardware"].VisibleIndex = 7;
+                gridViewOrdenes.Columns["Software"].VisibleIndex = 8;
+                gridViewOrdenes.Columns["Fecha_Cierre"].VisibleIndex = 9;
+                gridViewOrdenes.Columns["Departamento"].VisibleIndex = 10;
+                gridViewOrdenes.Columns["Estado"].VisibleIndex = 11;
                 // Opcional: Ajustar el ancho de las columnas automáticamente
                 gridViewOrdenes.BestFitColumns();
             }

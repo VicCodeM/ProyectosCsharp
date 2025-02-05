@@ -93,6 +93,16 @@ namespace ODS.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap jmasLogoBG1 {
+            get {
+                object obj = ResourceManager.GetObject("jmasLogoBG1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap minimizar {
             get {
                 object obj = ResourceManager.GetObject("minimizar", resourceCulture);
@@ -116,6 +126,16 @@ namespace ODS.Properties {
         internal static System.Drawing.Bitmap textura2 {
             get {
                 object obj = ResourceManager.GetObject("textura2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap textura3 {
+            get {
+                object obj = ResourceManager.GetObject("textura3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

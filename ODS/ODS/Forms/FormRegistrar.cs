@@ -2,6 +2,7 @@
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Grid;
 using ODS.Datos;
+using ODS.Modelo;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -17,6 +18,9 @@ namespace ODS.Forms
         private readonly ConsultasDB consultasDB = new ConsultasDB();
         #endregion
 
+
+
+
         #region Constructor y Eventos
 
         public FormRegistrar()
@@ -25,7 +29,7 @@ namespace ODS.Forms
             InicializarEventos();
             InicializarRadioButton();
             InicializarConexiones();
-            CargarOrdenesPorUsuario(2); // Cargar órdenes por usuario
+            CargarOrdenesPorUsuario(UsuarioLogueado.IdUsuario); // Cargar órdenes por usuario
             //No se modifica desde el datagrid
             ((GridView)gridCRegistrar.MainView).OptionsBehavior.Editable = false;
             ((GridView)gridCRegistrar.MainView).BestFitColumns();
@@ -71,8 +75,8 @@ namespace ODS.Forms
         {
             try
             {
-                radioGroupFallos.Properties.Items.Add(new DevExpress.XtraEditors.Controls.RadioGroupItem("Software", "Software"));
-                radioGroupFallos.Properties.Items.Add(new DevExpress.XtraEditors.Controls.RadioGroupItem("Hardware", "Hardware"));
+                radioGroupFallos.Properties.Items.Add(new DevExpress.XtraEditors.Controls.RadioGroupItem("Software", "Error Aplicaciones"));
+                radioGroupFallos.Properties.Items.Add(new DevExpress.XtraEditors.Controls.RadioGroupItem("Hardware", "Error Físico"));
                 radioGroupFallos.EditValue = "Hardware";
                 ActualizarEstadoRadioButton(true);
             }
@@ -87,14 +91,14 @@ namespace ODS.Forms
             try
             {
                 SqlConnection conexion = conexionDB.ConectarSQL();
-                if (conexion?.State == ConnectionState.Open)
+                if (conexion?.State != ConnectionState.Open)
                 {
-                    // Connection opened successfully, handle as needed
+                    XtraMessageBox.Show($"Error al abrir  conexión. ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show($"Error al conectar con la base de datos: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show($"Error al inicializar la conexión: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -107,9 +111,10 @@ namespace ODS.Forms
             try
             {
                 conexionDB.CerrarConexion();
-                int idUsuario = 2;
-                string nombreUsuario = consultasDB.ObtenerNombreUsuario(idUsuario);
-                labelUsuario.Text = string.IsNullOrEmpty(nombreUsuario) ? "No se encontró el nombre de usuario." : $"Nombre de usuario: {nombreUsuario}";
+                int idUsuario = UsuarioLogueado.IdUsuario;
+
+                string nUsuario = UsuarioLogueado.NombreUsuario;
+                labelUsuario.Text = string.IsNullOrEmpty(UsuarioLogueado.NombreUsuario) ? "No se encontró el nombre de usuario." : $"Nombre de usuario: {UsuarioLogueado.NombreUsuario}";
             }
             catch (Exception ex)
             {
@@ -144,7 +149,7 @@ namespace ODS.Forms
         {
             try
             {
-                DataTable tablaOrdenes = consultasDB.ObtenerOrdenesPorUsuario(idUsuario);
+                DataTable tablaOrdenes = consultasDB.ObtenerOrdenesPorUsuario(UsuarioLogueado.IdUsuario);
                 if (tablaOrdenes.Rows.Count > 0)
                 {
                     AgregarHoraAOrdenes(tablaOrdenes);
@@ -214,6 +219,20 @@ namespace ODS.Forms
                 gridViewOrdenes.Columns["Fecha_Registro"].DisplayFormat.FormatString = "dd-MM-yyyy";
                 gridViewOrdenes.Columns["Hora"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
                 gridViewOrdenes.Columns["Hora"].DisplayFormat.FormatString = "hh:mm tt";
+
+                // configuración de columnas
+                // Ajustar el orden: colocar la columna "Hora" después de "Fecha_Registro"
+                gridViewOrdenes.Columns["Fecha_Registro"].VisibleIndex = 1; // Primera columna
+                gridViewOrdenes.Columns["Hora"].VisibleIndex = 2;   // Segunda columna
+                gridViewOrdenes.Columns["Usuario"].VisibleIndex = 3;
+                gridViewOrdenes.Columns["Descripcion"].VisibleIndex = 4;
+                gridViewOrdenes.Columns["Fecha_Atencion"].VisibleIndex = 5;
+                gridViewOrdenes.Columns["Observaciones"].VisibleIndex = 6;
+                gridViewOrdenes.Columns["Hardware"].VisibleIndex = 7;
+                gridViewOrdenes.Columns["Software"].VisibleIndex = 8;
+                gridViewOrdenes.Columns["Fecha_Cierre"].VisibleIndex = 9;
+                gridViewOrdenes.Columns["Departamento"].VisibleIndex = 10;
+                gridViewOrdenes.Columns["Estado"].VisibleIndex = 11;
             }
             catch (Exception ex)
             {
@@ -320,7 +339,8 @@ namespace ODS.Forms
                     return;
                 }
 
-                int idUsuario = 2;
+                int idUsuario = UsuarioLogueado.IdUsuario;
+
                 string descripcionProblema = memoEditDescripcion.Text.Trim();
                 string estado = "Abierto";
                 int? idFalloHardware = radioGroupFallos.EditValue.ToString() == "Hardware" ? (int?)lookUpEdit1.EditValue : null;

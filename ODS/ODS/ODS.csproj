@@ -129,12 +129,6 @@
     <Compile Include="Forms\frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frmLogin222.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\frmLogin222.Designer.cs">
-      <DependentUpon>frmLogin222.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\frmRegistro.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -166,6 +160,8 @@
     <Compile Include="Forms\FormRegistrar.Designer.cs">
       <DependentUpon>FormRegistrar.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modelo\UsuarioConsultas.cs" />
+    <Compile Include="Modelo\UsuarioLogueado.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Servicios\FallasServicios.cs" />
@@ -180,9 +176,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmLogin222.resx">
-      <DependentUpon>frmLogin222.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmRegistro.resx">
       <DependentUpon>frmRegistro.cs</DependentUpon>
@@ -220,6 +213,9 @@
     <Folder Include="Recursos\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Image\jmasLogoBG1.png" />
+    <None Include="Image\jmasLogoBG.svg" />
+    <None Include="Image\textura3.png" />
     <None Include="Image\textura2.jpg" />
     <None Include="Image\textura.jpg" />
     <None Include="Image\cerrar.png" />
