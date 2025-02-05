@@ -51,6 +51,7 @@
             this.accordionControlSeparator7 = new DevExpress.XtraBars.Navigation.AccordionControlSeparator();
             this.ControlUsuarios = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.fluentDesignFormControl1 = new DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormControl();
+            this.elementCerrarSesion = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.fluentDesignFormContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -170,7 +171,9 @@
             this.acordeonUsuario.Appearance.Default.Options.UseForeColor = true;
             this.acordeonUsuario.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
             this.usuarioElement,
-            this.departamentoElement});
+            this.departamentoElement,
+            this.elementCerrarSesion});
+            this.acordeonUsuario.Expanded = true;
             this.acordeonUsuario.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("acordeonUsuario.ImageOptions.SvgImage")));
             this.acordeonUsuario.Name = "acordeonUsuario";
             this.acordeonUsuario.Text = "USUARIO";
@@ -212,7 +215,6 @@
             this.accordionControlSeparator6,
             this.adminregistrosElement,
             this.accordionControlSeparator7});
-            this.accordionControlGestorOrdenes.Expanded = true;
             this.accordionControlGestorOrdenes.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("accordionControlGestorOrdenes.ImageOptions.SvgImage")));
             this.accordionControlGestorOrdenes.Name = "accordionControlGestorOrdenes";
             this.accordionControlGestorOrdenes.Text = "ORDENES DE SERVICIO";
@@ -262,6 +264,14 @@
             this.fluentDesignFormControl1.Size = new System.Drawing.Size(1136, 31);
             this.fluentDesignFormControl1.TabIndex = 2;
             this.fluentDesignFormControl1.TabStop = false;
+            // 
+            // elementCerrarSesion
+            // 
+            this.elementCerrarSesion.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("elementCerrarSesion.ImageOptions.Image")));
+            this.elementCerrarSesion.Name = "elementCerrarSesion";
+            this.elementCerrarSesion.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.elementCerrarSesion.Text = "Cerrar Sesión";
+            this.elementCerrarSesion.Click += new System.EventHandler(this.elementCerrarSesion_Click);
             // 
             // FormPanel
             // 
@@ -316,6 +326,7 @@
         private DevExpress.XtraBars.Navigation.AccordionControlSeparator accordionControlSeparator6;
         private DevExpress.XtraBars.Navigation.AccordionControlSeparator accordionControlSeparator7;
         private DevExpress.XtraBars.Navigation.AccordionControlElement ControlUsuarios;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement elementCerrarSesion;
     }
 }
 

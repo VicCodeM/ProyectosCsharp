@@ -4,19 +4,30 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using ODS.Datos;
 using ODS.Modelo;
-using System.Data; // Importamos la clase de conexión
+using System.Data;
+using System.Data.SqlClient; // Importamos la clase de conexión
 
 namespace ODS.Forms
 {
     public partial class frmLogin : DevExpress.XtraEditors.XtraForm
     {
         UsuarioConsultas consultas = new UsuarioConsultas(); // Instancia de las consultas
+        ConexionDB conexionDB = new ConexionDB();
 
         public frmLogin()
         {
 
             InitializeComponent();
 
+
+            if (VerificarConexion())
+            {
+                //XtraMessageBox.Show("Conexión a la base de datos establecida correctamente.", "Conexión exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                XtraMessageBox.Show("No se pudo establecer la conexión a la base de datos.", "Error de conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             // Asignar el botón btnLogin como el botón de aceptación (Enter)
             this.AcceptButton = btnLogin;
             // Evento con DevExpress para mover el formulario desde la parte de arriba 
@@ -47,6 +58,14 @@ namespace ODS.Forms
             this.WindowState = FormWindowState.Minimized;
         }
 
+        public void LimpiarCampos()
+        {
+            txtUsuario.Text = "";
+            txtPassword.Text = "";
+            txtUsuario.Focus(); // Enfocar el campo usuario para que el usuario pueda escribir de inmediato
+        }
+
+
         private void btnLogin_Click(object sender, EventArgs e)
         {
             string usuario = txtUsuario.Text.Trim();
@@ -62,11 +81,10 @@ namespace ODS.Forms
 
             if (!string.IsNullOrEmpty(tipoUsuario))
             {
-                // Obtener datos del usuario logueado
                 DataTable datosUsuario = consultas.ObtenerDatosUsuario(usuario);
                 if (datosUsuario.Rows.Count > 0)
                 {
-                    UsuarioLogueado.IdUsuario = Convert.ToInt32(datosUsuario.Rows[0]["Id_Usuario"]); // Convertir a INT
+                    UsuarioLogueado.IdUsuario = Convert.ToInt32(datosUsuario.Rows[0]["Id_Usuario"]);
                     UsuarioLogueado.NombreCompleto = datosUsuario.Rows[0]["NombreCompleto"].ToString();
                     UsuarioLogueado.Correo = datosUsuario.Rows[0]["Correo"].ToString();
                     UsuarioLogueado.Departamento = datosUsuario.Rows[0]["Departamento"].ToString();
@@ -78,14 +96,25 @@ namespace ODS.Forms
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 this.Hide();
-                FormPanel mainForm = new FormPanel(UsuarioLogueado.TipoUsuario);
-                mainForm.Show();
+
+                FormPanel mainForm = new FormPanel(tipoUsuario);
+                mainForm.FormClosed += (s, args) =>
+                {
+                    this.LimpiarCampos(); // Limpiar los campos al volver a frmLogin
+                    this.Show();
+                    
+                };
+                //borramos passward guardado
+                txtPassword.Text = "";
+                mainForm.ShowDialog();
             }
             else
             {
                 XtraMessageBox.Show("Usuario o contraseña incorrectos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
 
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -107,6 +136,32 @@ namespace ODS.Forms
                 // Ocultar la contraseña: Activar el PasswordChar
                 txtPassword.PasswordChar = '*'; // Puedes usar '*' o '●'
             }
+        }
+
+        // Método para verificar la conexión
+        public bool VerificarConexion()
+        {
+            SqlConnection conexion = conexionDB.ConectarSQL();
+            if (conexion != null && conexion.State == System.Data.ConnectionState.Open)
+            {
+                // La conexión es válida
+                conexion.Close(); // Cerrar la conexión después de la verificación
+                return true;
+            }
+            else
+            {
+                // La conexión no es válida
+                return false;
+            }
+        }
+
+        private void frmLogin_Load(object sender, EventArgs e)
+        {
+            //limpiar datos al cargar fromulario de nuevo
+            LimpiarCampos();
+            txtPassword.Text = "";
+
+        }
+
     }
-}
 }

@@ -18,6 +18,8 @@ namespace ODS
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            // Iniciar siempre con el formulario de login
             Application.Run(new frmLogin());
         }
     }
