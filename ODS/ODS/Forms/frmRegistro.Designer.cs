@@ -93,12 +93,13 @@
             this.btnActualizar.Appearance.TextOptions.Trimming = DevExpress.Utils.Trimming.None;
             this.btnActualizar.AppearanceHovered.BackColor = System.Drawing.Color.Cyan;
             this.btnActualizar.AppearanceHovered.BorderColor = System.Drawing.Color.Fuchsia;
-            this.btnActualizar.AppearanceHovered.ForeColor = System.Drawing.Color.White;
+            this.btnActualizar.AppearanceHovered.ForeColor = System.Drawing.Color.IndianRed;
             this.btnActualizar.AppearanceHovered.Options.UseBackColor = true;
             this.btnActualizar.AppearanceHovered.Options.UseBorderColor = true;
             this.btnActualizar.AppearanceHovered.Options.UseForeColor = true;
             this.btnActualizar.AppearanceHovered.Options.UseTextOptions = true;
             this.btnActualizar.AppearanceHovered.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.btnActualizar.BackgroundImage = global::ODS.Properties.Resources.textura3;
             this.btnActualizar.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnActualizar.ImageOptions.SvgImage")));
             this.btnActualizar.Location = new System.Drawing.Point(73, 7);
             this.btnActualizar.Name = "btnActualizar";
@@ -164,6 +165,9 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.txtIdOrden.Location = new System.Drawing.Point(25, 139);
             this.txtIdOrden.Name = "txtIdOrden";
+            this.txtIdOrden.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.txtIdOrden.Properties.Appearance.Options.UseBackColor = true;
+            this.txtIdOrden.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.txtIdOrden.Size = new System.Drawing.Size(53, 20);
             this.txtIdOrden.TabIndex = 1;
             // 
@@ -174,6 +178,9 @@
             this.dateEditFechaCreacion.EditValue = null;
             this.dateEditFechaCreacion.Location = new System.Drawing.Point(94, 139);
             this.dateEditFechaCreacion.Name = "dateEditFechaCreacion";
+            this.dateEditFechaCreacion.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.dateEditFechaCreacion.Properties.Appearance.Options.UseBackColor = true;
+            this.dateEditFechaCreacion.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.dateEditFechaCreacion.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateEditFechaCreacion.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -188,6 +195,9 @@
             this.dateEditFechaAtendida.EditValue = null;
             this.dateEditFechaAtendida.Location = new System.Drawing.Point(221, 139);
             this.dateEditFechaAtendida.Name = "dateEditFechaAtendida";
+            this.dateEditFechaAtendida.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.dateEditFechaAtendida.Properties.Appearance.Options.UseBackColor = true;
+            this.dateEditFechaAtendida.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.dateEditFechaAtendida.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateEditFechaAtendida.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -202,6 +212,9 @@
             this.dateEditFechaCerrada.EditValue = null;
             this.dateEditFechaCerrada.Location = new System.Drawing.Point(348, 139);
             this.dateEditFechaCerrada.Name = "dateEditFechaCerrada";
+            this.dateEditFechaCerrada.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.dateEditFechaCerrada.Properties.Appearance.Options.UseBackColor = true;
+            this.dateEditFechaCerrada.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.dateEditFechaCerrada.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateEditFechaCerrada.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -215,6 +228,9 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.lookUpEditListaUsuarios.Location = new System.Drawing.Point(475, 139);
             this.lookUpEditListaUsuarios.Name = "lookUpEditListaUsuarios";
+            this.lookUpEditListaUsuarios.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.lookUpEditListaUsuarios.Properties.Appearance.Options.UseBackColor = true;
+            this.lookUpEditListaUsuarios.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.lookUpEditListaUsuarios.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.lookUpEditListaUsuarios.Size = new System.Drawing.Size(121, 20);
@@ -226,6 +242,9 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.lookUpEditHadware.Location = new System.Drawing.Point(602, 139);
             this.lookUpEditHadware.Name = "lookUpEditHadware";
+            this.lookUpEditHadware.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.lookUpEditHadware.Properties.Appearance.Options.UseBackColor = true;
+            this.lookUpEditHadware.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.lookUpEditHadware.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.lookUpEditHadware.Size = new System.Drawing.Size(121, 20);
@@ -237,6 +256,9 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.lookUpEditSofware.Location = new System.Drawing.Point(729, 139);
             this.lookUpEditSofware.Name = "lookUpEditSofware";
+            this.lookUpEditSofware.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.lookUpEditSofware.Properties.Appearance.Options.UseBackColor = true;
+            this.lookUpEditSofware.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.lookUpEditSofware.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.lookUpEditSofware.Size = new System.Drawing.Size(121, 20);
@@ -248,6 +270,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.memoEditDescripcion.Location = new System.Drawing.Point(25, 198);
             this.memoEditDescripcion.Name = "memoEditDescripcion";
+            this.memoEditDescripcion.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.memoEditDescripcion.Properties.Appearance.Options.UseBackColor = true;
+            this.memoEditDescripcion.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.memoEditDescripcion.Size = new System.Drawing.Size(706, 56);
             this.memoEditDescripcion.TabIndex = 8;
             // 
@@ -257,6 +282,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.memoEditObsevacion.Location = new System.Drawing.Point(25, 283);
             this.memoEditObsevacion.Name = "memoEditObsevacion";
+            this.memoEditObsevacion.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.memoEditObsevacion.Properties.Appearance.Options.UseBackColor = true;
+            this.memoEditObsevacion.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.memoEditObsevacion.Size = new System.Drawing.Size(706, 56);
             this.memoEditObsevacion.TabIndex = 9;
             // 
@@ -265,7 +293,7 @@
             this.radioGroupEstados.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radioGroupEstados.Location = new System.Drawing.Point(746, 199);
             this.radioGroupEstados.Name = "radioGroupEstados";
-            this.radioGroupEstados.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.radioGroupEstados.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.radioGroupEstados.Properties.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.radioGroupEstados.Properties.Appearance.Options.UseBackColor = true;
             this.radioGroupEstados.Properties.Appearance.Options.UseBorderColor = true;
@@ -278,10 +306,12 @@
             this.gridControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.gridControl1.BackgroundImage = global::ODS.Properties.Resources.textura3;
+            this.gridControl1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.gridControl1.Location = new System.Drawing.Point(25, 354);
             this.gridControl1.MainView = this.gridView2;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(913, 152);
+            this.gridControl1.Size = new System.Drawing.Size(913, 159);
             this.gridControl1.TabIndex = 40;
             this.gridControl1.TabStop = false;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -425,10 +455,11 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.groupBox1.Controls.Add(this.labelUsuario);
             this.groupBox1.Controls.Add(this.labelFecha);
             this.groupBox1.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(25, 13);
+            this.groupBox1.Location = new System.Drawing.Point(13, 34);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(190, 66);
             this.groupBox1.TabIndex = 51;
@@ -454,6 +485,8 @@
             // 
             // groupControl1
             // 
+            this.groupControl1.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.groupControl1.Appearance.Options.UseBackColor = true;
             this.groupControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.groupControl1.Controls.Add(this.btnExportar);
             this.groupControl1.Controls.Add(this.btnActualizar);
@@ -471,6 +504,7 @@
             this.Appearance.Options.UseBackColor = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::ODS.Properties.Resources.textura3;
             this.Controls.Add(this.groupControl1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label11);

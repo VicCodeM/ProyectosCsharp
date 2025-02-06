@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace ODS.Forms
 {
-    public partial class FormRegistrar : DevExpress.XtraEditors.XtraUserControl
+public partial class FormRegistrar : DevExpress.XtraEditors.XtraForm
     {
         #region Instanciar Objetos
         private readonly ConexionDB conexionDB = new ConexionDB();
@@ -29,17 +29,26 @@ namespace ODS.Forms
             InicializarEventos();
             InicializarRadioButton();
             InicializarConexiones();
+            // Asignar el botón btnLogin como el botón de aceptación (Enter)
+            this.AcceptButton = btnRegistrar;
             CargarOrdenesPorUsuario(UsuarioLogueado.IdUsuario); // Cargar órdenes por usuario
             //No se modifica desde el datagrid
             ((GridView)gridCRegistrar.MainView).OptionsBehavior.Editable = false;
             ((GridView)gridCRegistrar.MainView).BestFitColumns();
             ((GridView)gridCRegistrar.MainView).OptionsView.ShowDetailButtons = false;
+           
         }
 
         private void FormRegistrar_Load(object sender, EventArgs e)
         {
             try
             {
+                if (radioGroupFallos.EditValue == null)
+                {
+                    XtraMessageBox.Show("Debes seleccionar un tipo de falla.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 // Observaciones solo lectura
                 memoEditObsevacion.Properties.ReadOnly = true;
                 memoEditObsevacion.Enabled = false;
@@ -53,6 +62,9 @@ namespace ODS.Forms
             {
                 XtraMessageBox.Show($"Error al cargar el formulario: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            
+
         }
 
         #endregion
@@ -78,6 +90,7 @@ namespace ODS.Forms
                 radioGroupFallos.Properties.Items.Add(new DevExpress.XtraEditors.Controls.RadioGroupItem("Software", "Error Aplicaciones"));
                 radioGroupFallos.Properties.Items.Add(new DevExpress.XtraEditors.Controls.RadioGroupItem("Hardware", "Error Físico"));
                 radioGroupFallos.EditValue = "Hardware";
+                
                 ActualizarEstadoRadioButton(true);
             }
             catch (Exception ex)
@@ -114,7 +127,7 @@ namespace ODS.Forms
                 int idUsuario = UsuarioLogueado.IdUsuario;
 
                 string nUsuario = UsuarioLogueado.NombreUsuario;
-                labelUsuario.Text = string.IsNullOrEmpty(UsuarioLogueado.NombreUsuario) ? "No se encontró el nombre de usuario." : $"Nombre de usuario: {UsuarioLogueado.NombreUsuario}";
+                labelUsuario.Text = string.IsNullOrEmpty(UsuarioLogueado.NombreUsuario) ? "No se encontró el nombre de usuario." : $"Usuario: {UsuarioLogueado.NombreUsuario}";
             }
             catch (Exception ex)
             {
@@ -233,6 +246,19 @@ namespace ODS.Forms
                 gridViewOrdenes.Columns["Fecha_Cierre"].VisibleIndex = 9;
                 gridViewOrdenes.Columns["Departamento"].VisibleIndex = 10;
                 gridViewOrdenes.Columns["Estado"].VisibleIndex = 11;
+
+                // Cambiar el nombre de las columnas
+                gridViewOrdenes.Columns["Fecha_Registro"].Caption = "Fecha de Registro";
+                gridViewOrdenes.Columns["Hora"].Caption = "Hora de Registro";
+                gridViewOrdenes.Columns["Usuario"].Caption ="Usuario";
+                gridViewOrdenes.Columns["Descripcion"].Caption = "Descripción";
+                gridViewOrdenes.Columns["Fecha_Atencion"].Caption = "Fecha de Atención";
+                gridViewOrdenes.Columns["Observaciones"].Caption = "Observaciones";
+                gridViewOrdenes.Columns["Hardware"].Caption = "Hardware";
+                gridViewOrdenes.Columns["Software"].Caption = "Software";
+                gridViewOrdenes.Columns["Fecha_Cierre"].Caption = "Fecha de Cierre";
+                gridViewOrdenes.Columns["Departamento"].Caption = "Departamento";
+                gridViewOrdenes.Columns["Estado"].Caption = "Estado de la orden";
             }
             catch (Exception ex)
             {
@@ -360,7 +386,9 @@ namespace ODS.Forms
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show($"Error al registrar la orden: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show($"Error al registrar la orden: Debes seleccionar un tipo de falla para poder registrar una orden", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Console.WriteLine(ex.Message);  
+                //XtraMessageBox.Show($"Error al registrar la orden: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

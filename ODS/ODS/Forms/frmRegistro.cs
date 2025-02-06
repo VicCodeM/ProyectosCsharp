@@ -139,6 +139,20 @@ namespace ODS.Forms
                 gridViewOrdenes.Columns["Fecha_Cierre"].VisibleIndex = 9;
                 gridViewOrdenes.Columns["Departamento"].VisibleIndex = 10;
                 gridViewOrdenes.Columns["Estado"].VisibleIndex = 11;
+
+                // Cambiar el nombre de las columnas
+                gridViewOrdenes.Columns["Fecha_Registro"].Caption = "Fecha de Registro";
+                gridViewOrdenes.Columns["Hora"].Caption = "Hora de Registro";
+                gridViewOrdenes.Columns["Usuario"].Caption = "Usuario";
+                gridViewOrdenes.Columns["Descripcion"].Caption = "Descripción";
+                gridViewOrdenes.Columns["Fecha_Atencion"].Caption = "Fecha de Atención";
+                gridViewOrdenes.Columns["Observaciones"].Caption = "Observaciones";
+                gridViewOrdenes.Columns["Hardware"].Caption = "Hardware";
+                gridViewOrdenes.Columns["Software"].Caption = "Software";
+                gridViewOrdenes.Columns["Fecha_Cierre"].Caption = "Fecha de Cierre";
+                gridViewOrdenes.Columns["Departamento"].Caption = "Departamento";
+                gridViewOrdenes.Columns["Estado"].Caption = "Estado de la orden";
+
                 // Opcional: Ajustar el ancho de las columnas automáticamente
                 gridViewOrdenes.BestFitColumns();
             }
@@ -407,16 +421,16 @@ namespace ODS.Forms
                         DataTable dt = (DataTable)gridControl1.DataSource;
 
                         // Crear una hoja de trabajo y agregar los datos de la tabla
-                        var hoja = workbook.Worksheets.Add("Órdenes");
+                        var hoja = workbook.Worksheets.Add("Órdenes de Servicio");
 
                         // Agregar el título y centrarlo
-                        hoja.Cell(1, 1).Value = "Nombre de la Empresa";
+                        hoja.Cell(1, 1).Value = "JMAS de Cuauhtémoc";
                         hoja.Cell(1, 1).Style.Font.Bold = true;
                         hoja.Cell(1, 1).Style.Font.FontColor = XLColor.White;
                         hoja.Cell(1, 1).Style.Fill.BackgroundColor = XLColor.DarkBlue;
                         hoja.Cell(1, 1).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
 
-                        hoja.Cell(2, 1).Value = "Reporte de Órdenes";
+                        hoja.Cell(2, 1).Value = "Órdenes de Servicio";
                         hoja.Cell(2, 1).Style.Font.Bold = true;
                         hoja.Cell(2, 1).Style.Font.FontColor = XLColor.White;
                         hoja.Cell(2, 1).Style.Fill.BackgroundColor = XLColor.DarkGreen;
@@ -428,7 +442,8 @@ namespace ODS.Forms
 
                         hoja.Row(1).Height = 25;
                         hoja.Row(2).Height = 25;
-                        hoja.Row(3).Height = 20;
+                        hoja.Row(3).Height = 25;
+                        hoja.Row(4).Height = 25;
 
                         // Espaciado entre el encabezado y los datos
                         hoja.Row(4).Height = 10;
@@ -471,15 +486,6 @@ namespace ODS.Forms
                 // Manejar cualquier error que ocurra durante la exportación
                 XtraMessageBox.Show("Error al exportar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-
-
-
-        private void simpleButton1_Click(object sender, EventArgs e)
-        {
-            
-
         }
 
         private void simpleButton1_Click_1(object sender, EventArgs e)

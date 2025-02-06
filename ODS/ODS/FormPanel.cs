@@ -20,18 +20,15 @@ namespace ODS
         #region Variables globales.
         private Timer timer;
         private SqlConnection conexion;
-        private ConexionDB conexionBD;
-
+        private string tipoUsuario;
 
 
         private Timer inactivityTimer;
-        private const int InactivityTimeout = 900000; // 5 segundos
+        private const int InactivityTimeout = 3600000; // 1 Hora de inactividad
+        private bool mensajeMostrado = false;
+        private bool cerrarPorInactividad = false; // Variable para determinar si el cierre fue por inactividad
+
         #endregion
-
-
-
-        private string tipoUsuario;
-
 
         #region Intaciar objetos
         ConexionDB conexionDB = new ConexionDB();
@@ -44,7 +41,7 @@ namespace ODS
         public FormPanel(string tipoUsuario)
         {
             InitializeComponent();
-            InitializeInactivityTimer();
+            InicializarTemporizadorInactividad();
 
             this.tipoUsuario = tipoUsuario;
            
@@ -69,8 +66,6 @@ namespace ODS
 
             this.FormClosed += FormPanel_FormClosed; // Vincula el evento de cerrado
 
-
-
             #region Acciones inciales con  la forma
             // Crear una instancia del Timer
             timer = new Timer();
@@ -85,10 +80,6 @@ namespace ODS
             timer.Start();
 
             #endregion
-
-
-          
-
         }
 
 
@@ -120,18 +111,7 @@ namespace ODS
         #endregion
 
         #region Eventos del form
-        private void accordionControlElement1_Click(object sender, EventArgs e)
-        {
-            // Cierra la conexión antes de abrir el formulario
-            if (conexion != null && conexion.State == System.Data.ConnectionState.Open)
-            {
-                conexion.Close();
-            }
-
-            // Abre el formulario
-            FormRegistrar formularioSecundario = new FormRegistrar();
-            MostrarFormularioEnPanel(groupControl1, formularioSecundario);
-        }
+  
 
         private void panelControl1_SizeChanged(object sender, EventArgs e)
         {
@@ -149,6 +129,45 @@ namespace ODS
 
             // Llamar al método para mostrar el formulario dentro del PanelControl
             MostrarFormularioEnPanel(groupControl1, formularioSecundario);
+        }
+
+
+
+
+        private void ControlUsuarios_Click(object sender, EventArgs e)
+        {
+            frmUsuarios formausuarios = new frmUsuarios();
+            MostrarFormularioEnPanel(groupControl1, formausuarios);
+        }
+
+
+
+        private void FormPanel_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (cerrarPorInactividad)
+            {
+                // Si el cierre fue por inactividad, solo cerramos el formulario
+                cerrarPorInactividad = false; // Reiniciar la variable
+            }
+            else
+            {
+                // Si el cierre fue manual, cerramos toda la aplicación
+                Application.Exit();
+            }
+
+        }
+
+        private void elementCerrarSesion_Click(object sender, EventArgs e)
+        {
+            DialogResult resultado = XtraMessageBox.Show("¿Está seguro de que desea cerrar sesión?", "Cerrar Sesión",
+               MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (resultado == DialogResult.Yes)
+            {
+                CerrarSesion();
+                mensajeMostrado = true;
+            }
+
+
         }
         #endregion
 
@@ -190,112 +209,125 @@ namespace ODS
 
         #endregion
 
-        private void registrosElement_Click(object sender, EventArgs e)
-        {
-            frmRegistro formularioSecundario = new frmRegistro();
-
-            // Llamar al método para mostrar el formulario dentro del PanelControl
-            MostrarFormularioEnPanel(groupControl1, formularioSecundario);
-        }
-
-        private void ControlUsuarios_Click(object sender, EventArgs e)
-        {
-            frmUsuarios formausuarios = new frmUsuarios();
-            MostrarFormularioEnPanel(groupControl1, formausuarios);
-        }
-
-        public void CerrarSesion()
-        {
-                // Limpiar la sesión
-                UsuarioLogueado.IdUsuario = 0;
-                UsuarioLogueado.NombreCompleto = string.Empty;
-                UsuarioLogueado.Correo = string.Empty;
-                UsuarioLogueado.Departamento = string.Empty;
-                UsuarioLogueado.TipoUsuario = string.Empty;
-                UsuarioLogueado.NombreUsuario = string.Empty;
-
-                // Buscar si frmLogin sigue abierto
-                Form loginForm = Application.OpenForms["frmLogin"];
-
-                if (loginForm != null)
-                {
-                    loginForm.Show(); // Si ya está en memoria, solo lo mostramos
-                }
-                else
-                {
-                    loginForm = new frmLogin();
-                    loginForm.Show(); // Si no existe, lo creamos
-                }
-
-                this.Hide(); // Cierra FormPanel
-        }
-
-        private void FormPanel_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Application.Exit(); // Cierra toda la aplicación
-
-        }
-
-        private void elementCerrarSesion_Click(object sender, EventArgs e)
-        {
-            DialogResult resultado = XtraMessageBox.Show("¿Está seguro de que desea cerrar sesión?", "Cerrar Sesión",
-               MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (resultado == DialogResult.Yes)
-            {
-                CerrarSesion();
-            }
-                
-        
-        }
-
-
         #region Métodos de Inactividad
-        private void InitializeInactivityTimer()
+
+        private void InicializarTemporizadorInactividad()
         {
             inactivityTimer = new Timer();
             inactivityTimer.Interval = InactivityTimeout;
-            inactivityTimer.Tick += InactivityTimer_Tick;
+            inactivityTimer.Tick += TemporizadorInactividad_Tick;
             inactivityTimer.Start();
 
             // Suscribirse a eventos de actividad
-            this.MouseMove += OnUserActivity;
-            this.KeyPress += OnUserActivity;
-            this.Click += OnUserActivity;
+            this.MouseMove += OnActividadUsuario;
+            this.KeyPress += OnActividadUsuario;
+            this.Click += OnActividadUsuario;
         }
 
-        private void OnUserActivity(object sender, EventArgs e)
+        private void OnActividadUsuario(object sender, EventArgs e)
         {
             // Reiniciar el temporizador cada vez que hay actividad
-            inactivityTimer.Stop();
-            inactivityTimer.Start();
+            ReiniciarTemporizador();
         }
 
-        private void InactivityTimer_Tick(object sender, EventArgs e)
+        private void TemporizadorInactividad_Tick(object sender, EventArgs e)
         {
             // Detener el temporizador
             inactivityTimer.Stop();
 
-            // Ejecutar el método después de 5 segundos de inactividad
-            ExecuteMethodAfterInactivity();
+            // Ejecutar el método después de la inactividad
+            EjecutarMetodoDespuesDeInactividad();
         }
 
-        private void ExecuteMethodAfterInactivity()
+        private void EjecutarMetodoDespuesDeInactividad()
         {
-            // Aquí puedes poner el código que quieres ejecutar después de la inactividad
-            DialogResult resultado = XtraMessageBox.Show("¿Desea seguir trabajando?", "Inactividad",
-               MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (resultado == DialogResult.No)
+            // Verificar si el mensaje ya se ha mostrado
+            if (!mensajeMostrado)
             {
+                // Aquí puedes poner el código que quieres ejecutar después de la inactividad
                 CerrarSesion();
+                XtraMessageBox.Show("Sesión cerrada por inactividad.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Marcar que el mensaje ya se ha mostrado
+                mensajeMostrado = true;
+            }
+
+            // Cerrar solo el formulario
+            this.Hide();
+
+            // Marcar que el cierre fue por inactividad
+            cerrarPorInactividad = true;
+
+          
+        }
+
+        private void CerrarSesion()
+        {
+            // Limpiar la sesión
+            UsuarioLogueado.IdUsuario = 0;
+            UsuarioLogueado.NombreCompleto = string.Empty;
+            UsuarioLogueado.Correo = string.Empty;
+            UsuarioLogueado.Departamento = string.Empty;
+            UsuarioLogueado.TipoUsuario = string.Empty;
+            UsuarioLogueado.NombreUsuario = string.Empty;
+            this.Hide();
+            // Buscar si frmLogin sigue abierto
+            Form loginForm = Application.OpenForms["frmLogin"];
+
+            if (loginForm != null)
+            {
+                loginForm.Show(); // Si ya está en memoria, solo lo mostramos
             }
             else
             {
-                // Reiniciar el temporizador cada vez que hay actividad
-                inactivityTimer.Stop();
-                inactivityTimer.Start();
+                loginForm = new frmLogin();
+                loginForm.Show(); // Si no existe, lo creamos
             }
         }
 
+        private void ReiniciarTemporizador()
+        {
+            // Reiniciar el temporizador
+            inactivityTimer.Stop();
+            inactivityTimer.Start();
+
+            // Reiniciar la bandera
+            mensajeMostrado = false;
+        }
+
         #endregion
+
+        private void elementBitacora_Click(object sender, EventArgs e)
+        {
+            // Cierra la conexión antes de abrir el formulario
+            if (conexion != null && conexion.State == System.Data.ConnectionState.Open)
+            {
+                conexion.Close();
+            }
+            frmBitacora formabitacora = new frmBitacora();
+            MostrarFormularioEnPanel(groupControl1, formabitacora);
+        }
+
+        private void elemntOrdenesServicio_Click(object sender, EventArgs e)
+        {
+            // Cierra la conexión antes de abrir el formulario
+            if (conexion != null && conexion.State == System.Data.ConnectionState.Open)
+            {
+                conexion.Close();
+            }
+            FormRegistrar formaregistrar = new FormRegistrar();
+            MostrarFormularioEnPanel(groupControl1, formaregistrar);
+        }
+
+        private void elemntActualizarServicio_Click(object sender, EventArgs e)
+        {
+            // Cierra la conexión antes de abrir el formulario
+            if (conexion != null && conexion.State == System.Data.ConnectionState.Open)
+            {
+                conexion.Close();
+            }
+            frmRegistro formaregistro = new frmRegistro();
+            MostrarFormularioEnPanel(groupControl1, formaregistro);
+        }
     }
 }

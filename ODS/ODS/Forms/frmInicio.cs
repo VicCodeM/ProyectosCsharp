@@ -18,20 +18,17 @@ namespace ODS.Forms
     {
         #region Variables globales.
         private Timer timer;
-        private SqlConnection conexion;
-        private ConexionDB conexionBD;
+
         #endregion
 
         FechaServicio fechaService = new FechaServicio();
-        ConsultasDB consultas = new ConsultasDB();
+       
 
         // Obtener los datos del usuario logueado
         int idUsuario = UsuarioLogueado.IdUsuario;
         string nombre = UsuarioLogueado.NombreCompleto;
-        string tipoUsuario = UsuarioLogueado.TipoUsuario;
         string departamento = UsuarioLogueado.Departamento;
-        string correo = UsuarioLogueado.Correo;
-        string nombreUsuario = UsuarioLogueado.NombreUsuario;
+
 
 
         public frmInicio()

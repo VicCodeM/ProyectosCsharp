@@ -39,6 +39,36 @@ namespace ODS.Datos
             }
         }
 
+
+        // Método para ejecutar una consulta SQL y devolver un DataTable
+        public DataTable ExecuteQuery(string query)
+        {
+            DataTable dataTable = new DataTable();
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                        {
+                            adapter.Fill(dataTable);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al ejecutar la consulta: " + ex.Message);
+            }
+
+            return dataTable;
+        }
+
+
+
         //metodo para ejecutar consulta usuarios
 
         public DataTable EjecutarConsulta(string consulta)

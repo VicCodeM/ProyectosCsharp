@@ -64,9 +64,6 @@
     <Reference Include="ExcelNumberFormat, Version=1.1.0.0, Culture=neutral, PublicKeyToken=23c6f5d73be07eca, processorArchitecture=MSIL">
       <HintPath>..\packages\ExcelNumberFormat.1.1.0\lib\net20\ExcelNumberFormat.dll</HintPath>
     </Reference>
-    <Reference Include="MaterialSkin">
-      <HintPath>..\..\..\..\..\Downloads\MaterialSkin.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Bcl.HashCode, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.HashCode.1.1.1\lib\net461\Microsoft.Bcl.HashCode.dll</HintPath>
     </Reference>
@@ -117,6 +114,12 @@
     <Compile Include="Datos\ConexionDB.cs" />
     <Compile Include="Datos\ConsultasDB.cs" />
     <Compile Include="Datos\ProcedimientosAlmacenadosDB.cs" />
+    <Compile Include="Forms\frmBitacora.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\frmBitacora.Designer.cs">
+      <DependentUpon>frmBitacora.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frmInicio.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -155,7 +158,7 @@
       <DependentUpon>FormPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormRegistrar.cs">
-      <SubType>UserControl</SubType>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\FormRegistrar.Designer.cs">
       <DependentUpon>FormRegistrar.cs</DependentUpon>
@@ -164,12 +167,17 @@
     <Compile Include="Modelo\UsuarioLogueado.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Servicios\BitacoraService.cs" />
     <Compile Include="Servicios\FallasServicios.cs" />
+    <Compile Include="Servicios\Inactividad.cs" />
     <EmbeddedResource Include="FormPanel.resx">
       <DependentUpon>FormPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormRegistrar.resx">
       <DependentUpon>FormRegistrar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmBitacora.resx">
+      <DependentUpon>frmBitacora.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmInicio.resx">
       <DependentUpon>frmInicio.cs</DependentUpon>
