@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
@@ -8,7 +9,7 @@ namespace ODS.Datos
 {
     public class ConexionDB
     {
-        private string connectionString = "Data Source=VICTOR-HP\\SQLVICTOR;Initial Catalog=test1;User ID=sa;Password=6433"; // Tu cadena de conexión
+        private string connectionString = "Data Source=VICTOR-HP\\SQLVICTOR;Initial Catalog=test3;User ID=sa;Password=6433"; // Tu cadena de conexión
         private SqlConnection conexion; // Declarar la variable conexión a nivel de clase
 
         public ConexionDB() { }
@@ -109,6 +110,36 @@ namespace ODS.Datos
                 cmd.ExecuteNonQuery();
             }
         }
+        //non query paramtros
+        public void ExecuteNonQuery(string query, SqlParameter[] parameters)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        // Añadir parámetros si los hay
+                        if (parameters != null)
+                        {
+                            command.Parameters.AddRange(parameters);
+                        }
+
+                        // Ejecutar el comando (INSERT, UPDATE, DELETE)
+                        int rowsAffected = command.ExecuteNonQuery();
+
+                        // Si necesitas saber cuántas filas fueron afectadas, puedes usar rowsAffected
+                        Console.WriteLine($"{rowsAffected} filas afectadas.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al ejecutar la consulta SQL: " + ex.Message);
+            }
+        }
+
 
 
 
@@ -235,6 +266,33 @@ namespace ODS.Datos
             catch (Exception ex)
             {
                 throw new Exception("Error al validar usuario: " + ex.Message);
+            }
+        }
+
+
+        public object ExecuteScalar(string query, SqlParameter[] parameters = null)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        // Agregar parámetros si existen
+                        if (parameters != null)
+                        {
+                            command.Parameters.AddRange(parameters);
+                        }
+
+                        return command.ExecuteScalar();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al ejecutar la consulta: {ex.Message}", "Error de Base de Datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
             }
         }
 

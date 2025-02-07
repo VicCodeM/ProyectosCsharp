@@ -32,6 +32,19 @@ CREATE TABLE TiposFallaSoftware (
   Descripcion VARCHAR(255) NOT NULL
 );
 
+
+CREATE TABLE Bitacora (
+  Id_Bitacora INT IDENTITY(1,1) PRIMARY KEY,
+  Id_Orden INT NOT NULL,
+  Id_Usuario INT NOT NULL,
+  Accion VARCHAR(255) NOT NULL,
+  Fecha_Accion DATETIME NOT NULL DEFAULT GETDATE(),
+  Descripcion TEXT NULL,
+  CONSTRAINT FK_Bitacora_OrdenServicio FOREIGN KEY (Id_Orden) REFERENCES OrdenServicio(Id_Orden),
+  CONSTRAINT FK_Bitacora_Login FOREIGN KEY (Id_Usuario) REFERENCES Login(Id_Usuario)
+);
+
+
 CREATE TABLE OrdenServicio (
   Id_Orden INT IDENTITY(1,1) PRIMARY KEY,
   Fecha_Creacion DATETIME NOT NULL DEFAULT GETDATE(),

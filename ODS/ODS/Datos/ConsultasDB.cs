@@ -16,6 +16,25 @@ namespace ODS.Datos
             conexionBD = new ConexionDB(); // Crear una instancia de ConexionBD
         }
 
+        public string ObtenerNombreEmpleadoPorOrden(int idOrden)
+        {
+            string query = @"
+        SELECT e.Nombre_Empleado + ' ' + e.Apellido_Paterno + ' ' + e.Apellido_Materno AS NombreCompleto
+        FROM OrdenServicio o
+        INNER JOIN Empleados e ON o.Id_Empleado = e.Id_Empleado
+        WHERE o.Id_Orden = @Id_Orden";
+
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+        new SqlParameter("@Id_Orden", SqlDbType.Int) { Value = idOrden }
+            };
+
+            object result = conexionBD.ExecuteScalar(query, parameters);
+
+            return result != null ? result.ToString() : "Desconocido";
+        }
+
+
         // Método para obtener el nombre de usuario por Id_Usuario
         public string ObtenerNombreUsuario(int idUsuario)
         {

@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using ClosedXML.Excel;
 using DevExpress.XtraWaitForm;
 using ODS.Modelo;
+using ODS.Servicios;
 
 namespace ODS.Forms
 {
@@ -250,87 +251,57 @@ namespace ODS.Forms
             try
             {
                 // Obtener los valores de los controles
-                int idOrden;
+                int idOrden = Convert.ToInt32(txtIdOrden.EditValue);
                 DateTime? fechaAtendida = dateEditFechaAtendida.EditValue as DateTime?;
                 DateTime? fechaCerrada = dateEditFechaCerrada.EditValue as DateTime?;
-                int idUsuario;
+                int idUsuario = UsuarioLogueado.IdUsuario;
+                string nombreUsuario = consultasDB.ObtenerNombreUsuario(idUsuario);
+                string oredendeusarionombre = consultasDB.ObtenerNombreEmpleadoPorOrden(idOrden);
                 int? idFallaHardware = lookUpEditHadware.EditValue as int?;
                 int? idFallaSoftware = lookUpEditSofware.EditValue as int?;
                 string descripcion = memoEditDescripcion.Text;
                 string observaciones = memoEditObsevacion.Text;
-                string estado;
+                string estado = radioGroupEstados.EditValue?.ToString();
 
-                // Validar y convertir los valores necesarios
-                try
+                if (estado == null)
                 {
-                    idOrden = Convert.ToInt32(txtIdOrden.EditValue);
-                    idUsuario = Convert.ToInt32(lookUpEditListaUsuarios.EditValue);
-                    estado = radioGroupEstados.EditValue?.ToString();
-
-                    if (estado == null)
-                    {
-                        throw new InvalidOperationException("El estado no puede ser nulo.");
-                    }
-                }
-                catch (FormatException ex)
-                {
-                    XtraMessageBox.Show($"Error al convertir un valor: {ex.Message}", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                catch (InvalidCastException ex)
-                {
-                    XtraMessageBox.Show($"Error al obtener un valor de los controles: {ex.Message}", "Error de Conversión", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                    throw new InvalidOperationException("El estado no puede ser nulo.");
                 }
 
-                // Validación: Solo se debe seleccionar una falla (Hardware o Software)
                 if (idFallaHardware.HasValue && idFallaSoftware.HasValue)
                 {
-                    XtraMessageBox.Show("Solo puede seleccionar una de las fallas (Hardware o Software), no ambas.", "Error de Validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    XtraMessageBox.Show("Solo puede seleccionar una de las fallas (Hardware o Software), no ambas.",
+                                        "Error de Validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                // Asignar la hora actual a las fechas si están presentes
                 if (fechaAtendida.HasValue)
                 {
-                    fechaAtendida = fechaAtendida.Value.Date.Add(DateTime.Now.TimeOfDay); // Asigna la fecha seleccionada y la hora actual
+                    fechaAtendida = fechaAtendida.Value.Date.Add(DateTime.Now.TimeOfDay);
                 }
                 if (fechaCerrada.HasValue)
                 {
-                    fechaCerrada = fechaCerrada.Value.Date.Add(DateTime.Now.TimeOfDay); // Asigna la fecha seleccionada y la hora actual
+                    fechaCerrada = fechaCerrada.Value.Date.Add(DateTime.Now.TimeOfDay);
                 }
 
-                // Llamar al método ActualizarOrden dentro de un bloque try-catch para manejar errores de base de datos
-                try
-                {
-                    consultasDB.ActualizarOrden(idOrden, fechaAtendida, fechaCerrada, idUsuario, idFallaHardware, idFallaSoftware, descripcion, observaciones, estado);
-                }
-                catch (Exception ex)
-                {
-                    XtraMessageBox.Show($"Error al actualizar la orden en la base de datos: {ex.Message}", "Error de Base de Datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+                consultasDB.ActualizarOrden(idOrden, fechaAtendida, fechaCerrada, idUsuario, idFallaHardware, idFallaSoftware, descripcion, observaciones, estado);
 
-                // Mostrar un mensaje de éxito
+                BitacoraService bitacora = new BitacoraService();
+                bitacora.RegistrarEnBitacora(idOrden, idUsuario, "Actualización", $"Orden actualizada por {nombreUsuario}. Estado: {estado}. Descripción: {descripcion}.");
+
                 XtraMessageBox.Show("Orden de servicio actualizada con éxito", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // Refrescar el GridControl
-                try
-                {
-                    gridControl1.RefreshDataSource();
-                    CargarOrdenes();
-                }
-                catch (Exception ex)
-                {
-                    XtraMessageBox.Show($"Error al refrescar los datos: {ex.Message}", "Error de Refresco", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                gridControl1.RefreshDataSource();
+                CargarOrdenes();
             }
             catch (Exception ex)
             {
-                // Capturar cualquier otra excepción inesperada
-                XtraMessageBox.Show($"Ocurrió un error inesperado: {ex.Message}", "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show($"Error inesperado: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
+
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
