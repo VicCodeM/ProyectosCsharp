@@ -72,12 +72,29 @@ CREATE TABLE Bitacora (
     Id_Orden INT NOT NULL, -- Para saber cuál orden se modificó o eliminó
     Estado_Anterior VARCHAR(50),
     Estado_Nuevo VARCHAR(50),
+    Fecha_Atendida DATETIME,
+    Fecha_Cerrada DATETIME,
+    Descripcion VARCHAR(MAX),  -- Cambio de TEXT a VARCHAR(MAX)
+    Observaciones VARCHAR(MAX), -- Cambio de TEXT a VARCHAR(MAX)
+    CONSTRAINT FK_Bitacora_Login FOREIGN KEY (Id_Usuario) REFERENCES Login(Id_Usuario)
+);
+
+
+ALTER TABLE OrdenServicio 
+ALTER COLUMN Descripcion_Problema VARCHAR(MAX);
+
+ALTER TABLE OrdenServicio 
+ALTER COLUMN Observaciones VARCHAR(MAX);
+
+ALTER TABLE Bitacora
+ADD 
+    Id_Orden INT NOT NULL, 
+    Estado_Anterior VARCHAR(50),
+    Estado_Nuevo VARCHAR(50),
     Fecha_Atendida_Anterior DATETIME,
     Fecha_Cerrada_Anterior DATETIME,
     Descripcion_Anterior VARCHAR(MAX),  -- Cambio de TEXT a VARCHAR(MAX)
-    Observaciones_Anterior VARCHAR(MAX), -- Cambio de TEXT a VARCHAR(MAX)
-    CONSTRAINT FK_Bitacora_Login FOREIGN KEY (Id_Usuario) REFERENCES Login(Id_Usuario)
-);
+    Observaciones_Anterior VARCHAR(MAX); -- Cambio de TEXT a VARCHAR(MAX)
 
 ------------------------------------------------------------------------------------------------------------------
 --trigger
@@ -86,57 +103,26 @@ ON OrdenServicio
 AFTER UPDATE
 AS
 BEGIN
-    DECLARE 
-        @Id_Orden INT, 
-        @Estado_Anterior VARCHAR(50), 
-        @Estado_Nuevo VARCHAR(50), 
-        @Fecha_Atendida_Anterior DATETIME, 
-        @Fecha_Cerrada_Anterior DATETIME, 
-        @Descripcion_Anterior VARCHAR(MAX), 
-        @Observaciones_Anterior VARCHAR(MAX), 
-        @Fecha_Atendida_Nueva DATETIME, 
-        @Fecha_Cerrada_Nueva DATETIME, 
-        @Descripcion_Nueva VARCHAR(MAX), 
-        @Observaciones_Nuevas VARCHAR(MAX), 
-        @Id_Usuario INT;
-
-    -- Obtener los datos anteriores y nuevos
+    -- Insertar en la tabla Bitacora en una sola operación
+    INSERT INTO Bitacora 
+    (Fecha_Accion, Id_Usuario, Accion, Id_Orden, 
+    Estado_Anterior, Estado_Nuevo, Fecha_Atendida, 
+    Fecha_Cerrada, Descripcion, Observaciones)
     SELECT 
-        @Id_Orden = inserted.Id_Orden,
-        @Estado_Nuevo = inserted.Estado,
-        @Estado_Anterior = deleted.Estado,
-        @Fecha_Atendida_Anterior = deleted.Fecha_Atendida,
-        @Fecha_Cerrada_Anterior = deleted.Fecha_Cerrada,
-        @Descripcion_Anterior = CAST(deleted.Descripcion_Problema AS VARCHAR(MAX)),
-        @Observaciones_Anterior = CAST(deleted.Observaciones AS VARCHAR(MAX)),
-        @Fecha_Atendida_Nueva = inserted.Fecha_Atendida,
-        @Fecha_Cerrada_Nueva = inserted.Fecha_Cerrada,
-        @Descripcion_Nueva = CAST(inserted.Descripcion_Problema AS VARCHAR(MAX)),
-        @Observaciones_Nuevas = CAST(inserted.Observaciones AS VARCHAR(MAX)),
-        @Id_Usuario = inserted.Id_Usuario
+        GETDATE(), 
+        inserted.Id_Usuario, 
+        'Actualización de Orden', 
+        inserted.Id_Orden, 
+        deleted.Estado, 
+        inserted.Estado, 
+        ISNULL(inserted.Fecha_Atendida, deleted.Fecha_Atendida), 
+        ISNULL(inserted.Fecha_Cerrada, deleted.Fecha_Cerrada), 
+        ISNULL(CAST(inserted.Descripcion_Problema AS VARCHAR(MAX)), CAST(deleted.Descripcion_Problema AS VARCHAR(MAX))), 
+        ISNULL(CAST(inserted.Observaciones AS VARCHAR(MAX)), CAST(deleted.Observaciones AS VARCHAR(MAX)))
     FROM inserted
     INNER JOIN deleted ON inserted.Id_Orden = deleted.Id_Orden;
-
-    -- Insertar en la tabla Bitacora
-    INSERT INTO Bitacora 
-    (Fecha_Accion, Id_Usuario, Accion, Id_Orden, 
-    Estado_Anterior, Estado_Nuevo, Fecha_Atendida, 
-    Fecha_Cerrada, Descripcion, Observaciones)
-    VALUES 
-    (GETDATE(), @Id_Usuario, 'Actualización de Orden', @Id_Orden, 
-    @Estado_Anterior, @Estado_Nuevo, @Fecha_Atendida_Anterior, 
-    @Fecha_Cerrada_Anterior, @Descripcion_Anterior, @Observaciones_Anterior);
-    
-    -- Insertar en la tabla Bitacora para cambios nuevos
-    INSERT INTO Bitacora 
-    (Fecha_Accion, Id_Usuario, Accion, Id_Orden, 
-    Estado_Anterior, Estado_Nuevo, Fecha_Atendida, 
-    Fecha_Cerrada, Descripcion, Observaciones)
-    VALUES 
-    (GETDATE(), @Id_Usuario, 'Actualización de Orden', @Id_Orden, 
-    @Estado_Anterior, @Estado_Nuevo, @Fecha_Atendida_Nueva, 
-    @Fecha_Cerrada_Nueva, @Descripcion_Nueva, @Observaciones_Nuevas);
 END;
+
 
 CREATE TRIGGER trg_OrdenServicio_Delete
 ON OrdenServicio

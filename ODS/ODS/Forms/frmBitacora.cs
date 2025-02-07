@@ -19,13 +19,13 @@ namespace ODS.Forms
         public frmBitacora()
         {
             InitializeComponent();
-            LoadDataToGrid();
+            CargarDataGrid();
             ((GridView)gridControl1.MainView).OptionsBehavior.Editable = false;
             ((GridView)gridControl1.MainView).BestFitColumns();
             ((GridView)gridControl1.MainView).OptionsView.ShowDetailButtons = false;
         }
 
-        private void LoadDataToGrid()
+        private void CargarDataGrid()
         {
             try
             {
@@ -39,28 +39,61 @@ namespace ODS.Forms
                 // Ejecutar la consulta y obtener los datos
                 DataTable dataTable = queryExecutor.ExecuteQuery(query);
 
+                // Verificar si la columna "Hora" existe en el DataTable; si no, agregarla
+                if (!dataTable.Columns.Contains("Hora"))
+                {
+                    dataTable.Columns.Add("Hora", typeof(string)); // Agregar la columna "Hora"
+                }
+
+                // Llenar la columna "Hora" con la hora extraída de la columna "Fecha_Accion"
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    if (row["Fecha_Accion"] != DBNull.Value)
+                    {
+                        DateTime fechaRegistro = Convert.ToDateTime(row["Fecha_Accion"]);
+                        row["Hora"] = fechaRegistro.ToString("hh:mm tt"); // Extraer solo la hora en formato de 12 horas
+                    }
+                    else
+                    {
+                        row["Hora"] = string.Empty; // Si "Fecha_Accion" es nulo, dejar la columna vacía
+                    }
+                }
 
                 // Vincular los datos al GridControl
                 gridControl1.DataSource = dataTable;
 
                 // Personalizar las columnas visibles
-                GridView gridView = gridControl1.MainView as GridView;
-                if (gridView != null)
+                GridView gridBistacora = gridControl1.MainView as GridView;
+                if (gridBistacora != null)
                 {
-                    gridView.Columns["NombreUsuario"].Visible = true; // Mostrar el nombre del usuario
-                    gridView.Columns["NombreUsuario"].Caption = "Nombre de Usuario";
-                    gridView.Columns["Id_Bitacora"].Caption = "Id";
-                    gridView.Columns["Fecha_Accion"].Caption = "Fecha de Acción";
-                    gridView.Columns["Id_Orden"].Caption = "Id de la Orden";
-                    gridView.Columns["Estado_Anterior"].Caption = "Estado Anterior";
-                    gridView.Columns["Estado_Nuevo"].Caption = "Estado Nuevo";
-                    gridView.Columns["Fecha_Atendida"].Caption = "Fecha de Atención";
-                    gridView.Columns["Fecha_Cerrada"].Caption = "Fecha de Cierre";
-                    gridView.Columns["Descripcion"].Caption = "Descripción";
-                    gridView.Columns["Observaciones"].Caption = "Observaciones";
-                    gridView.Columns["Accion"].Caption = "Acción";
+                    // Mostrar el nombre del usuario
+                    gridBistacora.Columns["NombreUsuario"].Visible = true;
+                    gridBistacora.Columns["NombreUsuario"].Caption = "Nombre de Usuario";
 
-                    // gridView.Columns["Id_Usuario"].Visible = false; // Ocultar Id_Usuario si existe
+                    // Configurar los títulos de las columnas existentes
+                    gridBistacora.Columns["Id_Bitacora"].Caption = "Id";
+                    gridBistacora.Columns["Fecha_Accion"].Caption = "Fecha de Acción";
+                    gridBistacora.Columns["Id_Orden"].Caption = "Id de la Orden";
+                    gridBistacora.Columns["Estado_Anterior"].Caption = "Estado Anterior";
+                    gridBistacora.Columns["Estado_Nuevo"].Caption = "Estado Nuevo";
+                    gridBistacora.Columns["Fecha_Atendida"].Caption = "Fecha de Atención";
+                    gridBistacora.Columns["Fecha_Cerrada"].Caption = "Fecha de Cierre";
+                    gridBistacora.Columns["Descripcion"].Caption = "Descripción";
+                    gridBistacora.Columns["Observaciones"].Caption = "Observaciones";
+                    gridBistacora.Columns["Accion"].Caption = "Acción";
+
+                    // Formato para la columna "Fecha_Registro"
+                    gridBistacora.Columns["Fecha_Accion"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+                    gridBistacora.Columns["Fecha_Accion"].DisplayFormat.FormatString = "dd-MM-yyyy";
+
+                    // Formato para la nueva columna "Hora"
+                    gridBistacora.Columns["Hora"].Visible = true; // Asegurarse de que la columna "Hora" esté visible
+                    gridBistacora.Columns["Hora"].Caption = "Hora";
+                    gridBistacora.Columns["Hora"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+                    gridBistacora.Columns["Hora"].DisplayFormat.FormatString = "hh:mm tt"; // Formato de 12 horas con AM/PM
+
+                    gridBistacora.Columns["Fecha_Accion"].VisibleIndex = 1;
+                    gridBistacora.Columns["Hora"].VisibleIndex = 2;
                 }
             }
             catch (Exception ex)

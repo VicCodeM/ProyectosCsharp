@@ -99,12 +99,14 @@ namespace ODS
             if (UsuarioLogueado.TipoUsuario != "Admin")
             {
                 // Mostrar el tipo de usuario
-                adminregistrosElement.Visible = false;
+                elemntActualizarServicio.Visible = false;
+                accordionControlElement1.Visible = false;
             }
             else
             {
                 // Ocultar el tipo de usuario
-                adminregistrosElement.Visible = true;
+                elemntActualizarServicio.Visible = true;
+                accordionControlElement1.Visible = true;
             }
 
         } 

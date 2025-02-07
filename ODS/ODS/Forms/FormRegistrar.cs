@@ -1,6 +1,8 @@
 ﻿using DevExpress.XtraEditors;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Grid;
+using DocumentFormat.OpenXml.Drawing;
+using DocumentFormat.OpenXml.Wordprocessing;
 using ODS.Datos;
 using ODS.Modelo;
 using System;
@@ -8,6 +10,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using SD = System.Drawing;
+
 
 namespace ODS.Forms
 {
@@ -16,6 +20,7 @@ public partial class FormRegistrar : DevExpress.XtraEditors.XtraForm
         #region Instanciar Objetos
         private readonly ConexionDB conexionDB = new ConexionDB();
         private readonly ConsultasDB consultasDB = new ConsultasDB();
+        private readonly UsuarioConsultas usurioconsultas = new UsuarioConsultas();
         #endregion
 
 
@@ -36,7 +41,10 @@ public partial class FormRegistrar : DevExpress.XtraEditors.XtraForm
             ((GridView)gridCRegistrar.MainView).OptionsBehavior.Editable = false;
             ((GridView)gridCRegistrar.MainView).BestFitColumns();
             ((GridView)gridCRegistrar.MainView).OptionsView.ShowDetailButtons = false;
-           
+
+            this.Load += new EventHandler(labelEstado_TextChanged);
+
+
         }
 
         private void FormRegistrar_Load(object sender, EventArgs e)
@@ -62,8 +70,8 @@ public partial class FormRegistrar : DevExpress.XtraEditors.XtraForm
             {
                 XtraMessageBox.Show($"Error al cargar el formulario: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
             
+
 
         }
 
@@ -372,7 +380,7 @@ public partial class FormRegistrar : DevExpress.XtraEditors.XtraForm
                 int? idFalloHardware = radioGroupFallos.EditValue.ToString() == "Hardware" ? (int?)lookUpEdit1.EditValue : null;
                 int? idFalloSoftware = radioGroupFallos.EditValue.ToString() == "Software" ? (int?)lookUpEdit1.EditValue : null;
 
-                if (!consultasDB.UsuarioExiste(idUsuario))
+                if (!usurioconsultas.UsuarioExiste(idUsuario))
                 {
                     XtraMessageBox.Show("El usuario no existe.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -471,5 +479,27 @@ public partial class FormRegistrar : DevExpress.XtraEditors.XtraForm
         }
 
         #endregion
+
+        private void labelEstado_TextChanged(object sender, EventArgs e)
+        {
+            // DevExpress.XtraEditors.LabelControl myLabelControl = new DevExpress.XtraEditors.LabelControl();
+            if (labelEstado.Text.Trim() == "Estado: Abierto")
+            {
+                labelEstado.ForeColor = SD.Color.DarkGoldenrod; // Amarillo oscuro
+            }
+            else if (labelEstado.Text.Trim() == "Estado: Completado")
+            {
+                labelEstado.ForeColor = SD.Color.SeaGreen; // Verde mar
+            }
+            else if (labelEstado.Text.Trim() == "Estado: Cancelado")
+            {
+                labelEstado.ForeColor = SD.Color.Firebrick; // Rojo oscuro
+            }
+            else if (labelEstado.Text.Trim() == "Estado: Pendiente")
+            {
+                labelEstado.ForeColor = SD.Color.OliveDrab; // Verde oliva
+            }
+            labelEstado.Refresh();
+        }
     }
 }

@@ -111,6 +111,60 @@ namespace ODS.Modelo
             }
         }
 
+        // Obtener nombres y apellidos completos del usuario
+        public string ObtenerNombreCompletoUsuario(int idUsuario)
+        {
+            string nombreCompleto = string.Empty;
+
+            // Usar la conexión de ConexionDB
+            using (SqlConnection conexion = conexionBD.ConectarSQL())
+            {
+                try
+                {
+                    // Consulta SQL para obtener el nombre completo del usuario
+                    string query = @"
+                SELECT CONCAT(e.Nombre_Empleado, ' ', e.Apellido_Paterno, ' ', e.Apellido_Materno) AS NombreCompleto
+                FROM Empleados e
+                INNER JOIN Login l ON e.Id_Empleado = l.Id_Empleado
+                WHERE l.Id_Usuario = @IdUsuario";
+
+                    using (SqlCommand comando = new SqlCommand(query, conexion))
+                    {
+                        comando.Parameters.AddWithValue("@IdUsuario", idUsuario);
+
+                        // Ejecutar la consulta y obtener el resultado
+                        object resultado = comando.ExecuteScalar();
+
+                        if (resultado != null)
+                        {
+                            nombreCompleto = resultado.ToString();
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Manejo de excepciones
+                    throw new Exception($"Error al obtener el nombre completo: {ex.Message}");
+                }
+            }
+
+            return nombreCompleto;
+        }
+
+        // Método para validar si un usuario existe
+        public bool UsuarioExiste(int idUsuario)
+        {
+            string query = "SELECT COUNT(1) FROM Login WHERE Id_Usuario = @Id_Usuario";
+
+            using (SqlConnection conn = conexionBD.ConectarSQL())
+            {
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@Id_Usuario", idUsuario);
+
+                return Convert.ToInt32(cmd.ExecuteScalar()) > 0;
+            }
+        }
+
     }
 }
 

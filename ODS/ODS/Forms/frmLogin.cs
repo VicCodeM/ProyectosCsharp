@@ -11,7 +11,8 @@ namespace ODS.Forms
 {
     public partial class frmLogin : DevExpress.XtraEditors.XtraForm
     {
-        UsuarioConsultas consultas = new UsuarioConsultas(); // Instancia de las consultas
+        //instaciar objetos
+        UsuarioConsultas consultas = new UsuarioConsultas(); 
         ConexionDB conexionDB = new ConexionDB();
 
         public frmLogin()
@@ -58,6 +59,7 @@ namespace ODS.Forms
             this.WindowState = FormWindowState.Minimized;
         }
 
+        //método para limpiar txt
         public void LimpiarCampos()
         {
             txtUsuario.Text = "";
@@ -116,7 +118,7 @@ namespace ODS.Forms
 
 
 
-
+        //boton para borrar text
         private void btnClear_Click(object sender, EventArgs e)
         {
             txtUsuario.Text = "";

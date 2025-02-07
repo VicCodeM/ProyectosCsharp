@@ -8,7 +8,7 @@ namespace ODS.Datos
 {
     public class ConexionDB
     {
-        private string connectionString = "Data Source=VICTOR-PC\\SQLVICTOR;Initial Catalog=test1;User ID=sa;Password=6433"; // Tu cadena de conexión
+        private string connectionString = "Data Source=VICTOR-HP\\SQLVICTOR;Initial Catalog=test1;User ID=sa;Password=6433"; // Tu cadena de conexión
         private SqlConnection conexion; // Declarar la variable conexión a nivel de clase
 
         public ConexionDB() { }
@@ -16,12 +16,10 @@ namespace ODS.Datos
         // Método para conectar a SQL Server
         public SqlConnection ConectarSQL()
         {
+            SqlConnection conexion = new SqlConnection(connectionString);
             try
             {
-                // Crear una nueva instancia de SqlConnection
-                conexion = new SqlConnection(connectionString);
                 conexion.Open(); // Abrir la conexión
-
                 return conexion; // Devolver la conexión abierta
             }
             catch (Exception ex)
@@ -29,15 +27,23 @@ namespace ODS.Datos
                 // Manejo de excepciones si ocurre un error al crear o abrir la conexión
                 XtraMessageBox.Show($"Error al conectar a la base de datos: {ex.Message}", "Error de conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                // Cerrar la conexión si se abrió pero ocurrió un error después
-                if (conexion != null && conexion.State == System.Data.ConnectionState.Open)
+                // Asegurarse de que la conexión se cierre si se abrió
+                if (conexion.State == System.Data.ConnectionState.Open)
                 {
                     conexion.Close();
                 }
 
-                throw; // Lanza la excepción para ser manejada por el código que llama a este método
+                // Dispose la conexión para liberar recursos
+                conexion.Dispose();
+
+                // Mostrar un mensaje adicional al usuario
+                XtraMessageBox.Show("No se pudo establecer la conexión con la base de datos. Por favor, inténtelo de nuevo más tarde.", "Conexión fallida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                // Devolver null para indicar que la conexión no se estableció
+                return null;
             }
         }
+
 
 
         // Método para ejecutar una consulta SQL y devolver un DataTable

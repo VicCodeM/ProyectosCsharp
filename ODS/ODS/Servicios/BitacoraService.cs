@@ -19,28 +19,27 @@ namespace ODS.Servicios
         }
 
 
-        // Propiedad que contiene la consulta SQL
         public string DatosBitacora()
         {
             return @"
-            SELECT 
-                Bitacora.Id_Bitacora,
-                Bitacora.Fecha_Accion,
-                Login.Usuario AS NombreUsuario, -- Nombre del usuario
-                Bitacora.Accion,
-                Bitacora.Id_Orden,
-                Bitacora.Estado_Anterior,
-                Bitacora.Estado_Nuevo,
-                Bitacora.Fecha_Atendida,
-                Bitacora.Fecha_Cerrada,
-                Bitacora.Descripcion,
-                Bitacora.Observaciones
-            FROM 
-                Bitacora
-            INNER JOIN 
-                Login ON Bitacora.Id_Usuario = Login.Id_Usuario;";
+    SELECT 
+        B.Id_Bitacora,
+        B.Fecha_Accion,
+        L.Usuario AS NombreUsuario,  -- Se muestra el usuario que realizó la acción
+        B.Accion,
+        B.Id_Orden,
+        B.Estado_Anterior,
+        B.Estado_Nuevo,
+        B.Fecha_Atendida,
+        B.Fecha_Cerrada,
+        B.Descripcion,
+        B.Observaciones
+    FROM 
+        Bitacora B
+    INNER JOIN 
+        Login L ON B.Id_Usuario = L.Id_Usuario;"; // Muestra todas las acciones
         }
 
-  
+
     }
 }

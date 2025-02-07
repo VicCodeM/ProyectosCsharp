@@ -493,5 +493,10 @@ namespace ODS.Forms
             // Exportar();
             ExportarExcel();
         }
+
+        private void gridControl1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
