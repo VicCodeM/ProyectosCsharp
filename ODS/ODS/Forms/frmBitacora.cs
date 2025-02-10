@@ -15,45 +15,46 @@ namespace ODS.Forms
         public frmBitacora()
         {
             InitializeComponent();
-            CargarDataGrid();
+            ((GridView)gridControl1.MainView).OptionsBehavior.Editable = false;
+            ((GridView)gridControl1.MainView).BestFitColumns();
+            ((GridView)gridControl1.MainView).OptionsView.ShowDetailButtons = false;
 
-            // Configuración del GridControl y GridView
-            GridView gridView = gridControl1.MainView as GridView;
-            if (gridView != null)
-            {
-                gridView.OptionsBehavior.Editable = false;
-                gridView.BestFitColumns();
-                gridView.OptionsView.ShowDetailButtons = false;
-            }
+            LoadDataToGrid(); // Cargar datos al abrir el formulario
         }
-
-        private void CargarDataGrid()
+        private void LoadDataToGrid()
         {
             try
             {
-                BitacoraService queries = new BitacoraService();
-                ConexionDB queryExecutor = new ConexionDB();
+                BitacoraService bitacoraService = new BitacoraService();
+                DataTable dataTable = bitacoraService.ObtenerDatosBitacora();
 
-                DataTable dataTable = queryExecutor.ExecuteQuery(queries.DatosBitacora());
-
-
-                gridControl1.DataSource = dataTable;
-
-                GridView gridBistacora = gridControl1.MainView as GridView;
-                if (gridBistacora != null)
+                if (dataTable != null)
                 {
-                    gridBistacora.Columns["Id_Orden"].Caption = "ID Orden";
-                    gridBistacora.Columns["Descripcion"].Caption = "Descripción";
-                    gridBistacora.Columns["Observaciones"].Caption = "Observaciones";
-                    gridBistacora.Columns["Nombre_Completo"].Caption = "Empleado que creó la orden";
-                    gridBistacora.Columns["Usuario"].Caption = "Usuario Logueado";
+                    gridControl1.DataSource = dataTable;
+
+                    GridView gridView = gridControl1.MainView as GridView;
+                    if (gridView != null)
+                    {
+                        gridView.Columns["Id"].Caption = "Id";
+                        gridView.Columns["Id_Orden"].Caption = "Id Orden";
+                        gridView.Columns["Administrador"].Caption = "Administrador";
+                        gridView.Columns["Accion"].Caption = "Acción";
+                        gridView.Columns["Fecha"].Caption = "Fecha";
+                        gridView.Columns["Hora"].Caption = "Hora";
+                        gridView.Columns["Descripcion"].Caption = "Descripción";
+
+                        // Ajustar las columnas automáticamente
+                        gridView.BestFitColumns();
+                    }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error al cargar datos en el GridControl: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
 
 
 

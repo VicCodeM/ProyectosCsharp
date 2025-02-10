@@ -24,113 +24,100 @@ namespace ODS.Servicios
         public BitacoraService()
         {
             conexionBD = new ConexionDB();
-            ConsultasDB consultasDB = new ConsultasDB();
         }
-        public string DatosBitacora()
+
+        public void RegistrarAccionEnBitacora(int idOrden, int idUsuarioAdmin, string accion, string descripcion)
+        {
+            idUsuarioAdmin = UsuarioLogueado.IdUsuario;
+            try
             {
-                return @"
-        SELECT 
-    b.Id_Bitacora,
-    b.Fecha_Accion,
-    b.Id_Orden,
-    o.Observaciones,
-    b.Descripcion,
-    b.Accion,
-    e.Nombre_Empleado + ' ' + e.Apellido_Paterno + ' ' + e.Apellido_Materno AS Nombre_Completo,
-    l.Usuario AS Usuario,
-    e.Id_Empleado AS Id_Empleado  -- Cambié esto para que coincida con la tabla Empleados
-FROM Bitacora b
-LEFT JOIN OrdenServicio o ON b.Id_Orden = o.Id_Orden
-LEFT JOIN Login l ON b.Id_Usuario = l.Id_Usuario
-LEFT JOIN Empleados e ON l.Id_Empleado = e.Id_Empleado  -- Cambio aquí para obtener el Id_Empleado desde Login
-ORDER BY b.Fecha_Accion DESC;
-";
-            }
+                // Depuración: Verificar valores de entrada
+              //  MessageBox.Show($"idOrden: {idOrden}, idUsuarioAdmin: {idUsuarioAdmin}", "Debug", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                if (idOrden <= 0 || idUsuarioAdmin <= 0)
+                {
+                    MessageBox.Show("Error: idOrden o idUsuarioAdmin inválidos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
 
+                // Consulta para obtener el Id_Empleado que generó la orden
+                string queryEmpleado = @"
+            SELECT Id_Usuario 
+            FROM OrdenServicio 
+            WHERE Id_Orden = @Id_Orden";
 
-            public void RegistrarEnBitacora(int idOrden, int idUsuarioLogueado, string accion, string descripcion)
-            {
-                // Obtener el Id_Usuario que creó la orden
-                int idUsuarioQueCreoOrden = ObtenerIdUsuarioPorOrden(idOrden);
+                SqlParameter[] paramEmpleado = new SqlParameter[]
+                {
+            new SqlParameter("@Id_Orden", SqlDbType.Int) { Value = idOrden }
+                };
 
-                // Obtener el Id_Empleado a partir del Id_Usuario que creó la orden
-                int idEmpleadoQueCreoOrden = ObtenerIdEmpleadoPorUsuario(idUsuarioQueCreoOrden);
+                object result = conexionBD.ExecuteScalar(queryEmpleado, paramEmpleado);
+                int idEmpleado = result != null ? Convert.ToInt32(result) : 0;
 
-                string query = @"
-    INSERT INTO Bitacora (Id_Orden, Id_Usuario, Id_Empleado, Accion, Fecha_Accion, Descripcion)
-    VALUES (@Id_Orden, @Id_Usuario, @Id_Empleado, @Accion, @Fecha_Accion, @Descripcion);
-    ";
+                // Depuración: Verificar el idEmpleado obtenido
+              //  MessageBox.Show($"idEmpleado obtenido: {idEmpleado}", "Debug", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                if (idEmpleado == 0)
+                {
+                    MessageBox.Show("No se encontró el empleado que generó la orden.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Insertar en la bitácora con el Id_Empleado correcto
+                string queryInsert = @"
+            INSERT INTO Bitacora (Id_Orden, Id_Usuario, Accion, Fecha_Accion, Descripcion, Id_Empleado)
+            VALUES (@Id_Orden, @Id_Usuario, @Accion, GETDATE(), @Descripcion, @Id_Empleado)";
 
                 SqlParameter[] parameters = new SqlParameter[]
                 {
-        new SqlParameter("@Id_Orden", SqlDbType.Int) { Value = idOrden },
-        new SqlParameter("@Id_Usuario", SqlDbType.Int) { Value = idUsuarioLogueado },
-        new SqlParameter("@Id_Empleado", SqlDbType.Int) { Value = idEmpleadoQueCreoOrden },
-        new SqlParameter("@Accion", SqlDbType.VarChar, 255) { Value = accion },
-        new SqlParameter("@Fecha_Accion", SqlDbType.DateTime) { Value = DateTime.Now },
-        new SqlParameter("@Descripcion", SqlDbType.Text) { Value = descripcion }
+            new SqlParameter("@Id_Orden", SqlDbType.Int) { Value = idOrden },
+            new SqlParameter("@Id_Usuario", SqlDbType.Int) { Value = idUsuarioAdmin }, // Admin que actualizó
+            new SqlParameter("@Accion", SqlDbType.VarChar) { Value = accion },
+            new SqlParameter("@Descripcion", SqlDbType.VarChar) { Value = descripcion },
+            new SqlParameter("@Id_Empleado", SqlDbType.Int) { Value = idEmpleado } // Empleado que generó la orden
                 };
 
-                conexionBD.ExecuteNonQuery(query, parameters);
+                conexionBD.ExecuteNonQuery(queryInsert, parameters);
+
+               // MessageBox.Show("Acción registrada correctamente en la bitácora.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-
-
-
-
-
-            // Método para obtener el Id_Empleado a partir del Id_Orden (quien hizo la orden)
-            private int ObtenerIdEmpleadoPorOrden(int idOrden)
-        {
-            string query = "SELECT Id_Usuario FROM OrdenServicio WHERE Id_Orden = @Id_Orden";
-
-            SqlParameter[] parameters = new SqlParameter[]
+            catch (Exception ex)
             {
-        new SqlParameter("@Id_Orden", SqlDbType.Int) { Value = idOrden }
-            };
-
-            // Obtener el Id_Usuario desde la tabla OrdenServicio
-            DataTable result = conexionBD.EjecutarConsultaConParametros(query, parameters);
-
-            if (result != null && result.Rows.Count > 0)
-            {
-                // Ahora obtenemos el Id_Empleado relacionado con el Id_Usuario
-                return ObtenerIdEmpleadoPorUsuario(Convert.ToInt32(result.Rows[0]["Id_Usuario"]));
+                MessageBox.Show($"Error al registrar en la bitácora: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            return 0; // Si no se encuentra la orden, devolvemos 0 (o podrías manejar un error)
         }
 
 
 
-
-        // Método para obtener solo el Id_Usuario de una orden
-        private int ObtenerIdUsuarioPorOrden(int idOrden)
+        public DataTable ObtenerDatosBitacora()
         {
-            string query = "SELECT Id_Usuario FROM OrdenServicio WHERE Id_Orden = @Id_Orden";
-
-            SqlParameter[] parameters = new SqlParameter[]
+            try
             {
-        new SqlParameter("@Id_Orden", SqlDbType.Int) { Value = idOrden }
-            };
+                string query = @"
+            SELECT 
+                b.Id_Bitacora AS Id,
+                b.Id_Orden,
+                u.Usuario AS Administrador,
+                b.Accion,
+                CAST(b.Fecha_Accion AS DATE) AS Fecha,  -- Solo la fecha
+                FORMAT(b.Fecha_Accion, 'hh:mm tt') AS Hora,  -- Hora en formato 12h con AM/PM
+                b.Descripcion
+            FROM Bitacora b
+            INNER JOIN Login u ON b.Id_Usuario = u.Id_Usuario  -- Admin que realizó la acción
+            INNER JOIN Login e ON b.Id_Empleado = e.Id_Usuario  -- Empleado que generó la orden
+            ORDER BY b.Fecha_Accion DESC";
 
-            object result = conexionBD.ExecuteScalar(query, parameters);
-            return result != null ? Convert.ToInt32(result) : 0;
+                return conexionBD.ExecuteQuery(query);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al obtener datos de la bitácora: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
         }
 
-        // Método para obtener solo el Id_Empleado de un usuario
-        private int ObtenerIdEmpleadoPorUsuario(int idUsuario)
-        {
-            string query = "SELECT Id_Empleado FROM Login WHERE Id_Usuario = @Id_Usuario";
 
-            SqlParameter[] parameters = new SqlParameter[]
-            {
-        new SqlParameter("@Id_Usuario", SqlDbType.Int) { Value = idUsuario }
-            };
-
-            object result = conexionBD.ExecuteScalar(query, parameters);
-            return result != null ? Convert.ToInt32(result) : 0;
-        }
 
     }
 }
+

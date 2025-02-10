@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.labelUsuario = new System.Windows.Forms.Label();
             this.labelFecha = new System.Windows.Forms.Label();
             this.labelHora = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -56,18 +56,6 @@
             this.groupControl1.Size = new System.Drawing.Size(670, 394);
             this.groupControl1.TabIndex = 4;
             this.groupControl1.Paint += new System.Windows.Forms.PaintEventHandler(this.groupControl1_Paint);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.BackgroundImage = global::ODS.Properties.Resources.textura3;
-            this.pictureBox1.Image = global::ODS.Properties.Resources.jmasLogoBG1;
-            this.pictureBox1.Location = new System.Drawing.Point(221, 187);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(425, 204);
-            this.pictureBox1.TabIndex = 3;
-            this.pictureBox1.TabStop = false;
             // 
             // labelUsuario
             // 
@@ -108,6 +96,18 @@
             this.labelHora.Size = new System.Drawing.Size(54, 19);
             this.labelHora.TabIndex = 0;
             this.labelHora.Text = "Hora:";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.BackgroundImage = global::ODS.Properties.Resources.textura3;
+            this.pictureBox1.Image = global::ODS.Properties.Resources.jmasLogoBG1;
+            this.pictureBox1.Location = new System.Drawing.Point(242, 168);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(425, 204);
+            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.TabStop = false;
             // 
             // frmInicio
             // 

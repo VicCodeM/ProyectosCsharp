@@ -286,8 +286,10 @@ namespace ODS.Forms
 
                 consultasDB.ActualizarOrden(idOrden, fechaAtendida, fechaCerrada, idUsuario, idFallaHardware, idFallaSoftware, descripcion, observaciones, estado);
 
-                BitacoraService bitacora = new BitacoraService();
-                bitacora.RegistrarEnBitacora(idOrden, idUsuario, "Actualización", $"Orden actualizada por {nombreUsuario}. Estado: {estado}. Descripción: {descripcion}.");
+                BitacoraService bitacoraService = new BitacoraService();
+                bitacoraService.RegistrarAccionEnBitacora(idOrden, UsuarioLogueado.IdUsuario, "Actualización",
+      "Se cambió el estado de la orden a " + estado + ".");
+
 
                 XtraMessageBox.Show("Orden de servicio actualizada con éxito", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -463,11 +465,6 @@ namespace ODS.Forms
         {
             // Exportar();
             ExportarExcel();
-        }
-
-        private void gridControl1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
