@@ -3,7 +3,7 @@
   "WorkspaceRootPath": "C:\\Users\\vicom\\Documents\\GitHub\\ProyectosCsharp\\ODS\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|C:\\Users\\vicom\\Documents\\GitHub\\ProyectosCsharp\\ODS\\ods\\forms\\frmregistro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|c:\\users\\vicom\\documents\\github\\proyectoscsharp\\ods\\ods\\forms\\frmregistro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|solutionrelative:ods\\forms\\frmregistro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -19,7 +19,7 @@
       "RelativeMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|solutionrelative:ods\\servicios\\bitacoraservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|c:\\users\\vicom\\documents\\github\\proyectoscsharp\\ods\\ods\\forms\\frmbitacora.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|C:\\Users\\vicom\\Documents\\GitHub\\ProyectosCsharp\\ODS\\ods\\forms\\frmbitacora.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|solutionrelative:ods\\forms\\frmbitacora.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -157,7 +157,7 @@
               "RelativeDocumentMoniker": "ODS\\Forms\\frmRegistro.cs",
               "ToolTip": "C:\\Users\\vicom\\Documents\\GitHub\\ProyectosCsharp\\ODS\\ODS\\Forms\\frmRegistro.cs",
               "RelativeToolTip": "ODS\\Forms\\frmRegistro.cs",
-              "ViewState": "AgIAABYBAAAAAAAAAAAYwCIBAAAHAAAAAAAAAA==",
+              "ViewState": "AgIAAAwBAAAAAAAAAAAowBwBAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-29T00:42:54.36Z",
               "IsPinned": true,
@@ -173,8 +173,7 @@
               "RelativeToolTip": "ODS\\Forms\\FormRegistrar.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-29T00:36:22.761Z",
-              "IsPinned": true,
-              "EditorCaption": " [Dise\u00F1o]"
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -187,8 +186,7 @@
               "ViewState": "AgIAAAIAAAAAAAAAAAAowHcAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-29T00:36:26.857Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -200,8 +198,7 @@
               "RelativeToolTip": "ODS\\Forms\\frmUsuarios.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-30T06:15:16.452Z",
-              "IsPinned": true,
-              "EditorCaption": " [Dise\u00F1o]"
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -214,8 +211,7 @@
               "ViewState": "AgIAAAwAAAAAAAAAAAASwBcAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-30T17:52:13.789Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -228,8 +224,7 @@
               "ViewState": "AgIAACoAAAAAAAAAAAAowCsAAABQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-06T02:10:15.543Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -242,8 +237,7 @@
               "ViewState": "AgIAAFwAAAAAAAAAAAAwwGcAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-06T02:01:50.76Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -256,8 +250,7 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACUAAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-31T17:48:34.898Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -270,8 +263,7 @@
               "ViewState": "AgIAADkAAAAAAAAAAADgv0QAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-05T02:23:31.154Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Bookmark",
@@ -303,8 +295,7 @@
               "RelativeToolTip": "ODS\\Modelo\\UsuarioLogueado.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-05T02:20:38.677Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-05T02:20:38.677Z"
             },
             {
               "$type": "Document",
@@ -328,8 +319,7 @@
               "RelativeToolTip": "ODS\\FormPanel.cs",
               "ViewState": "AgIAAAgAAAAAAAAAAAAqwBUAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-29T00:21:09.731Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-29T00:21:09.731Z"
             },
             {
               "$type": "Document",
@@ -340,8 +330,7 @@
               "ToolTip": "C:\\Users\\vicom\\Documents\\GitHub\\ProyectosCsharp\\ODS\\ODS\\Forms\\frmBitacora.cs [Dise\u00F1o]",
               "RelativeToolTip": "ODS\\Forms\\frmBitacora.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-06T01:39:35.252Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2025-02-06T01:39:35.252Z"
             },
             {
               "$type": "Document",
@@ -353,8 +342,7 @@
               "RelativeToolTip": "ODS\\Datos\\ConexionDB.cs",
               "ViewState": "AgIAAAQBAAAAAAAAAAAqwCEBAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-30T06:11:29.534Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-30T06:11:29.534Z"
             },
             {
               "$type": "Document",
@@ -411,8 +399,7 @@
               "ToolTip": "C:\\Users\\vicom\\Documents\\GitHub\\ProyectosCsharp\\ODS\\ODS\\FormPanel.cs [Dise\u00F1o]",
               "RelativeToolTip": "ODS\\FormPanel.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-29T00:21:08.115Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2025-01-29T00:21:08.115Z"
             },
             {
               "$type": "Document",
@@ -424,8 +411,7 @@
               "RelativeToolTip": "ODS\\Forms\\FormRegistrar.Designer.cs",
               "ViewState": "AgIAAAIBAAAAAAAAAIAwwAoBAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-05T20:33:02.917Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-05T20:33:02.917Z"
             },
             {
               "$type": "Document",
@@ -461,8 +447,7 @@
               "RelativeToolTip": "ODS\\FormPanel.Designer.cs",
               "ViewState": "AgIAABABAAAAAAAAAIAwwCIBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-06T03:08:40.059Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-06T03:08:40.059Z"
             },
             {
               "$type": "Document",

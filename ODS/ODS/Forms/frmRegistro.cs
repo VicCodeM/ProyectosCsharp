@@ -283,7 +283,6 @@ namespace ODS.Forms
                 {
                     fechaCerrada = fechaCerrada.Value.Date.Add(DateTime.Now.TimeOfDay);
                 }
-
                 consultasDB.ActualizarOrden(idOrden, fechaAtendida, fechaCerrada, idUsuario, idFallaHardware, idFallaSoftware, descripcion, observaciones, estado);
 
                 BitacoraService bitacoraService = new BitacoraService();
