@@ -15,6 +15,7 @@ namespace ODS.Forms
     {
         private ConexionDB conexionDB = new ConexionDB();
 
+        #region Inicio de la Forma compoenentes
         public frmUsuarios()
         {
             InitializeComponent();
@@ -40,7 +41,9 @@ namespace ODS.Forms
             ((GridView)gridUsuarios.MainView).BestFitColumns();
             ((GridView)gridUsuarios.MainView).OptionsView.ShowDetailButtons = false;
         }
+        #endregion
 
+        #region Eventos de la forma
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             // Validar que se haya seleccionado un empleado
@@ -168,7 +171,7 @@ namespace ODS.Forms
 
                 if (idUsuario != null && int.TryParse(idUsuario.ToString(), out int id) && id > 0)
                 {
-                    DialogResult result = XtraMessageBox.Show("¿Está seguro de eliminar este usuario?","Confirmación",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+                    DialogResult result = XtraMessageBox.Show("¿Está seguro de eliminar este usuario?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                     if (result == DialogResult.Yes)
                     {
@@ -176,26 +179,121 @@ namespace ODS.Forms
                                        $"DELETE FROM Login WHERE Id_Usuario = {id}";
 
                         conexionDB.EjecutarComando(query);
-                        XtraMessageBox.Show("Usuario eliminado correctamente.","Éxito",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                        XtraMessageBox.Show("Usuario eliminado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                         CargarUsuarios();
                     }
                 }
                 else
                 {
-                    XtraMessageBox.Show("No se pudo eliminar el usuario. El ID del usuario es inválido o no está seleccionado.","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                    XtraMessageBox.Show("No se pudo eliminar el usuario. El ID del usuario es inválido o no está seleccionado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
             {
-                XtraMessageBox.Show("Seleccione un usuario antes de intentar eliminarlo.","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                XtraMessageBox.Show("Seleccione un usuario antes de intentar eliminarlo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
+        private void LookUpEmpleado_EditValueChanged(object sender, EventArgs e)
+        {
+            if (lookUpEmpleado.EditValue == null)
+            {
+                XtraMessageBox.Show("No hay empleado seleccionado.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!int.TryParse(lookUpEmpleado.EditValue.ToString(), out int idEmpleado))
+            {
+                XtraMessageBox.Show("Error al obtener el ID del empleado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string query = $"SELECT e.*, l.Usuario, l.Password, l.Tipo_Usuario " +
+                           $"FROM Empleados e " +
+                           $"LEFT JOIN Login l ON e.Id_Empleado = l.Id_Empleado " +
+                           $"WHERE e.Id_Empleado = {idEmpleado}";
+
+            DataTable dt = conexionDB.EjecutarConsulta(query);
+
+            if (dt.Rows.Count > 0)
+            {
+                DataRow row = dt.Rows[0];
+
+                // Rellenar datos del empleado
+                // txtNombreEmpleado.Text = row["Nombre_Empleado"].ToString();
+                txtCorreoElectronico.Text = row["Correo_Electronico"].ToString();
+                lookUpDepartamento.EditValue = row["Id_Departamento"];
+
+                // Rellenar datos del usuario si existen
+                txtUsuario.Text = row["Usuario"] != DBNull.Value ? row["Usuario"].ToString() : "";
+                txtPassword.Text = row["Password"] != DBNull.Value ? row["Password"].ToString() : "";
+
+                // Asegurar que `Tipo_Usuario` se seleccione correctamente
+                string tipoUsuario = row["Tipo_Usuario"] != DBNull.Value ? row["Tipo_Usuario"].ToString() : "Nivel2";
+
+                if (comboTipoUsuario.Properties.Items.Contains(tipoUsuario))
+                {
+                    comboTipoUsuario.SelectedItem = tipoUsuario;
+                }
+                else
+                {
+                    comboTipoUsuario.SelectedIndex = 0; // Si no se encuentra, seleccionar "Admin"
+                }
+
+                // Seleccionar la fila correspondiente en el grid
+                int idUsuarioSeleccionado = Convert.ToInt32(lookUpEmpleado.EditValue);
+                int rowHandle = gridView1.LocateByValue("Id_Usuario", idUsuarioSeleccionado);
+                if (rowHandle != DevExpress.XtraGrid.GridControl.InvalidRowHandle)
+                {
+                    gridView1.FocusedRowHandle = rowHandle;
+                }
+            }
+            else
+            {
+                XtraMessageBox.Show("No se encontraron datos del empleado.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void gridUsuarios_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        {
+            if (e.FocusedRowHandle >= 0)
+            {
+                GridView gridView = sender as GridView;
+                DataRow row = gridView.GetDataRow(e.FocusedRowHandle);
+                if (row != null)
+                {
+                    // Rellenar datos del empleado
+                    //  txtNombreEmpleado.Text = row["Nombre_Completo"].ToString();
+                    txtCorreoElectronico.Text = row["Correo_Electronico"].ToString();
+
+                    // Asignar el ID del empleado al LookUpEdit
+                    int idEmpleado = Convert.ToInt32(row["Id_Empleado"]);
+                    lookUpEmpleado.EditValue = idEmpleado;
+
+                    // Rellenar datos del usuario
+                    txtUsuario.Text = row["Usuario"].ToString();
+                    txtPassword.Text = row["Password"].ToString();
+                    comboTipoUsuario.SelectedItem = row["Tipo_Usuario"].ToString();
+
+                    // Asignar el ID del departamento
+                    lookUpDepartamento.EditValue = Convert.ToInt32(row["Id_Departamento"]);
+
+                    // Mostrar nombre del departamento en el grid
+                    gridView.Columns["Nombre_Departamento"].Visible = true;
+                    gridView.Columns["Id_Departamento"].Visible = false;
+                    gridView.Columns["Id_Empleado"].Visible = false;
+                }
+            }
+        }
+        #endregion
+
+        #region Métodos de la forma
         private void CargarTiposDeUsuario()
         {
             // Asegurarte de que el ComboBox tiene los valores disponibles
             comboTipoUsuario.Properties.Items.Clear();
+            //cambiar esta parte por los roles correspodientes a la bse de datos si no da error
             comboTipoUsuario.Properties.Items.AddRange(new string[] { "Admin", "Nivel2", "Nivel3", "Nivel4", "Nivel5", "Nivel6" });
             comboTipoUsuario.SelectedIndex = 2; // 🔥 Seleccionar "Admin" por defecto
         }
@@ -241,102 +339,13 @@ namespace ODS.Forms
             lookUpDepartamento.Properties.DisplayMember = "Nombre_Departamento";
             lookUpDepartamento.Properties.ValueMember = "Id_Departamento";
             lookUpDepartamento.Refresh(); // Actualiza el LookUpEdit
-        }
+        } 
+        #endregion
 
 
 
 
-        private void LookUpEmpleado_EditValueChanged(object sender, EventArgs e)
-        {
-            if (lookUpEmpleado.EditValue == null)
-            {
-                XtraMessageBox.Show("No hay empleado seleccionado.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
 
-            if (!int.TryParse(lookUpEmpleado.EditValue.ToString(), out int idEmpleado))
-            {
-                XtraMessageBox.Show("Error al obtener el ID del empleado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            string query = $"SELECT e.*, l.Usuario, l.Password, l.Tipo_Usuario " +
-                           $"FROM Empleados e " +
-                           $"LEFT JOIN Login l ON e.Id_Empleado = l.Id_Empleado " +
-                           $"WHERE e.Id_Empleado = {idEmpleado}";
-
-            DataTable dt = conexionDB.EjecutarConsulta(query);
-
-            if (dt.Rows.Count > 0)
-            {
-                DataRow row = dt.Rows[0];
-
-                // Rellenar datos del empleado
-               // txtNombreEmpleado.Text = row["Nombre_Empleado"].ToString();
-                txtCorreoElectronico.Text = row["Correo_Electronico"].ToString();
-                lookUpDepartamento.EditValue = row["Id_Departamento"];
-
-                // Rellenar datos del usuario si existen
-                txtUsuario.Text = row["Usuario"] != DBNull.Value ? row["Usuario"].ToString() : "";
-                txtPassword.Text = row["Password"] != DBNull.Value ? row["Password"].ToString() : "";
-
-                // Asegurar que `Tipo_Usuario` se seleccione correctamente
-                string tipoUsuario = row["Tipo_Usuario"] != DBNull.Value ? row["Tipo_Usuario"].ToString() : "Nivel2";
-
-                if (comboTipoUsuario.Properties.Items.Contains(tipoUsuario))
-                {
-                    comboTipoUsuario.SelectedItem = tipoUsuario;
-                }
-                else
-                {
-                    comboTipoUsuario.SelectedIndex = 0; // Si no se encuentra, seleccionar "Admin"
-                }
-
-                // Seleccionar la fila correspondiente en el grid
-                int idUsuarioSeleccionado = Convert.ToInt32(lookUpEmpleado.EditValue);
-                int rowHandle = gridView1.LocateByValue("Id_Usuario", idUsuarioSeleccionado);
-                if (rowHandle != DevExpress.XtraGrid.GridControl.InvalidRowHandle)
-                {
-                    gridView1.FocusedRowHandle = rowHandle;
-                }
-            }
-            else
-            {
-                XtraMessageBox.Show("No se encontraron datos del empleado.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-
-        private void gridUsuarios_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
-        {
-            if (e.FocusedRowHandle >= 0)
-            {
-                GridView gridView = sender as GridView;
-                DataRow row = gridView.GetDataRow(e.FocusedRowHandle);
-                if (row != null)
-                {
-                    // Rellenar datos del empleado
-                  //  txtNombreEmpleado.Text = row["Nombre_Completo"].ToString();
-                    txtCorreoElectronico.Text = row["Correo_Electronico"].ToString();
-
-                    // Asignar el ID del empleado al LookUpEdit
-                    int idEmpleado = Convert.ToInt32(row["Id_Empleado"]);
-                    lookUpEmpleado.EditValue = idEmpleado;
-
-                    // Rellenar datos del usuario
-                    txtUsuario.Text = row["Usuario"].ToString();
-                    txtPassword.Text = row["Password"].ToString();
-                    comboTipoUsuario.SelectedItem = row["Tipo_Usuario"].ToString();
-
-                    // Asignar el ID del departamento
-                    lookUpDepartamento.EditValue = Convert.ToInt32(row["Id_Departamento"]);
-
-                    // Mostrar nombre del departamento en el grid
-                    gridView.Columns["Nombre_Departamento"].Visible = true;
-                    gridView.Columns["Id_Departamento"].Visible = false;
-                    gridView.Columns["Id_Empleado"].Visible = false;
-                }
-            }
-        }
     }
 }
 

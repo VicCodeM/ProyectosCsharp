@@ -60,7 +60,7 @@ namespace ODS.Forms
                 MessageBox.Show($"Error al cargar datos en el GridControl: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+        //Exportar grid a excel
         private void ExportarExcel()
         {
             try
@@ -154,23 +154,11 @@ namespace ODS.Forms
             }
         }
 
-
-
-
-
-
-
-
         private void btnExportar_Click(object sender, EventArgs e)
         {
             //Exportar los datos del GridControl a un archivo de Excel
             ExportarExcel();
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-
-        }
     }
 }

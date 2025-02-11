@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace ODS.Forms
@@ -17,9 +18,6 @@ public partial class FormRegistrar : DevExpress.XtraEditors.XtraForm
         private readonly ConexionDB conexionDB = new ConexionDB();
         private readonly ConsultasDB consultasDB = new ConsultasDB();
         #endregion
-
-
-
 
         #region Constructor y Eventos
 
@@ -33,10 +31,16 @@ public partial class FormRegistrar : DevExpress.XtraEditors.XtraForm
             this.AcceptButton = btnRegistrar;
             CargarOrdenesPorUsuario(UsuarioLogueado.IdUsuario); // Cargar órdenes por usuario
             //No se modifica desde el datagrid
-            ((GridView)gridCRegistrar.MainView).OptionsBehavior.Editable = false;
-            ((GridView)gridCRegistrar.MainView).BestFitColumns();
-            ((GridView)gridCRegistrar.MainView).OptionsView.ShowDetailButtons = false;
-           
+            ((GridView)gridCRegistrar.MainView).OptionsBehavior.Editable = false;//modo editable desactivado
+            ((GridView)gridCRegistrar.MainView).BestFitColumns();//ajustar columnas
+            ((GridView)gridCRegistrar.MainView).ClearSelection();//eviatar seleccion automatica
+            ((GridView)gridCRegistrar.MainView).OptionsView.ShowDetailButtons = false;//desactivar funciones del grid
+            // Establecer un texto de marcador de posición
+            memoEditDescripcion.Properties.NullText = "Escriba aquí su descripción...";
+            // Simular el cambio de valor del RadioGroup al iniciar la forma
+            radioGroupFallos_EditValueChanged(radioGroupFallos, EventArgs.Empty);
+            ActualizarColorEstado();
+
         }
 
         private void FormRegistrar_Load(object sender, EventArgs e)
@@ -62,9 +66,14 @@ public partial class FormRegistrar : DevExpress.XtraEditors.XtraForm
             {
                 XtraMessageBox.Show($"Error al cargar el formulario: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
             
+        }
 
+        //Borramos descripción
+        private void memoEditDescripcion_Click(object sender, EventArgs e)
+        {
+            memoEditDescripcion.Text = "";
+            labelEstado.Text = "Estado:";
         }
 
         #endregion
@@ -118,7 +127,32 @@ public partial class FormRegistrar : DevExpress.XtraEditors.XtraForm
         #endregion
 
         #region Métodos de la Forma
+        //Metodo para cambair color del label 
+        private void ActualizarColorEstado()
+        {
+            if (labelEstado.Text == "Estado: Pendiente")
+            {
+                labelEstado.ForeColor = Color.FromArgb(156, 113, 4); // Amarillo para Pendiente
+            }
+            else if (labelEstado.Text == "Estado: Cancelado")
+            {
+                labelEstado.ForeColor = Color.Red; // Rojo para Cancelado
+            }
+            else if (labelEstado.Text == "Estado: Abierto")
+            {
+                labelEstado.ForeColor = Color.Green; // Verde para Abierto
+            }
+            else if (labelEstado.Text == "Estado: Completado")
+            {
+                labelEstado.ForeColor = Color.Blue; // Azul para Completado
+            }
+            else
+            {
+                labelEstado.ForeColor = Color.Black; // Negro como valor predeterminado
+            }
+        }
 
+        //Método para mostrar usuario logueado een el label
         public void ObtenerUsuario()
         {
             try
@@ -134,7 +168,7 @@ public partial class FormRegistrar : DevExpress.XtraEditors.XtraForm
                 XtraMessageBox.Show($"Error al obtener el nombre de usuario: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+        //Método para seleccionar tipo de falla
         private void ActualizarEstadoRadioButton(bool isHardwareChecked)
         {
             try
@@ -157,7 +191,7 @@ public partial class FormRegistrar : DevExpress.XtraEditors.XtraForm
                 XtraMessageBox.Show($"Error al actualizar el estado del RadioButton: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+        //Método para cargar ordenes de usuario 
         private void CargarOrdenesPorUsuario(int idUsuario)
         {
             try
@@ -178,7 +212,7 @@ public partial class FormRegistrar : DevExpress.XtraEditors.XtraForm
                 XtraMessageBox.Show($"Error al cargar las órdenes del usuario: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+        //agregar hora la las ordenes
         private void AgregarHoraAOrdenes(DataTable tablaOrdenes)
         {
             try
@@ -203,6 +237,7 @@ public partial class FormRegistrar : DevExpress.XtraEditors.XtraForm
             }
         }
 
+        //Carag del grid con los datos del usuario
         private void AsignarDatosAlGrid(DataTable tablaOrdenes)
         {
             try
@@ -219,7 +254,7 @@ public partial class FormRegistrar : DevExpress.XtraEditors.XtraForm
                 XtraMessageBox.Show($"Error al asignar los datos al Grid: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+        //configuracion de columnas
         private void ConfigurarFormatoColumnas(GridView gridViewOrdenes)
         {
             try
@@ -265,7 +300,7 @@ public partial class FormRegistrar : DevExpress.XtraEditors.XtraForm
                 XtraMessageBox.Show($"Error al configurar el formato de las columnas: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+        //cargar lista de tipos de falla de Hadware
         private void CargarTiposFallaHardware()
         {
             try
@@ -278,7 +313,7 @@ public partial class FormRegistrar : DevExpress.XtraEditors.XtraForm
                 XtraMessageBox.Show($"Error al cargar los tipos de falla de hardware: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+        //cargar lista de tipos de falla de Software
         private void CargarTiposFallaSoftware()
         {
             try
@@ -292,6 +327,7 @@ public partial class FormRegistrar : DevExpress.XtraEditors.XtraForm
             }
         }
 
+        //Método para obtenmer la falla segun su tipo
         private void CargarTiposDeFallaEnLookUpEdit(List<string> listaFalla, string columna, string textoNull)
         {
             try
@@ -307,7 +343,7 @@ public partial class FormRegistrar : DevExpress.XtraEditors.XtraForm
                 XtraMessageBox.Show($"Error al cargar tipos de falla en LookUpEdit: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+        //Convertir datos para el grid
         private DataTable ConvertirListaADataTable(List<string> lista, string nombreColumna)
         {
             try
@@ -329,7 +365,7 @@ public partial class FormRegistrar : DevExpress.XtraEditors.XtraForm
                 return null;
             }
         }
-
+        //evento para mostrar texto ele lugar de null
         private void radioGroupFallos_EditValueChanged(object sender, EventArgs e)
         {
             try
@@ -354,7 +390,7 @@ public partial class FormRegistrar : DevExpress.XtraEditors.XtraForm
                 XtraMessageBox.Show($"Error al cambiar el valor del RadioButton: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+        //btn registrar
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
             try
@@ -367,7 +403,7 @@ public partial class FormRegistrar : DevExpress.XtraEditors.XtraForm
 
                 int idUsuario = UsuarioLogueado.IdUsuario;
                 string descripcionProblema = memoEditDescripcion.Text.Trim();
-                string estado = "Abierto";
+                string estado = "Abierto"; //Estado por defecto al registrar orden
 
                 // Obtener el tipo de falla seleccionado
                 string tipoFalla = radioGroupFallos.EditValue?.ToString();
@@ -436,6 +472,7 @@ public partial class FormRegistrar : DevExpress.XtraEditors.XtraForm
                 if (row == null) return;
 
                 AsignarDatosDeFilaAFormulario(row);
+                ActualizarColorEstado();
             }
             catch (Exception ex)
             {
@@ -488,5 +525,7 @@ public partial class FormRegistrar : DevExpress.XtraEditors.XtraForm
         }
 
         #endregion
+
+
     }
 }

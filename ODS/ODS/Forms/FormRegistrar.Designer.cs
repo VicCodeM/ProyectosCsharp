@@ -37,6 +37,8 @@
             this.gridCRegistrar = new DevExpress.XtraGrid.GridControl();
             this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.labelUsuario = new System.Windows.Forms.Label();
@@ -47,8 +49,6 @@
             this.memoEditDescripcion = new DevExpress.XtraEditors.MemoEdit();
             this.lookUpEdit1 = new DevExpress.XtraEditors.LookUpEdit();
             this.btnRegistrar = new DevExpress.XtraEditors.SimpleButton();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridCRegistrar)).BeginInit();
@@ -76,7 +76,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(138, 19);
             this.label2.TabIndex = 10;
-            this.label2.Text = "Registrar Ordenes ";
+            this.label2.Text = "Registrar Órdenes ";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // simpleButton1
@@ -125,6 +125,7 @@
             this.groupControl2.ContentImage = global::ODS.Properties.Resources.textura3;
             this.groupControl2.Controls.Add(this.label11);
             this.groupControl2.Controls.Add(this.label10);
+            this.groupControl2.Controls.Add(this.labelEstado);
             this.groupControl2.Controls.Add(this.label3);
             this.groupControl2.Controls.Add(this.groupBox1);
             this.groupControl2.Controls.Add(this.radioGroupFallos);
@@ -141,6 +142,26 @@
             this.groupControl2.Size = new System.Drawing.Size(836, 533);
             this.groupControl2.TabIndex = 12;
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(16, 203);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(90, 16);
+            this.label11.TabIndex = 52;
+            this.label11.Text = "Observaciones";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(16, 118);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(72, 16);
+            this.label10.TabIndex = 51;
+            this.label10.Text = "Descripción";
+            // 
             // label3
             // 
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -151,19 +172,18 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(348, 32);
             this.label3.TabIndex = 48;
-            this.label3.Text = "Agregar Orden de Servicio ";
+            this.label3.Text = "Agregar Órden de Servicio ";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // groupBox1
             // 
-            this.groupBox1.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.groupBox1.Controls.Add(this.labelUsuario);
             this.groupBox1.Controls.Add(this.labelFecha);
-            this.groupBox1.Controls.Add(this.labelEstado);
             this.groupBox1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(19, 19);
+            this.groupBox1.Location = new System.Drawing.Point(19, 29);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(228, 84);
+            this.groupBox1.Size = new System.Drawing.Size(228, 64);
             this.groupBox1.TabIndex = 47;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Información";
@@ -192,10 +212,11 @@
             // 
             this.labelEstado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelEstado.AutoSize = true;
-            this.labelEstado.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelEstado.Location = new System.Drawing.Point(6, 53);
+            this.labelEstado.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.labelEstado.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelEstado.Location = new System.Drawing.Point(617, 118);
             this.labelEstado.Name = "labelEstado";
-            this.labelEstado.Size = new System.Drawing.Size(108, 14);
+            this.labelEstado.Size = new System.Drawing.Size(119, 14);
             this.labelEstado.TabIndex = 15;
             this.labelEstado.Text = "Estado: Pendiente";
             // 
@@ -231,6 +252,7 @@
             this.memoEditDescripcion.Properties.Appearance.Options.UseBackColor = true;
             this.memoEditDescripcion.Size = new System.Drawing.Size(580, 56);
             this.memoEditDescripcion.TabIndex = 39;
+            this.memoEditDescripcion.Click += new System.EventHandler(this.memoEditDescripcion_Click);
             // 
             // lookUpEdit1
             // 
@@ -259,26 +281,6 @@
             this.btnRegistrar.TabIndex = 14;
             this.btnRegistrar.Text = "Registrar";
             this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(16, 203);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(90, 16);
-            this.label11.TabIndex = 52;
-            this.label11.Text = "Observaciones";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(16, 118);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(72, 16);
-            this.label10.TabIndex = 51;
-            this.label10.Text = "Descripción";
             // 
             // FormRegistrar
             // 

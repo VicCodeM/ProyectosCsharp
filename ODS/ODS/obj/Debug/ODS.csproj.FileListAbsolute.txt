@@ -88,14 +88,11 @@ C:\Users\vicom\Documents\GitHub\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.Forms.frmB
 C:\Users\vicom\Documents\GitHub\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.Forms.frmInicio.resources
 C:\Users\vicom\Documents\GitHub\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.Forms.frmLogin.resources
 C:\Users\vicom\Documents\GitHub\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.Forms.frmRegistro.resources
-C:\Users\vicom\Documents\GitHub\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.Forms.frmReportSelect.resources
 C:\Users\vicom\Documents\GitHub\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.Forms.frmUsuarios.resources
 C:\Users\vicom\Documents\GitHub\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.Properties.Resources.resources
 C:\Users\vicom\Documents\GitHub\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.csproj.GenerateResource.cache
 C:\Users\vicom\Documents\GitHub\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.exe.licenses
 C:\Users\vicom\Documents\GitHub\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.csproj.CoreCompileInputs.cache
-C:\Users\vicom\Documents\GitHub\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.exe
-C:\Users\vicom\Documents\GitHub\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.pdb
 C:\Users\vicom\Documents\GitHub\ProyectosCsharp\ODS\ODS\bin\Debug\ODS.exe.config
 C:\Users\vicom\Documents\GitHub\ProyectosCsharp\ODS\ODS\bin\Debug\ODS.exe
 C:\Users\vicom\Documents\GitHub\ProyectosCsharp\ODS\ODS\bin\Debug\ODS.pdb
@@ -164,3 +161,5 @@ C:\Users\vicom\Documents\GitHub\ProyectosCsharp\ODS\ODS\bin\Debug\DevExpress.Ric
 C:\Users\vicom\Documents\GitHub\ProyectosCsharp\ODS\ODS\bin\Debug\DevExpress.XtraTreeList.v22.2.xml
 C:\Users\vicom\Documents\GitHub\ProyectosCsharp\ODS\ODS\bin\Debug\DevExpress.Office.v22.2.Core.xml
 C:\Users\vicom\Documents\GitHub\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.csproj.Up2Date
+C:\Users\vicom\Documents\GitHub\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.exe
+C:\Users\vicom\Documents\GitHub\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.pdb

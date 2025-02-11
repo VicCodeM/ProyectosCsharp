@@ -10,7 +10,8 @@ namespace ODS.Datos
     public class ConexionDB
     {
 
-        private string connectionString = "Data Source=VICTOR-PC\\SQLVICTOR;Initial Catalog=test3;User ID=sa;Password=6433"; // Tu cadena de conexión
+
+        private string connectionString = "Data Source=VICTOR-HP\\SQLVICTOR;Initial Catalog=test3;User ID=sa;Password=6433"; // Tu cadena de conexión
 
         private SqlConnection conexion; // Declarar la variable conexión a nivel de clase
 
@@ -96,16 +97,7 @@ namespace ODS.Datos
             }
         }
 
-        public void EjecutarComandoConParametros(string query, SqlParameter[] parametros)
-        {
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                SqlCommand cmd = new SqlCommand(query, connection);
-                cmd.Parameters.AddRange(parametros);
-                connection.Open();
-                cmd.ExecuteNonQuery();
-            }
-        }
+
         //non query paramtros
         public void ExecuteNonQuery(string query, SqlParameter[] parameters)
         {
@@ -138,7 +130,7 @@ namespace ODS.Datos
 
 
 
-
+        //jejectura consulta login y actualizar
         public void EjecutarComando(string comando)
         {
             try
@@ -218,7 +210,7 @@ namespace ODS.Datos
                 conexion?.Dispose();
             }
         }
-
+        //ejecutar parametros en consulta oredenes
         public DataTable EjecutarConsultaConParametros(string consulta, SqlParameter[] parametros)
         {
             try
@@ -242,30 +234,7 @@ namespace ODS.Datos
                 CerrarConexion();
             }
         }
-
-
-        public string ValidarUsuario(string usuario, string password)
-        {
-            try
-            {
-                string query = "SELECT Tipo_Usuario FROM Login WHERE Usuario = @Usuario AND Password = @Password";
-                SqlParameter[] parametros =
-                {
-            new SqlParameter("@Usuario", usuario),
-            new SqlParameter("@Password", password) // Se recomienda encriptar la contraseña
-        };
-
-                DataTable resultado = EjecutarConsultaConParametros(query, parametros);
-
-                return resultado.Rows.Count > 0 ? resultado.Rows[0]["Tipo_Usuario"].ToString() : string.Empty;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al validar usuario: " + ex.Message);
-            }
-        }
-
-
+        //jecutar paramatros escalados
         public object ExecuteScalar(string query, SqlParameter[] parameters = null)
         {
             try

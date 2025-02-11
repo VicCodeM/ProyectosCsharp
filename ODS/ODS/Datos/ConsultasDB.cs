@@ -344,36 +344,6 @@ namespace ODS.Datos
             return tablaOrdenes;
         }
 
-
-        //incertar ordenees usuarios
-        // Método para cargar fallas de hardware
-        //public DataTable ObtenerTiposFallaHardware()
-        //{
-        //    string query = "SELECT Id_TipoFallaHardware, Descripcion FROM TiposFallaHardware";
-
-        //    using (SqlConnection conn = conexionBD.ConectarSQL())
-        //    {
-        //        SqlDataAdapter da = new SqlDataAdapter(query, conn);
-        //        DataTable dt = new DataTable();
-        //        da.Fill(dt);
-        //        return dt;
-        //    }
-        //}
-
-        //// Método para cargar fallas de software
-        //public DataTable ObtenerTiposFallaSoftware()
-        //{
-        //    string query = "SELECT Id_TipoFallaSoftware, Descripcion FROM TiposFallaSoftware";
-
-        //    using (SqlConnection conn = conexionBD.ConectarSQL())
-        //    {
-        //        SqlDataAdapter da = new SqlDataAdapter(query, conn);
-        //        DataTable dt = new DataTable();
-        //        da.Fill(dt);
-        //        return dt;
-        //    }
-        //}
-
         // Método para validar si un usuario existe
         public bool UsuarioExiste(int idUsuario)
         {

@@ -57,7 +57,6 @@
             this.groupControl1.Name = "groupControl1";
             this.groupControl1.Size = new System.Drawing.Size(682, 457);
             this.groupControl1.TabIndex = 4;
-            this.groupControl1.Paint += new System.Windows.Forms.PaintEventHandler(this.groupControl1_Paint);
             // 
             // labelFecha
             // 
@@ -118,7 +117,7 @@
             this.labelUsuario.BackColor = System.Drawing.Color.Transparent;
             this.labelUsuario.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelUsuario.ForeColor = System.Drawing.Color.Red;
-            this.labelUsuario.Location = new System.Drawing.Point(263, 86);
+            this.labelUsuario.Location = new System.Drawing.Point(219, 83);
             this.labelUsuario.Name = "labelUsuario";
             this.labelUsuario.Size = new System.Drawing.Size(151, 19);
             this.labelUsuario.TabIndex = 2;

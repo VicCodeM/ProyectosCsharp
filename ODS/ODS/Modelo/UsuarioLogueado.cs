@@ -8,6 +8,7 @@ namespace ODS.Modelo
 {
     public static class UsuarioLogueado
     {
+        //Calse estatica paara control de datos del usuario logueado en todo el sistema
         public static int IdUsuario {  get; set; }
         public static string NombreCompleto { get; set; }
         public static string Correo { get; set; }

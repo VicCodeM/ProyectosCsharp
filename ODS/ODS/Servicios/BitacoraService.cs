@@ -20,15 +20,20 @@ namespace ODS.Servicios
         ConexionDB conexionBD;
         UsuarioConsultas usuarioConsultas = new UsuarioConsultas();
 
+
+
         // Constructor para inicializar la instancia de ConexionDB
         public BitacoraService()
         {
             conexionBD = new ConexionDB();
         }
 
-        public void RegistrarAccionEnBitacora(int idOrden, int idUsuarioAdmin, string accion, string descripcion)
+
+        //Registrar acciones en bitacora modo consulta
+        public void RegistrarAccionEnBitacora(int idOrden, int idUsuarioAdmin, string accion, string descripcion, int idEmpelado)
         {
             idUsuarioAdmin = UsuarioLogueado.IdUsuario;
+            
             try
             {
                 // Depuración: Verificar valores de entrada
@@ -53,6 +58,7 @@ namespace ODS.Servicios
 
                 object result = conexionBD.ExecuteScalar(queryEmpleado, paramEmpleado);
                 int idEmpleado = result != null ? Convert.ToInt32(result) : 0;
+                
 
                 // Depuración: Verificar el idEmpleado obtenido
               //  MessageBox.Show($"idEmpleado obtenido: {idEmpleado}", "Debug", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -87,8 +93,7 @@ namespace ODS.Servicios
             }
         }
 
-
-
+        //obtener datos de la bse datos de la tabla bitacora
         public DataTable ObtenerDatosBitacora()
         {
             try
@@ -115,9 +120,6 @@ namespace ODS.Servicios
                 return null;
             }
         }
-
-
-
     }
 }
 

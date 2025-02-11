@@ -30,12 +30,9 @@ namespace ODS.Forms
         string departamento = UsuarioLogueado.Departamento;
 
 
-
         public frmInicio()
         {
             InitializeComponent();
-
-
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -45,14 +42,11 @@ namespace ODS.Forms
             labelFecha.Text = "Fecha: " + fechaService.ObtenerFecha();
         }
 
-        private void groupControl1_Paint(object sender, PaintEventArgs e)
-        {
 
-        }
-
+        #region Acciones inciales con  la forma
         private void frmInicio_Load(object sender, EventArgs e)
         {
-            #region Acciones inciales con  la forma
+           
             // Crear una instancia del Timer
             timer = new Timer();
 
@@ -65,7 +59,7 @@ namespace ODS.Forms
             // Iniciar el Timer
             timer.Start();
 
-            #endregion
+           
             // Obtener el nombre del usuario con el ID 1 (puedes cambiar este valor según sea necesario)
             int idUsuario1 = Convert.ToInt32(idUsuario); // ID de usuario que deseas consultar
 
@@ -95,5 +89,6 @@ namespace ODS.Forms
                 labelUsuario.Text = "No se encontró el nombre del usuario.";
             }
         }
+        #endregion
     }
 }

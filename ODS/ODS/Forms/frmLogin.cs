@@ -19,15 +19,6 @@ namespace ODS.Forms
 
             InitializeComponent();
 
-
-            if (VerificarConexion())
-            {
-                //XtraMessageBox.Show("Conexión a la base de datos establecida correctamente.", "Conexión exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                XtraMessageBox.Show("No se pudo establecer la conexión a la base de datos.", "Error de conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
             // Asignar el botón btnLogin como el botón de aceptación (Enter)
             this.AcceptButton = btnLogin;
             // Evento con DevExpress para mover el formulario desde la parte de arriba 
@@ -47,17 +38,17 @@ namespace ODS.Forms
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
-
+        //cerrar app
         private void panelCerrar_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
+        //minimizar forma
         private void panelMinimizar_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
         }
-
+        //metod limpiar campos con cerrar sesión
         public void LimpiarCampos()
         {
             txtUsuario.Text = "";
@@ -65,7 +56,7 @@ namespace ODS.Forms
             txtUsuario.Focus(); // Enfocar el campo usuario para que el usuario pueda escribir de inmediato
         }
 
-
+        //btn login
         private void btnLogin_Click(object sender, EventArgs e)
         {
             string usuario = txtUsuario.Text.Trim();
@@ -113,10 +104,7 @@ namespace ODS.Forms
                 XtraMessageBox.Show("Usuario o contraseña incorrectos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-
-
-
+        //boton para limpiar campos
         private void btnClear_Click(object sender, EventArgs e)
         {
             txtUsuario.Text = "";
@@ -162,6 +150,10 @@ namespace ODS.Forms
             txtPassword.Text = "";
 
         }
-
+        //Borrar con un clic el campo de password
+        private void txtPassword_Click(object sender, EventArgs e)
+        {
+            txtPassword.Text = "";
+        }
     }
 }

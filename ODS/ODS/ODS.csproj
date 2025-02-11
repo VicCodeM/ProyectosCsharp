@@ -113,7 +113,6 @@
   <ItemGroup>
     <Compile Include="Datos\ConexionDB.cs" />
     <Compile Include="Datos\ConsultasDB.cs" />
-    <Compile Include="Datos\ProcedimientosAlmacenadosDB.cs" />
     <Compile Include="Forms\frmBitacora.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -137,12 +136,6 @@
     </Compile>
     <Compile Include="Forms\frmRegistro.Designer.cs">
       <DependentUpon>frmRegistro.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\frmReportSelect.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\frmReportSelect.Designer.cs">
-      <DependentUpon>frmReportSelect.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmUsuarios.cs">
       <SubType>UserControl</SubType>
@@ -168,8 +161,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Servicios\BitacoraService.cs" />
-    <Compile Include="Servicios\FallasServicios.cs" />
-    <Compile Include="Servicios\Inactividad.cs" />
     <EmbeddedResource Include="FormPanel.resx">
       <DependentUpon>FormPanel.cs</DependentUpon>
     </EmbeddedResource>
@@ -187,9 +178,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmRegistro.resx">
       <DependentUpon>frmRegistro.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmReportSelect.resx">
-      <DependentUpon>frmReportSelect.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmUsuarios.resx">
       <DependentUpon>frmUsuarios.cs</DependentUpon>
@@ -217,9 +205,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Recursos\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="Image\jmasLogoBG1.png" />
     <None Include="Image\jmasLogoBG.svg" />

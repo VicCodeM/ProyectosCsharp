@@ -18,15 +18,8 @@ namespace ODS.Modelo
         {
             conexionBD = new ConexionDB(); // Inicializar la instancia de ConexionDB
         }
-        public static string NombreCompleto { get; set; }
-        public static string Correo { get; set; }
-        public static string Departamento { get; set; }
-        public static string TipoUsuario { get; set; }
-        public static string NombreUsuario { get; set; }
 
-
-
-
+        //consulta con parametro usuarios
         public DataTable EjecutarConsultaConParametros(string consulta, SqlParameter[] parametros)
         {
             SqlConnection conexion = null; // Declarar la conexión localmente
@@ -55,7 +48,7 @@ namespace ODS.Modelo
                 }
             }
         }
-
+        //Validar usuario login
         public string ValidarUsuario(string usuario, string password)
         {
             try
@@ -80,7 +73,7 @@ namespace ODS.Modelo
                 throw new Exception("Error al validar usuario: " + ex.Message);
             }
         }
-
+        //Obtener datos del usuario
         public DataTable ObtenerDatosUsuario(string usuario)
         {
             try
