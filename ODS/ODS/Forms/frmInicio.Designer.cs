@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.labelUsuario = new System.Windows.Forms.Label();
             this.labelFecha = new System.Windows.Forms.Label();
             this.labelHora = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.labelUsuario = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -59,6 +59,45 @@
             this.groupControl1.TabIndex = 4;
             this.groupControl1.Paint += new System.Windows.Forms.PaintEventHandler(this.groupControl1_Paint);
             // 
+            // labelFecha
+            // 
+            this.labelFecha.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.labelFecha.AutoSize = true;
+            this.labelFecha.BackColor = System.Drawing.Color.Transparent;
+            this.labelFecha.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelFecha.ForeColor = System.Drawing.Color.Navy;
+            this.labelFecha.Location = new System.Drawing.Point(239, 353);
+            this.labelFecha.Name = "labelFecha";
+            this.labelFecha.Size = new System.Drawing.Size(215, 25);
+            this.labelFecha.TabIndex = 1;
+            this.labelFecha.Text = "Fecha: 10/02/2025";
+            // 
+            // labelHora
+            // 
+            this.labelHora.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.labelHora.AutoSize = true;
+            this.labelHora.BackColor = System.Drawing.Color.Transparent;
+            this.labelHora.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelHora.ForeColor = System.Drawing.Color.Red;
+            this.labelHora.Location = new System.Drawing.Point(291, 378);
+            this.labelHora.Name = "labelHora";
+            this.labelHora.Size = new System.Drawing.Size(123, 18);
+            this.labelHora.TabIndex = 0;
+            this.labelHora.Text = "Hora: 08:00:00";
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Navy;
+            this.label1.Location = new System.Drawing.Point(275, 39);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(145, 29);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Bienvenido";
+            // 
             // pictureBox1
             // 
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
@@ -81,48 +120,9 @@
             this.labelUsuario.ForeColor = System.Drawing.Color.Red;
             this.labelUsuario.Location = new System.Drawing.Point(263, 86);
             this.labelUsuario.Name = "labelUsuario";
-            this.labelUsuario.Size = new System.Drawing.Size(77, 19);
+            this.labelUsuario.Size = new System.Drawing.Size(151, 19);
             this.labelUsuario.TabIndex = 2;
-            this.labelUsuario.Text = "Usuario:";
-            // 
-            // labelFecha
-            // 
-            this.labelFecha.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.labelFecha.AutoSize = true;
-            this.labelFecha.BackColor = System.Drawing.Color.Transparent;
-            this.labelFecha.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelFecha.ForeColor = System.Drawing.Color.Navy;
-            this.labelFecha.Location = new System.Drawing.Point(239, 353);
-            this.labelFecha.Name = "labelFecha";
-            this.labelFecha.Size = new System.Drawing.Size(81, 25);
-            this.labelFecha.TabIndex = 1;
-            this.labelFecha.Text = "Fecha:";
-            // 
-            // labelHora
-            // 
-            this.labelHora.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.labelHora.AutoSize = true;
-            this.labelHora.BackColor = System.Drawing.Color.Transparent;
-            this.labelHora.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelHora.ForeColor = System.Drawing.Color.Red;
-            this.labelHora.Location = new System.Drawing.Point(268, 378);
-            this.labelHora.Name = "labelHora";
-            this.labelHora.Size = new System.Drawing.Size(49, 18);
-            this.labelHora.TabIndex = 0;
-            this.labelHora.Text = "Hora:";
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Navy;
-            this.label1.Location = new System.Drawing.Point(275, 39);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(145, 29);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Bienvenido";
+            this.labelUsuario.Text = "Victor Maldonado";
             // 
             // frmInicio
             // 

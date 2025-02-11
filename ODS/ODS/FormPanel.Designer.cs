@@ -38,24 +38,24 @@
             this.labelHora = new System.Windows.Forms.Label();
             this.fluentFormDefaultManager1 = new DevExpress.XtraBars.FluentDesignSystem.FluentFormDefaultManager(this.components);
             this.accordionControl1 = new DevExpress.XtraBars.Navigation.AccordionControl();
+            this.ControlINICIO = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlSeparator1 = new DevExpress.XtraBars.Navigation.AccordionControlSeparator();
             this.acordeonUsuario = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.usuarioElement = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.departamentoElement = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.elementCerrarSesion = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.ControlINICIO = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.ControlUsuarios = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.fluentDesignFormControl1 = new DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormControl();
-            this.elementBitacora = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionControlElement2 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.elemntOrdenesServicio = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.elemntActualizarServicio = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement1 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.ControlUsuarios = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.elementBitacora = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.fluentDesignFormControl1 = new DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormControl();
             this.accordionControlGestorOrdenes = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlSeparator7 = new DevExpress.XtraBars.Navigation.AccordionControlSeparator();
             this.adminregistrosElement = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlSeparator6 = new DevExpress.XtraBars.Navigation.AccordionControlSeparator();
             this.ControlRegistrar = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.accordionControlElement2 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.elemntOrdenesServicio = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.elemntActualizarServicio = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.fluentDesignFormContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -91,7 +91,9 @@
             this.groupControl1.Appearance.BorderColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Primary;
             this.groupControl1.Appearance.Options.UseBackColor = true;
             this.groupControl1.Appearance.Options.UseBorderColor = true;
+            this.groupControl1.AutoSize = true;
             this.groupControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.groupControl1.CaptionImageOptions.Image = global::ODS.Properties.Resources.textura3;
             this.groupControl1.Controls.Add(this.labelUsuario);
             this.groupControl1.Controls.Add(this.labelFecha);
             this.groupControl1.Controls.Add(this.labelHora);
@@ -162,6 +164,14 @@
             this.accordionControl1.TabIndex = 1;
             this.accordionControl1.ViewType = DevExpress.XtraBars.Navigation.AccordionControlViewType.HamburgerMenu;
             // 
+            // ControlINICIO
+            // 
+            this.ControlINICIO.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("ControlINICIO.ImageOptions.SvgImage")));
+            this.ControlINICIO.Name = "ControlINICIO";
+            this.ControlINICIO.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.ControlINICIO.Text = "INICIO";
+            this.ControlINICIO.Click += new System.EventHandler(this.ControlINICIO_Click);
+            // 
             // accordionControlSeparator1
             // 
             this.accordionControlSeparator1.Name = "accordionControlSeparator1";
@@ -202,45 +212,42 @@
             this.elementCerrarSesion.Text = "Cerrar Sesión";
             this.elementCerrarSesion.Click += new System.EventHandler(this.elementCerrarSesion_Click);
             // 
-            // ControlINICIO
+            // accordionControlElement2
             // 
-            this.ControlINICIO.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("ControlINICIO.ImageOptions.SvgImage")));
-            this.ControlINICIO.Name = "ControlINICIO";
-            this.ControlINICIO.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.ControlINICIO.Text = "INICIO";
-            this.ControlINICIO.Click += new System.EventHandler(this.ControlINICIO_Click);
+            this.accordionControlElement2.Appearance.Default.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.accordionControlElement2.Appearance.Default.ForeColor = System.Drawing.Color.White;
+            this.accordionControlElement2.Appearance.Default.Options.UseFont = true;
+            this.accordionControlElement2.Appearance.Default.Options.UseForeColor = true;
+            this.accordionControlElement2.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
+            this.elemntOrdenesServicio,
+            this.elemntActualizarServicio});
+            this.accordionControlElement2.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("accordionControlElement2.ImageOptions.SvgImage")));
+            this.accordionControlElement2.Name = "accordionControlElement2";
+            this.accordionControlElement2.Text = "OORDENES DE SERVICIO";
             // 
-            // ControlUsuarios
+            // elemntOrdenesServicio
             // 
-            this.ControlUsuarios.Appearance.Default.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ControlUsuarios.Appearance.Default.ForeColor = System.Drawing.Color.White;
-            this.ControlUsuarios.Appearance.Default.Options.UseFont = true;
-            this.ControlUsuarios.Appearance.Default.Options.UseForeColor = true;
-            this.ControlUsuarios.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ControlUsuarios.ImageOptions.Image")));
-            this.ControlUsuarios.Name = "ControlUsuarios";
-            this.ControlUsuarios.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.ControlUsuarios.Text = "USUARIOS";
-            this.ControlUsuarios.Click += new System.EventHandler(this.ControlUsuarios_Click);
+            this.elemntOrdenesServicio.Appearance.Default.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.elemntOrdenesServicio.Appearance.Default.ForeColor = System.Drawing.Color.White;
+            this.elemntOrdenesServicio.Appearance.Default.Options.UseFont = true;
+            this.elemntOrdenesServicio.Appearance.Default.Options.UseForeColor = true;
+            this.elemntOrdenesServicio.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("elemntOrdenesServicio.ImageOptions.Image")));
+            this.elemntOrdenesServicio.Name = "elemntOrdenesServicio";
+            this.elemntOrdenesServicio.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.elemntOrdenesServicio.Text = "AGREGAR ORDEN DE SERVICIO";
+            this.elemntOrdenesServicio.Click += new System.EventHandler(this.elemntOrdenesServicio_Click);
             // 
-            // fluentDesignFormControl1
+            // elemntActualizarServicio
             // 
-            this.fluentDesignFormControl1.FluentDesignForm = this;
-            this.fluentDesignFormControl1.Location = new System.Drawing.Point(0, 0);
-            this.fluentDesignFormControl1.Manager = this.fluentFormDefaultManager1;
-            this.fluentDesignFormControl1.Name = "fluentDesignFormControl1";
-            this.fluentDesignFormControl1.Size = new System.Drawing.Size(1136, 31);
-            this.fluentDesignFormControl1.TabIndex = 2;
-            this.fluentDesignFormControl1.TabStop = false;
-            // 
-            // elementBitacora
-            // 
-            this.elementBitacora.Appearance.Default.ForeColor = System.Drawing.Color.White;
-            this.elementBitacora.Appearance.Default.Options.UseForeColor = true;
-            this.elementBitacora.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("elementBitacora.ImageOptions.Image")));
-            this.elementBitacora.Name = "elementBitacora";
-            this.elementBitacora.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.elementBitacora.Text = "REGISTRO DE ACTIVIDAD";
-            this.elementBitacora.Click += new System.EventHandler(this.elementBitacora_Click);
+            this.elemntActualizarServicio.Appearance.Default.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.elemntActualizarServicio.Appearance.Default.ForeColor = System.Drawing.Color.White;
+            this.elemntActualizarServicio.Appearance.Default.Options.UseFont = true;
+            this.elemntActualizarServicio.Appearance.Default.Options.UseForeColor = true;
+            this.elemntActualizarServicio.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("elemntActualizarServicio.ImageOptions.Image")));
+            this.elemntActualizarServicio.Name = "elemntActualizarServicio";
+            this.elemntActualizarServicio.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.elemntActualizarServicio.Text = "ACTUALIZAR ORDENS DE SERVICIO";
+            this.elemntActualizarServicio.Click += new System.EventHandler(this.elemntActualizarServicio_Click);
             // 
             // accordionControlElement1
             // 
@@ -254,6 +261,38 @@
             this.accordionControlElement1.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("accordionControlElement1.ImageOptions.SvgImage")));
             this.accordionControlElement1.Name = "accordionControlElement1";
             this.accordionControlElement1.Text = "ADMINITRACION";
+            // 
+            // ControlUsuarios
+            // 
+            this.ControlUsuarios.Appearance.Default.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ControlUsuarios.Appearance.Default.ForeColor = System.Drawing.Color.White;
+            this.ControlUsuarios.Appearance.Default.Options.UseFont = true;
+            this.ControlUsuarios.Appearance.Default.Options.UseForeColor = true;
+            this.ControlUsuarios.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ControlUsuarios.ImageOptions.Image")));
+            this.ControlUsuarios.Name = "ControlUsuarios";
+            this.ControlUsuarios.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.ControlUsuarios.Text = "USUARIOS";
+            this.ControlUsuarios.Click += new System.EventHandler(this.ControlUsuarios_Click);
+            // 
+            // elementBitacora
+            // 
+            this.elementBitacora.Appearance.Default.ForeColor = System.Drawing.Color.White;
+            this.elementBitacora.Appearance.Default.Options.UseForeColor = true;
+            this.elementBitacora.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("elementBitacora.ImageOptions.Image")));
+            this.elementBitacora.Name = "elementBitacora";
+            this.elementBitacora.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.elementBitacora.Text = "REGISTRO DE ACTIVIDAD";
+            this.elementBitacora.Click += new System.EventHandler(this.elementBitacora_Click);
+            // 
+            // fluentDesignFormControl1
+            // 
+            this.fluentDesignFormControl1.FluentDesignForm = this;
+            this.fluentDesignFormControl1.Location = new System.Drawing.Point(0, 0);
+            this.fluentDesignFormControl1.Manager = this.fluentFormDefaultManager1;
+            this.fluentDesignFormControl1.Name = "fluentDesignFormControl1";
+            this.fluentDesignFormControl1.Size = new System.Drawing.Size(1136, 31);
+            this.fluentDesignFormControl1.TabIndex = 2;
+            this.fluentDesignFormControl1.TabStop = false;
             // 
             // accordionControlGestorOrdenes
             // 
@@ -273,7 +312,6 @@
             this.adminregistrosElement.Name = "adminregistrosElement";
             this.adminregistrosElement.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.adminregistrosElement.Text = "ADMINISTRAR REGISTROS";
-           // this.adminregistrosElement.Click += new System.EventHandler(this.registrosElement_Click);
             // 
             // accordionControlSeparator6
             // 
@@ -284,47 +322,6 @@
             this.ControlRegistrar.Name = "ControlRegistrar";
             this.ControlRegistrar.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.ControlRegistrar.Text = "REGISTRAR";
-          //  this.ControlRegistrar.Click += new System.EventHandler(this.accordionControlElement1_Click);
-            // 
-            // accordionControlElement2
-
-
-            // 
-            this.accordionControlElement2.Appearance.Default.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.accordionControlElement2.Appearance.Default.ForeColor = System.Drawing.Color.White;
-            this.accordionControlElement2.Appearance.Default.Options.UseFont = true;
-            this.accordionControlElement2.Appearance.Default.Options.UseForeColor = true;
-            this.accordionControlElement2.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
-            this.elemntOrdenesServicio,
-            this.elemntActualizarServicio});
-            this.accordionControlElement2.Expanded = true;
-            this.accordionControlElement2.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("accordionControlElement2.ImageOptions.SvgImage")));
-            this.accordionControlElement2.Name = "accordionControlElement2";
-            this.accordionControlElement2.Text = "OORDENES DE SERVICIO";
-            // 
-            // elemntOrdenesServicio
-            // 
-            this.elemntOrdenesServicio.Appearance.Default.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.elemntOrdenesServicio.Appearance.Default.ForeColor = System.Drawing.Color.White;
-            this.elemntOrdenesServicio.Appearance.Default.Options.UseFont = true;
-            this.elemntOrdenesServicio.Appearance.Default.Options.UseForeColor = true;
-            this.elemntOrdenesServicio.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlElement3.ImageOptions.Image")));
-            this.elemntOrdenesServicio.Name = "elemntOrdenesServicio";
-            this.elemntOrdenesServicio.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.elemntOrdenesServicio.Text = "AGREGAR ORDEN DE SERVICIO";
-            this.elemntOrdenesServicio.Click += new System.EventHandler(this.elemntOrdenesServicio_Click);
-            // 
-            // elemntActualizarServicio
-            // 
-            this.elemntActualizarServicio.Appearance.Default.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.elemntActualizarServicio.Appearance.Default.ForeColor = System.Drawing.Color.White;
-            this.elemntActualizarServicio.Appearance.Default.Options.UseFont = true;
-            this.elemntActualizarServicio.Appearance.Default.Options.UseForeColor = true;
-            this.elemntActualizarServicio.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlElement4.ImageOptions.Image")));
-            this.elemntActualizarServicio.Name = "elemntActualizarServicio";
-            this.elemntActualizarServicio.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.elemntActualizarServicio.Text = "ACTUALIZAR ORDENS DE SERVICIO";
-            this.elemntActualizarServicio.Click += new System.EventHandler(this.elemntActualizarServicio_Click);
             // 
             // FormPanel
             // 
@@ -347,6 +344,7 @@
             this.fluentDesignFormContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
+            this.panelControl1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             this.groupControl1.PerformLayout();

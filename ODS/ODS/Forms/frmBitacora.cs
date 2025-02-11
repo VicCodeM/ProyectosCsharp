@@ -166,5 +166,11 @@ namespace ODS.Forms
             //Exportar los datos del GridControl a un archivo de Excel
             ExportarExcel();
         }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+
+        }
     }
 }

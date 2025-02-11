@@ -47,6 +47,8 @@
             this.memoEditDescripcion = new DevExpress.XtraEditors.MemoEdit();
             this.lookUpEdit1 = new DevExpress.XtraEditors.LookUpEdit();
             this.btnRegistrar = new DevExpress.XtraEditors.SimpleButton();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridCRegistrar)).BeginInit();
@@ -121,6 +123,8 @@
             this.groupControl2.CaptionImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("groupControl2.CaptionImageOptions.Image")));
             this.groupControl2.CaptionLocation = DevExpress.Utils.Locations.Bottom;
             this.groupControl2.ContentImage = global::ODS.Properties.Resources.textura3;
+            this.groupControl2.Controls.Add(this.label11);
+            this.groupControl2.Controls.Add(this.label10);
             this.groupControl2.Controls.Add(this.label3);
             this.groupControl2.Controls.Add(this.groupBox1);
             this.groupControl2.Controls.Add(this.radioGroupFallos);
@@ -157,7 +161,7 @@
             this.groupBox1.Controls.Add(this.labelFecha);
             this.groupBox1.Controls.Add(this.labelEstado);
             this.groupBox1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(19, 51);
+            this.groupBox1.Location = new System.Drawing.Point(19, 19);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(228, 84);
             this.groupBox1.TabIndex = 47;
@@ -256,6 +260,26 @@
             this.btnRegistrar.Text = "Registrar";
             this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(16, 203);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(90, 16);
+            this.label11.TabIndex = 52;
+            this.label11.Text = "Observaciones";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(16, 118);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(72, 16);
+            this.label10.TabIndex = 51;
+            this.label10.Text = "Descripción";
+            // 
             // FormRegistrar
             // 
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.TitleBar;
@@ -306,5 +330,7 @@
       //  private MaterialSkin.Controls.MaterialLabel materialLabel2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
     }
 }
