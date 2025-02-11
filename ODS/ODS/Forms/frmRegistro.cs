@@ -21,10 +21,11 @@ namespace ODS.Forms
         #region Intaciar objetos Utilizados
         ConexionDB conexionDB = new ConexionDB();
         ConsultasDB consultasDB = new ConsultasDB();
+        BitacoraService bitacoraService = new BitacoraService();
         #endregion
 
 
-     
+
 
         public frmRegistro()
         {
@@ -285,7 +286,7 @@ namespace ODS.Forms
                 }
                 consultasDB.ActualizarOrden(idOrden, fechaAtendida, fechaCerrada, idUsuario, idFallaHardware, idFallaSoftware, descripcion, observaciones, estado);
 
-                BitacoraService bitacoraService = new BitacoraService();
+                
                 bitacoraService.RegistrarAccionEnBitacora(idOrden, UsuarioLogueado.IdUsuario, "Actualización",
       "Se cambió el estado de la orden a " + estado + ".");
 
@@ -319,11 +320,13 @@ namespace ODS.Forms
                                                          MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (resultado == DialogResult.Yes)
             {
-
+                bitacoraService.RegistrarAccionEnBitacora(idOrden, UsuarioLogueado.IdUsuario, "Elimino",
+"Se se elimino una orden con el id: " + idOrden + ". ");
                 bool eliminado = consultasDB.EliminarOrden(idOrden);
 
                 if (eliminado)
                 {
+
                     XtraMessageBox.Show("Orden eliminada con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     // Recargar el GridControl después de eliminar

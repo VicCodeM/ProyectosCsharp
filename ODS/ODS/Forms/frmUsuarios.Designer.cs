@@ -61,10 +61,11 @@
             this.gridUsuarios.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gridUsuarios.Location = new System.Drawing.Point(0, 88);
+            this.gridUsuarios.BackgroundImage = global::ODS.Properties.Resources.textura3;
+            this.gridUsuarios.Location = new System.Drawing.Point(3, 67);
             this.gridUsuarios.MainView = this.gridView1;
             this.gridUsuarios.Name = "gridUsuarios";
-            this.gridUsuarios.Size = new System.Drawing.Size(888, 214);
+            this.gridUsuarios.Size = new System.Drawing.Size(885, 256);
             this.gridUsuarios.TabIndex = 0;
             this.gridUsuarios.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -79,6 +80,8 @@
             this.txtUsuario.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.txtUsuario.Location = new System.Drawing.Point(17, 371);
             this.txtUsuario.Name = "txtUsuario";
+            this.txtUsuario.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.txtUsuario.Properties.Appearance.Options.UseBackColor = true;
             this.txtUsuario.Size = new System.Drawing.Size(169, 20);
             this.txtUsuario.TabIndex = 1;
             // 
@@ -87,6 +90,8 @@
             this.txtPassword.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.txtPassword.Location = new System.Drawing.Point(17, 426);
             this.txtPassword.Name = "txtPassword";
+            this.txtPassword.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.txtPassword.Properties.Appearance.Options.UseBackColor = true;
             this.txtPassword.Size = new System.Drawing.Size(169, 20);
             this.txtPassword.TabIndex = 2;
             // 
@@ -95,6 +100,8 @@
             this.comboTipoUsuario.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.comboTipoUsuario.Location = new System.Drawing.Point(343, 371);
             this.comboTipoUsuario.Name = "comboTipoUsuario";
+            this.comboTipoUsuario.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.comboTipoUsuario.Properties.Appearance.Options.UseBackColor = true;
             this.comboTipoUsuario.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboTipoUsuario.Size = new System.Drawing.Size(192, 20);
@@ -105,6 +112,8 @@
             this.lookUpEmpleado.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.lookUpEmpleado.Location = new System.Drawing.Point(669, 370);
             this.lookUpEmpleado.Name = "lookUpEmpleado";
+            this.lookUpEmpleado.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.lookUpEmpleado.Properties.Appearance.Options.UseBackColor = true;
             this.lookUpEmpleado.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.lookUpEmpleado.Size = new System.Drawing.Size(192, 20);
@@ -115,6 +124,8 @@
             this.lookUpDepartamento.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.lookUpDepartamento.Location = new System.Drawing.Point(343, 424);
             this.lookUpDepartamento.Name = "lookUpDepartamento";
+            this.lookUpDepartamento.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.lookUpDepartamento.Properties.Appearance.Options.UseBackColor = true;
             this.lookUpDepartamento.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.lookUpDepartamento.Size = new System.Drawing.Size(192, 20);
@@ -123,7 +134,9 @@
             // btnGuardar
             // 
             this.btnGuardar.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnGuardar.Location = new System.Drawing.Point(212, 49);
+            this.btnGuardar.Appearance.BackColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Primary;
+            this.btnGuardar.Appearance.Options.UseBackColor = true;
+            this.btnGuardar.Location = new System.Drawing.Point(121, 473);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(75, 23);
             this.btnGuardar.TabIndex = 6;
@@ -133,7 +146,9 @@
             // btnActualizar
             // 
             this.btnActualizar.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnActualizar.Location = new System.Drawing.Point(417, 49);
+            this.btnActualizar.Appearance.BackColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Warning;
+            this.btnActualizar.Appearance.Options.UseBackColor = true;
+            this.btnActualizar.Location = new System.Drawing.Point(408, 473);
             this.btnActualizar.Name = "btnActualizar";
             this.btnActualizar.Size = new System.Drawing.Size(75, 23);
             this.btnActualizar.TabIndex = 7;
@@ -143,7 +158,9 @@
             // btnEiminar
             // 
             this.btnEiminar.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnEiminar.Location = new System.Drawing.Point(608, 49);
+            this.btnEiminar.Appearance.BackColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Danger;
+            this.btnEiminar.Appearance.Options.UseBackColor = true;
+            this.btnEiminar.Location = new System.Drawing.Point(650, 473);
             this.btnEiminar.Name = "btnEiminar";
             this.btnEiminar.Size = new System.Drawing.Size(75, 23);
             this.btnEiminar.TabIndex = 8;
@@ -155,6 +172,8 @@
             this.txtCorreoElectronico.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.txtCorreoElectronico.Location = new System.Drawing.Point(669, 426);
             this.txtCorreoElectronico.Name = "txtCorreoElectronico";
+            this.txtCorreoElectronico.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.txtCorreoElectronico.Properties.Appearance.Options.UseBackColor = true;
             this.txtCorreoElectronico.Size = new System.Drawing.Size(192, 20);
             this.txtCorreoElectronico.TabIndex = 12;
             // 
@@ -238,6 +257,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::ODS.Properties.Resources.textura3;
             this.Controls.Add(this.labelControl6);
             this.Controls.Add(this.labelControl5);
             this.Controls.Add(this.labelControl4);

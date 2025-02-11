@@ -59,7 +59,7 @@ namespace ODS.Servicios
 
                 if (idEmpleado == 0)
                 {
-                    MessageBox.Show("No se encontró el empleado que generó la orden.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //MessageBox.Show("No se encontró el empleado que generó la orden.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 

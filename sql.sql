@@ -35,7 +35,7 @@ CREATE TABLE TiposFallaSoftware (
 
 CREATE TABLE Bitacora (
   Id_Bitacora INT IDENTITY(1,1) PRIMARY KEY,
-  Id_Orden INT NOT NULL,
+  Id_Orden INT NULL,
   Id_Usuario INT NOT NULL,
   Accion VARCHAR(255) NOT NULL,
   Fecha_Accion DATETIME NOT NULL DEFAULT GETDATE(),

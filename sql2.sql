@@ -55,7 +55,7 @@ CREATE TABLE OrdenServicio (
 
 CREATE TABLE Bitacora (
   Id_Bitacora INT IDENTITY(1,1) PRIMARY KEY,
-  Id_Orden INT NOT NULL,
+  Id_Orden INT NULL,
   Id_Usuario INT NOT NULL,
   Accion VARCHAR(255) NOT NULL,
   Fecha_Accion DATETIME NOT NULL DEFAULT GETDATE(),
@@ -63,6 +63,8 @@ CREATE TABLE Bitacora (
   CONSTRAINT FK_Bitacora_OrdenServicio FOREIGN KEY (Id_Orden) REFERENCES OrdenServicio(Id_Orden),
   CONSTRAINT FK_Bitacora_Login FOREIGN KEY (Id_Usuario) REFERENCES Login(Id_Usuario)
 );
+
+ALTER TABLE Bitacora ALTER COLUMN Id_Orden INT NULL;
 
 
 -- Insertar departamentos

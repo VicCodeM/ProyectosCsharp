@@ -87,7 +87,7 @@ namespace ODS.Forms
             // Mostrar el resultado en el label
             if (!string.IsNullOrEmpty(nombre))
             {
-                labelUsuario.Text = $"Usuario: {nombre}";
+                labelUsuario.Text = $"{nombre}";
               
             }
             else

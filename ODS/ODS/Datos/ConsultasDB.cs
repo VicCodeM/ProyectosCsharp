@@ -522,19 +522,37 @@ namespace ODS.Datos
 
 
         //Metodo de Eliniar orden
-            public bool EliminarOrden(int idOrden)
+        public bool EliminarOrden(int idOrden)
+        {
+            using (SqlConnection conexion = conexionBD.ConectarSQL())
             {
-                using (SqlConnection conexion = conexionBD.ConectarSQL())
+                SqlTransaction transaction = conexion.BeginTransaction();
+                try
                 {
-                    string consultaEliminar = "DELETE FROM OrdenServicio WHERE Id_Orden = @IdOrden";
-                    SqlCommand comando = new SqlCommand(consultaEliminar, conexion);
-                    comando.Parameters.AddWithValue("@IdOrden", idOrden);
+                    // Actualizar Bitacora para poner NULL en Id_Orden antes de eliminar la orden
+                    string queryActualizarBitacora = "UPDATE Bitacora SET Id_Orden = NULL WHERE Id_Orden = @IdOrden";
+                    SqlCommand cmdActualizarBitacora = new SqlCommand(queryActualizarBitacora, conexion, transaction);
+                    cmdActualizarBitacora.Parameters.AddWithValue("@IdOrden", idOrden);
+                    cmdActualizarBitacora.ExecuteNonQuery();
 
-                    // Ejecutar comando y verificar si se eliminó algún registro
-                    int filasAfectadas = comando.ExecuteNonQuery();
-                    return filasAfectadas > 0; // Devuelve true si se eliminó correctamente
+                    // Ahora eliminar la orden en OrdenServicio
+                    string queryEliminarOrden = "DELETE FROM OrdenServicio WHERE Id_Orden = @IdOrden";
+                    SqlCommand cmdEliminarOrden = new SqlCommand(queryEliminarOrden, conexion, transaction);
+                    cmdEliminarOrden.Parameters.AddWithValue("@IdOrden", idOrden);
+                    int filasAfectadas = cmdEliminarOrden.ExecuteNonQuery();
+
+                    transaction.Commit();
+                    return filasAfectadas > 0;
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    MessageBox.Show($"Error al eliminar la orden: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
                 }
             }
+        }
+
 
 
     }

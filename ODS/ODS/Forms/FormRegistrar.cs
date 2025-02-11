@@ -366,11 +366,28 @@ public partial class FormRegistrar : DevExpress.XtraEditors.XtraForm
                 }
 
                 int idUsuario = UsuarioLogueado.IdUsuario;
-
                 string descripcionProblema = memoEditDescripcion.Text.Trim();
                 string estado = "Abierto";
-                int? idFalloHardware = radioGroupFallos.EditValue.ToString() == "Hardware" ? (int?)lookUpEdit1.EditValue : null;
-                int? idFalloSoftware = radioGroupFallos.EditValue.ToString() == "Software" ? (int?)lookUpEdit1.EditValue : null;
+
+                // Obtener el tipo de falla seleccionado
+                string tipoFalla = radioGroupFallos.EditValue?.ToString();
+
+                // Validar si seleccionó un tipo de falla
+                if (string.IsNullOrEmpty(tipoFalla))
+                {
+                    XtraMessageBox.Show("Seleccione un tipo de falla: Hardware o Software.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Validar si seleccionó un valor en lookUpEdit1
+                if (lookUpEdit1.EditValue == null)
+                {
+                    XtraMessageBox.Show($"Seleccione un tipo de falla de {tipoFalla}.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                int? idFalloHardware = tipoFalla == "Hardware" ? (int?)lookUpEdit1.EditValue : null;
+                int? idFalloSoftware = tipoFalla == "Software" ? (int?)lookUpEdit1.EditValue : null;
 
                 if (!consultasDB.UsuarioExiste(idUsuario))
                 {
@@ -386,11 +403,11 @@ public partial class FormRegistrar : DevExpress.XtraEditors.XtraForm
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show($"Error al registrar la orden: Debes seleccionar un tipo de falla para poder registrar una orden", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Console.WriteLine(ex.Message);  
-                //XtraMessageBox.Show($"Error al registrar la orden: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show($"Debe seleccionar un tipo de falla para registrar la orden.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Console.WriteLine(ex.Message);
             }
         }
+
 
         private void LimpiarCampos()
         {
