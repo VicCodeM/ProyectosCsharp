@@ -161,8 +161,10 @@ C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.FormPanel.re
 C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.Forms.FormRegistrar.resources
 C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.Forms.frmBitacora.resources
 C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.Forms.frmInicio.resources
+C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.Forms.frmLoader.resources
 C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.Forms.frmLogin.resources
 C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.Forms.frmAdminRegistros.resources
+C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.Forms.frmProgress.resources
 C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.Forms.frmUsuarios.resources
 C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.Properties.Resources.resources
 C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.csproj.GenerateResource.cache
@@ -173,5 +175,3 @@ C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.application
 C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.csproj.Up2Date
 C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.exe
 C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.pdb
-C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.Forms.frmLoader.resources
-C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.Forms.frmProgress.resources

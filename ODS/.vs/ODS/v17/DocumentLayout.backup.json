@@ -7,7 +7,7 @@
       "RelativeMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|solutionrelative:ods\\forms\\frmloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|c:\\users\\vicom\\desktop\\github\\proyectoscsharp\\ods\\ods\\forms\\frmloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ods\\forms\\frmloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|solutionrelative:ods\\forms\\frmloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -23,7 +23,7 @@
       "RelativeMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|solutionrelative:ods\\servicios\\exportarservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|c:\\users\\vicom\\desktop\\github\\proyectoscsharp\\ods\\ods\\formpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ods\\formpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|solutionrelative:ods\\formpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -63,11 +63,11 @@
       "RelativeMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|solutionrelative:ods\\forms\\frmadminregistros.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|c:\\users\\vicom\\desktop\\github\\proyectoscsharp\\ods\\ods\\forms\\frmprogress.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ods\\forms\\frmprogress.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|solutionrelative:ods\\forms\\frmprogress.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|c:\\users\\vicom\\desktop\\github\\proyectoscsharp\\ods\\ods\\forms\\frmprogress.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ods\\forms\\frmprogress.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|solutionrelative:ods\\forms\\frmprogress.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -158,8 +158,7 @@
               "RelativeToolTip": "ODS\\Forms\\frmAdminRegistros.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-29T00:10:27.573Z",
-              "IsPinned": true,
-              "EditorCaption": " [Dise\u00F1o]"
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -172,8 +171,7 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-29T00:42:54.36Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -185,8 +183,7 @@
               "RelativeToolTip": "ODS\\Forms\\FormRegistrar.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-29T00:36:22.761Z",
-              "IsPinned": true,
-              "EditorCaption": " [Dise\u00F1o]"
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -199,8 +196,7 @@
               "ViewState": "AgIAAAMAAAAAAAAAAAAAAN0AAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-29T00:36:26.857Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -212,8 +208,7 @@
               "RelativeToolTip": "ODS\\Forms\\frmUsuarios.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-30T06:15:16.452Z",
-              "IsPinned": true,
-              "EditorCaption": " [Dise\u00F1o]"
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -226,8 +221,7 @@
               "ViewState": "AgIAABMAAAAAAAAAAAAgwCMAAABFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-30T17:52:13.789Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -240,8 +234,7 @@
               "ViewState": "AgIAAEgAAAAAAAAAAAAgwFEAAABBAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-06T02:10:15.543Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -254,8 +247,7 @@
               "ViewState": "AgIAAFYAAAAAAAAAAAAAAF4AAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-06T02:01:50.76Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -268,8 +260,7 @@
               "ViewState": "AgIAAPsBAAAAAAAAAAAgwDkCAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-31T17:48:34.898Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -282,8 +273,7 @@
               "ViewState": "AgIAAAgAAAAAAAAAAAAmwBIAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-05T02:23:31.154Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -295,8 +285,7 @@
               "RelativeToolTip": "ODS\\Forms\\frmLogin.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-04T16:24:33.431Z",
-              "IsPinned": true,
-              "EditorCaption": " [Dise\u00F1o]"
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -309,8 +298,7 @@
               "ViewState": "AgIAAF8AAAAAAAAAAAAowFgAAABCAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-04T18:06:39.404Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -323,8 +311,7 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-05T02:20:38.677Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -350,8 +337,7 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-13T03:10:47.264Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Bookmark",
@@ -367,8 +353,7 @@
               "RelativeToolTip": "ODS\\Servicios\\ExportarService.cs",
               "ViewState": "AgIAAGYAAAAAAAAAAAAowMAAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-12T21:50:32.092Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-12T21:50:32.092Z"
             },
             {
               "$type": "Document",
@@ -380,8 +365,7 @@
               "RelativeToolTip": "ODS\\Forms\\frmLogin.Designer.cs",
               "ViewState": "AgIAAFAAAAAAAAAAAAAtwGAAAABAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-05T16:30:19.743Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-05T16:30:19.743Z"
             },
             {
               "$type": "Document",
@@ -392,8 +376,7 @@
               "ToolTip": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\Forms\\frmInicio.cs [Dise\u00F1o]",
               "RelativeToolTip": "ODS\\Forms\\frmInicio.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-30T06:10:34.769Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2025-01-30T06:10:34.769Z"
             },
             {
               "$type": "Document",
@@ -404,8 +387,7 @@
               "ToolTip": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\FormPanel.cs [Dise\u00F1o]",
               "RelativeToolTip": "ODS\\FormPanel.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-29T00:21:08.115Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2025-01-29T00:21:08.115Z"
             },
             {
               "$type": "Document",
@@ -417,8 +399,7 @@
               "RelativeToolTip": "ODS\\FormPanel.cs",
               "ViewState": "AgIAADwAAAAAAAAAAAAAwFcAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-29T00:21:09.731Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-29T00:21:09.731Z"
             },
             {
               "$type": "Document",
@@ -430,8 +411,7 @@
               "RelativeToolTip": "ODS\\Forms\\frmInicio.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAEkAAAA6AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-05T03:52:45.151Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-05T03:52:45.151Z"
             },
             {
               "$type": "Document",
@@ -442,8 +422,7 @@
               "ToolTip": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\Forms\\frmProgress.cs [Dise\u00F1o]",
               "RelativeToolTip": "ODS\\Forms\\frmProgress.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-13T02:54:56.456Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2025-02-13T02:54:56.456Z"
             },
             {
               "$type": "Document",
@@ -455,8 +434,7 @@
               "RelativeToolTip": "ODS\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-31T23:19:31.956Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-31T23:19:31.956Z"
             },
             {
               "$type": "Document",
@@ -468,8 +446,7 @@
               "RelativeToolTip": "ODS\\Forms\\frmProgress.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-13T02:55:35.337Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-13T02:55:35.337Z"
             },
             {
               "$type": "Document",
@@ -481,8 +458,7 @@
               "RelativeToolTip": "ODS\\Servicios\\OrdenService.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-12T18:08:42.585Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-12T18:08:42.585Z"
             },
             {
               "$type": "Document",
@@ -493,8 +469,7 @@
               "ToolTip": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\Forms\\frmBitacora.cs [Dise\u00F1o]",
               "RelativeToolTip": "ODS\\Forms\\frmBitacora.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-06T01:39:35.252Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2025-02-06T01:39:35.252Z"
             },
             {
               "$type": "Document",
@@ -506,8 +481,7 @@
               "RelativeToolTip": "ODS\\Datos\\ConexionDB.cs",
               "ViewState": "AgIAAB4AAAAAAAAAAAAowAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-30T06:11:29.534Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-30T06:11:29.534Z"
             },
             {
               "$type": "Document",
@@ -519,8 +493,7 @@
               "RelativeToolTip": "ODS\\Servicios\\FechaServicio.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-31T23:22:52.489Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-31T23:22:52.489Z"
             },
             {
               "$type": "Document",
@@ -532,8 +505,7 @@
               "RelativeToolTip": "ODS\\Forms\\frmAdminRegistros.Designer.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-12T22:58:46.629Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-12T22:58:46.629Z"
             },
             {
               "$type": "Document",
@@ -545,8 +517,7 @@
               "RelativeToolTip": "ODS\\Forms\\FormRegistrar.Designer.cs",
               "ViewState": "AgIAADIBAAAAAAAAAAAYwDIBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-05T20:33:02.917Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-05T20:33:02.917Z"
             },
             {
               "$type": "Document",
@@ -558,8 +529,7 @@
               "RelativeToolTip": "ODS\\Forms\\frmInicio.Designer.cs",
               "ViewState": "AgIAAC8AAAAAAAAAAAAtwDsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-11T16:35:12.725Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-11T16:35:12.725Z"
             },
             {
               "$type": "Document",
@@ -571,8 +541,7 @@
               "RelativeToolTip": "ODS\\Forms\\frmBitacora.Designer.cs",
               "ViewState": "AgIAADwAAAAAAAAAAAAYwEcAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-11T16:46:18.961Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-11T16:46:18.961Z"
             },
             {
               "$type": "Document",
@@ -584,8 +553,7 @@
               "RelativeToolTip": "ODS\\FormPanel.Designer.cs",
               "ViewState": "AgIAABMAAAAAAAAAAABRwBYAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-06T03:08:40.059Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-06T03:08:40.059Z"
             },
             {
               "$type": "Document",
@@ -597,8 +565,7 @@
               "RelativeToolTip": "ODS\\Properties\\Resources.Designer.cs",
               "ViewState": "AgIAAAkAAAAAAAAAAAAAABoAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-31T23:23:47.243Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-31T23:23:47.243Z"
             }
           ]
         }
