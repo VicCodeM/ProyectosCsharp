@@ -1,16 +1,10 @@
-﻿using DevExpress.XtraBars;
-using DevExpress.XtraEditors;
+﻿using DevExpress.XtraEditors;
 using ODS.Datos;
 using ODS.Forms;
 using ODS.Modelo;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace ODS
@@ -19,8 +13,8 @@ namespace ODS
     {
         #region Variables globales.
         private Timer timer;
-        private SqlConnection conexion;
         private string tipoUsuario;
+
 
 
         private Timer inactivityTimer;
@@ -32,7 +26,7 @@ namespace ODS
 
         #region Intaciar objetos
         ConexionDB conexionDB = new ConexionDB();
-        ConsultasDB consultas = new ConsultasDB();
+       // ConsultasDB consultas = new ConsultasDB();
         FechaServicio fechaService = new FechaServicio();
         #endregion
 
@@ -43,8 +37,14 @@ namespace ODS
             InitializeComponent();
             InicializarTemporizadorInactividad();
 
-            this.tipoUsuario = tipoUsuario;
-           
+            this.tipoUsuario = UsuarioLogueado.TipoUsuario;
+            if (string.IsNullOrEmpty(tipoUsuario))
+            {
+                MessageBox.Show("No se pudo obtener el tipo de usuario. Cerrando la aplicación.");
+                Application.Exit();
+                return;
+            }
+
 
             // Configurar la apariencia del formulario
             this.Appearance.BackColor = Color.Transparent;
@@ -107,11 +107,11 @@ namespace ODS
                 adminregistrosElement.Visible = true;
             }
 
-        } 
+        }
         #endregion
 
         #region Eventos del form
-  
+
 
         private void panelControl1_SizeChanged(object sender, EventArgs e)
         {
@@ -258,7 +258,7 @@ namespace ODS
             // Marcar que el cierre fue por inactividad
             cerrarPorInactividad = true;
 
-          
+
         }
 
         private void CerrarSesion()
@@ -300,9 +300,9 @@ namespace ODS
         private void elementBitacora_Click(object sender, EventArgs e)
         {
             // Cierra la conexión antes de abrir el formulario
-            if (conexion != null && conexion.State == System.Data.ConnectionState.Open)
+            if (conexionDB.ConectarSQL() != null && conexionDB.ConectarSQL().State == System.Data.ConnectionState.Open)
             {
-                conexion.Close();
+                conexionDB.ConectarSQL().Close();
             }
             frmBitacora formabitacora = new frmBitacora();
             MostrarFormularioEnPanel(groupControl1, formabitacora);
@@ -311,9 +311,9 @@ namespace ODS
         private void elemntOrdenesServicio_Click(object sender, EventArgs e)
         {
             // Cierra la conexión antes de abrir el formulario
-            if (conexion != null && conexion.State == System.Data.ConnectionState.Open)
+            if (conexionDB.ConectarSQL() != null && conexionDB.ConectarSQL().State == System.Data.ConnectionState.Open)
             {
-                conexion.Close();
+                conexionDB.ConectarSQL().Close();
             }
             FormRegistrar formaregistrar = new FormRegistrar();
             MostrarFormularioEnPanel(groupControl1, formaregistrar);
@@ -322,11 +322,11 @@ namespace ODS
         private void elemntActualizarServicio_Click(object sender, EventArgs e)
         {
             // Cierra la conexión antes de abrir el formulario
-            if (conexion != null && conexion.State == System.Data.ConnectionState.Open)
+            if (conexionDB.ConectarSQL() != null && conexionDB.ConectarSQL().State == System.Data.ConnectionState.Open)
             {
-                conexion.Close();
+                conexionDB.ConectarSQL().Close();
             }
-            frmRegistro formaregistro = new frmRegistro();
+            frmAdminRegistros formaregistro = new frmAdminRegistros();
             MostrarFormularioEnPanel(groupControl1, formaregistro);
         }
     }

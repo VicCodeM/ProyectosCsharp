@@ -115,11 +115,11 @@
             this.labelUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.labelUsuario.AutoSize = true;
             this.labelUsuario.BackColor = System.Drawing.Color.Transparent;
-            this.labelUsuario.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelUsuario.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelUsuario.ForeColor = System.Drawing.Color.Red;
             this.labelUsuario.Location = new System.Drawing.Point(219, 83);
             this.labelUsuario.Name = "labelUsuario";
-            this.labelUsuario.Size = new System.Drawing.Size(151, 19);
+            this.labelUsuario.Size = new System.Drawing.Size(155, 23);
             this.labelUsuario.TabIndex = 2;
             this.labelUsuario.Text = "Victor Maldonado";
             // 

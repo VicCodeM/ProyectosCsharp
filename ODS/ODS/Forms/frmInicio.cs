@@ -1,15 +1,5 @@
-﻿using DevExpress.XtraEditors;
-using ODS.Datos;
-using ODS.Modelo;
+﻿using ODS.Modelo;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ODS.Forms
@@ -22,7 +12,7 @@ namespace ODS.Forms
         #endregion
 
         FechaServicio fechaService = new FechaServicio();
-       
+
 
         // Obtener los datos del usuario logueado
         int idUsuario = UsuarioLogueado.IdUsuario;
@@ -46,7 +36,7 @@ namespace ODS.Forms
         #region Acciones inciales con  la forma
         private void frmInicio_Load(object sender, EventArgs e)
         {
-           
+
             // Crear una instancia del Timer
             timer = new Timer();
 
@@ -59,7 +49,7 @@ namespace ODS.Forms
             // Iniciar el Timer
             timer.Start();
 
-           
+
             // Obtener el nombre del usuario con el ID 1 (puedes cambiar este valor según sea necesario)
             int idUsuario1 = Convert.ToInt32(idUsuario); // ID de usuario que deseas consultar
 
@@ -69,11 +59,11 @@ namespace ODS.Forms
             // Mostrar el resultado en un label
             if (!string.IsNullOrEmpty(departamento))
             {
-               // labelUsuario.Text = nombreDepartamento;
+                // labelUsuario.Text = nombreDepartamento;
             }
             else
             {
-               
+
             }
             //mostrar nombre aplliedo
             string nombreYApellido = nombre;
@@ -82,7 +72,7 @@ namespace ODS.Forms
             if (!string.IsNullOrEmpty(nombre))
             {
                 labelUsuario.Text = $"{nombre}";
-              
+
             }
             else
             {

@@ -1,21 +1,54 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using DevExpress.XtraEditors;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
-using DevExpress.XtraEditors;
 
 namespace ODS.Datos
 {
     public class ConexionDB
     {
 
-
-        private string connectionString = "Data Source=VICTOR-HP\\SQLVICTOR;Initial Catalog=test3;User ID=sa;Password=6433"; // Tu cadena de conexión
-
         private SqlConnection conexion; // Declarar la variable conexión a nivel de clase
 
-        public ConexionDB() { }
+        public ConexionDB()
+        {
+            // Configurar la cadena de conexión según el estado global
+            ActualizarConnectionString();
+        }
+
+        // Variable estática para almacenar el estado de la conexión (true o false)
+        public static bool conexionActivaGlobal = true; // False es paara HP y True para PC
+
+        // Cadena de conexión por defecto (se configura automáticamente según el estado global)
+        private string connectionString = string.Empty;
+
+        // Propiedad estática para configurar el estado global UNA SOLA VEZ
+        public static void ConfigurarConexionGlobal(bool conexionActiva)
+        {
+            if (conexionActivaGlobal != conexionActiva) // Solo actualizamos si cambia el valor
+            {
+                conexionActivaGlobal = conexionActiva;
+            }
+        }
+        //private string connectionString = "Data Source=VICTOR-PC\\SQLVICTOR;Initial Catalog=test3;User ID=sa;Password=6433"; // Tu cadena de conexión
+        //  private string connectionString = ""; // Tu cadena de conexión
+
+
+        // Método privado para actualizar la cadena de conexión
+        private void ActualizarConnectionString()
+        {
+            if (conexionActivaGlobal)
+            {
+                // Conexión 1
+                connectionString = "Data Source=VICTOR-PC\\SQLVICTOR;Initial Catalog=test3;User ID=sa;Password=6433";
+            }
+            else
+            {
+                // Conexión 2
+                connectionString = "Data Source=VICTOR-HP\\SQLVICTOR;Initial Catalog=test3;User ID=sa;Password=6433";
+            }
+        }
 
         // Método para conectar a SQL Server
         public SqlConnection ConectarSQL()
@@ -23,6 +56,7 @@ namespace ODS.Datos
             try
             {
                 // Crear una nueva instancia de SqlConnection
+                
                 conexion = new SqlConnection(connectionString);
                 conexion.Open(); // Abrir la conexión
 
@@ -164,7 +198,7 @@ namespace ODS.Datos
                 if (conexion?.State != System.Data.ConnectionState.Open)
                 {
                     conexion.Open(); // Abrir la conexión
-                   // XtraMessageBox.Show("Conexión abierta exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                     // XtraMessageBox.Show("Conexión abierta exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
@@ -196,7 +230,7 @@ namespace ODS.Datos
                 }
                 else
                 {
-                   // XtraMessageBox.Show("La conexión ya está cerrada.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    // XtraMessageBox.Show("La conexión ya está cerrada.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)

@@ -36,30 +36,31 @@
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridCRegistrar = new DevExpress.XtraGrid.GridControl();
             this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
+            this.panelInferior = new DevExpress.XtraEditors.GroupControl();
+            this.btnExportar = new DevExpress.XtraEditors.SimpleButton();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.labelEstado = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.labelUsuario = new System.Windows.Forms.Label();
             this.labelFecha = new System.Windows.Forms.Label();
-            this.labelEstado = new System.Windows.Forms.Label();
             this.radioGroupFallos = new DevExpress.XtraEditors.RadioGroup();
             this.memoEditObsevacion = new DevExpress.XtraEditors.MemoEdit();
             this.memoEditDescripcion = new DevExpress.XtraEditors.MemoEdit();
-            this.lookUpEdit1 = new DevExpress.XtraEditors.LookUpEdit();
+            this.lookUpFallos = new DevExpress.XtraEditors.LookUpEdit();
             this.btnRegistrar = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridCRegistrar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
-            this.groupControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelInferior)).BeginInit();
+            this.panelInferior.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radioGroupFallos.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoEditObsevacion.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoEditDescripcion.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpFallos.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // xtraTabbedMdiManager1
@@ -72,7 +73,7 @@
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(369, 84);
+            this.label2.Location = new System.Drawing.Point(404, 84);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(138, 19);
             this.label2.TabIndex = 10;
@@ -84,7 +85,7 @@
             this.simpleButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.simpleButton1.AutoSize = true;
             this.simpleButton1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
-            this.simpleButton1.Location = new System.Drawing.Point(119, 784);
+            this.simpleButton1.Location = new System.Drawing.Point(119, 813);
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Size = new System.Drawing.Size(109, 36);
             this.simpleButton1.TabIndex = 6;
@@ -103,7 +104,7 @@
             this.gridCRegistrar.Location = new System.Drawing.Point(0, 272);
             this.gridCRegistrar.MainView = this.gridView1;
             this.gridCRegistrar.Name = "gridCRegistrar";
-            this.gridCRegistrar.Size = new System.Drawing.Size(830, 203);
+            this.gridCRegistrar.Size = new System.Drawing.Size(901, 217);
             this.gridCRegistrar.TabIndex = 11;
             this.gridCRegistrar.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1,
@@ -114,33 +115,51 @@
             this.gridView3.GridControl = this.gridCRegistrar;
             this.gridView3.Name = "gridView3";
             // 
-            // groupControl2
+            // panelInferior
             // 
-            this.groupControl2.Appearance.BackColor = System.Drawing.Color.Transparent;
-            this.groupControl2.Appearance.BorderColor = System.Drawing.Color.Transparent;
-            this.groupControl2.Appearance.Options.UseBackColor = true;
-            this.groupControl2.Appearance.Options.UseBorderColor = true;
-            this.groupControl2.CaptionImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("groupControl2.CaptionImageOptions.Image")));
-            this.groupControl2.CaptionLocation = DevExpress.Utils.Locations.Bottom;
-            this.groupControl2.ContentImage = global::ODS.Properties.Resources.textura3;
-            this.groupControl2.Controls.Add(this.label11);
-            this.groupControl2.Controls.Add(this.label10);
-            this.groupControl2.Controls.Add(this.labelEstado);
-            this.groupControl2.Controls.Add(this.label3);
-            this.groupControl2.Controls.Add(this.groupBox1);
-            this.groupControl2.Controls.Add(this.radioGroupFallos);
-            this.groupControl2.Controls.Add(this.memoEditObsevacion);
-            this.groupControl2.Controls.Add(this.memoEditDescripcion);
-            this.groupControl2.Controls.Add(this.lookUpEdit1);
-            this.groupControl2.Controls.Add(this.btnRegistrar);
-            this.groupControl2.Controls.Add(this.gridCRegistrar);
-            this.groupControl2.Controls.Add(this.label2);
-            this.groupControl2.Controls.Add(this.simpleButton1);
-            this.groupControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupControl2.Location = new System.Drawing.Point(0, 0);
-            this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(836, 533);
-            this.groupControl2.TabIndex = 12;
+            this.panelInferior.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.panelInferior.Appearance.BorderColor = System.Drawing.Color.Transparent;
+            this.panelInferior.Appearance.Options.UseBackColor = true;
+            this.panelInferior.Appearance.Options.UseBorderColor = true;
+            this.panelInferior.CaptionImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnExportar.CaptionImageOptions.Image")));
+            this.panelInferior.CaptionLocation = DevExpress.Utils.Locations.Bottom;
+            this.panelInferior.ContentImage = global::ODS.Properties.Resources.textura3;
+            this.panelInferior.Controls.Add(this.btnExportar);
+            this.panelInferior.Controls.Add(this.label11);
+            this.panelInferior.Controls.Add(this.label10);
+            this.panelInferior.Controls.Add(this.labelEstado);
+            this.panelInferior.Controls.Add(this.label3);
+            this.panelInferior.Controls.Add(this.groupBox1);
+            this.panelInferior.Controls.Add(this.radioGroupFallos);
+            this.panelInferior.Controls.Add(this.memoEditObsevacion);
+            this.panelInferior.Controls.Add(this.memoEditDescripcion);
+            this.panelInferior.Controls.Add(this.lookUpFallos);
+            this.panelInferior.Controls.Add(this.btnRegistrar);
+            this.panelInferior.Controls.Add(this.gridCRegistrar);
+            this.panelInferior.Controls.Add(this.label2);
+            this.panelInferior.Controls.Add(this.simpleButton1);
+            this.panelInferior.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelInferior.Location = new System.Drawing.Point(0, 0);
+            this.panelInferior.Name = "panelInferior";
+            this.panelInferior.Size = new System.Drawing.Size(907, 562);
+            this.panelInferior.TabIndex = 12;
+            // 
+            // btnExportar
+            // 
+            this.btnExportar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnExportar.Appearance.BackColor = System.Drawing.Color.Chocolate;
+            this.btnExportar.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExportar.Appearance.Options.UseBackColor = true;
+            this.btnExportar.Appearance.Options.UseFont = true;
+            this.btnExportar.Appearance.Options.UseTextOptions = true;
+            this.btnExportar.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.btnExportar.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton2.ImageOptions.Image")));
+            this.btnExportar.Location = new System.Drawing.Point(186, 495);
+            this.btnExportar.Name = "btnExportar";
+            this.btnExportar.Size = new System.Drawing.Size(133, 40);
+            this.btnExportar.TabIndex = 53;
+            this.btnExportar.Text = "Exportar";
+            this.btnExportar.Click += new System.EventHandler(this.btnExportar_Click);
             // 
             // label11
             // 
@@ -162,13 +181,25 @@
             this.label10.TabIndex = 51;
             this.label10.Text = "Descripción";
             // 
+            // labelEstado
+            // 
+            this.labelEstado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelEstado.AutoSize = true;
+            this.labelEstado.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.labelEstado.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelEstado.Location = new System.Drawing.Point(688, 118);
+            this.labelEstado.Name = "labelEstado";
+            this.labelEstado.Size = new System.Drawing.Size(125, 16);
+            this.labelEstado.TabIndex = 15;
+            this.labelEstado.Text = "Estado: Pendiente";
+            // 
             // label3
             // 
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Times New Roman", 21.75F, System.Drawing.FontStyle.Bold);
-            this.label3.Location = new System.Drawing.Point(271, 29);
+            this.label3.Location = new System.Drawing.Point(306, 29);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(348, 32);
             this.label3.TabIndex = 48;
@@ -208,26 +239,14 @@
             this.labelFecha.TabIndex = 12;
             this.labelFecha.Text = "Fecha: 26/01/2025 4:08 p.m";
             // 
-            // labelEstado
-            // 
-            this.labelEstado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelEstado.AutoSize = true;
-            this.labelEstado.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
-            this.labelEstado.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelEstado.Location = new System.Drawing.Point(617, 118);
-            this.labelEstado.Name = "labelEstado";
-            this.labelEstado.Size = new System.Drawing.Size(119, 14);
-            this.labelEstado.TabIndex = 15;
-            this.labelEstado.Text = "Estado: Pendiente";
-            // 
             // radioGroupFallos
             // 
             this.radioGroupFallos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.radioGroupFallos.Location = new System.Drawing.Point(620, 166);
+            this.radioGroupFallos.Location = new System.Drawing.Point(660, 166);
             this.radioGroupFallos.Name = "radioGroupFallos";
             this.radioGroupFallos.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.radioGroupFallos.Properties.Appearance.Options.UseBackColor = true;
-            this.radioGroupFallos.Size = new System.Drawing.Size(189, 92);
+            this.radioGroupFallos.Size = new System.Drawing.Size(235, 92);
             this.radioGroupFallos.TabIndex = 41;
             this.radioGroupFallos.EditValueChanged += new System.EventHandler(this.radioGroupFallos_EditValueChanged_1);
             // 
@@ -239,7 +258,7 @@
             this.memoEditObsevacion.Name = "memoEditObsevacion";
             this.memoEditObsevacion.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.memoEditObsevacion.Properties.Appearance.Options.UseBackColor = true;
-            this.memoEditObsevacion.Size = new System.Drawing.Size(580, 36);
+            this.memoEditObsevacion.Size = new System.Drawing.Size(623, 36);
             this.memoEditObsevacion.TabIndex = 40;
             // 
             // memoEditDescripcion
@@ -250,34 +269,37 @@
             this.memoEditDescripcion.Name = "memoEditDescripcion";
             this.memoEditDescripcion.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.memoEditDescripcion.Properties.Appearance.Options.UseBackColor = true;
-            this.memoEditDescripcion.Size = new System.Drawing.Size(580, 56);
+            this.memoEditDescripcion.Size = new System.Drawing.Size(623, 56);
             this.memoEditDescripcion.TabIndex = 39;
             this.memoEditDescripcion.Click += new System.EventHandler(this.memoEditDescripcion_Click);
+            this.memoEditDescripcion.KeyDown += new System.Windows.Forms.KeyEventHandler(this.memoEditDescripcion_KeyDown);
             // 
-            // lookUpEdit1
+            // lookUpFallos
             // 
-            this.lookUpEdit1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lookUpFallos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lookUpEdit1.Location = new System.Drawing.Point(620, 139);
-            this.lookUpEdit1.Name = "lookUpEdit1";
-            this.lookUpEdit1.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
-            this.lookUpEdit1.Properties.Appearance.Options.UseBackColor = true;
-            this.lookUpEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.lookUpFallos.Location = new System.Drawing.Point(660, 139);
+            this.lookUpFallos.Name = "lookUpFallos";
+            this.lookUpFallos.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.lookUpFallos.Properties.Appearance.Options.UseBackColor = true;
+            this.lookUpFallos.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lookUpEdit1.Size = new System.Drawing.Size(189, 20);
-            this.lookUpEdit1.TabIndex = 18;
+            this.lookUpFallos.Size = new System.Drawing.Size(235, 20);
+            this.lookUpFallos.TabIndex = 18;
             // 
             // btnRegistrar
             // 
             this.btnRegistrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnRegistrar.Appearance.BackColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Question;
-            this.btnRegistrar.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRegistrar.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRegistrar.Appearance.Options.UseBackColor = true;
             this.btnRegistrar.Appearance.Options.UseFont = true;
+            this.btnRegistrar.Appearance.Options.UseTextOptions = true;
+            this.btnRegistrar.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.btnRegistrar.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnRegistrar.ImageOptions.Image")));
-            this.btnRegistrar.Location = new System.Drawing.Point(374, 479);
+            this.btnRegistrar.Location = new System.Drawing.Point(12, 495);
             this.btnRegistrar.Name = "btnRegistrar";
-            this.btnRegistrar.Size = new System.Drawing.Size(88, 27);
+            this.btnRegistrar.Size = new System.Drawing.Size(146, 40);
             this.btnRegistrar.TabIndex = 14;
             this.btnRegistrar.Text = "Registrar";
             this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
@@ -290,23 +312,23 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(836, 533);
-            this.Controls.Add(this.groupControl2);
+            this.ClientSize = new System.Drawing.Size(907, 562);
+            this.Controls.Add(this.panelInferior);
             this.Name = "FormRegistrar";
             this.Load += new System.EventHandler(this.FormRegistrar_Load);
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridCRegistrar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
-            this.groupControl2.ResumeLayout(false);
-            this.groupControl2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelInferior)).EndInit();
+            this.panelInferior.ResumeLayout(false);
+            this.panelInferior.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radioGroupFallos.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoEditObsevacion.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoEditDescripcion.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpFallos.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -318,12 +340,12 @@
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraGrid.GridControl gridCRegistrar;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView3;
-        private DevExpress.XtraEditors.GroupControl groupControl2;
+        private DevExpress.XtraEditors.GroupControl panelInferior;
         private System.Windows.Forms.Label labelFecha;
         private System.Windows.Forms.Label labelUsuario;
         private DevExpress.XtraEditors.SimpleButton btnRegistrar;
         private System.Windows.Forms.Label labelEstado;
-        private DevExpress.XtraEditors.LookUpEdit lookUpEdit1;
+        private DevExpress.XtraEditors.LookUpEdit lookUpFallos;
         private DevExpress.XtraEditors.MemoEdit memoEditObsevacion;
         private DevExpress.XtraEditors.MemoEdit memoEditDescripcion;
         private DevExpress.XtraEditors.RadioGroup radioGroupFallos;
@@ -334,5 +356,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
+        private DevExpress.XtraEditors.SimpleButton btnExportar;
     }
 }

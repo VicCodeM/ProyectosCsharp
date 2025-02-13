@@ -1,5 +1,5 @@
-﻿using DevExpress.XtraEditors;
-using DevExpress.XtraGrid;
+﻿using DevExpress.Data.ExpressionEditor;
+using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid;
 using ODS.Datos;
 using ODS.Modelo;
@@ -12,11 +12,12 @@ using System.Windows.Forms;
 
 namespace ODS.Forms
 {
-public partial class FormRegistrar : DevExpress.XtraEditors.XtraForm
+    public partial class FormRegistrar : DevExpress.XtraEditors.XtraForm
     {
         #region Instanciar Objetos
         private readonly ConexionDB conexionDB = new ConexionDB();
         private readonly ConsultasDB consultasDB = new ConsultasDB();
+        private readonly ExportarService exportarexcel = new ExportarService();
         #endregion
 
         #region Constructor y Eventos
@@ -39,7 +40,10 @@ public partial class FormRegistrar : DevExpress.XtraEditors.XtraForm
             memoEditDescripcion.Properties.NullText = "Escriba aquí su descripción...";
             // Simular el cambio de valor del RadioGroup al iniciar la forma
             radioGroupFallos_EditValueChanged(radioGroupFallos, EventArgs.Empty);
+            // Actualizar el color del estado
             ActualizarColorEstado();
+            // Desactivar la tecla "Enter" para el MemoEdit
+            memoEditDescripcion.Properties.AcceptsReturn = false;
 
         }
 
@@ -66,7 +70,7 @@ public partial class FormRegistrar : DevExpress.XtraEditors.XtraForm
             {
                 XtraMessageBox.Show($"Error al cargar el formulario: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+
         }
 
         //Borramos descripción
@@ -99,7 +103,7 @@ public partial class FormRegistrar : DevExpress.XtraEditors.XtraForm
                 radioGroupFallos.Properties.Items.Add(new DevExpress.XtraEditors.Controls.RadioGroupItem("Software", "Error Aplicaciones"));
                 radioGroupFallos.Properties.Items.Add(new DevExpress.XtraEditors.Controls.RadioGroupItem("Hardware", "Error Físico"));
                 radioGroupFallos.EditValue = "Hardware";
-                
+
                 ActualizarEstadoRadioButton(true);
             }
             catch (Exception ex)
@@ -177,13 +181,13 @@ public partial class FormRegistrar : DevExpress.XtraEditors.XtraForm
                 {
                     radioGroupFallos.EditValue = "Hardware";
                     CargarTiposFallaHardware();
-                    lookUpEdit1.Properties.NullText = "Seleccione un tipo de falla de hardware";
+                    lookUpFallos.Properties.NullText = "Seleccione un tipo de falla de física";
                 }
                 else
                 {
                     radioGroupFallos.EditValue = "Software";
                     CargarTiposFallaSoftware();
-                    lookUpEdit1.Properties.NullText = "Seleccione un tipo de falla de software";
+                    lookUpFallos.Properties.NullText = "Seleccione un tipo de falla de Aplicaciones";
                 }
             }
             catch (Exception ex)
@@ -285,7 +289,7 @@ public partial class FormRegistrar : DevExpress.XtraEditors.XtraForm
                 // Cambiar el nombre de las columnas
                 gridViewOrdenes.Columns["Fecha_Registro"].Caption = "Fecha de Registro";
                 gridViewOrdenes.Columns["Hora"].Caption = "Hora de Registro";
-                gridViewOrdenes.Columns["Usuario"].Caption ="Usuario";
+                gridViewOrdenes.Columns["Usuario"].Caption = "Usuario";
                 gridViewOrdenes.Columns["Descripcion"].Caption = "Descripción";
                 gridViewOrdenes.Columns["Fecha_Atencion"].Caption = "Fecha de Atención";
                 gridViewOrdenes.Columns["Observaciones"].Caption = "Observaciones";
@@ -333,10 +337,10 @@ public partial class FormRegistrar : DevExpress.XtraEditors.XtraForm
             try
             {
                 DataTable tabla = ConvertirListaADataTable(listaFalla, columna);
-                lookUpEdit1.Properties.DataSource = tabla;
-                lookUpEdit1.Properties.DisplayMember = columna;
-                lookUpEdit1.Properties.ValueMember = "Id";
-                lookUpEdit1.Properties.NullText = textoNull;
+                lookUpFallos.Properties.DataSource = tabla;
+                lookUpFallos.Properties.DisplayMember = columna;
+                lookUpFallos.Properties.ValueMember = "Id";
+                lookUpFallos.Properties.NullText = textoNull;
             }
             catch (Exception ex)
             {
@@ -372,17 +376,17 @@ public partial class FormRegistrar : DevExpress.XtraEditors.XtraForm
             {
                 bool isHardwareChecked = radioGroupFallos.EditValue.ToString() == "Hardware";
                 ActualizarEstadoRadioButton(isHardwareChecked); // Actualizar estado
-                lookUpEdit1.EditValue = null; // Limpiar el valor del LookUpEdit antes de cargar nuevos datos
+                lookUpFallos.EditValue = null; // Limpiar el valor del LookUpEdit antes de cargar nuevos datos
 
                 if (isHardwareChecked)
                 {
                     CargarTiposFallaHardware(); // Cargar hardware si es seleccionado
-                    lookUpEdit1.Properties.NullText = "Seleccione un tipo de falla de hardware";
+                    lookUpFallos.Properties.NullText = "Seleccione un tipo de falla de hardware";
                 }
                 else
                 {
                     CargarTiposFallaSoftware(); // Cargar software si es seleccionado
-                    lookUpEdit1.Properties.NullText = "Seleccione un tipo de falla de software";
+                    lookUpFallos.Properties.NullText = "Seleccione un tipo de falla de software";
                 }
             }
             catch (Exception ex)
@@ -416,14 +420,14 @@ public partial class FormRegistrar : DevExpress.XtraEditors.XtraForm
                 }
 
                 // Validar si seleccionó un valor en lookUpEdit1
-                if (lookUpEdit1.EditValue == null)
+                if (lookUpFallos.EditValue == null)
                 {
                     XtraMessageBox.Show($"Seleccione un tipo de falla de {tipoFalla}.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                int? idFalloHardware = tipoFalla == "Hardware" ? (int?)lookUpEdit1.EditValue : null;
-                int? idFalloSoftware = tipoFalla == "Software" ? (int?)lookUpEdit1.EditValue : null;
+                int? idFalloHardware = tipoFalla == "Hardware" ? (int?)lookUpFallos.EditValue : null;
+                int? idFalloSoftware = tipoFalla == "Software" ? (int?)lookUpFallos.EditValue : null;
 
                 if (!consultasDB.UsuarioExiste(idUsuario))
                 {
@@ -450,7 +454,7 @@ public partial class FormRegistrar : DevExpress.XtraEditors.XtraForm
             try
             {
                 memoEditDescripcion.Text = "";
-                lookUpEdit1.EditValue = null;
+                lookUpFallos.EditValue = null;
             }
             catch (Exception ex)
             {
@@ -490,19 +494,19 @@ public partial class FormRegistrar : DevExpress.XtraEditors.XtraForm
                 labelUsuario.Text = "Usuario: " + (row["Usuario"]?.ToString() ?? "Desconocido");
 
                 // Asignar correctamente el valor a EditValue
-                lookUpEdit1.EditValue = row["Id"] ?? string.Empty;
+                lookUpFallos.EditValue = row["Id"] ?? string.Empty;
 
                 if (row["Hardware"] != DBNull.Value && !string.IsNullOrEmpty(row["Hardware"].ToString()))
                 {
                     radioGroupFallos.EditValue = "Hardware"; // Establecer Hardware como el seleccionado
                     CargarTiposFallaHardware();              // Cargar tipos de falla de hardware
-                    lookUpEdit1.EditValue = row["Hardware"]; // Asignar el valor correspondiente
+                    lookUpFallos.EditValue = row["Hardware"]; // Asignar el valor correspondiente
                 }
                 else if (row["Software"] != DBNull.Value && !string.IsNullOrEmpty(row["Software"].ToString()))
                 {
                     radioGroupFallos.EditValue = "Software"; // Establecer Software como el seleccionado
                     CargarTiposFallaSoftware();              // Cargar tipos de falla de software
-                    lookUpEdit1.EditValue = row["Software"]; // Asignar el valor correspondiente
+                    lookUpFallos.EditValue = row["Software"]; // Asignar el valor correspondiente
                 }
             }
             catch (Exception ex)
@@ -524,8 +528,28 @@ public partial class FormRegistrar : DevExpress.XtraEditors.XtraForm
             }
         }
 
+
         #endregion
 
+        private void memoEditDescripcion_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Verificar si la tecla presionada es "Enter"
+            if (e.KeyCode == Keys.Enter)
+            {
+                // Cancelar el evento para evitar el salto de línea
+                e.SuppressKeyPress = true;
+                e.Handled = true;          // Marca el evento como manejado
 
+                // Simular un clic en el botón
+                btnRegistrar.PerformClick(); // Suponiendo que el botón para el enter
+
+            }
+        }
+
+        private void btnExportar_Click(object sender, EventArgs e)
+        {
+            
+            exportarexcel.ExportarExcel(gridCRegistrar, "Reporte de Órdenes de Servicio");
+        }
     }
 }

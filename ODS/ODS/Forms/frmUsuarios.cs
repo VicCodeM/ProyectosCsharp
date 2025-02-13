@@ -1,12 +1,9 @@
 ﻿using DevExpress.XtraEditors;
-using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Grid;
-using DocumentFormat.OpenXml.Office2010.CustomUI;
 using ODS.Datos;
 using ODS.Modelo;
 using System;
 using System.Data;
-using System.Data.SqlClient;
 using System.Windows.Forms;
 
 namespace ODS.Forms
@@ -339,7 +336,7 @@ namespace ODS.Forms
             lookUpDepartamento.Properties.DisplayMember = "Nombre_Departamento";
             lookUpDepartamento.Properties.ValueMember = "Id_Departamento";
             lookUpDepartamento.Refresh(); // Actualiza el LookUpEdit
-        } 
+        }
         #endregion
 
 

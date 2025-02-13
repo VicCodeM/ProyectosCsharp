@@ -1,16 +1,10 @@
-﻿using DevExpress.XtraGrid.Views.Grid;
-using DevExpress.XtraGrid;
+﻿using DevExpress.XtraEditors;
 using ODS.Datos;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
-using DevExpress.XtraEditors;
 using ODS.Modelo;
+using System;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace ODS.Servicios
 {
@@ -30,25 +24,23 @@ namespace ODS.Servicios
 
 
         //Registrar acciones en bitacora modo consulta
-        public void RegistrarAccionEnBitacora(int idOrden, int idUsuarioAdmin, string accion, string descripcion, int idEmpelado)
+        public void RegistrarAccionEnBitacora(int idOrden, int idUsuarioAdmin, string accion, string descripcion, int idEmpleado)
         {
-            idUsuarioAdmin = UsuarioLogueado.IdUsuario;
-            
             try
             {
                 // Depuración: Verificar valores de entrada
-              //  MessageBox.Show($"idOrden: {idOrden}, idUsuarioAdmin: {idUsuarioAdmin}", "Debug", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Console.WriteLine($"idOrden: {idOrden}, idUsuarioAdmin: {idUsuarioAdmin}, idEmpleado: {idEmpleado}");
 
                 if (idOrden <= 0 || idUsuarioAdmin <= 0)
                 {
-                    MessageBox.Show("Error: idOrden o idUsuarioAdmin inválidos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    XtraMessageBox.Show("Error: idOrden o idUsuarioAdmin inválidos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
                 // Consulta para obtener el Id_Empleado que generó la orden
                 string queryEmpleado = @"
-            SELECT Id_Usuario 
-            FROM OrdenServicio 
+            SELECT Id_Usuario
+            FROM OrdenServicio
             WHERE Id_Orden = @Id_Orden";
 
                 SqlParameter[] paramEmpleado = new SqlParameter[]
@@ -57,15 +49,14 @@ namespace ODS.Servicios
                 };
 
                 object result = conexionBD.ExecuteScalar(queryEmpleado, paramEmpleado);
-                int idEmpleado = result != null ? Convert.ToInt32(result) : 0;
-                
+                int idEmpleadoGeneroOrden = result != null ? Convert.ToInt32(result) : 0;
 
                 // Depuración: Verificar el idEmpleado obtenido
-              //  MessageBox.Show($"idEmpleado obtenido: {idEmpleado}", "Debug", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Console.WriteLine($"idEmpleado obtenido: {idEmpleadoGeneroOrden}");
 
-                if (idEmpleado == 0)
+                if (idEmpleadoGeneroOrden == 0)
                 {
-                    //MessageBox.Show("No se encontró el empleado que generó la orden.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    XtraMessageBox.Show("No se encontró el empleado que generó la orden.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -80,18 +71,20 @@ namespace ODS.Servicios
             new SqlParameter("@Id_Usuario", SqlDbType.Int) { Value = idUsuarioAdmin }, // Admin que actualizó
             new SqlParameter("@Accion", SqlDbType.VarChar) { Value = accion },
             new SqlParameter("@Descripcion", SqlDbType.VarChar) { Value = descripcion },
-            new SqlParameter("@Id_Empleado", SqlDbType.Int) { Value = idEmpleado } // Empleado que generó la orden
+            new SqlParameter("@Id_Empleado", SqlDbType.Int) { Value = idEmpleadoGeneroOrden } // Empleado que generó la orden
                 };
 
                 conexionBD.ExecuteNonQuery(queryInsert, parameters);
 
-               // MessageBox.Show("Acción registrada correctamente en la bitácora.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // Depuración: Confirmar inserción exitosa
+                Console.WriteLine("Acción registrada correctamente en la bitácora.");
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al registrar en la bitácora: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show($"Error al registrar en la bitácora: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         //obtener datos de la bse datos de la tabla bitacora
         public DataTable ObtenerDatosBitacora()
@@ -99,18 +92,23 @@ namespace ODS.Servicios
             try
             {
                 string query = @"
-            SELECT 
-                b.Id_Bitacora AS Id,
-                b.Id_Orden,
-                u.Usuario AS Administrador,
-                b.Accion,
-                CAST(b.Fecha_Accion AS DATE) AS Fecha,  -- Solo la fecha
-                FORMAT(b.Fecha_Accion, 'hh:mm tt') AS Hora,  -- Hora en formato 12h con AM/PM
-                b.Descripcion
-            FROM Bitacora b
-            INNER JOIN Login u ON b.Id_Usuario = u.Id_Usuario  -- Admin que realizó la acción
-            INNER JOIN Login e ON b.Id_Empleado = e.Id_Usuario  -- Empleado que generó la orden
-            ORDER BY b.Fecha_Accion DESC";
+                    SELECT 
+                        b.Id_Bitacora AS Id,
+                        b.Id_Orden,
+                        u.Usuario AS Administrador,
+                        ISNULL(emp.Nombre_Empleado + ' ' + emp.Apellido_Paterno + ' ' + emp.Apellido_Materno, 'Sin Empleado') AS Nombre_Empleado,
+                        b.Accion,
+                        CAST(o.Fecha_Creacion AS DATE) AS Fecha_Orden,  -- Fecha de creación de la orden
+                        LEFT(RIGHT(CONVERT(VARCHAR, o.Fecha_Creacion, 100), 7), 5) + ' ' + RIGHT(CONVERT(VARCHAR, o.Fecha_Creacion, 100), 2) AS Hora_Orden,  -- Hora de creación de la orden
+                        CAST(b.Fecha_Accion AS DATE) AS Fecha_Accion,  -- Fecha de la acción
+                        LEFT(RIGHT(CONVERT(VARCHAR, b.Fecha_Accion, 100), 7), 5) + ' ' + RIGHT(CONVERT(VARCHAR, b.Fecha_Accion, 100), 2) AS Hora_Accion,  -- Hora de la acción
+                        b.Descripcion
+                    FROM Bitacora b
+                    INNER JOIN Login u ON b.Id_Usuario = u.Id_Usuario  -- Admin que realizó la acción
+                    LEFT JOIN Login e ON b.Id_Empleado = e.Id_Usuario  -- Usuario asociado a la acción
+                    LEFT JOIN Empleados emp ON e.Id_Empleado = emp.Id_Empleado  -- Empleado asociado al usuario
+                    LEFT JOIN OrdenServicio o ON b.Id_Orden = o.Id_Orden  -- Orden asociada a la bitácora
+                    ORDER BY b.Fecha_Accion DESC;";
 
                 return conexionBD.ExecuteQuery(query);
             }

@@ -73,6 +73,16 @@ namespace ODS.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_imprimir_48 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-imprimir-48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap jmasLogo {
             get {
                 object obj = ResourceManager.GetObject("jmasLogo", resourceCulture);

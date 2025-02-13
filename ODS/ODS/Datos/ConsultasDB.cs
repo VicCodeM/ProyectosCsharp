@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using static ODS.Modelo.OrdenService;
 
 namespace ODS.Datos
 {
@@ -521,6 +522,51 @@ namespace ODS.Datos
                     return false;
                 }
             }
+        }
+
+        // Método para obtener los detalles de una orden por su ID
+        public Orden ObtenerOrdenPorId(int idOrden)
+        {
+            Orden orden = null;
+
+            using (SqlConnection conexion = conexionBD.ConectarSQL())
+            {
+                string query = @"
+                SELECT
+                    Fecha_Atendida,
+                    Fecha_Cerrada,
+                    Id_TipoFallaHardware,
+                    Id_TipoFallaSoftware,
+                    Descripcion_Problema,
+                    Observaciones,
+                    Estado
+                FROM OrdenServicio
+                WHERE Id_Orden = @IdOrden";
+
+                using (SqlCommand comando = new SqlCommand(query, conexion))
+                {
+                    comando.Parameters.AddWithValue("@IdOrden", idOrden);
+
+                    using (SqlDataReader reader = comando.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            orden = new Orden
+                            {
+                                FechaAtendida = reader.IsDBNull(reader.GetOrdinal("Fecha_Atendida")) ? (DateTime?)null : reader.GetDateTime(reader.GetOrdinal("Fecha_Atendida")),
+                                FechaCerrada = reader.IsDBNull(reader.GetOrdinal("Fecha_Cerrada")) ? (DateTime?)null : reader.GetDateTime(reader.GetOrdinal("Fecha_Cerrada")),
+                                IdFallaHardware = reader.IsDBNull(reader.GetOrdinal("Id_TipoFallaHardware")) ? (int?)null : reader.GetInt32(reader.GetOrdinal("Id_TipoFallaHardware")),
+                                IdFallaSoftware = reader.IsDBNull(reader.GetOrdinal("Id_TipoFallaSoftware")) ? (int?)null : reader.GetInt32(reader.GetOrdinal("Id_TipoFallaSoftware")),
+                                Descripcion = reader.IsDBNull(reader.GetOrdinal("Descripcion_Problema")) ? null : reader.GetString(reader.GetOrdinal("Descripcion_Problema")),
+                                Observaciones = reader.IsDBNull(reader.GetOrdinal("Observaciones")) ? null : reader.GetString(reader.GetOrdinal("Observaciones")),
+                                Estado = reader.IsDBNull(reader.GetOrdinal("Estado")) ? null : reader.GetString(reader.GetOrdinal("Estado"))
+                            };
+                        }
+                    }
+                }
+            }
+
+            return orden;
         }
 
 

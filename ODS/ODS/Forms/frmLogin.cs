@@ -1,11 +1,11 @@
 ﻿using DevExpress.XtraEditors;
-using System;
-using System.Runtime.InteropServices;
-using System.Windows.Forms;
 using ODS.Datos;
 using ODS.Modelo;
+using System;
 using System.Data;
 using System.Data.SqlClient; // Importamos la clase de conexión
+using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
 namespace ODS.Forms
 {
@@ -23,6 +23,7 @@ namespace ODS.Forms
             this.AcceptButton = btnLogin;
             // Evento con DevExpress para mover el formulario desde la parte de arriba 
             panelControl2.MouseDown += panelBarraTitulo_MouseDown;
+
         }
 
         // Crear función para arrastrar formulario
@@ -93,7 +94,7 @@ namespace ODS.Forms
                 {
                     this.LimpiarCampos(); // Limpiar los campos al volver a frmLogin
                     this.Show();
-                    
+
                 };
                 //borramos passward guardado
                 txtPassword.Text = "";

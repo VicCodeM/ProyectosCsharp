@@ -32,8 +32,6 @@ CREATE TABLE TiposFallaSoftware (
   Descripcion VARCHAR(255) NOT NULL
 );
 
-
-
 CREATE TABLE OrdenServicio (
   Id_Orden INT IDENTITY(1,1) PRIMARY KEY,
   Fecha_Creacion DATETIME NOT NULL DEFAULT GETDATE(),
@@ -49,9 +47,6 @@ CREATE TABLE OrdenServicio (
   CONSTRAINT FK_OrdenServicio_TiposFallaHardware FOREIGN KEY (Id_TipoFallaHardware) REFERENCES TiposFallaHardware(Id_TipoFallaHardware),
   CONSTRAINT FK_OrdenServicio_TiposFallaSoftware FOREIGN KEY (Id_TipoFallaSoftware) REFERENCES TiposFallaSoftware(Id_TipoFallaSoftware)
 );
-
-
-
 
 CREATE TABLE Bitacora (
   Id_Bitacora INT IDENTITY(1,1) PRIMARY KEY,
