@@ -391,14 +391,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ODS.exe" size="12193216">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ODS.exe" size="12206016">
       <assemblyIdentity name="ODS" version="1.0.0.1" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>Je6Hha7XVG05VRLdaG57l4+d8ja/DdiJ3BVPpn9kFoE=</dsig:DigestValue>
+        <dsig:DigestValue>HNZEXPF2QI/ctzSeTI1aVqePMZdnaMWu/I4fpnd01Hc=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -439,14 +439,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="System.Linq.Dynamic.Core.dll" size="220672">
-      <assemblyIdentity name="System.Linq.Dynamic.Core" version="1.3.8.0" publicKeyToken="0F07EC44DE6AC832" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="System.Linq.Dynamic.Core.dll" size="239104">
+      <assemblyIdentity name="System.Linq.Dynamic.Core" version="1.6.0.2" publicKeyToken="0F07EC44DE6AC832" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>Wtsq+poN1/h3fqcb7OIIpAF6lhx3osiojycZ3mOlluY=</dsig:DigestValue>
+        <dsig:DigestValue>Xf3ZqtQ/cYvnN96fK69aDVBcyeDBWt9DO6/nYdmxGbA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -531,13 +531,13 @@
       <dsig:DigestValue>KdZ/dI6NM0MiZnkMnewSyIozSHqdDjeThTs331Ps8I8=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="ODS.exe.config" size="1802">
+  <file name="ODS.exe.config" size="2050">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>bCwJQTTD4hozZck03ZV7lBuier6Ymm8hR2e9X0hDXCU=</dsig:DigestValue>
+      <dsig:DigestValue>nzhXmWdiUhKYu/6mMKZIplzQt2Vwat9tuWJ736+INKU=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

@@ -60,56 +60,90 @@ namespace ODS.Forms
         //btn login
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            string usuario = txtUsuario.Text.Trim();
-            string password = txtPassword.Text.Trim();
-
-            if (string.IsNullOrWhiteSpace(usuario) || string.IsNullOrWhiteSpace(password))
+            try
             {
-                XtraMessageBox.Show("Por favor, ingrese usuario y contraseña.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+                // Validar que los campos no estén vacíos
+                string usuario = txtUsuario.Text.Trim();
+                string password = txtPassword.Text.Trim();
 
-            string tipoUsuario = consultas.ValidarUsuario(usuario, password);
-
-            if (!string.IsNullOrEmpty(tipoUsuario))
-            {
-                DataTable datosUsuario = consultas.ObtenerDatosUsuario(usuario);
-                if (datosUsuario.Rows.Count > 0)
+                if (string.IsNullOrWhiteSpace(usuario) || string.IsNullOrWhiteSpace(password))
                 {
-                    UsuarioLogueado.IdUsuario = Convert.ToInt32(datosUsuario.Rows[0]["Id_Usuario"]);
-                    UsuarioLogueado.NombreCompleto = datosUsuario.Rows[0]["NombreCompleto"].ToString();
-                    UsuarioLogueado.Correo = datosUsuario.Rows[0]["Correo"].ToString();
-                    UsuarioLogueado.Departamento = datosUsuario.Rows[0]["Departamento"].ToString();
-                    UsuarioLogueado.TipoUsuario = datosUsuario.Rows[0]["Tipo_Usuario"].ToString();
-                    UsuarioLogueado.NombreUsuario = datosUsuario.Rows[0]["Usuario"].ToString();
+                    XtraMessageBox.Show("Por favor, ingrese usuario y contraseña.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
                 }
 
-                XtraMessageBox.Show($"Inicio de sesión exitoso. Bienvenido, {UsuarioLogueado.NombreCompleto}", "Bienvenido",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // Validar credenciales del usuario
+                string tipoUsuario = consultas.ValidarUsuario(usuario, password);
 
-                this.Hide();
-
-                FormPanel mainForm = new FormPanel(tipoUsuario);
-                mainForm.FormClosed += (s, args) =>
+                if (!string.IsNullOrEmpty(tipoUsuario))
                 {
-                    this.LimpiarCampos(); // Limpiar los campos al volver a frmLogin
-                    this.Show();
+                    // Obtener datos del usuario
+                    DataTable datosUsuario = consultas.ObtenerDatosUsuario(usuario);
 
-                };
-                //borramos passward guardado
-                txtPassword.Text = "";
-                mainForm.ShowDialog();
+                    if (datosUsuario.Rows.Count > 0)
+                    {
+                        // Almacenar datos del usuario logueado
+                        UsuarioLogueado.IdUsuario = Convert.ToInt32(datosUsuario.Rows[0]["Id_Usuario"]);
+                        UsuarioLogueado.Usuario = datosUsuario.Rows[0]["Usuario"].ToString();
+                        UsuarioLogueado.NombreCompleto = datosUsuario.Rows[0]["NombreCompleto"].ToString();
+                        UsuarioLogueado.Correo = datosUsuario.Rows[0]["Correo"].ToString();
+                        UsuarioLogueado.Departamento = datosUsuario.Rows[0]["Departamento"].ToString();
+                        UsuarioLogueado.TipoUsuario = datosUsuario.Rows[0]["Tipo_Usuario"].ToString();
+                        UsuarioLogueado.NombreUsuario = datosUsuario.Rows[0]["Usuario"].ToString();
+                    }
+
+                    // Mostrar mensaje de éxito
+                    XtraMessageBox.Show($"Inicio de sesión exitoso. Bienvenido, {UsuarioLogueado.NombreCompleto}", "Bienvenido",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // Ocultar el formulario de login
+                    this.Hide();
+
+                    // Mostrar el formulario de carga
+                    frmLoader loader = new frmLoader(tipoUsuario);
+
+                    // Configurar el evento FormClosed del formulario de carga
+                    loader.FormClosed += (s, args) =>
+                    {
+                        // Mostrar el formulario principal después de cerrar el formulario de carga
+                        FormPanel mainForm = new FormPanel(tipoUsuario);
+
+                        mainForm.FormClosed += (s2, args2) =>
+                        {
+                            // Limpiar campos al volver al login
+                            LimpiarCampos();
+                            this.Show();
+                        };
+
+                        mainForm.ShowDialog();
+                    };
+
+                    // Abrir el formulario de carga como modal
+                    loader.ShowDialog();
+                }
+                else
+                {
+                    XtraMessageBox.Show("Usuario o contraseña incorrectos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                XtraMessageBox.Show("Usuario o contraseña incorrectos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // Manejar errores inesperados
+                XtraMessageBox.Show($"Ocurrió un error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                // Limpiar el campo de contraseña
+                txtPassword.Text = "";
             }
         }
-        //boton para limpiar campos
+
+
+
+        // Botón para limpiar campos manualmente
         private void btnClear_Click(object sender, EventArgs e)
         {
-            txtUsuario.Text = "";
-            txtPassword.Text = "";
+            LimpiarCampos();
         }
 
         private void checkboxShowPass_CheckedChanged(object sender, EventArgs e)

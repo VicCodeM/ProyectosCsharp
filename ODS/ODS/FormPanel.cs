@@ -26,7 +26,6 @@ namespace ODS
 
         #region Intaciar objetos
         ConexionDB conexionDB = new ConexionDB();
-       // ConsultasDB consultas = new ConsultasDB();
         FechaServicio fechaService = new FechaServicio();
         #endregion
 
@@ -152,7 +151,9 @@ namespace ODS
             else
             {
                 // Si el cierre fue manual, cerramos toda la aplicación
+                this.Close();
                 Application.Exit();
+
             }
 
         }
@@ -260,31 +261,36 @@ namespace ODS
 
 
         }
-
         private void CerrarSesion()
         {
-            // Limpiar la sesión
-            UsuarioLogueado.IdUsuario = 0;
-            UsuarioLogueado.NombreCompleto = string.Empty;
-            UsuarioLogueado.Correo = string.Empty;
-            UsuarioLogueado.Departamento = string.Empty;
-            UsuarioLogueado.TipoUsuario = string.Empty;
-            UsuarioLogueado.NombreUsuario = string.Empty;
-            this.Hide();
-            // Buscar si frmLogin sigue abierto
-            Form loginForm = Application.OpenForms["frmLogin"];
+            try
+            {
+                // Limpiar la sesión (centralizado en UsuarioLogueado)
+                UsuarioLogueado.LimpiarDatos();
 
-            if (loginForm != null)
-            {
-                loginForm.Show(); // Si ya está en memoria, solo lo mostramos
+                // Ocultar y cerrar el formulario principal
+                this.Hide(); // Cierra completamente el formulario principal
+
+                // Buscar si frmLogin sigue abierto
+                Form loginForm = Application.OpenForms["frmLogin"];
+                if (loginForm != null)
+                {
+                    // Si ya está en memoria, lo mostramos
+                    loginForm.Show();
+                }
+                else
+                {
+                    // Si no existe, creamos una nueva instancia y la mostramos
+                    loginForm = new frmLogin();
+                    loginForm.Show();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                loginForm = new frmLogin();
-                loginForm.Show(); // Si no existe, lo creamos
+                // Manejar errores inesperados
+                XtraMessageBox.Show($"Ocurrió un error al cerrar sesión: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void ReiniciarTemporizador()
         {
             // Reiniciar el temporizador

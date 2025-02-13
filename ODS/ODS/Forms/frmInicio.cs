@@ -71,8 +71,7 @@ namespace ODS.Forms
             // Mostrar el resultado en el label
             if (!string.IsNullOrEmpty(nombre))
             {
-                labelUsuario.Text = $"{nombre}";
-
+                labelUsuario.Text = $"{nombre}".ToUpper();
             }
             else
             {

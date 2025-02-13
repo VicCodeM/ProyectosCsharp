@@ -186,6 +186,7 @@
             this.usuarioElement,
             this.departamentoElement,
             this.elementCerrarSesion});
+            this.acordeonUsuario.Expanded = true;
             this.acordeonUsuario.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("acordeonUsuario.ImageOptions.SvgImage")));
             this.acordeonUsuario.Name = "acordeonUsuario";
             this.acordeonUsuario.Text = "USUARIO";

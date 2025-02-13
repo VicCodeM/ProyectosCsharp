@@ -3,20 +3,72 @@
   "WorkspaceRootPath": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ods\\formpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|solutionrelative:ods\\formpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|c:\\users\\vicom\\desktop\\github\\proyectoscsharp\\ods\\ods\\forms\\frmloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|solutionrelative:ods\\forms\\frmloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ods\\forms\\frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|solutionrelative:ods\\forms\\frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|c:\\users\\vicom\\desktop\\github\\proyectoscsharp\\ods\\ods\\forms\\frmloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|solutionrelative:ods\\forms\\frmloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ods\\forms\\frminicio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|solutionrelative:ods\\forms\\frminicio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ods\\forms\\frminicio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|solutionrelative:ods\\forms\\frminicio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ods\\servicios\\exportarservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|solutionrelative:ods\\servicios\\exportarservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|c:\\users\\vicom\\desktop\\github\\proyectoscsharp\\ods\\ods\\formpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|solutionrelative:ods\\formpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ods\\formpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|solutionrelative:ods\\formpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|c:\\users\\vicom\\desktop\\github\\proyectoscsharp\\ods\\ods\\forms\\frmadminregistros.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ods\\forms\\frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|solutionrelative:ods\\forms\\frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ods\\modelo\\usuariologueado.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|solutionrelative:ods\\modelo\\usuariologueado.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ods\\modelo\\usuarioconsultas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|solutionrelative:ods\\modelo\\usuarioconsultas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ods\\forms\\frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|solutionrelative:ods\\forms\\frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ods\\forms\\frmlogin.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|solutionrelative:ods\\forms\\frmlogin.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ods\\forms\\formregistrar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|solutionrelative:ods\\forms\\formregistrar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ods\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|solutionrelative:ods\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ods\\forms\\frmadminregistros.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|solutionrelative:ods\\forms\\frmadminregistros.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|c:\\users\\vicom\\desktop\\github\\proyectoscsharp\\ods\\ods\\forms\\frmprogress.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|solutionrelative:ods\\forms\\frmprogress.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|c:\\users\\vicom\\desktop\\github\\proyectoscsharp\\ods\\ods\\forms\\frmprogress.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|solutionrelative:ods\\forms\\frmprogress.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ods\\forms\\frmbitacora.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -31,7 +83,7 @@
       "RelativeMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|solutionrelative:ods\\forms\\frmusuarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|c:\\users\\vicom\\desktop\\github\\proyectoscsharp\\ods\\ods\\forms\\frmadminregistros.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ods\\forms\\frmadminregistros.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|solutionrelative:ods\\forms\\frmadminregistros.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -39,44 +91,24 @@
       "RelativeMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|solutionrelative:ods\\forms\\formregistrar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ods\\forms\\formregistrar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|solutionrelative:ods\\forms\\formregistrar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|c:\\users\\vicom\\desktop\\github\\proyectoscsharp\\ods\\ods\\servicios\\exportarservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|solutionrelative:ods\\servicios\\exportarservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ods\\servicios\\bitacoraservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|solutionrelative:ods\\servicios\\bitacoraservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|c:\\users\\vicom\\desktop\\github\\proyectoscsharp\\ods\\ods\\servicios\\ordenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ods\\servicios\\ordenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|solutionrelative:ods\\servicios\\ordenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|c:\\users\\vicom\\desktop\\github\\proyectoscsharp\\ods\\ods\\servicios\\fechaservicio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ods\\servicios\\fechaservicio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|solutionrelative:ods\\servicios\\fechaservicio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ods\\forms\\frminicio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|solutionrelative:ods\\forms\\frminicio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|c:\\users\\vicom\\desktop\\github\\proyectoscsharp\\ods\\ods\\forms\\frmadminregistros.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ods\\forms\\frmadminregistros.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|solutionrelative:ods\\forms\\frmadminregistros.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ods\\modelo\\usuariologueado.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|solutionrelative:ods\\modelo\\usuariologueado.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ods\\forms\\frmusuarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|solutionrelative:ods\\forms\\frmusuarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ods\\modelo\\usuarioconsultas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|solutionrelative:ods\\modelo\\usuarioconsultas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ods\\forms\\formregistrar.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -87,16 +119,8 @@
       "RelativeMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|solutionrelative:ods\\datos\\consultasdb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|c:\\users\\vicom\\desktop\\github\\proyectoscsharp\\ods\\ods\\datos\\conexiondb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ods\\datos\\conexiondb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|solutionrelative:ods\\datos\\conexiondb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ods\\forms\\frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|solutionrelative:ods\\forms\\frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ods\\forms\\frmlogin.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|solutionrelative:ods\\forms\\frmlogin.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ods\\forms\\frminicio.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -105,14 +129,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ods\\forms\\frmbitacora.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|solutionrelative:ods\\forms\\frmbitacora.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ods\\forms\\frminicio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|solutionrelative:ods\\forms\\frminicio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ods\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|solutionrelative:ods\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ods\\formpanel.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -130,11 +146,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 14,
+          "SelectedChildIndex": 13,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 14,
               "Title": "frmAdminRegistros.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\Forms\\frmAdminRegistros.cs",
               "RelativeDocumentMoniker": "ODS\\Forms\\frmAdminRegistros.cs",
@@ -147,7 +163,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 20,
               "Title": "frmAdminRegistros.cs",
               "DocumentMoniker": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\Forms\\frmAdminRegistros.cs",
               "RelativeDocumentMoniker": "ODS\\Forms\\frmAdminRegistros.cs",
@@ -161,7 +177,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 12,
               "Title": "FormRegistrar.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\Forms\\FormRegistrar.cs",
               "RelativeDocumentMoniker": "ODS\\Forms\\FormRegistrar.cs",
@@ -174,7 +190,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 21,
               "Title": "FormRegistrar.cs",
               "DocumentMoniker": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\Forms\\FormRegistrar.cs",
               "RelativeDocumentMoniker": "ODS\\Forms\\FormRegistrar.cs",
@@ -188,7 +204,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 26,
               "Title": "frmUsuarios.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\Forms\\frmUsuarios.cs",
               "RelativeDocumentMoniker": "ODS\\Forms\\frmUsuarios.cs",
@@ -201,7 +217,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 19,
               "Title": "frmUsuarios.cs",
               "DocumentMoniker": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\Forms\\frmUsuarios.cs",
               "RelativeDocumentMoniker": "ODS\\Forms\\frmUsuarios.cs",
@@ -215,7 +231,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 17,
               "Title": "frmBitacora.cs",
               "DocumentMoniker": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\Forms\\frmBitacora.cs",
               "RelativeDocumentMoniker": "ODS\\Forms\\frmBitacora.cs",
@@ -229,7 +245,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 22,
               "Title": "BitacoraService.cs",
               "DocumentMoniker": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\Servicios\\BitacoraService.cs",
               "RelativeDocumentMoniker": "ODS\\Servicios\\BitacoraService.cs",
@@ -243,7 +259,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 28,
               "Title": "ConsultasDB.cs",
               "DocumentMoniker": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\Datos\\ConsultasDB.cs",
               "RelativeDocumentMoniker": "ODS\\Datos\\ConsultasDB.cs",
@@ -257,15 +273,83 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 9,
               "Title": "UsuarioConsultas.cs",
               "DocumentMoniker": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\Modelo\\UsuarioConsultas.cs",
               "RelativeDocumentMoniker": "ODS\\Modelo\\UsuarioConsultas.cs",
               "ToolTip": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\Modelo\\UsuarioConsultas.cs",
               "RelativeToolTip": "ODS\\Modelo\\UsuarioConsultas.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAgwEQAAAAQAAAAAAAAAA==",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAmwBIAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-05T02:23:31.154Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "frmLogin.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\Forms\\frmLogin.cs",
+              "RelativeDocumentMoniker": "ODS\\Forms\\frmLogin.cs",
+              "ToolTip": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\Forms\\frmLogin.cs [Dise\u00F1o]",
+              "RelativeToolTip": "ODS\\Forms\\frmLogin.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-04T16:24:33.431Z",
+              "IsPinned": true,
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "frmLogin.cs",
+              "DocumentMoniker": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\Forms\\frmLogin.cs",
+              "RelativeDocumentMoniker": "ODS\\Forms\\frmLogin.cs",
+              "ToolTip": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\Forms\\frmLogin.cs",
+              "RelativeToolTip": "ODS\\Forms\\frmLogin.cs",
+              "ViewState": "AgIAAF8AAAAAAAAAAAAowFgAAABCAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-04T18:06:39.404Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "UsuarioLogueado.cs",
+              "DocumentMoniker": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\Modelo\\UsuarioLogueado.cs",
+              "RelativeDocumentMoniker": "ODS\\Modelo\\UsuarioLogueado.cs",
+              "ToolTip": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\Modelo\\UsuarioLogueado.cs",
+              "RelativeToolTip": "ODS\\Modelo\\UsuarioLogueado.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-05T02:20:38.677Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "frmLoader.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\Forms\\frmLoader.cs",
+              "RelativeDocumentMoniker": "ODS\\Forms\\frmLoader.cs",
+              "ToolTip": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\Forms\\frmLoader.cs [Dise\u00F1o]",
+              "RelativeToolTip": "ODS\\Forms\\frmLoader.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-13T02:54:03.768Z",
+              "IsPinned": true,
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "frmLoader.cs",
+              "DocumentMoniker": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\Forms\\frmLoader.cs",
+              "RelativeDocumentMoniker": "ODS\\Forms\\frmLoader.cs",
+              "ToolTip": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\Forms\\frmLoader.cs",
+              "RelativeToolTip": "ODS\\Forms\\frmLoader.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-13T03:10:47.264Z",
               "IsPinned": true,
               "EditorCaption": ""
             },
@@ -275,32 +359,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "frmLogin.cs",
-              "DocumentMoniker": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\Forms\\frmLogin.cs",
-              "RelativeDocumentMoniker": "ODS\\Forms\\frmLogin.cs",
-              "ToolTip": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\Forms\\frmLogin.cs",
-              "RelativeToolTip": "ODS\\Forms\\frmLogin.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAowBkAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "ExportarService.cs",
+              "DocumentMoniker": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\Servicios\\ExportarService.cs",
+              "RelativeDocumentMoniker": "ODS\\Servicios\\ExportarService.cs",
+              "ToolTip": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\Servicios\\ExportarService.cs",
+              "RelativeToolTip": "ODS\\Servicios\\ExportarService.cs",
+              "ViewState": "AgIAAGYAAAAAAAAAAAAowMAAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-04T18:06:39.404Z",
+              "WhenOpened": "2025-02-12T21:50:32.092Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "FormPanel.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\FormPanel.cs",
-              "RelativeDocumentMoniker": "ODS\\FormPanel.cs",
-              "ToolTip": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\FormPanel.cs [Dise\u00F1o]",
-              "RelativeToolTip": "ODS\\FormPanel.cs [Dise\u00F1o]",
+              "DocumentIndex": 11,
+              "Title": "frmLogin.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\Forms\\frmLogin.Designer.cs",
+              "RelativeDocumentMoniker": "ODS\\Forms\\frmLogin.Designer.cs",
+              "ToolTip": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\Forms\\frmLogin.Designer.cs",
+              "RelativeToolTip": "ODS\\Forms\\frmLogin.Designer.cs",
+              "ViewState": "AgIAAFAAAAAAAAAAAAAtwGAAAABAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-29T00:21:08.115Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2025-02-05T16:30:19.743Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 3,
               "Title": "frmInicio.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\Forms\\frmInicio.cs",
               "RelativeDocumentMoniker": "ODS\\Forms\\frmInicio.cs",
@@ -312,33 +397,83 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 6,
+              "Title": "FormPanel.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\FormPanel.cs",
+              "RelativeDocumentMoniker": "ODS\\FormPanel.cs",
+              "ToolTip": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\FormPanel.cs [Dise\u00F1o]",
+              "RelativeToolTip": "ODS\\FormPanel.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-29T00:21:08.115Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "FormPanel.cs",
               "DocumentMoniker": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\FormPanel.cs",
               "RelativeDocumentMoniker": "ODS\\FormPanel.cs",
               "ToolTip": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\FormPanel.cs",
               "RelativeToolTip": "ODS\\FormPanel.cs",
-              "ViewState": "AgIAABcAAAAAAAAAAAAQwA4AAAAcAAAAAAAAAA==",
+              "ViewState": "AgIAADwAAAAAAAAAAAAAwFcAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-29T00:21:09.731Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "ExportarService.cs",
-              "DocumentMoniker": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\Servicios\\ExportarService.cs",
-              "RelativeDocumentMoniker": "ODS\\Servicios\\ExportarService.cs",
-              "ToolTip": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\Servicios\\ExportarService.cs",
-              "RelativeToolTip": "ODS\\Servicios\\ExportarService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAMAAAAAwAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "frmInicio.cs",
+              "DocumentMoniker": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\Forms\\frmInicio.cs",
+              "RelativeDocumentMoniker": "ODS\\Forms\\frmInicio.cs",
+              "ToolTip": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\Forms\\frmInicio.cs",
+              "RelativeToolTip": "ODS\\Forms\\frmInicio.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEkAAAA6AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-12T21:50:32.092Z",
+              "WhenOpened": "2025-02-05T03:52:45.151Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 15,
+              "Title": "frmProgress.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\Forms\\frmProgress.cs",
+              "RelativeDocumentMoniker": "ODS\\Forms\\frmProgress.cs",
+              "ToolTip": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\Forms\\frmProgress.cs [Dise\u00F1o]",
+              "RelativeToolTip": "ODS\\Forms\\frmProgress.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-13T02:54:56.456Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\Program.cs",
+              "RelativeDocumentMoniker": "ODS\\Program.cs",
+              "ToolTip": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\Program.cs",
+              "RelativeToolTip": "ODS\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-31T23:19:31.956Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "frmProgress.cs",
+              "DocumentMoniker": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\Forms\\frmProgress.cs",
+              "RelativeDocumentMoniker": "ODS\\Forms\\frmProgress.cs",
+              "ToolTip": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\Forms\\frmProgress.cs",
+              "RelativeToolTip": "ODS\\Forms\\frmProgress.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-13T02:55:35.337Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
               "Title": "OrdenService.cs",
               "DocumentMoniker": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\Servicios\\OrdenService.cs",
               "RelativeDocumentMoniker": "ODS\\Servicios\\OrdenService.cs",
@@ -351,7 +486,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 18,
               "Title": "frmBitacora.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\Forms\\frmBitacora.cs",
               "RelativeDocumentMoniker": "ODS\\Forms\\frmBitacora.cs",
@@ -363,19 +498,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "frmLogin.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\Forms\\frmLogin.cs",
-              "RelativeDocumentMoniker": "ODS\\Forms\\frmLogin.cs",
-              "ToolTip": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\Forms\\frmLogin.cs [Dise\u00F1o]",
-              "RelativeToolTip": "ODS\\Forms\\frmLogin.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-04T16:24:33.431Z",
-              "EditorCaption": " [Dise\u00F1o]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 29,
               "Title": "ConexionDB.cs",
               "DocumentMoniker": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\Datos\\ConexionDB.cs",
               "RelativeDocumentMoniker": "ODS\\Datos\\ConexionDB.cs",
@@ -388,7 +511,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 24,
               "Title": "FechaServicio.cs",
               "DocumentMoniker": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\Servicios\\FechaServicio.cs",
               "RelativeDocumentMoniker": "ODS\\Servicios\\FechaServicio.cs",
@@ -401,20 +524,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "UsuarioLogueado.cs",
-              "DocumentMoniker": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\Modelo\\UsuarioLogueado.cs",
-              "RelativeDocumentMoniker": "ODS\\Modelo\\UsuarioLogueado.cs",
-              "ToolTip": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\Modelo\\UsuarioLogueado.cs",
-              "RelativeToolTip": "ODS\\Modelo\\UsuarioLogueado.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAUAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-05T02:20:38.677Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 25,
               "Title": "frmAdminRegistros.Designer.cs",
               "DocumentMoniker": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\Forms\\frmAdminRegistros.Designer.cs",
               "RelativeDocumentMoniker": "ODS\\Forms\\frmAdminRegistros.Designer.cs",
@@ -427,7 +537,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 27,
               "Title": "FormRegistrar.Designer.cs",
               "DocumentMoniker": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\Forms\\FormRegistrar.Designer.cs",
               "RelativeDocumentMoniker": "ODS\\Forms\\FormRegistrar.Designer.cs",
@@ -440,20 +550,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "frmLogin.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\Forms\\frmLogin.Designer.cs",
-              "RelativeDocumentMoniker": "ODS\\Forms\\frmLogin.Designer.cs",
-              "ToolTip": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\Forms\\frmLogin.Designer.cs",
-              "RelativeToolTip": "ODS\\Forms\\frmLogin.Designer.cs",
-              "ViewState": "AgIAANcAAAAAAAAAAAAcwOAAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-05T16:30:19.743Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 30,
               "Title": "frmInicio.Designer.cs",
               "DocumentMoniker": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\Forms\\frmInicio.Designer.cs",
               "RelativeDocumentMoniker": "ODS\\Forms\\frmInicio.Designer.cs",
@@ -466,7 +563,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 31,
               "Title": "frmBitacora.Designer.cs",
               "DocumentMoniker": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\Forms\\frmBitacora.Designer.cs",
               "RelativeDocumentMoniker": "ODS\\Forms\\frmBitacora.Designer.cs",
@@ -479,33 +576,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
-              "Title": "frmInicio.cs",
-              "DocumentMoniker": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\Forms\\frmInicio.cs",
-              "RelativeDocumentMoniker": "ODS\\Forms\\frmInicio.cs",
-              "ToolTip": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\Forms\\frmInicio.cs",
-              "RelativeToolTip": "ODS\\Forms\\frmInicio.cs",
-              "ViewState": "AgIAACQAAAAAAAAAAAAAACwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-05T03:52:45.151Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 27,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\Program.cs",
-              "RelativeDocumentMoniker": "ODS\\Program.cs",
-              "ToolTip": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\Program.cs",
-              "RelativeToolTip": "ODS\\Program.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAApwBkAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-31T23:19:31.956Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 32,
               "Title": "FormPanel.Designer.cs",
               "DocumentMoniker": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\FormPanel.Designer.cs",
               "RelativeDocumentMoniker": "ODS\\FormPanel.Designer.cs",
@@ -518,7 +589,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 33,
               "Title": "Resources.Designer.cs",
               "DocumentMoniker": "C:\\Users\\vicom\\Desktop\\Github\\ProyectosCsharp\\ODS\\ODS\\Properties\\Resources.Designer.cs",
               "RelativeDocumentMoniker": "ODS\\Properties\\Resources.Designer.cs",

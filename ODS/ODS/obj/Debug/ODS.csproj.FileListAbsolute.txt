@@ -173,3 +173,5 @@ C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.application
 C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.csproj.Up2Date
 C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.exe
 C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.pdb
+C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.Forms.frmLoader.resources
+C:\Users\vicom\Desktop\Github\ProyectosCsharp\ODS\ODS\obj\Debug\ODS.Forms.frmProgress.resources
