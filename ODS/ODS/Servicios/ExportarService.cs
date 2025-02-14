@@ -1,8 +1,10 @@
 ﻿using ClosedXML.Excel;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid;
+using DevExpress.XtraGrid.Views.Grid;
 using System;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -16,7 +18,7 @@ namespace ODS.Modelo
         private const int ALTURA_FILA_DATOS = 20; // Altura de las filas de datos
 
         /// <summary>
-        /// Método para exportar datos de un GridControl a un archivo Excel con diseño profesional.
+        /// Método para exportar datos visibles en un GridControl a un archivo Excel con diseño profesional.
         /// </summary>
         /// <param name="gridControl">El GridControl que contiene los datos.</param>
         /// <param name="nombreReporte">El nombre del reporte (opcional).</param>
@@ -31,12 +33,16 @@ namespace ODS.Modelo
                     return;
                 }
 
-                // Convertir el DataSource a DataTable
-                if (!(gridControl.DataSource is DataTable dataTable))
+                // Obtener los datos visibles en el GridControl
+                GridView gridView = gridControl.MainView as GridView;
+                if (gridView == null)
                 {
-                    XtraMessageBox.Show("El origen de datos no es compatible. Se requiere un DataTable.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    XtraMessageBox.Show("La vista principal del GridControl no es compatible.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+
+                // Crear un DataTable con los datos visibles
+                DataTable dataTable = GetVisibleData(gridView);
 
                 // Crear un cuadro de diálogo para guardar el archivo
                 using (SaveFileDialog saveDialog = new SaveFileDialog
@@ -60,12 +66,16 @@ namespace ODS.Modelo
                             // Insertar los datos de la tabla
                             InsertarDatos(hoja, dataTable, dataTable.Columns.Count);
 
-                            // Configurar la hoja para impresión
-                            ConfigurarImpresion(hoja);
-
                             // Guardar el archivo
                             workbook.SaveAs(rutaArchivo);
                         }
+
+                        // Abrir automáticamente el archivo Excel generado
+                        Process.Start(new ProcessStartInfo
+                        {
+                            FileName = rutaArchivo,
+                            UseShellExecute = true
+                        });
 
                         // Mostrar mensaje de éxito
                         XtraMessageBox.Show("Reporte exportado con éxito en Excel.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -80,6 +90,41 @@ namespace ODS.Modelo
         }
 
         /// <summary>
+        /// Obtiene los datos visibles en el GridView del GridControl.
+        /// </summary>
+        /// <param name="gridView">El GridView del GridControl.</param>
+        /// <returns>Un DataTable con los datos visibles.</returns>
+        private DataTable GetVisibleData(GridView gridView)
+        {
+            DataTable dataTable = new DataTable();
+
+            // Agregar columnas al DataTable
+            foreach (DevExpress.XtraGrid.Columns.GridColumn column in gridView.Columns)
+            {
+                if (column.Visible)
+                {
+                    dataTable.Columns.Add(column.FieldName);
+                }
+            }
+
+            // Agregar filas al DataTable
+            for (int i = 0; i < gridView.DataRowCount; i++)
+            {
+                DataRow dataRow = dataTable.NewRow();
+                foreach (DevExpress.XtraGrid.Columns.GridColumn column in gridView.Columns)
+                {
+                    if (column.Visible)
+                    {
+                        dataRow[column.FieldName] = gridView.GetRowCellValue(i, column);
+                    }
+                }
+                dataTable.Rows.Add(dataRow);
+            }
+
+            return dataTable;
+        }
+
+        /// <summary>
         /// Agrega el encabezado del reporte a la hoja de Excel.
         /// </summary>
         /// <param name="hoja">La hoja de Excel donde se agregará el encabezado.</param>
@@ -89,19 +134,18 @@ namespace ODS.Modelo
         {
             // Título de la empresa
             hoja.Cell(1, 1).Value = TITULO_EMPRESA;
-            AplicarEstiloEncabezado(hoja.Cell(1, 1), XLColor.FromHtml("#1F3566"), true); // Azul oscuro
-            hoja.Cell(1, 1).Style.Font.FontSize = 16; // Tamaño de fuente
-            hoja.Cell(1, 1).Style.Font.FontColor = XLColor.White; // Color de fuente
+            AplicarEstiloEncabezado(hoja.Cell(1, 1), XLColor.FromHtml("#283593"), true);
             hoja.Range(1, 1, 1, columnas).Merge(); // Combinar celdas para el título
 
             // Título del reporte
             hoja.Cell(2, 1).Value = nombreReporte;
-            AplicarEstiloEncabezado(hoja.Cell(2, 1), XLColor.LightGray, true);
+            AplicarEstiloEncabezado(hoja.Cell(2, 1), XLColor.FromHtml("#3F51B5"), true);
             hoja.Range(2, 1, 2, columnas).Merge(); // Combinar celdas para el título
 
             // Fecha actual
             hoja.Cell(3, 1).Value = $"Fecha: {DateTime.Now.ToString("dd/MM/yyyy")}";
             AplicarEstiloEncabezado(hoja.Cell(3, 1), XLColor.WhiteSmoke, false);
+            hoja.Cell(3,1).Style.Font.FontColor = XLColor.Black;
             hoja.Range(3, 1, 3, columnas).Merge(); // Combinar celdas para la fecha
 
             // Ajustar altura de las filas del encabezado
@@ -135,17 +179,8 @@ namespace ODS.Modelo
             encabezado.Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
             encabezado.Style.Border.InsideBorder = XLBorderStyleValues.Thin;
 
-            // Ajustar el ancho de las columnas automáticamente
+            // Ajustar el ancho de las columnas
             hoja.Columns().AdjustToContents();
-
-            // Establecer un ancho mínimo para todas las columnas
-            foreach (var columna in hoja.Columns())
-            {
-                if (columna.Width < 15) // Si el ancho es menor a 15, establecer un mínimo
-                {
-                    columna.Width = 15;
-                }
-            }
 
             // Asegurarse de que la hoja se ajuste al tamaño de la página al imprimir
             hoja.PageSetup.FitToPages(1, 0);
@@ -167,48 +202,10 @@ namespace ODS.Modelo
         {
             celda.Style.Font.Bold = esNegrita;
             celda.Style.Font.FontSize = esNegrita ? 14 : 12; // Tamaño de fuente
-            celda.Style.Font.FontColor = XLColor.Black;
+            celda.Style.Font.FontColor = XLColor.White;
             celda.Style.Fill.BackgroundColor = colorFondo;
             celda.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
             celda.Style.Alignment.Vertical = XLAlignmentVerticalValues.Center;
-        }
-
-        /// <summary>
-        /// Configura la hoja para impresión.
-        /// </summary>
-        /// <param name="hoja">La hoja de Excel a configurar.</param>
-        private void ConfigurarImpresion(IXLWorksheet hoja)
-        {
-            // Configurar orientación horizontal
-            hoja.PageSetup.PageOrientation = XLPageOrientation.Landscape;
-
-            // Configurar tamaño de página (Carta o A4)
-            hoja.PageSetup.PaperSize = XLPaperSize.LetterPaper; // Usa XLPaperSize.A4 para tamaño internacional
-
-            // Ajustar el contenido al ancho de una página
-            hoja.PageSetup.FitToPages(1, 0); // 1 página de ancho, tantas páginas de alto como sea necesario
-
-            // Configurar márgenes
-            hoja.PageSetup.Margins.Top = 0.5;
-            hoja.PageSetup.Margins.Bottom = 0.5;
-            hoja.PageSetup.Margins.Left = 0.5;
-            hoja.PageSetup.Margins.Right = 0.5;
-
-            // Aumentar el tamaño de fuente para mejorar la legibilidad
-            foreach (var row in hoja.RowsUsed()) // Aplicar a todas las filas usadas
-            {
-                foreach (var cell in row.Cells())
-                {
-                    if (cell.Address.RowNumber <= 3) // Encabezado
-                    {
-                        cell.Style.Font.FontSize = 14; // Tamaño grande para el encabezado
-                    }
-                    else
-                    {
-                        cell.Style.Font.FontSize = 11; // Tamaño estándar para los datos
-                    }
-                }
-            }
         }
     }
 }

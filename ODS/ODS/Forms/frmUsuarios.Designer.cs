@@ -136,10 +136,12 @@
             // 
             this.btnGuardar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnGuardar.Appearance.BackColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Primary;
+            this.btnGuardar.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGuardar.Appearance.Options.UseBackColor = true;
-            this.btnGuardar.Location = new System.Drawing.Point(121, 473);
+            this.btnGuardar.Appearance.Options.UseFont = true;
+            this.btnGuardar.Location = new System.Drawing.Point(17, 459);
             this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(75, 23);
+            this.btnGuardar.Size = new System.Drawing.Size(142, 37);
             this.btnGuardar.TabIndex = 6;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
@@ -148,10 +150,12 @@
             // 
             this.btnActualizar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnActualizar.Appearance.BackColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Warning;
+            this.btnActualizar.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnActualizar.Appearance.Options.UseBackColor = true;
-            this.btnActualizar.Location = new System.Drawing.Point(408, 473);
+            this.btnActualizar.Appearance.Options.UseFont = true;
+            this.btnActualizar.Location = new System.Drawing.Point(374, 459);
             this.btnActualizar.Name = "btnActualizar";
-            this.btnActualizar.Size = new System.Drawing.Size(75, 23);
+            this.btnActualizar.Size = new System.Drawing.Size(135, 37);
             this.btnActualizar.TabIndex = 7;
             this.btnActualizar.Text = "Actualizar";
             this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
@@ -160,10 +164,12 @@
             // 
             this.btnEiminar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnEiminar.Appearance.BackColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Danger;
+            this.btnEiminar.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEiminar.Appearance.Options.UseBackColor = true;
-            this.btnEiminar.Location = new System.Drawing.Point(650, 473);
+            this.btnEiminar.Appearance.Options.UseFont = true;
+            this.btnEiminar.Location = new System.Drawing.Point(699, 459);
             this.btnEiminar.Name = "btnEiminar";
-            this.btnEiminar.Size = new System.Drawing.Size(75, 23);
+            this.btnEiminar.Size = new System.Drawing.Size(144, 37);
             this.btnEiminar.TabIndex = 8;
             this.btnEiminar.Text = "Eliminar";
             this.btnEiminar.Click += new System.EventHandler(this.btnEiminar_Click);

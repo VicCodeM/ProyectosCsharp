@@ -12,7 +12,7 @@ using static ODS.Modelo.OrdenService;
 
 namespace ODS.Forms
 {
-    public partial class frmAdminRegistros : DevExpress.XtraEditors.XtraUserControl
+    public partial class frmAdminRegistros : DevExpress.XtraEditors.XtraForm
     {
         #region Intaciar objetos Utilizados
         ConexionDB conexionDB = new ConexionDB();
@@ -32,6 +32,8 @@ namespace ODS.Forms
             //Cargar ordenes jutno con el formulario
             CargarOrdenes();
             CargarListasDesplegables();
+            //Asiganar boton de enter
+            this.AcceptButton = btnActualizar1;
 
             //configuramos RadioButton para el tipo de estado de la orden
             radioGroupEstados.Properties.Items.Add(new DevExpress.XtraEditors.Controls.RadioGroupItem("Abierto", "Abierto"));
@@ -49,7 +51,12 @@ namespace ODS.Forms
 
             // Mostrar la fecha y hora actual en el Label
             labelFecha.Text = DateTime.Now.ToString("dd-MM-yyyy hh:mm tt");
-          
+
+            lookUpEditListaUsuarios.Properties.ReadOnly = true;
+            lookUpEditListaUsuarios.Enabled = false;
+            txtIdOrden.Enabled = false;
+            txtIdOrden.Properties.ReadOnly = true;
+
             #endregion
         }
 

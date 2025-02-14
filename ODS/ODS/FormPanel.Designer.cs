@@ -46,8 +46,8 @@
             this.elementCerrarSesion = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement2 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.elemntOrdenesServicio = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.elemntAdminstracion = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.elemntActualizarServicio = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.accordionControlElement1 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.ControlUsuarios = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.elementBitacora = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.fluentDesignFormControl1 = new DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormControl();
@@ -56,6 +56,7 @@
             this.adminregistrosElement = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlSeparator6 = new DevExpress.XtraBars.Navigation.AccordionControlSeparator();
             this.ControlRegistrar = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.elemtCerrarSesion1 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.fluentDesignFormContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -70,9 +71,9 @@
             // 
             this.fluentDesignFormContainer1.Controls.Add(this.panelControl1);
             this.fluentDesignFormContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fluentDesignFormContainer1.Location = new System.Drawing.Point(250, 31);
+            this.fluentDesignFormContainer1.Location = new System.Drawing.Point(244, 31);
             this.fluentDesignFormContainer1.Name = "fluentDesignFormContainer1";
-            this.fluentDesignFormContainer1.Size = new System.Drawing.Size(886, 563);
+            this.fluentDesignFormContainer1.Size = new System.Drawing.Size(892, 563);
             this.fluentDesignFormContainer1.TabIndex = 0;
             // 
             // panelControl1
@@ -81,7 +82,7 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(886, 563);
+            this.panelControl1.Size = new System.Drawing.Size(892, 563);
             this.panelControl1.TabIndex = 0;
             this.panelControl1.SizeChanged += new System.EventHandler(this.panelControl1_SizeChanged);
             // 
@@ -100,7 +101,7 @@
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControl1.Location = new System.Drawing.Point(2, 2);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(882, 559);
+            this.groupControl1.Size = new System.Drawing.Size(888, 559);
             this.groupControl1.TabIndex = 3;
             // 
             // labelUsuario
@@ -155,12 +156,14 @@
             this.accordionControlSeparator1,
             this.acordeonUsuario,
             this.accordionControlElement2,
-            this.accordionControlElement1});
+            this.elemntAdminstracion,
+            this.elemtCerrarSesion1});
             this.accordionControl1.Location = new System.Drawing.Point(0, 31);
             this.accordionControl1.Name = "accordionControl1";
             this.accordionControl1.OptionsMinimizing.AllowMinimizeMode = DevExpress.Utils.DefaultBoolean.True;
             this.accordionControl1.ScrollBarMode = DevExpress.XtraBars.Navigation.ScrollBarMode.Touch;
-            this.accordionControl1.Size = new System.Drawing.Size(250, 563);
+            this.accordionControl1.ShowFilterControl = DevExpress.XtraBars.Navigation.ShowFilterControl.Always;
+            this.accordionControl1.Size = new System.Drawing.Size(244, 563);
             this.accordionControl1.TabIndex = 1;
             this.accordionControl1.ViewType = DevExpress.XtraBars.Navigation.AccordionControlViewType.HamburgerMenu;
             // 
@@ -186,7 +189,6 @@
             this.usuarioElement,
             this.departamentoElement,
             this.elementCerrarSesion});
-            this.acordeonUsuario.Expanded = true;
             this.acordeonUsuario.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("acordeonUsuario.ImageOptions.SvgImage")));
             this.acordeonUsuario.Name = "acordeonUsuario";
             this.acordeonUsuario.Text = "USUARIO";
@@ -220,8 +222,7 @@
             this.accordionControlElement2.Appearance.Default.Options.UseFont = true;
             this.accordionControlElement2.Appearance.Default.Options.UseForeColor = true;
             this.accordionControlElement2.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
-            this.elemntOrdenesServicio,
-            this.elemntActualizarServicio});
+            this.elemntOrdenesServicio});
             this.accordionControlElement2.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("accordionControlElement2.ImageOptions.SvgImage")));
             this.accordionControlElement2.Name = "accordionControlElement2";
             this.accordionControlElement2.Text = "OORDENES DE SERVICIO";
@@ -238,6 +239,20 @@
             this.elemntOrdenesServicio.Text = "AGREGAR ORDEN DE SERVICIO";
             this.elemntOrdenesServicio.Click += new System.EventHandler(this.elemntOrdenesServicio_Click);
             // 
+            // elemntAdminstracion
+            // 
+            this.elemntAdminstracion.Appearance.Default.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.elemntAdminstracion.Appearance.Default.ForeColor = System.Drawing.Color.White;
+            this.elemntAdminstracion.Appearance.Default.Options.UseFont = true;
+            this.elemntAdminstracion.Appearance.Default.Options.UseForeColor = true;
+            this.elemntAdminstracion.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
+            this.elemntActualizarServicio,
+            this.ControlUsuarios,
+            this.elementBitacora});
+            this.elemntAdminstracion.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("elemntAdminstracion.ImageOptions.SvgImage")));
+            this.elemntAdminstracion.Name = "elemntAdminstracion";
+            this.elemntAdminstracion.Text = "ADMINITRACION";
+            // 
             // elemntActualizarServicio
             // 
             this.elemntActualizarServicio.Appearance.Default.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -249,19 +264,6 @@
             this.elemntActualizarServicio.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.elemntActualizarServicio.Text = "ACTUALIZAR ORDENS DE SERVICIO";
             this.elemntActualizarServicio.Click += new System.EventHandler(this.elemntActualizarServicio_Click);
-            // 
-            // accordionControlElement1
-            // 
-            this.accordionControlElement1.Appearance.Default.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.accordionControlElement1.Appearance.Default.ForeColor = System.Drawing.Color.White;
-            this.accordionControlElement1.Appearance.Default.Options.UseFont = true;
-            this.accordionControlElement1.Appearance.Default.Options.UseForeColor = true;
-            this.accordionControlElement1.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
-            this.ControlUsuarios,
-            this.elementBitacora});
-            this.accordionControlElement1.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("accordionControlElement1.ImageOptions.SvgImage")));
-            this.accordionControlElement1.Name = "accordionControlElement1";
-            this.accordionControlElement1.Text = "ADMINITRACION";
             // 
             // ControlUsuarios
             // 
@@ -324,6 +326,15 @@
             this.ControlRegistrar.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.ControlRegistrar.Text = "REGISTRAR";
             // 
+            // elemtCerrarSesion1
+            // 
+            this.elemtCerrarSesion1.ControlFooterAlignment = DevExpress.XtraBars.Navigation.AccordionItemFooterAlignment.Far;
+            this.elemtCerrarSesion1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("elemtCerrarSesion1.ImageOptions.Image")));
+            this.elemtCerrarSesion1.Name = "elemtCerrarSesion1";
+            this.elemtCerrarSesion1.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.elemtCerrarSesion1.Text = "Cerrar Sesión";
+            this.elemtCerrarSesion1.Click += new System.EventHandler(this.elemtCerrarSesion1_Click);
+            // 
             // FormPanel
             // 
             this.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(120)))), ((int)(((byte)(188)))));
@@ -341,6 +352,7 @@
             this.NavigationControl = this.accordionControl1;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "OREDENES DE SERVICIO -JMAS";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormPanel_FormClosed);
             this.Load += new System.EventHandler(this.FormInicial_Load);
             this.fluentDesignFormContainer1.ResumeLayout(false);
@@ -375,7 +387,7 @@
         private DevExpress.XtraBars.Navigation.AccordionControlElement ControlUsuarios;
         private DevExpress.XtraBars.Navigation.AccordionControlElement elementCerrarSesion;
         private DevExpress.XtraBars.Navigation.AccordionControlElement elementBitacora;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement1;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement elemntAdminstracion;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlGestorOrdenes;
         private DevExpress.XtraBars.Navigation.AccordionControlSeparator accordionControlSeparator7;
         private DevExpress.XtraBars.Navigation.AccordionControlElement adminregistrosElement;
@@ -384,6 +396,7 @@
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement2;
         private DevExpress.XtraBars.Navigation.AccordionControlElement elemntOrdenesServicio;
         private DevExpress.XtraBars.Navigation.AccordionControlElement elemntActualizarServicio;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement elemtCerrarSesion1;
     }
 }
 

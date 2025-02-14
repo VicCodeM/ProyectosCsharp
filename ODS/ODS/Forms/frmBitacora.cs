@@ -39,13 +39,13 @@ namespace ODS.Forms
                     if (gridViewBitacora != null)
                     {
                         gridViewBitacora.Columns["Id"].Caption = "Id";
-                        gridViewBitacora.Columns["Id_Orden"].Caption = "Id Orden";
+                        gridViewBitacora.Columns["Id_Orden"].Caption = "Id Órden";
                         gridViewBitacora.Columns["Administrador"].Caption = "Administrador";
                         gridViewBitacora.Columns["Accion"].Caption = "Acción";
-                        gridViewBitacora.Columns["Fecha_Orden"].Caption = "Fecha Oraden";
-                        gridViewBitacora.Columns["Fecha_Accion"].Caption = "Fecha Atencion";
-                        gridViewBitacora.Columns["Hora_Orden"].Caption = "Hora Orden";
-                        gridViewBitacora.Columns["Hora_Accion"].Caption = "Hora Accion";
+                        gridViewBitacora.Columns["Fecha_Orden"].Caption = "Fecha Óraden";
+                        gridViewBitacora.Columns["Fecha_Accion"].Caption = "Fecha Atención";
+                        gridViewBitacora.Columns["Hora_Orden"].Caption = "Hora Órden";
+                        gridViewBitacora.Columns["Hora_Accion"].Caption = "Hora Atención";
                         gridViewBitacora.Columns["Descripcion"].Caption = "Descripción";
                         gridViewBitacora.Columns["Nombre_Empleado"].Caption = "Administrador";
 
@@ -76,10 +76,10 @@ namespace ODS.Forms
             }
         }
 
-
+        //exportar grid a excel
         private void btnExportar_Click(object sender, EventArgs e)
         {
-           exportarexcel.ExportarExcel(gridBitacora, "Bitacora");
+            exportarexcel.ExportarExcel(gridBitacora, "Bitacora");
         }
 
     }

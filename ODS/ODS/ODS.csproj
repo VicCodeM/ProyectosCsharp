@@ -178,7 +178,7 @@
       <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmAdminRegistros.cs">
-      <SubType>UserControl</SubType>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\frmAdminRegistros.Designer.cs">
       <DependentUpon>frmAdminRegistros.cs</DependentUpon>

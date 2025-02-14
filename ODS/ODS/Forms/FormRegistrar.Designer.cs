@@ -37,6 +37,7 @@
             this.gridCRegistrar = new DevExpress.XtraGrid.GridControl();
             this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.panelInferior = new DevExpress.XtraEditors.GroupControl();
+            this.btnNuevaOrden = new DevExpress.XtraEditors.SimpleButton();
             this.btnExportar = new DevExpress.XtraEditors.SimpleButton();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -93,6 +94,10 @@
             // 
             // gridView1
             // 
+            this.gridView1.Appearance.ColumnFilterButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.gridView1.Appearance.ColumnFilterButton.BorderColor = System.Drawing.Color.Blue;
+            this.gridView1.Appearance.ColumnFilterButton.Options.UseBackColor = true;
+            this.gridView1.Appearance.ColumnFilterButton.Options.UseBorderColor = true;
             this.gridView1.GridControl = this.gridCRegistrar;
             this.gridView1.Name = "gridView1";
             // 
@@ -121,9 +126,10 @@
             this.panelInferior.Appearance.BorderColor = System.Drawing.Color.Transparent;
             this.panelInferior.Appearance.Options.UseBackColor = true;
             this.panelInferior.Appearance.Options.UseBorderColor = true;
-            this.panelInferior.CaptionImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnExportar.CaptionImageOptions.Image")));
+            this.panelInferior.CaptionImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("panelInferior.CaptionImageOptions.Image")));
             this.panelInferior.CaptionLocation = DevExpress.Utils.Locations.Bottom;
             this.panelInferior.ContentImage = global::ODS.Properties.Resources.textura3;
+            this.panelInferior.Controls.Add(this.btnNuevaOrden);
             this.panelInferior.Controls.Add(this.btnExportar);
             this.panelInferior.Controls.Add(this.label11);
             this.panelInferior.Controls.Add(this.label10);
@@ -144,21 +150,38 @@
             this.panelInferior.Size = new System.Drawing.Size(907, 562);
             this.panelInferior.TabIndex = 12;
             // 
+            // btnNuevaOrden
+            // 
+            this.btnNuevaOrden.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnNuevaOrden.Appearance.BackColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Success;
+            this.btnNuevaOrden.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNuevaOrden.Appearance.Options.UseBackColor = true;
+            this.btnNuevaOrden.Appearance.Options.UseFont = true;
+            this.btnNuevaOrden.Appearance.Options.UseTextOptions = true;
+            this.btnNuevaOrden.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.btnNuevaOrden.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnNuevaOrden.ImageOptions.Image")));
+            this.btnNuevaOrden.Location = new System.Drawing.Point(28, 495);
+            this.btnNuevaOrden.Name = "btnNuevaOrden";
+            this.btnNuevaOrden.Size = new System.Drawing.Size(154, 40);
+            this.btnNuevaOrden.TabIndex = 54;
+            this.btnNuevaOrden.Text = "Agregar Órden";
+            this.btnNuevaOrden.Click += new System.EventHandler(this.btnNuevaOrden_Click);
+            // 
             // btnExportar
             // 
-            this.btnExportar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnExportar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnExportar.Appearance.BackColor = System.Drawing.Color.Chocolate;
             this.btnExportar.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExportar.Appearance.Options.UseBackColor = true;
             this.btnExportar.Appearance.Options.UseFont = true;
             this.btnExportar.Appearance.Options.UseTextOptions = true;
             this.btnExportar.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
-            this.btnExportar.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton2.ImageOptions.Image")));
-            this.btnExportar.Location = new System.Drawing.Point(186, 495);
+            this.btnExportar.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnExportar.ImageOptions.Image")));
+            this.btnExportar.Location = new System.Drawing.Point(706, 495);
             this.btnExportar.Name = "btnExportar";
-            this.btnExportar.Size = new System.Drawing.Size(133, 40);
+            this.btnExportar.Size = new System.Drawing.Size(150, 40);
             this.btnExportar.TabIndex = 53;
-            this.btnExportar.Text = "Exportar";
+            this.btnExportar.Text = "Generar Reporte";
             this.btnExportar.Click += new System.EventHandler(this.btnExportar_Click);
             // 
             // label11
@@ -271,6 +294,7 @@
             this.memoEditDescripcion.Properties.Appearance.Options.UseBackColor = true;
             this.memoEditDescripcion.Size = new System.Drawing.Size(623, 56);
             this.memoEditDescripcion.TabIndex = 39;
+            this.memoEditDescripcion.EditValueChanged += new System.EventHandler(this.memoEditDescripcion_EditValueChanged);
             this.memoEditDescripcion.Click += new System.EventHandler(this.memoEditDescripcion_Click);
             this.memoEditDescripcion.KeyDown += new System.Windows.Forms.KeyEventHandler(this.memoEditDescripcion_KeyDown);
             // 
@@ -289,7 +313,7 @@
             // 
             // btnRegistrar
             // 
-            this.btnRegistrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnRegistrar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnRegistrar.Appearance.BackColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Question;
             this.btnRegistrar.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRegistrar.Appearance.Options.UseBackColor = true;
@@ -297,11 +321,11 @@
             this.btnRegistrar.Appearance.Options.UseTextOptions = true;
             this.btnRegistrar.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.btnRegistrar.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnRegistrar.ImageOptions.Image")));
-            this.btnRegistrar.Location = new System.Drawing.Point(12, 495);
+            this.btnRegistrar.Location = new System.Drawing.Point(399, 495);
             this.btnRegistrar.Name = "btnRegistrar";
-            this.btnRegistrar.Size = new System.Drawing.Size(146, 40);
+            this.btnRegistrar.Size = new System.Drawing.Size(155, 40);
             this.btnRegistrar.TabIndex = 14;
-            this.btnRegistrar.Text = "Registrar";
+            this.btnRegistrar.Text = "Registrar Órden";
             this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
             // 
             // FormRegistrar
@@ -357,5 +381,6 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private DevExpress.XtraEditors.SimpleButton btnExportar;
+        private DevExpress.XtraEditors.SimpleButton btnNuevaOrden;
     }
 }

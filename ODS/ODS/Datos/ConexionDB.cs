@@ -18,7 +18,7 @@ namespace ODS.Datos
         }
 
         // Variable estática para almacenar el estado de la conexión (true o false)
-        public static bool conexionActivaGlobal = true; // False es paara HP y True para PC
+        public static bool conexionActivaGlobal = false; // False es paara HP y True para PC
 
         // Cadena de conexión por defecto (se configura automáticamente según el estado global)
         private string connectionString = string.Empty;

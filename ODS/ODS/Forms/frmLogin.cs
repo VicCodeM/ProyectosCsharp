@@ -93,8 +93,9 @@ namespace ODS.Forms
                     }
 
                     // Mostrar mensaje de éxito
-                    XtraMessageBox.Show($"Inicio de sesión exitoso. Bienvenido, {UsuarioLogueado.NombreCompleto}", "Bienvenido",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //Mensaje Opcional
+                   // XtraMessageBox.Show($"Inicio de sesión exitoso. Bienvenido, {UsuarioLogueado.NombreCompleto}", "Bienvenido",
+                        //MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     // Ocultar el formulario de login
                     this.Hide();

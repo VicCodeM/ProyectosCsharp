@@ -81,8 +81,8 @@
             // 
             // btnActualizar1
             // 
-            this.btnActualizar1.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnActualizar1.Appearance.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnActualizar1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnActualizar1.Appearance.BackColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Success;
             this.btnActualizar1.Appearance.BorderColor = System.Drawing.Color.Lime;
             this.btnActualizar1.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnActualizar1.Appearance.Options.UseBackColor = true;
@@ -103,7 +103,7 @@
             this.btnActualizar1.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnActualizar1.ImageOptions.SvgImage")));
             this.btnActualizar1.Location = new System.Drawing.Point(73, 7);
             this.btnActualizar1.Name = "btnActualizar1";
-            this.btnActualizar1.Size = new System.Drawing.Size(130, 36);
+            this.btnActualizar1.Size = new System.Drawing.Size(158, 36);
             this.btnActualizar1.TabIndex = 10;
             this.btnActualizar1.Text = "Actualizar";
             this.btnActualizar1.Click += new System.EventHandler(this.btnActualizar_Click);
@@ -330,17 +330,17 @@
             // 
             // btnEliminar
             // 
-            this.btnEliminar.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnEliminar.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnEliminar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnEliminar.Appearance.BackColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Danger;
             this.btnEliminar.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEliminar.Appearance.Options.UseBackColor = true;
             this.btnEliminar.Appearance.Options.UseFont = true;
             this.btnEliminar.Appearance.Options.UseTextOptions = true;
             this.btnEliminar.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.btnEliminar.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnEliminar.ImageOptions.SvgImage")));
-            this.btnEliminar.Location = new System.Drawing.Point(401, 7);
+            this.btnEliminar.Location = new System.Drawing.Point(400, 7);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(137, 37);
+            this.btnEliminar.Size = new System.Drawing.Size(149, 37);
             this.btnEliminar.TabIndex = 11;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
@@ -468,13 +468,13 @@
             // 
             // btnExportar
             // 
-            this.btnExportar.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnExportar.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnExportar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnExportar.Appearance.BackColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Warning;
             this.btnExportar.Appearance.BorderColor = System.Drawing.Color.RoyalBlue;
             this.btnExportar.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExportar.Appearance.Options.UseBackColor = true;
-            this.btnExportar.Appearance.Options.UseBorderColor = true;
+            this.btnExportar.Appearance.ForeColor = System.Drawing.Color.Transparent;
             this.btnExportar.Appearance.Options.UseFont = true;
+            this.btnExportar.Appearance.Options.UseForeColor = true;
             this.btnExportar.Appearance.Options.UseTextOptions = true;
             this.btnExportar.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.btnExportar.AppearanceDisabled.BorderColor = System.Drawing.Color.Red;
@@ -482,12 +482,12 @@
             this.btnExportar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnExportar.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
             this.btnExportar.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnExportar.ImageOptions.Image")));
-            this.btnExportar.Location = new System.Drawing.Point(711, 7);
+            this.btnExportar.Location = new System.Drawing.Point(705, 3);
             this.btnExportar.Name = "btnExportar";
             this.btnExportar.Padding = new System.Windows.Forms.Padding(10);
-            this.btnExportar.Size = new System.Drawing.Size(124, 36);
+            this.btnExportar.Size = new System.Drawing.Size(170, 41);
             this.btnExportar.TabIndex = 12;
-            this.btnExportar.Text = "Exportar";
+            this.btnExportar.Text = "Generar Reporte";
             this.btnExportar.Click += new System.EventHandler(this.simpleButton1_Click_1);
             // 
             // groupControl1
@@ -499,9 +499,9 @@
             this.groupControl1.Controls.Add(this.btnActualizar1);
             this.groupControl1.Controls.Add(this.btnEliminar);
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupControl1.Location = new System.Drawing.Point(0, 512);
+            this.groupControl1.Location = new System.Drawing.Point(0, 480);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(958, 50);
+            this.groupControl1.Size = new System.Drawing.Size(956, 50);
             this.groupControl1.TabIndex = 52;
             this.groupControl1.Text = "groupControl1";
             // 
@@ -511,7 +511,9 @@
             this.Appearance.Options.UseBackColor = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::ODS.Properties.Resources.textura3;
+            this.BackgroundImageLayoutStore = System.Windows.Forms.ImageLayout.Tile;
+            this.BackgroundImageStore = global::ODS.Properties.Resources.textura3;
+            this.ClientSize = new System.Drawing.Size(956, 530);
             this.Controls.Add(this.groupControl1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label11);
@@ -537,7 +539,6 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);
             this.Name = "frmAdminRegistros";
-            this.Size = new System.Drawing.Size(958, 562);
             ((System.ComponentModel.ISupportInitialize)(this.txtIdOrden.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEditFechaCreacion.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEditFechaCreacion.Properties)).EndInit();

@@ -33,8 +33,8 @@
             this.labelStatus = new DevExpress.XtraEditors.LabelControl();
             this.peImage = new DevExpress.XtraEditors.PictureEdit();
             this.progressBarControl = new DevExpress.XtraEditors.MarqueeProgressBarControl();
-            this.peLogo = new DevExpress.XtraEditors.PictureEdit();
             this.labelNombreUsuario = new DevExpress.XtraEditors.LabelControl();
+            this.peLogo = new DevExpress.XtraEditors.PictureEdit();
             ((System.ComponentModel.ISupportInitialize)(this.peImage.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.progressBarControl.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.peLogo.Properties)).BeginInit();
@@ -84,30 +84,32 @@
             this.progressBarControl.Size = new System.Drawing.Size(402, 12);
             this.progressBarControl.TabIndex = 5;
             // 
+            // labelNombreUsuario
+            // 
+            this.labelNombreUsuario.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNombreUsuario.Appearance.Options.UseFont = true;
+            this.labelNombreUsuario.Location = new System.Drawing.Point(154, 197);
+            this.labelNombreUsuario.Margin = new System.Windows.Forms.Padding(3, 3, 3, 1);
+            this.labelNombreUsuario.Name = "labelNombreUsuario";
+            this.labelNombreUsuario.Size = new System.Drawing.Size(69, 13);
+            this.labelNombreUsuario.TabIndex = 10;
+            this.labelNombreUsuario.Text = ".......................";
+            // 
             // peLogo
             // 
             this.peLogo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.peLogo.EditValue = ((object)(resources.GetObject("peLogo.EditValue")));
-            this.peLogo.Location = new System.Drawing.Point(288, 250);
+            this.peLogo.Location = new System.Drawing.Point(408, 250);
             this.peLogo.Name = "peLogo";
             this.peLogo.Properties.AllowFocused = false;
             this.peLogo.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
             this.peLogo.Properties.Appearance.Options.UseBackColor = true;
             this.peLogo.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.peLogo.Properties.ShowMenu = false;
-            this.peLogo.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Squeeze;
-            this.peLogo.Size = new System.Drawing.Size(158, 42);
+            this.peLogo.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Zoom;
+            this.peLogo.Size = new System.Drawing.Size(41, 44);
             this.peLogo.TabIndex = 8;
-            // 
-            // labelNombreUsuario
-            // 
-            this.labelNombreUsuario.Location = new System.Drawing.Point(170, 197);
-            this.labelNombreUsuario.Margin = new System.Windows.Forms.Padding(3, 3, 3, 1);
-            this.labelNombreUsuario.Name = "labelNombreUsuario";
-            this.labelNombreUsuario.Size = new System.Drawing.Size(92, 13);
-            this.labelNombreUsuario.TabIndex = 10;
-            this.labelNombreUsuario.Text = ".......................";
             // 
             // frmLoader
             // 
@@ -138,7 +140,7 @@
         private DevExpress.XtraEditors.LabelControl labelCopyright;
         private DevExpress.XtraEditors.LabelControl labelStatus;
         private DevExpress.XtraEditors.PictureEdit peImage;
-        private DevExpress.XtraEditors.PictureEdit peLogo;
         private DevExpress.XtraEditors.LabelControl labelNombreUsuario;
+        private DevExpress.XtraEditors.PictureEdit peLogo;
     }
 }

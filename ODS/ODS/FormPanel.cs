@@ -39,7 +39,7 @@ namespace ODS
             this.tipoUsuario = UsuarioLogueado.TipoUsuario;
             if (string.IsNullOrEmpty(tipoUsuario))
             {
-                MessageBox.Show("No se pudo obtener el tipo de usuario. Cerrando la aplicación.");
+                XtraMessageBox.Show("No se pudo obtener el tipo de usuario. Cerrando la aplicación.");
                 Application.Exit();
                 return;
             }
@@ -77,7 +77,7 @@ namespace ODS
 
             // Iniciar el Timer
             timer.Start();
-
+            VerificarTipoUsuario();
             #endregion
         }
 
@@ -93,18 +93,8 @@ namespace ODS
 
             // Mostrar solo el nombre de usuario
             usuarioElement.Text = "Usuario: " + (string.IsNullOrEmpty(UsuarioLogueado.NombreUsuario) ? "N/A" : UsuarioLogueado.NombreUsuario);
-
-
-            if (UsuarioLogueado.TipoUsuario != "Admin")
-            {
-                // Mostrar el tipo de usuario
-                adminregistrosElement.Visible = false;
-            }
-            else
-            {
-                // Ocultar el tipo de usuario
-                adminregistrosElement.Visible = true;
-            }
+            //Verificamos si el usuario es admin
+            VerificarTipoUsuario();
 
         }
         #endregion
@@ -170,6 +160,25 @@ namespace ODS
 
 
         }
+        #endregion
+
+        #region Majeo de tipos de usuarios
+        //Manejo de tipo usuario para mostrar funciones
+        private void VerificarTipoUsuario()
+        {
+            if (UsuarioLogueado.TipoUsuario == "Admin")
+            {
+                // Mostrar el tipo de usuario
+               
+                elemntAdminstracion.Visible = true;
+            }
+            else
+            {
+                // Ocultar el tipo de usuario
+                elemntAdminstracion.Visible = false;
+            }
+
+        } 
         #endregion
 
         #region Métodos del form
@@ -334,6 +343,18 @@ namespace ODS
             }
             frmAdminRegistros formaregistro = new frmAdminRegistros();
             MostrarFormularioEnPanel(groupControl1, formaregistro);
+        }
+        //elemento dos para cerrar sesión 
+        private void elemtCerrarSesion1_Click(object sender, EventArgs e)
+        {
+            DialogResult resultado = XtraMessageBox.Show("¿Está seguro de que desea cerrar sesión?", "Cerrar Sesión",
+       MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (resultado == DialogResult.Yes)
+            {
+                CerrarSesion();
+                mensajeMostrado = true;
+            }
+
         }
     }
 }

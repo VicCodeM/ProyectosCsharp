@@ -1,6 +1,7 @@
 ﻿using DevExpress.Data.ExpressionEditor;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid;
+using DocumentFormat.OpenXml.Presentation;
 using ODS.Datos;
 using ODS.Modelo;
 using System;
@@ -56,10 +57,17 @@ namespace ODS.Forms
                     XtraMessageBox.Show("Debes seleccionar un tipo de falla.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+                memoEditDescripcion.Text = "";
+                memoEditObsevacion.Text = "";
+                lookUpFallos.Text = "No hay falla Seleccionada";
 
                 // Observaciones solo lectura
                 memoEditObsevacion.Properties.ReadOnly = true;
                 memoEditObsevacion.Enabled = false;
+
+                memoEditDescripcion.Enabled = false;
+                radioGroupFallos.Enabled = false;
+                lookUpFallos.Enabled = false;
 
                 // Mostrar la fecha y hora actual en el Label
                 labelFecha.Text = DateTime.Now.ToString("dd-MM-yyyy hh:mm tt");
@@ -78,6 +86,9 @@ namespace ODS.Forms
         {
             memoEditDescripcion.Text = "";
             labelEstado.Text = "Estado:";
+            memoEditObsevacion.Text = "";
+            lookUpFallos.EditValue = null;
+            
         }
 
         #endregion
@@ -437,9 +448,9 @@ namespace ODS.Forms
 
                 consultasDB.InsertarOrdenServicio(idUsuario, idFalloHardware, idFalloSoftware, descripcionProblema, estado);
                 XtraMessageBox.Show("Orden registrada con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                LimpiarCampos();
+                ConfigurarControles(false);
                 CargarOrdenesPorUsuario(idUsuario);
+                LimpiarCampos();
             }
             catch (Exception ex)
             {
@@ -454,6 +465,7 @@ namespace ODS.Forms
             try
             {
                 memoEditDescripcion.Text = "";
+                memoEditObsevacion.Text = "";
                 lookUpFallos.EditValue = null;
             }
             catch (Exception ex)
@@ -550,6 +562,43 @@ namespace ODS.Forms
         {
             
             exportarexcel.ExportarExcel(gridCRegistrar, "Reporte de Órdenes de Servicio");
+        }
+        //Botón para nueva orden 
+        private void btnNuevaOrden_Click(object sender, EventArgs e)
+        {
+            // Observaciones solo lectura
+            ConfigurarControles(true);
+        }
+
+        //Metodo para configurar controles 
+        private void ConfigurarControles(bool habilitar)
+        {
+            memoEditObsevacion.Properties.ReadOnly = !habilitar;
+            memoEditObsevacion.Enabled = habilitar;
+            memoEditDescripcion.Enabled = habilitar;
+            radioGroupFallos.Enabled = habilitar;
+            lookUpFallos.Enabled = habilitar;
+
+            if (!habilitar)
+            {
+                // Limpiar los campos cuando se deshabiliten los controles
+                memoEditDescripcion.Text = "";
+                memoEditObsevacion.Text = "";
+                lookUpFallos.Text = "No hay falla Seleccionada";
+                memoEditDescripcion.BackColor = Color.FromArgb(230, 231, 233);
+            }
+
+            // Enfocar el campo de descripción si se habilitan los controles
+            if (habilitar)
+            {
+                memoEditDescripcion.BackColor = Color.White;
+                memoEditDescripcion.Focus();
+            }
+        }
+
+        private void memoEditDescripcion_EditValueChanged(object sender, EventArgs e)
+        {
+        
         }
     }
 }
