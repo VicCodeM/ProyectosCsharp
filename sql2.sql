@@ -9,7 +9,7 @@ CREATE TABLE Empleados (
   Nombre_Empleado VARCHAR(255) NOT NULL,
   Apellido_Paterno VARCHAR(255) NOT NULL,
   Apellido_Materno VARCHAR(255) NOT NULL,
-  Correo_Electronico VARCHAR(255) NOT NULL,
+  Correo_Electronico VARCHAR(255) NULL,
   CONSTRAINT FK_Empleados_Departamentos FOREIGN KEY (Id_Departamento) REFERENCES Departamentos(Id_Departamento)
 );
 
@@ -17,7 +17,7 @@ CREATE TABLE Login (
   Id_Usuario INT IDENTITY(1,1) PRIMARY KEY,
   Usuario VARCHAR(255) UNIQUE NOT NULL,
   Password VARCHAR(255) NOT NULL,
-  Tipo_Usuario VARCHAR(50) NOT NULL CHECK(Tipo_Usuario IN ('Admin', 'Nivel2', 'Nivel3','Nivel4','Nivel5', 'Nivel6')),
+  Tipo_Usuario VARCHAR(50) NOT NULL CHECK(Tipo_Usuario IN ('Admin', 'RH', 'RM','General','N5', 'N6')),
   Id_Empleado INT UNIQUE NOT NULL,
   CONSTRAINT FK_Login_Empleados FOREIGN KEY (Id_Empleado) REFERENCES Empleados(Id_Empleado) ON DELETE CASCADE ON UPDATE CASCADE
 );
@@ -55,6 +55,7 @@ CREATE TABLE Bitacora (
   Accion VARCHAR(255) NOT NULL,
   Fecha_Accion DATETIME NOT NULL DEFAULT GETDATE(),
   Descripcion TEXT NULL,
+  Id_Empleado INT NULL,
   CONSTRAINT FK_Bitacora_OrdenServicio FOREIGN KEY (Id_Orden) REFERENCES OrdenServicio(Id_Orden),
   CONSTRAINT FK_Bitacora_Login FOREIGN KEY (Id_Usuario) REFERENCES Login(Id_Usuario)
 );

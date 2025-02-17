@@ -33,7 +33,7 @@ namespace ODS.Forms
             CargarOrdenes();
             CargarListasDesplegables();
             //Asiganar boton de enter
-            this.AcceptButton = btnActualizar1;
+            this.AcceptButton = btnActualizar;
 
             //configuramos RadioButton para el tipo de estado de la orden
             radioGroupEstados.Properties.Items.Add(new DevExpress.XtraEditors.Controls.RadioGroupItem("Abierto", "Abierto"));
@@ -57,6 +57,12 @@ namespace ODS.Forms
             txtIdOrden.Enabled = false;
             txtIdOrden.Properties.ReadOnly = true;
 
+            // Manejar el evento Load del formulario
+            this.Load += frmAdminRegistros_Load;
+            //btn aceptar
+            this.AcceptButton = btnActualizar;
+            // Forzar el foco al botón
+            btnActualizar.Focus();
             #endregion
         }
 
@@ -417,5 +423,22 @@ namespace ODS.Forms
             generarreporte.ExportarExcel(gridAdminRegistros, "Órdenes de Servicio");
         }
         #endregion
+
+        private void frmAdminRegistros_Load(object sender, EventArgs e)
+        {
+            this.Focus(); // Asegura que el formulario tenga el foco
+           // btnActualizar.Focus(); // Opcional: Forzar el foco al botón
+        }
+
+        private void frmAdminRegistros_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void frmAdminRegistros_Click(object sender, EventArgs e)
+        {
+            this.Focus(); // Asegura que el formulario tenga el foco
+           // btnActualizar.Focus(); // Opcional: Forzar el foco al botón
+        }
     }
 }

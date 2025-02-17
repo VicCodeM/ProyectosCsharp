@@ -66,7 +66,7 @@
             this.gridUsuarios.Location = new System.Drawing.Point(3, 67);
             this.gridUsuarios.MainView = this.gridView1;
             this.gridUsuarios.Name = "gridUsuarios";
-            this.gridUsuarios.Size = new System.Drawing.Size(885, 256);
+            this.gridUsuarios.Size = new System.Drawing.Size(885, 240);
             this.gridUsuarios.TabIndex = 0;
             this.gridUsuarios.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -79,7 +79,7 @@
             // txtUsuario
             // 
             this.txtUsuario.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.txtUsuario.Location = new System.Drawing.Point(17, 371);
+            this.txtUsuario.Location = new System.Drawing.Point(27, 348);
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.txtUsuario.Properties.Appearance.Options.UseBackColor = true;
@@ -89,7 +89,7 @@
             // txtPassword
             // 
             this.txtPassword.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.txtPassword.Location = new System.Drawing.Point(17, 426);
+            this.txtPassword.Location = new System.Drawing.Point(27, 403);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.txtPassword.Properties.Appearance.Options.UseBackColor = true;
@@ -99,7 +99,7 @@
             // comboTipoUsuario
             // 
             this.comboTipoUsuario.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.comboTipoUsuario.Location = new System.Drawing.Point(343, 371);
+            this.comboTipoUsuario.Location = new System.Drawing.Point(353, 348);
             this.comboTipoUsuario.Name = "comboTipoUsuario";
             this.comboTipoUsuario.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.comboTipoUsuario.Properties.Appearance.Options.UseBackColor = true;
@@ -111,7 +111,7 @@
             // lookUpEmpleado
             // 
             this.lookUpEmpleado.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.lookUpEmpleado.Location = new System.Drawing.Point(669, 370);
+            this.lookUpEmpleado.Location = new System.Drawing.Point(679, 347);
             this.lookUpEmpleado.Name = "lookUpEmpleado";
             this.lookUpEmpleado.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.lookUpEmpleado.Properties.Appearance.Options.UseBackColor = true;
@@ -123,7 +123,7 @@
             // lookUpDepartamento
             // 
             this.lookUpDepartamento.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.lookUpDepartamento.Location = new System.Drawing.Point(343, 424);
+            this.lookUpDepartamento.Location = new System.Drawing.Point(353, 401);
             this.lookUpDepartamento.Name = "lookUpDepartamento";
             this.lookUpDepartamento.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.lookUpDepartamento.Properties.Appearance.Options.UseBackColor = true;
@@ -139,7 +139,7 @@
             this.btnGuardar.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGuardar.Appearance.Options.UseBackColor = true;
             this.btnGuardar.Appearance.Options.UseFont = true;
-            this.btnGuardar.Location = new System.Drawing.Point(17, 459);
+            this.btnGuardar.Location = new System.Drawing.Point(27, 436);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(142, 37);
             this.btnGuardar.TabIndex = 6;
@@ -153,7 +153,7 @@
             this.btnActualizar.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnActualizar.Appearance.Options.UseBackColor = true;
             this.btnActualizar.Appearance.Options.UseFont = true;
-            this.btnActualizar.Location = new System.Drawing.Point(374, 459);
+            this.btnActualizar.Location = new System.Drawing.Point(384, 436);
             this.btnActualizar.Name = "btnActualizar";
             this.btnActualizar.Size = new System.Drawing.Size(135, 37);
             this.btnActualizar.TabIndex = 7;
@@ -167,7 +167,7 @@
             this.btnEiminar.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEiminar.Appearance.Options.UseBackColor = true;
             this.btnEiminar.Appearance.Options.UseFont = true;
-            this.btnEiminar.Location = new System.Drawing.Point(699, 459);
+            this.btnEiminar.Location = new System.Drawing.Point(709, 436);
             this.btnEiminar.Name = "btnEiminar";
             this.btnEiminar.Size = new System.Drawing.Size(144, 37);
             this.btnEiminar.TabIndex = 8;
@@ -177,7 +177,7 @@
             // txtCorreoElectronico
             // 
             this.txtCorreoElectronico.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.txtCorreoElectronico.Location = new System.Drawing.Point(669, 426);
+            this.txtCorreoElectronico.Location = new System.Drawing.Point(679, 403);
             this.txtCorreoElectronico.Name = "txtCorreoElectronico";
             this.txtCorreoElectronico.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.txtCorreoElectronico.Properties.Appearance.Options.UseBackColor = true;
@@ -189,7 +189,7 @@
             this.labelUsuario.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.labelUsuario.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelUsuario.Appearance.Options.UseFont = true;
-            this.labelUsuario.Location = new System.Drawing.Point(17, 350);
+            this.labelUsuario.Location = new System.Drawing.Point(27, 327);
             this.labelUsuario.Name = "labelUsuario";
             this.labelUsuario.Size = new System.Drawing.Size(45, 14);
             this.labelUsuario.TabIndex = 13;
@@ -200,7 +200,7 @@
             this.labelControl1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Location = new System.Drawing.Point(17, 406);
+            this.labelControl1.Location = new System.Drawing.Point(27, 383);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(70, 14);
             this.labelControl1.TabIndex = 14;
@@ -211,7 +211,7 @@
             this.labelControl2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl2.Appearance.Options.UseFont = true;
-            this.labelControl2.Location = new System.Drawing.Point(343, 350);
+            this.labelControl2.Location = new System.Drawing.Point(353, 327);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(54, 14);
             this.labelControl2.TabIndex = 15;
@@ -222,7 +222,7 @@
             this.labelControl3.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.labelControl3.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl3.Appearance.Options.UseFont = true;
-            this.labelControl3.Location = new System.Drawing.Point(669, 350);
+            this.labelControl3.Location = new System.Drawing.Point(679, 327);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(110, 14);
             this.labelControl3.TabIndex = 16;
@@ -233,7 +233,7 @@
             this.labelControl4.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.labelControl4.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl4.Appearance.Options.UseFont = true;
-            this.labelControl4.Location = new System.Drawing.Point(343, 406);
+            this.labelControl4.Location = new System.Drawing.Point(353, 383);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(89, 14);
             this.labelControl4.TabIndex = 17;
@@ -244,7 +244,7 @@
             this.labelControl5.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.labelControl5.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl5.Appearance.Options.UseFont = true;
-            this.labelControl5.Location = new System.Drawing.Point(669, 406);
+            this.labelControl5.Location = new System.Drawing.Point(679, 383);
             this.labelControl5.Name = "labelControl5";
             this.labelControl5.Size = new System.Drawing.Size(112, 14);
             this.labelControl5.TabIndex = 18;
@@ -266,7 +266,7 @@
             this.labelControl7.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labelControl7.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl7.Appearance.Options.UseFont = true;
-            this.labelControl7.Location = new System.Drawing.Point(396, 45);
+            this.labelControl7.Location = new System.Drawing.Point(374, 45);
             this.labelControl7.Name = "labelControl7";
             this.labelControl7.Size = new System.Drawing.Size(121, 16);
             this.labelControl7.TabIndex = 20;
@@ -276,7 +276,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::ODS.Properties.Resources.textura3;
+            this.BackgroundImageLayoutStore = System.Windows.Forms.ImageLayout.Tile;
+            this.BackgroundImageStore = global::ODS.Properties.Resources.textura3;
+            this.ClientSize = new System.Drawing.Size(889, 495);
             this.Controls.Add(this.labelControl7);
             this.Controls.Add(this.labelControl6);
             this.Controls.Add(this.labelControl5);
@@ -296,7 +298,7 @@
             this.Controls.Add(this.txtUsuario);
             this.Controls.Add(this.gridUsuarios);
             this.Name = "frmUsuarios";
-            this.Size = new System.Drawing.Size(891, 513);
+            this.Load += new System.EventHandler(this.frmUsuarios_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridUsuarios)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUsuario.Properties)).EndInit();

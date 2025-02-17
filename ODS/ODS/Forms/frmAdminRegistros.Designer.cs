@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAdminRegistros));
-            this.btnActualizar1 = new DevExpress.XtraEditors.SimpleButton();
+            this.btnActualizar = new DevExpress.XtraEditors.SimpleButton();
             this.labelUsuario = new System.Windows.Forms.Label();
             this.labelFecha = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -79,34 +79,34 @@
             this.groupControl1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // btnActualizar1
+            // btnActualizar
             // 
-            this.btnActualizar1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnActualizar1.Appearance.BackColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Success;
-            this.btnActualizar1.Appearance.BorderColor = System.Drawing.Color.Lime;
-            this.btnActualizar1.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnActualizar1.Appearance.Options.UseBackColor = true;
-            this.btnActualizar1.Appearance.Options.UseBorderColor = true;
-            this.btnActualizar1.Appearance.Options.UseFont = true;
-            this.btnActualizar1.Appearance.Options.UseTextOptions = true;
-            this.btnActualizar1.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
-            this.btnActualizar1.Appearance.TextOptions.Trimming = DevExpress.Utils.Trimming.None;
-            this.btnActualizar1.AppearanceHovered.BackColor = System.Drawing.Color.Cyan;
-            this.btnActualizar1.AppearanceHovered.BorderColor = System.Drawing.Color.Fuchsia;
-            this.btnActualizar1.AppearanceHovered.ForeColor = System.Drawing.Color.Transparent;
-            this.btnActualizar1.AppearanceHovered.Options.UseBackColor = true;
-            this.btnActualizar1.AppearanceHovered.Options.UseBorderColor = true;
-            this.btnActualizar1.AppearanceHovered.Options.UseForeColor = true;
-            this.btnActualizar1.AppearanceHovered.Options.UseTextOptions = true;
-            this.btnActualizar1.AppearanceHovered.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
-            this.btnActualizar1.BackgroundImage = global::ODS.Properties.Resources.textura3;
-            this.btnActualizar1.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnActualizar1.ImageOptions.SvgImage")));
-            this.btnActualizar1.Location = new System.Drawing.Point(73, 7);
-            this.btnActualizar1.Name = "btnActualizar1";
-            this.btnActualizar1.Size = new System.Drawing.Size(158, 36);
-            this.btnActualizar1.TabIndex = 10;
-            this.btnActualizar1.Text = "Actualizar";
-            this.btnActualizar1.Click += new System.EventHandler(this.btnActualizar_Click);
+            this.btnActualizar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnActualizar.Appearance.BackColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Success;
+            this.btnActualizar.Appearance.BorderColor = System.Drawing.Color.Lime;
+            this.btnActualizar.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnActualizar.Appearance.Options.UseBackColor = true;
+            this.btnActualizar.Appearance.Options.UseBorderColor = true;
+            this.btnActualizar.Appearance.Options.UseFont = true;
+            this.btnActualizar.Appearance.Options.UseTextOptions = true;
+            this.btnActualizar.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.btnActualizar.Appearance.TextOptions.Trimming = DevExpress.Utils.Trimming.None;
+            this.btnActualizar.AppearanceHovered.BackColor = System.Drawing.Color.Cyan;
+            this.btnActualizar.AppearanceHovered.BorderColor = System.Drawing.Color.Fuchsia;
+            this.btnActualizar.AppearanceHovered.ForeColor = System.Drawing.Color.Transparent;
+            this.btnActualizar.AppearanceHovered.Options.UseBackColor = true;
+            this.btnActualizar.AppearanceHovered.Options.UseBorderColor = true;
+            this.btnActualizar.AppearanceHovered.Options.UseForeColor = true;
+            this.btnActualizar.AppearanceHovered.Options.UseTextOptions = true;
+            this.btnActualizar.AppearanceHovered.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.btnActualizar.BackgroundImage = global::ODS.Properties.Resources.textura3;
+            this.btnActualizar.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnActualizar1.ImageOptions.SvgImage")));
+            this.btnActualizar.Location = new System.Drawing.Point(73, 7);
+            this.btnActualizar.Name = "btnActualizar";
+            this.btnActualizar.Size = new System.Drawing.Size(158, 36);
+            this.btnActualizar.TabIndex = 10;
+            this.btnActualizar.Text = "Actualizar";
+            this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
             // 
             // labelUsuario
             // 
@@ -473,6 +473,8 @@
             this.btnExportar.Appearance.BorderColor = System.Drawing.Color.RoyalBlue;
             this.btnExportar.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExportar.Appearance.ForeColor = System.Drawing.Color.Transparent;
+            this.btnExportar.Appearance.Options.UseBackColor = true;
+            this.btnExportar.Appearance.Options.UseBorderColor = true;
             this.btnExportar.Appearance.Options.UseFont = true;
             this.btnExportar.Appearance.Options.UseForeColor = true;
             this.btnExportar.Appearance.Options.UseTextOptions = true;
@@ -496,7 +498,7 @@
             this.groupControl1.Appearance.Options.UseBackColor = true;
             this.groupControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.groupControl1.Controls.Add(this.btnExportar);
-            this.groupControl1.Controls.Add(this.btnActualizar1);
+            this.groupControl1.Controls.Add(this.btnActualizar);
             this.groupControl1.Controls.Add(this.btnEliminar);
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.groupControl1.Location = new System.Drawing.Point(0, 480);
@@ -539,6 +541,9 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);
             this.Name = "frmAdminRegistros";
+            this.Load += new System.EventHandler(this.frmAdminRegistros_Load);
+            this.Click += new System.EventHandler(this.frmAdminRegistros_Click);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmAdminRegistros_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.txtIdOrden.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEditFechaCreacion.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEditFechaCreacion.Properties)).EndInit();
@@ -564,7 +569,7 @@
         }
 
         #endregion
-        private DevExpress.XtraEditors.SimpleButton btnActualizar1;
+        private DevExpress.XtraEditors.SimpleButton btnActualizar;
         private System.Windows.Forms.Label labelUsuario;
         private System.Windows.Forms.Label labelFecha;
         private System.Windows.Forms.Label label1;

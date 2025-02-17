@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace ODS.Forms
 {
-    public partial class frmUsuarios : XtraUserControl
+    public partial class frmUsuarios : DevExpress.XtraEditors.XtraForm
     {
         private ConexionDB conexionDB = new ConexionDB();
 
@@ -37,6 +37,9 @@ namespace ODS.Forms
             ((GridView)gridUsuarios.MainView).OptionsBehavior.Editable = false;
             ((GridView)gridUsuarios.MainView).BestFitColumns();
             ((GridView)gridUsuarios.MainView).OptionsView.ShowDetailButtons = false;
+
+            //activar boton enter al actualizar
+            this.AcceptButton = btnActualizar;
         }
         #endregion
 
@@ -227,7 +230,7 @@ namespace ODS.Forms
                 txtPassword.Text = row["Password"] != DBNull.Value ? row["Password"].ToString() : "";
 
                 // Asegurar que `Tipo_Usuario` se seleccione correctamente
-                string tipoUsuario = row["Tipo_Usuario"] != DBNull.Value ? row["Tipo_Usuario"].ToString() : "Nivel2";
+                string tipoUsuario = row["Tipo_Usuario"] != DBNull.Value ? row["Tipo_Usuario"].ToString() : "General";
 
                 if (comboTipoUsuario.Properties.Items.Contains(tipoUsuario))
                 {
@@ -291,7 +294,7 @@ namespace ODS.Forms
             // Asegurarte de que el ComboBox tiene los valores disponibles
             comboTipoUsuario.Properties.Items.Clear();
             //cambiar esta parte por los roles correspodientes a la bse de datos si no da error
-            comboTipoUsuario.Properties.Items.AddRange(new string[] { "Admin", "Nivel2", "Nivel3", "Nivel4", "Nivel5", "Nivel6" });
+            comboTipoUsuario.Properties.Items.AddRange(new string[] { "Admin", "RH", "RM", "General", "N5", "N6" });
             comboTipoUsuario.SelectedIndex = 2; // 🔥 Seleccionar "Admin" por defecto
         }
 
@@ -337,12 +340,16 @@ namespace ODS.Forms
             lookUpDepartamento.Properties.ValueMember = "Id_Departamento";
             lookUpDepartamento.Refresh(); // Actualiza el LookUpEdit
         }
+
+
+
+
         #endregion
 
-
-
-
-
+        private void frmUsuarios_Load(object sender, EventArgs e)
+        {
+            this.Focus();
+        }
     }
 }
 
