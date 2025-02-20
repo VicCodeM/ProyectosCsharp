@@ -14,21 +14,19 @@ namespace ODS.Forms
 {
     public partial class frmAdminRegistros : DevExpress.XtraEditors.XtraForm
     {
-        #region Intaciar objetos Utilizados
+        #region Instancia de Objetos
         ConexionDB conexionDB = new ConexionDB();
         ConsultasDB consultasDB = new ConsultasDB();
         BitacoraService bitacoraService = new BitacoraService();
         ExportarService generarreporte = new ExportarService();
         #endregion
 
-
-
-
+        #region Acciones al incio del form
         public frmAdminRegistros()
         {
             InitializeComponent();
 
-            #region Acciones al incio del form
+            
             //Cargar ordenes jutno con el formulario
             CargarOrdenes();
             CargarListasDesplegables();
@@ -63,8 +61,9 @@ namespace ODS.Forms
             this.AcceptButton = btnActualizar;
             // Forzar el foco al botón
             btnActualizar.Focus();
-            #endregion
+            
         }
+        #endregion
 
         #region Métodos de form
 
@@ -236,7 +235,6 @@ namespace ODS.Forms
         }
 
         #endregion
-
 
         #region Eventos del Form
         //Caragr controles con los datos del grid
@@ -422,12 +420,11 @@ namespace ODS.Forms
         {
             generarreporte.ExportarExcel(gridAdminRegistros, "Órdenes de Servicio");
         }
-        #endregion
 
         private void frmAdminRegistros_Load(object sender, EventArgs e)
         {
             this.Focus(); // Asegura que el formulario tenga el foco
-           // btnActualizar.Focus(); // Opcional: Forzar el foco al botón
+                          // btnActualizar.Focus(); // Opcional: Forzar el foco al botón
         }
 
         private void frmAdminRegistros_KeyDown(object sender, KeyEventArgs e)
@@ -438,7 +435,9 @@ namespace ODS.Forms
         private void frmAdminRegistros_Click(object sender, EventArgs e)
         {
             this.Focus(); // Asegura que el formulario tenga el foco
-           // btnActualizar.Focus(); // Opcional: Forzar el foco al botón
+                          // btnActualizar.Focus(); // Opcional: Forzar el foco al botón
         }
+        #endregion
+
     }
 }

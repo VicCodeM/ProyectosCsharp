@@ -11,9 +11,12 @@ namespace ODS.Forms
 {
     public partial class frmLogin : DevExpress.XtraEditors.XtraForm
     {
+        #region Inctancia de Objetos.
         UsuarioConsultas consultas = new UsuarioConsultas(); // Instancia de las consultas
         ConexionDB conexionDB = new ConexionDB();
+        #endregion
 
+        #region Acciones al incio del form.
         public frmLogin()
         {
 
@@ -24,8 +27,10 @@ namespace ODS.Forms
             // Evento con DevExpress para mover el formulario desde la parte de arriba 
             panelControl2.MouseDown += panelBarraTitulo_MouseDown;
 
-        }
+        } 
+        #endregion
 
+        #region Métodos manejo de la forma.
         // Crear función para arrastrar formulario
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
@@ -49,6 +54,9 @@ namespace ODS.Forms
         {
             this.WindowState = FormWindowState.Minimized;
         }
+        #endregion
+
+        #region Métodos de la forma.
         //metod limpiar campos con cerrar sesión
         public void LimpiarCampos()
         {
@@ -57,6 +65,10 @@ namespace ODS.Forms
             txtUsuario.Focus(); // Enfocar el campo usuario para que el usuario pueda escribir de inmediato
         }
 
+
+        #endregion
+
+        #region Eventos de la forma.
         //btn login
         private void btnLogin_Click(object sender, EventArgs e)
         {
@@ -94,8 +106,8 @@ namespace ODS.Forms
 
                     // Mostrar mensaje de éxito
                     //Mensaje Opcional
-                   // XtraMessageBox.Show($"Inicio de sesión exitoso. Bienvenido, {UsuarioLogueado.NombreCompleto}", "Bienvenido",
-                        //MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    // XtraMessageBox.Show($"Inicio de sesión exitoso. Bienvenido, {UsuarioLogueado.NombreCompleto}", "Bienvenido",
+                    //MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     // Ocultar el formulario de login
                     this.Hide();
@@ -162,22 +174,8 @@ namespace ODS.Forms
             }
         }
 
-        // Método para verificar la conexión
-        public bool VerificarConexion()
-        {
-            SqlConnection conexion = conexionDB.ConectarSQL();
-            if (conexion != null && conexion.State == System.Data.ConnectionState.Open)
-            {
-                // La conexión es válida
-                conexion.Close(); // Cerrar la conexión después de la verificación
-                return true;
-            }
-            else
-            {
-                // La conexión no es válida
-                return false;
-            }
-        }
+
+
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
@@ -190,6 +188,7 @@ namespace ODS.Forms
         private void txtPassword_Click(object sender, EventArgs e)
         {
             txtPassword.Text = "";
-        }
+        } 
+        #endregion
     }
 }

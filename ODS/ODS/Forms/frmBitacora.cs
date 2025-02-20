@@ -12,8 +12,11 @@ namespace ODS.Forms
 {
     public partial class frmBitacora : XtraUserControl
     {
+        #region Instancia de Objetos.
         private readonly ExportarService exportarexcel = new ExportarService();
+        #endregion
 
+        #region Acciones al incio del form.
         public frmBitacora()
         {
             InitializeComponent();
@@ -24,6 +27,10 @@ namespace ODS.Forms
             LoadDataToGrid(); // Cargar datos al abrir el formulario
             label2.Text = UsuarioLogueado.NombreCompleto;
         }
+
+        #endregion
+
+        #region Métodos de la Forma.
         private void LoadDataToGrid()
         {
             try
@@ -60,7 +67,7 @@ namespace ODS.Forms
                         gridViewBitacora.Columns["Administrador"].VisibleIndex = 8;
 
                         //ocultar columnas
-                        gridViewBitacora.Columns["Administrador"].Visible = false;  
+                        gridViewBitacora.Columns["Administrador"].Visible = false;
 
 
 
@@ -75,12 +82,15 @@ namespace ODS.Forms
                 MessageBox.Show($"Error al cargar datos en el GridControl: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        #endregion
+
+        #region Eventos de la Forma.
 
         //exportar grid a excel
         private void btnExportar_Click(object sender, EventArgs e)
         {
             exportarexcel.ExportarExcel(gridBitacora, "Bitacora");
         }
-
+        #endregion
     }
 }

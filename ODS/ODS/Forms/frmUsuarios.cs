@@ -10,7 +10,9 @@ namespace ODS.Forms
 {
     public partial class frmUsuarios : DevExpress.XtraEditors.XtraForm
     {
-        private ConexionDB conexionDB = new ConexionDB();
+        #region Instancia de Objetos.
+        private ConexionDB conexionDB = new ConexionDB(); 
+        #endregion
 
         #region Inicio de la Forma compoenentes
         public frmUsuarios()
@@ -23,10 +25,10 @@ namespace ODS.Forms
             CargarDepartamentos();
             CargarTiposDeUsuario();
 
-            //label usuario
+            //label usuario con nombre completo
             labelControl7.Text = UsuarioLogueado.NombreCompleto;
 
-            // Manejar selección de empleados
+            // Manejar los eventos de selección de empleados
             lookUpEmpleado.EditValueChanged += LookUpEmpleado_EditValueChanged;
             gridView1.FocusedRowChanged += gridUsuarios_FocusedRowChanged;
 
@@ -61,7 +63,7 @@ namespace ODS.Forms
             // Obtener el ID del empleado seleccionado
             int idEmpleado = Convert.ToInt32(lookUpEmpleado.EditValue);
 
-            // 🔴 1️⃣ Verificar si el empleado ya tiene un usuario registrado en la base de datos
+            // Verificar si el empleado ya tiene un usuario registrado en la base de datos
             string queryVerificarEmpleado = $"SELECT COUNT(*) FROM Login WHERE Id_Empleado = {idEmpleado}";
             DataTable dtEmpleadoExistente = conexionDB.EjecutarConsulta(queryVerificarEmpleado);
 
@@ -72,7 +74,7 @@ namespace ODS.Forms
                 return;
             }
 
-            // 🔴 2️⃣ Verificar si el usuario ya existe con otro empleado
+            // Verificar si el usuario ya existe con otro empleado
             string queryVerificarUsuario = $"SELECT Id_Empleado FROM Login WHERE Usuario = '{usuario}'";
             DataTable dtUsuarioExistente = conexionDB.EjecutarConsulta(queryVerificarUsuario);
 
@@ -88,7 +90,7 @@ namespace ODS.Forms
                 }
             }
 
-            // 🔵 3️⃣ Insertar el nuevo usuario en la tabla Login si pasa las validaciones
+            // Insertar el nuevo usuario en la tabla Login si pasa las validaciones
             string queryLogin = $"INSERT INTO Login (Usuario, Password, Tipo_Usuario, Id_Empleado) " +
                                 $"VALUES ('{usuario}', '{password}', '{tipoUsuario}', {idEmpleado})";
 
@@ -117,7 +119,7 @@ namespace ODS.Forms
         {
             if (gridUsuarios.MainView is GridView gridView && gridView.FocusedRowHandle >= 0)
             {
-                // 🔴 Validar que se haya seleccionado un empleado
+                // Validar que se haya seleccionado un empleado
                 if (lookUpEmpleado.EditValue == null)
                 {
                     XtraMessageBox.Show("Debe seleccionar un empleado antes de actualizar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -159,9 +161,6 @@ namespace ODS.Forms
             }
         }
 
-
-
-
         private void btnEiminar_Click(object sender, EventArgs e)
         {
             GridView gridView = gridUsuarios.MainView as GridView;
@@ -194,7 +193,7 @@ namespace ODS.Forms
                 XtraMessageBox.Show("Seleccione un usuario antes de intentar eliminarlo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+        //verifica si hay empleado seleccionado
         private void LookUpEmpleado_EditValueChanged(object sender, EventArgs e)
         {
             if (lookUpEmpleado.EditValue == null)
@@ -254,7 +253,7 @@ namespace ODS.Forms
                 XtraMessageBox.Show("No se encontraron datos del empleado.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-
+        //rellena los datos del usuario en los controles
         private void gridUsuarios_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
             if (e.FocusedRowHandle >= 0)
@@ -285,6 +284,12 @@ namespace ODS.Forms
                     gridView.Columns["Id_Empleado"].Visible = false;
                 }
             }
+        }
+
+        //darle focus al formulario para evitar errores
+        private void frmUsuarios_Load(object sender, EventArgs e)
+        {
+            this.Focus();
         }
         #endregion
 
@@ -346,10 +351,6 @@ namespace ODS.Forms
 
         #endregion
 
-        private void frmUsuarios_Load(object sender, EventArgs e)
-        {
-            this.Focus();
-        }
     }
 }
 

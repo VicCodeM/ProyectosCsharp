@@ -9,22 +9,25 @@ namespace ODS.Forms
         #region Variables globales.
         private Timer timer;
 
-        #endregion
-
-        FechaServicio fechaService = new FechaServicio();
-
-
         // Obtener los datos del usuario logueado
         int idUsuario = UsuarioLogueado.IdUsuario;
         string nombre = UsuarioLogueado.NombreCompleto;
         string departamento = UsuarioLogueado.Departamento;
 
+        #endregion
 
+        #region Instancia de Objetos.
+        FechaServicio fechaService = new FechaServicio();
+        #endregion
+
+        #region Inicio de Forma Componentes.
         public frmInicio()
         {
             InitializeComponent();
-        }
+        } 
+        #endregion
 
+        #region Eventos de la Forma.
         private void Timer_Tick(object sender, EventArgs e)
         {
             // Actualizar el texto del Label con la hora actual
@@ -32,8 +35,6 @@ namespace ODS.Forms
             labelFecha.Text = "Fecha: " + fechaService.ObtenerFecha();
         }
 
-
-        #region Acciones inciales con  la forma
         private void frmInicio_Load(object sender, EventArgs e)
         {
 

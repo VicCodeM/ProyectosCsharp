@@ -164,7 +164,7 @@ namespace ODS.Datos
 
 
 
-        //jejectura consulta login y actualizar
+        //ejectura consulta login y actualizar
         public void EjecutarComando(string comando)
         {
             try
@@ -244,31 +244,7 @@ namespace ODS.Datos
                 conexion?.Dispose();
             }
         }
-        //ejecutar parametros en consulta oredenes
-        public DataTable EjecutarConsultaConParametros(string consulta, SqlParameter[] parametros)
-        {
-            try
-            {
-                AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand(consulta, conexion))
-                {
-                    cmd.Parameters.AddRange(parametros);
-                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                    DataTable dt = new DataTable();
-                    adapter.Fill(dt);
-                    return dt;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al ejecutar consulta con parámetros: " + ex.Message);
-            }
-            finally
-            {
-                CerrarConexion();
-            }
-        }
-        //jecutar paramatros escalados
+        //ejcutar paramatros escalados
         public object ExecuteScalar(string query, SqlParameter[] parameters = null)
         {
             try
