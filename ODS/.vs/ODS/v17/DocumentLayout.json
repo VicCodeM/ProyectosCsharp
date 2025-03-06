@@ -1,0 +1,69 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\vicom\\Documents\\GitHub\\ProyectosCsharp\\ODS\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|c:\\users\\vicom\\documents\\github\\proyectoscsharp\\ods\\ods\\formpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|solutionrelative:ods\\formpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|c:\\users\\vicom\\documents\\github\\proyectoscsharp\\ods\\ods\\formpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{4F1492C2-E921-44E2-A54E-2B373E53638C}|ODS\\ODS.csproj|solutionrelative:ods\\formpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e5c86464-96be-4d7c-9a8b-abcb3bbf5f92}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "FormPanel.cs",
+              "DocumentMoniker": "C:\\Users\\vicom\\Documents\\GitHub\\ProyectosCsharp\\ODS\\ODS\\FormPanel.cs",
+              "RelativeDocumentMoniker": "ODS\\FormPanel.cs",
+              "ToolTip": "C:\\Users\\vicom\\Documents\\GitHub\\ProyectosCsharp\\ODS\\ODS\\FormPanel.cs",
+              "RelativeToolTip": "ODS\\FormPanel.cs",
+              "ViewState": "AgIAAFgBAAAAAAAAAAAqwG8BAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-06T23:43:49.134Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "FormPanel.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\vicom\\Documents\\GitHub\\ProyectosCsharp\\ODS\\ODS\\FormPanel.cs",
+              "RelativeDocumentMoniker": "ODS\\FormPanel.cs",
+              "ToolTip": "C:\\Users\\vicom\\Documents\\GitHub\\ProyectosCsharp\\ODS\\ODS\\FormPanel.cs [Dise\u00F1o]",
+              "RelativeToolTip": "ODS\\FormPanel.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-06T23:43:46.141Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
