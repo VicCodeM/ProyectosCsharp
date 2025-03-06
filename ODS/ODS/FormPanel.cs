@@ -14,11 +14,12 @@ namespace ODS
         #region Variables globales.
         private Timer timer;
         private string tipoUsuario;
+        private bool cerrarPorSesion = false;
 
 
-
+        //Foma de cierre del sistema por inactividad.
         private Timer inactivityTimer;
-        private const int InactivityTimeout = 3600000; // 1 Hora de inactividad
+        private const int InactivityTimeout = 3600000; // 1 Hora de inactividad en milisegundos.
         private bool mensajeMostrado = false;
         private bool cerrarPorInactividad = false; // Variable para determinar si el cierre fue por inactividad
 
@@ -28,6 +29,9 @@ namespace ODS
         ConexionDB conexionDB = new ConexionDB();
         FechaServicio fechaService = new FechaServicio();
         #endregion
+
+
+
 
 
         #region Pricipal de Form
@@ -64,6 +68,7 @@ namespace ODS
             conexionDB.CerrarConexion();
 
             this.FormClosed += FormPanel_FormClosed; // Vincula el evento de cerrado
+            this.FormClosing += FormPanel_FormClosing; // Agregar esta línea
 
             #region Acciones inciales con  la forma
             // Crear una instancia del Timer
@@ -85,6 +90,7 @@ namespace ODS
 
         private void FormInicial_Load(object sender, EventArgs e)
         {
+
             // Mostrar el departamento
             departamentoElement.Text = "Departamento: " + (string.IsNullOrEmpty(UsuarioLogueado.Departamento) ? "N/A" : UsuarioLogueado.Departamento);
 
@@ -141,8 +147,8 @@ namespace ODS
             else
             {
                 // Si el cierre fue manual, cerramos toda la aplicación
-                this.Close();
-                Application.Exit();
+                // this.Close();
+                //  Application.Exit();
 
             }
 
@@ -154,6 +160,7 @@ namespace ODS
                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (resultado == DialogResult.Yes)
             {
+                cerrarPorSesion = true; // Indicar que el cierre es por sesión
                 CerrarSesion();
                 mensajeMostrado = true;
             }
@@ -169,7 +176,7 @@ namespace ODS
             if (UsuarioLogueado.TipoUsuario == "Admin")
             {
                 // Mostrar el tipo de usuario
-               
+
                 elemntAdminstracion.Visible = true;
             }
             else
@@ -178,7 +185,7 @@ namespace ODS
                 elemntAdminstracion.Visible = false;
             }
 
-        } 
+        }
         #endregion
 
         #region Métodos del form
@@ -344,6 +351,8 @@ namespace ODS
             frmAdminRegistros formaregistro = new frmAdminRegistros();
             MostrarFormularioEnPanel(groupControl1, formaregistro);
         }
+
+
         //elemento dos para cerrar sesión 
         private void elemtCerrarSesion1_Click(object sender, EventArgs e)
         {
@@ -351,10 +360,44 @@ namespace ODS
        MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (resultado == DialogResult.Yes)
             {
+                cerrarPorSesion = true; // Indicar que el cierre es por sesión
                 CerrarSesion();
                 mensajeMostrado = true;
             }
 
+
         }
+        //Mensaje de cierre de app
+        private bool isClosing = false;
+
+        private void FormPanel_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (cerrarPorSesion)
+            {
+                cerrarPorSesion = false;
+                return;
+            }
+
+            if (!isClosing)
+            {
+                DialogResult resultado = XtraMessageBox.Show(
+                    "¿Está seguro de que desea cerrar la aplicación?",
+                    "Confirmar cierre",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                );
+
+                if (resultado == DialogResult.No)
+                {
+                    e.Cancel = true;
+                }
+                else
+                {
+                    isClosing = true;
+                    Application.Exit();
+                }
+            }
+        }
+
     }
 }
