@@ -261,7 +261,9 @@ namespace ODS.Forms
                 int idOrden = Convert.ToInt32(txtIdOrden.EditValue);
                 DateTime? fechaAtendida = dateEditFechaAtendida.EditValue as DateTime?;
                 DateTime? fechaCerrada = dateEditFechaCerrada.EditValue as DateTime?;
-                int idUsuario = UsuarioLogueado.IdUsuario;
+                //sin cambiar usuario
+                int idUsuario = Convert.ToInt32(lookUpEditListaUsuarios.EditValue);
+
                 int? idFallaHardware = lookUpEditHadware.EditValue as int?;
                 int? idFallaSoftware = lookUpEditSofware.EditValue as int?;
                 string descripcion = memoEditDescripcion.Text;

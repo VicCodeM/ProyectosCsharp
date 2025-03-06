@@ -50,13 +50,13 @@
             this.elemntActualizarServicio = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.ControlUsuarios = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.elementBitacora = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.elemtCerrarSesion1 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.fluentDesignFormControl1 = new DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormControl();
             this.accordionControlGestorOrdenes = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlSeparator7 = new DevExpress.XtraBars.Navigation.AccordionControlSeparator();
             this.adminregistrosElement = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlSeparator6 = new DevExpress.XtraBars.Navigation.AccordionControlSeparator();
             this.ControlRegistrar = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.elemtCerrarSesion1 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.fluentDesignFormContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -251,7 +251,7 @@
             this.elementBitacora});
             this.elemntAdminstracion.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("elemntAdminstracion.ImageOptions.SvgImage")));
             this.elemntAdminstracion.Name = "elemntAdminstracion";
-            this.elemntAdminstracion.Text = "ADMINITRACION";
+            this.elemntAdminstracion.Text = "ADMINISTRACION";
             // 
             // elemntActualizarServicio
             // 
@@ -262,7 +262,7 @@
             this.elemntActualizarServicio.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("elemntActualizarServicio.ImageOptions.Image")));
             this.elemntActualizarServicio.Name = "elemntActualizarServicio";
             this.elemntActualizarServicio.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.elemntActualizarServicio.Text = "ACTUALIZAR ORDENS DE SERVICIO";
+            this.elemntActualizarServicio.Text = "ACTUALIZAR ORDENES DE SERVICIO";
             this.elemntActualizarServicio.Click += new System.EventHandler(this.elemntActualizarServicio_Click);
             // 
             // ControlUsuarios
@@ -286,6 +286,15 @@
             this.elementBitacora.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.elementBitacora.Text = "REGISTRO DE ACTIVIDAD";
             this.elementBitacora.Click += new System.EventHandler(this.elementBitacora_Click);
+            // 
+            // elemtCerrarSesion1
+            // 
+            this.elemtCerrarSesion1.ControlFooterAlignment = DevExpress.XtraBars.Navigation.AccordionItemFooterAlignment.Far;
+            this.elemtCerrarSesion1.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("elemtCerrarSesion1.ImageOptions.SvgImage")));
+            this.elemtCerrarSesion1.Name = "elemtCerrarSesion1";
+            this.elemtCerrarSesion1.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.elemtCerrarSesion1.Text = "Cerrar Sesión";
+            this.elemtCerrarSesion1.Click += new System.EventHandler(this.elemtCerrarSesion1_Click);
             // 
             // fluentDesignFormControl1
             // 
@@ -325,15 +334,6 @@
             this.ControlRegistrar.Name = "ControlRegistrar";
             this.ControlRegistrar.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.ControlRegistrar.Text = "REGISTRAR";
-            // 
-            // elemtCerrarSesion1
-            // 
-            this.elemtCerrarSesion1.ControlFooterAlignment = DevExpress.XtraBars.Navigation.AccordionItemFooterAlignment.Far;
-            this.elemtCerrarSesion1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("elemtCerrarSesion1.ImageOptions.Image")));
-            this.elemtCerrarSesion1.Name = "elemtCerrarSesion1";
-            this.elemtCerrarSesion1.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.elemtCerrarSesion1.Text = "Cerrar Sesión";
-            this.elemtCerrarSesion1.Click += new System.EventHandler(this.elemtCerrarSesion1_Click);
             // 
             // FormPanel
             // 

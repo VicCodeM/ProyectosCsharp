@@ -18,7 +18,7 @@ namespace ODS.Datos
         }
 
         // Variable estática para almacenar el estado de la conexión (true o false)
-        public static bool conexionActivaGlobal = true; // False es paara HP y True para PC
+        public static bool conexionActivaGlobal = true; // true es para Servidor y false para Local
 
         // Cadena de conexión por defecto (se configura automáticamente según el estado global)
         private string connectionString = string.Empty;
@@ -38,14 +38,14 @@ namespace ODS.Datos
         // Método privado para actualizar la cadena de conexión
         private void ActualizarConnectionString()
         {
-            if (conexionActivaGlobal)
+            if (conexionActivaGlobal == true)
             {
-                // Conexión 1
-                connectionString = "Data Source=10.10.1.111;Initial Catalog=JMAS_ODS;User ID=victor;Password=123123";
+                // Conexión 1 true
+                connectionString = "Data Source=10.10.1.144;Initial Catalog=Adm_JMAS;User ID=sa;Password=Mrrobot2025";
             }
             else
             {
-                // Conexión 2
+                // Conexión 2 false
                 connectionString = "Data Source=VICTOR-HP\\SQLVICTOR;Initial Catalog=test3;User ID=sa;Password=6433";
             }
         }
