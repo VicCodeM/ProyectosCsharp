@@ -391,14 +391,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ODS.exe" size="12208576">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ODS.exe" size="12208064">
       <assemblyIdentity name="ODS" version="1.0.0.1" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>BF7aA7HO7klkI5qh7yKYAd8fdZ33xhbHeZ+DxmSE16w=</dsig:DigestValue>
+        <dsig:DigestValue>0SZ0dkKf5kwJOTqfld525a4oqhk6ou2F2DfN21XDzyU=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -531,13 +531,13 @@
       <dsig:DigestValue>KdZ/dI6NM0MiZnkMnewSyIozSHqdDjeThTs331Ps8I8=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="ODS.exe.config" size="2050">
+  <file name="ODS.exe.config" size="2010">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>nzhXmWdiUhKYu/6mMKZIplzQt2Vwat9tuWJ736+INKU=</dsig:DigestValue>
+      <dsig:DigestValue>v3VcRkKzsfN+hQNjePzz/eUlIiaOIDpSV2RgA16cTaw=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>
