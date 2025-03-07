@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLogin));
-            this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.btnClear = new System.Windows.Forms.Button();
             this.btnLogin = new System.Windows.Forms.Button();
@@ -59,17 +58,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(78)))), ((int)(((byte)(165)))));
-            this.label6.Location = new System.Drawing.Point(506, 360);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(29, 13);
-            this.label6.TabIndex = 31;
-            this.label6.Text = "Web";
             // 
             // label5
             // 
@@ -287,7 +275,6 @@
             this.ClientSize = new System.Drawing.Size(604, 441);
             this.Controls.Add(this.panelControl2);
             this.Controls.Add(this.panelControl1);
-            this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnLogin);
@@ -324,7 +311,6 @@
         #endregion
 
         private DevExpress.XtraEditors.PanelControl panelControl1;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Button btnLogin;

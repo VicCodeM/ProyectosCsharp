@@ -88,7 +88,7 @@
             // 
             this.labelNombreUsuario.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelNombreUsuario.Appearance.Options.UseFont = true;
-            this.labelNombreUsuario.Location = new System.Drawing.Point(154, 197);
+            this.labelNombreUsuario.Location = new System.Drawing.Point(136, 188);
             this.labelNombreUsuario.Margin = new System.Windows.Forms.Padding(3, 3, 3, 1);
             this.labelNombreUsuario.Name = "labelNombreUsuario";
             this.labelNombreUsuario.Size = new System.Drawing.Size(69, 13);

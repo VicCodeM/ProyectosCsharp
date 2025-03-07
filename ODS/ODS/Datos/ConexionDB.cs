@@ -18,10 +18,7 @@ namespace ODS.Datos
         }
 
         // Variable estática para almacenar el estado de la conexión (true o false)
-        public static bool conexionActivaGlobal = false; // False es paara Local y True para Servidor
-
-        // Cadena de conexión por defecto (se configura automáticamente según el estado global)
-        private string connectionString = string.Empty;
+        public static bool conexionActivaGlobal = true; // False es paara Local y True para Servidor
 
         // Propiedad estática para configurar el estado global UNA SOLA VEZ
         public static void ConfigurarConexionGlobal(bool conexionActiva)
@@ -31,13 +28,18 @@ namespace ODS.Datos
                 conexionActivaGlobal = conexionActiva;
             }
         }
+
+        // Cadena de conexión por defecto (se configura automáticamente según el estado global)
+        private string connectionString = string.Empty;
+
+
         // Método privado para actualizar la cadena de conexión
         private void ActualizarConnectionString()
         {
             if (conexionActivaGlobal == true)
             {
                 // Conexión 1 si es true
-                connectionString = "Data Source=10.10.1.111;Initial Catalog=JMAS_ODS;User ID=victor;Password=123123";
+                connectionString = "Data Source=10.10.1.144;Initial Catalog=Adm_JMAS;User ID=sa;Password=Mrrobot2025";
             }
             else
             {
