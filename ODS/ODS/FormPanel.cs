@@ -19,7 +19,7 @@ namespace ODS
 
         //Foma de cierre del sistema por inactividad.
         private Timer inactivityTimer;
-        private const int InactivityTimeout = 3600000; // 1 Hora de inactividad en milisegundos.
+        private const int InactivityTimeout = 10800000; // 7 Horas de inactividad en milisegundos.
         private bool mensajeMostrado = false;
         private bool cerrarPorInactividad = false; // Variable para determinar si el cierre fue por inactividad
 

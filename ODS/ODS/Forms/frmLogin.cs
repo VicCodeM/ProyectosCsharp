@@ -102,6 +102,7 @@ namespace ODS.Forms
                         UsuarioLogueado.Departamento = datosUsuario.Rows[0]["Departamento"].ToString();
                         UsuarioLogueado.TipoUsuario = datosUsuario.Rows[0]["Tipo_Usuario"].ToString();
                         UsuarioLogueado.NombreUsuario = datosUsuario.Rows[0]["Usuario"].ToString();
+                     
                     }
 
                     // Mostrar mensaje de éxito

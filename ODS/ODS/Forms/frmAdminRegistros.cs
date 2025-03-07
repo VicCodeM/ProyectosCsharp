@@ -14,6 +14,10 @@ namespace ODS.Forms
 {
     public partial class frmAdminRegistros : DevExpress.XtraEditors.XtraForm
     {
+        #region Campos y Propiedades
+        private System.Windows.Forms.Timer refreshTimer;
+
+        #endregion
         #region Instancia de Objetos
         ConexionDB conexionDB = new ConexionDB();
         ConsultasDB consultasDB = new ConsultasDB();
@@ -161,6 +165,17 @@ namespace ODS.Forms
 
                 // Opcional: Ajustar el ancho de las columnas automáticamente
                 gridViewOrdenes.BestFitColumns();
+
+                // Usar el evento ShownEditor para seleccionar la primera fila
+                // Usar el evento CustomDrawCell para seleccionar la primera fila
+                gridViewOrdenes.CustomDrawCell += (s, e) =>
+                {
+                    if (gridViewOrdenes.RowCount > 0 && gridViewOrdenes.FocusedRowHandle == DevExpress.XtraGrid.GridControl.InvalidRowHandle)
+                    {
+                        gridViewOrdenes.FocusedRowHandle = 0;  // Establece el enfoque en la primera fila
+                        gridViewOrdenes.SelectRow(0);         // Resalta la primera fila
+                    }
+                };
             }
             else
             {
@@ -237,18 +252,36 @@ namespace ODS.Forms
         #endregion
 
         #region Eventos del Form
-        //Caragr controles con los datos del grid
+        // Cargar controles con los datos del grid cuando cambia la fila seleccionada
         private void gridControl1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
-            GridView gridView = (GridView)sender;
+            try
+            {
+                GridView gridView = sender as GridView;
 
-            // Obtiene el Id de la orden seleccionada
-            int idOrdenSeleccionada = Convert.ToInt32(gridView.GetFocusedRowCellValue("Id"));
-            Console.WriteLine("ID Orden seleccionada: " + idOrdenSeleccionada); // Para depurar
+                // Verifica si el gridView tiene filas y si la fila seleccionada es válida
+                if (gridView != null && gridView.FocusedRowHandle >= 0)
+                {
+                    object idOrden = gridView.GetFocusedRowCellValue("Id");
 
-            // Llama al método para cargar los datos al formulario
-            CargarDatosOrdenSeleccionada(idOrdenSeleccionada);
+                    // Validar que el Id no sea nulo antes de convertirlo
+                    if (idOrden != null && idOrden != DBNull.Value)
+                    {
+                        int idOrdenSeleccionada = Convert.ToInt32(idOrden);
+                        Console.WriteLine("ID Orden seleccionada: " + idOrdenSeleccionada); // Para depurar
+
+                        // Llama al método para cargar los datos al formulario
+                        CargarDatosOrdenSeleccionada(idOrdenSeleccionada);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show("Error al seleccionar la orden: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
+        // Botón Actualizar
         //boton actualizar
         private void btnActualizar_Click(object sender, EventArgs e)
         {
@@ -315,6 +348,7 @@ namespace ODS.Forms
         }
 
 
+
         private List<string> ObtenerCambios(Orden idOrden, DateTime? fechaAtendida, DateTime? fechaCerrada,
                                             int? idFallaHardware, int? idFallaSoftware, string descripcion,
                                             string observaciones, string estado)
@@ -378,6 +412,7 @@ namespace ODS.Forms
 
 
 
+        // Botón Eliminar
         //boton eleminar
         private void btnEliminar_Click(object sender, EventArgs e)
         {
@@ -416,6 +451,7 @@ namespace ODS.Forms
 
 
 
+
         //boton exportar
         private void simpleButton1_Click_1(object sender, EventArgs e)
         {
@@ -426,6 +462,41 @@ namespace ODS.Forms
         {
             this.Focus(); // Asegura que el formulario tenga el foco
                           // btnActualizar.Focus(); // Opcional: Forzar el foco al botón
+                          // Configurar el Timer
+            refreshTimer = new System.Windows.Forms.Timer();
+            refreshTimer.Interval = 120000; // 20 minutos en milisegundos
+            refreshTimer.Tick += RefreshTimer_Tick;
+            refreshTimer.Start();
+            CargarOrdenes();
+            // Forzar la carga de los controles con la primera fila seleccionada
+            GridView gridView = (GridView)gridAdminRegistros.MainView;
+            if (gridView.RowCount > 0)
+            {
+                object idOrden = gridView.GetRowCellValue(0, "Id"); // Obtener el Id de la primera fila
+                if (idOrden != null && idOrden != DBNull.Value)
+                {
+                    int idOrdenSeleccionada = Convert.ToInt32(idOrden);
+                    CargarDatosOrdenSeleccionada(idOrdenSeleccionada); // Cargar datos de la primera fila
+                }
+            }
+            // Opcional: Forzar el foco al grid después de cargar los datos
+            gridAdminRegistros.Focus();
+        }
+
+        private void RefreshTimer_Tick(object sender, EventArgs e)
+        {
+            // Detener el Timer temporalmente mientras se cargan los datos
+            refreshTimer.Stop();
+
+            try
+            {
+                CargarOrdenes(); // Método que actualiza el grid
+            }
+            finally
+            {
+                // Reiniciar el Timer
+                refreshTimer.Start();
+            }
         }
 
         private void frmAdminRegistros_KeyDown(object sender, KeyEventArgs e)
