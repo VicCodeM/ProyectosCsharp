@@ -1,6 +1,8 @@
 ﻿using ClosedXML.Excel;
+using DevExpress.Utils;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid;
+using DocumentFormat.OpenXml.Presentation;
 using ODS.Datos;
 using ODS.Modelo;
 using ODS.Servicios;
@@ -141,19 +143,22 @@ namespace ODS.Forms
                 gridViewOrdenes.Columns["Fecha_Registro"].VisibleIndex = 1; // Primera columna
                 gridViewOrdenes.Columns["Hora"].VisibleIndex = 2;   // Segunda columna
                 gridViewOrdenes.Columns["Usuario"].VisibleIndex = 3;
-                gridViewOrdenes.Columns["Descripcion"].VisibleIndex = 4;
-                gridViewOrdenes.Columns["Fecha_Atencion"].VisibleIndex = 5;
-                gridViewOrdenes.Columns["Observaciones"].VisibleIndex = 6;
-                gridViewOrdenes.Columns["Hardware"].VisibleIndex = 7;
-                gridViewOrdenes.Columns["Software"].VisibleIndex = 8;
-                gridViewOrdenes.Columns["Fecha_Cierre"].VisibleIndex = 9;
-                gridViewOrdenes.Columns["Departamento"].VisibleIndex = 10;
-                gridViewOrdenes.Columns["Estado"].VisibleIndex = 11;
+                gridViewOrdenes.Columns["NombreCompleto"].VisibleIndex = 4;
+                gridViewOrdenes.Columns["Descripcion"].VisibleIndex = 5;
+                gridViewOrdenes.Columns["Fecha_Atencion"].VisibleIndex = 6;
+                gridViewOrdenes.Columns["Observaciones"].VisibleIndex = 7;
+                gridViewOrdenes.Columns["Hardware"].VisibleIndex = 8;
+                gridViewOrdenes.Columns["Software"].VisibleIndex = 9;
+                gridViewOrdenes.Columns["Fecha_Cierre"].VisibleIndex = 10;
+                gridViewOrdenes.Columns["Departamento"].VisibleIndex = 11;
+                gridViewOrdenes.Columns["Estado"].VisibleIndex = 12;
+                
 
                 // Cambiar el nombre de las columnas
                 gridViewOrdenes.Columns["Fecha_Registro"].Caption = "Fecha de Registro";
                 gridViewOrdenes.Columns["Hora"].Caption = "Hora de Registro";
                 gridViewOrdenes.Columns["Usuario"].Caption = "Usuario";
+                gridViewOrdenes.Columns["NombreCompleto"].Caption = "Nombre Completo";
                 gridViewOrdenes.Columns["Descripcion"].Caption = "Descripción";
                 gridViewOrdenes.Columns["Fecha_Atencion"].Caption = "Fecha de Atención";
                 gridViewOrdenes.Columns["Observaciones"].Caption = "Observaciones";
@@ -177,12 +182,6 @@ namespace ODS.Forms
                     }
                 };
             }
-            else
-            {
-                XtraMessageBox.Show("No se encontraron órdenes.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-
-            gridAdminRegistros.Refresh();
         }
         //cargar fila con el grid
         private void CargarDatosOrdenSeleccionada(int idOrden)
@@ -334,8 +333,12 @@ namespace ODS.Forms
                 string mensajeConsolidado = string.Join("; ", cambios);
 
                 // Registrar el mensaje consolidado en la bitácora
-                bitacoraService.RegistrarAccionEnBitacora(idOrden, UsuarioLogueado.IdUsuario, "Actualización", mensajeConsolidado, UsuarioLogueado.IdUsuario);
-
+                // Por esta nueva línea
+                bitacoraService.RegistrarAccionEnBitacora(
+                    idOrden,
+                    UsuarioLogueado.IdUsuario,
+                    "Actualización",
+                    mensajeConsolidado);
                 // Mostrar mensaje de éxito
                 XtraMessageBox.Show("Orden de servicio actualizada con éxito", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 gridAdminRegistros.RefreshDataSource();
@@ -430,7 +433,7 @@ namespace ODS.Forms
             if (resultado == DialogResult.Yes)
             {
                 bitacoraService.RegistrarAccionEnBitacora(idOrden, UsuarioLogueado.IdUsuario, "Elimino",
-"Se se elimino una orden con el id: " + idOrden + ". ", UsuarioLogueado.IdUsuario);
+"Se se elimino una orden con el id: " + idOrden + ". ");
                 bool eliminado = consultasDB.EliminarOrden(idOrden);
 
                 if (eliminado)
@@ -511,5 +514,9 @@ namespace ODS.Forms
         }
         #endregion
 
+        private void groupControl1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

@@ -100,7 +100,7 @@
             this.btnActualizar.AppearanceHovered.Options.UseTextOptions = true;
             this.btnActualizar.AppearanceHovered.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.btnActualizar.BackgroundImage = global::ODS.Properties.Resources.textura3;
-            this.btnActualizar.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnActualizar1.ImageOptions.SvgImage")));
+            this.btnActualizar.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnActualizar.ImageOptions.SvgImage")));
             this.btnActualizar.Location = new System.Drawing.Point(73, 7);
             this.btnActualizar.Name = "btnActualizar";
             this.btnActualizar.Size = new System.Drawing.Size(158, 36);
@@ -506,6 +506,7 @@
             this.groupControl1.Size = new System.Drawing.Size(956, 50);
             this.groupControl1.TabIndex = 52;
             this.groupControl1.Text = "groupControl1";
+            this.groupControl1.Paint += new System.Windows.Forms.PaintEventHandler(this.groupControl1_Paint);
             // 
             // frmAdminRegistros
             // 

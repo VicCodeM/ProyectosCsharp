@@ -24,92 +24,103 @@ namespace ODS.Servicios
 
 
         //Registrar acciones en bitacora modo consulta
-        public void RegistrarAccionEnBitacora(int idOrden, int idUsuarioAdmin, string accion, string descripcion, int idEmpleado)
+        public void RegistrarAccionEnBitacora(int idOrden, int idUsuarioAdmin, string accion, string descripcion)
         {
             try
             {
-                // Depuración: Verificar valores de entrada
-                Console.WriteLine($"idOrden: {idOrden}, idUsuarioAdmin: {idUsuarioAdmin}, idEmpleado: {idEmpleado}");
+                // 1. Obtener el Id_Empleado del administrador que realiza la acción
+                string queryEmpleadoAdmin = @"
+            SELECT e.Id_Empleado 
+            FROM Login l 
+            INNER JOIN Empleados e ON l.Id_Empleado = e.Id_Empleado 
+            WHERE l.Id_Usuario = @Id_UsuarioAdmin";
 
-                if (idOrden <= 0 || idUsuarioAdmin <= 0)
-                {
-                    XtraMessageBox.Show("Error: idOrden o idUsuarioAdmin inválidos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+                SqlParameter paramAdmin = new SqlParameter("@Id_UsuarioAdmin", SqlDbType.Int) { Value = idUsuarioAdmin };
+                int idEmpleadoAdmin = Convert.ToInt32(conexionBD.ExecuteScalar(queryEmpleadoAdmin, new[] { paramAdmin }));
 
-                // Consulta para obtener el Id_Empleado que generó la orden
-                string queryEmpleado = @"
-            SELECT Id_Usuario
-            FROM OrdenServicio
-            WHERE Id_Orden = @Id_Orden";
+                // 2. Obtener el Id_Empleado que creó la orden original
+                string queryEmpleadoOriginal = @"
+            SELECT l.Id_Empleado 
+            FROM OrdenServicio os 
+            INNER JOIN Login l ON os.Id_Usuario = l.Id_Usuario 
+            WHERE os.Id_Orden = @Id_Orden";
 
-                SqlParameter[] paramEmpleado = new SqlParameter[]
-                {
-            new SqlParameter("@Id_Orden", SqlDbType.Int) { Value = idOrden }
-                };
+                SqlParameter paramOrden = new SqlParameter("@Id_Orden", SqlDbType.Int) { Value = idOrden };
+                int idEmpleadoOriginal = Convert.ToInt32(conexionBD.ExecuteScalar(queryEmpleadoOriginal, new[] { paramOrden }));
 
-                object result = conexionBD.ExecuteScalar(queryEmpleado, paramEmpleado);
-                int idEmpleadoGeneroOrden = result != null ? Convert.ToInt32(result) : 0;
-
-                // Depuración: Verificar el idEmpleado obtenido
-                Console.WriteLine($"idEmpleado obtenido: {idEmpleadoGeneroOrden}");
-
-                if (idEmpleadoGeneroOrden == 0)
-                {
-                    XtraMessageBox.Show("No se encontró el empleado que generó la orden.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                // Insertar en la bitácora con el Id_Empleado correcto
+                // 3. Insertar en la bitácora
                 string queryInsert = @"
-            INSERT INTO Bitacora (Id_Orden, Id_Usuario, Accion, Fecha_Accion, Descripcion, Id_Empleado)
-            VALUES (@Id_Orden, @Id_Usuario, @Accion, GETDATE(), @Descripcion, @Id_Empleado)";
+            INSERT INTO Bitacora (
+                Id_Orden, 
+                Id_Usuario, 
+                Accion, 
+                Fecha_Accion, 
+                Descripcion, 
+                Id_Empleado) 
+            VALUES (
+                @Id_Orden, 
+                @Id_Usuario, 
+                @Accion, 
+                GETDATE(), 
+                @Descripcion, 
+                @Id_Empleado_Creador)";
 
-                SqlParameter[] parameters = new SqlParameter[]
-                {
+                SqlParameter[] parameters = {
             new SqlParameter("@Id_Orden", SqlDbType.Int) { Value = idOrden },
-            new SqlParameter("@Id_Usuario", SqlDbType.Int) { Value = idUsuarioAdmin }, // Admin que actualizó
+            new SqlParameter("@Id_Usuario", SqlDbType.Int) { Value = idUsuarioAdmin }, // Usuario admin
             new SqlParameter("@Accion", SqlDbType.VarChar) { Value = accion },
-            new SqlParameter("@Descripcion", SqlDbType.VarChar) { Value = descripcion },
-            new SqlParameter("@Id_Empleado", SqlDbType.Int) { Value = idEmpleadoGeneroOrden } // Empleado que generó la orden
-                };
+            new SqlParameter("@Descripcion", SqlDbType.Text) { Value = descripcion },
+            new SqlParameter("@Id_Empleado_Creador", SqlDbType.Int) { Value = idEmpleadoOriginal } // Empleado creador
+        };
 
                 conexionBD.ExecuteNonQuery(queryInsert, parameters);
-
-                // Depuración: Confirmar inserción exitosa
-                Console.WriteLine("Acción registrada correctamente en la bitácora.");
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show($"Error al registrar en la bitácora: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show($"Error al registrar en bitácora: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
 
-        //obtener datos de la bse datos de la tabla bitacora
+
+
+        // Obtener datos de la base de datos de la tabla bitácora
         public DataTable ObtenerDatosBitacora()
         {
             try
             {
                 string query = @"
-                    SELECT 
-                        b.Id_Bitacora AS Id,
-                        b.Id_Orden,
-                        u.Usuario AS Administrador,
-                        ISNULL(emp.Nombre_Empleado + ' ' + emp.Apellido_Paterno + ' ' + emp.Apellido_Materno, 'Sin Empleado') AS Nombre_Empleado,
-                        b.Accion,
-                        CAST(o.Fecha_Creacion AS DATE) AS Fecha_Orden,  -- Fecha de creación de la orden
-                        LEFT(RIGHT(CONVERT(VARCHAR, o.Fecha_Creacion, 100), 7), 5) + ' ' + RIGHT(CONVERT(VARCHAR, o.Fecha_Creacion, 100), 2) AS Hora_Orden,  -- Hora de creación de la orden
-                        CAST(b.Fecha_Accion AS DATE) AS Fecha_Accion,  -- Fecha de la acción
-                        LEFT(RIGHT(CONVERT(VARCHAR, b.Fecha_Accion, 100), 7), 5) + ' ' + RIGHT(CONVERT(VARCHAR, b.Fecha_Accion, 100), 2) AS Hora_Accion,  -- Hora de la acción
-                        b.Descripcion
-                    FROM Bitacora b
-                    INNER JOIN Login u ON b.Id_Usuario = u.Id_Usuario  -- Admin que realizó la acción
-                    LEFT JOIN Login e ON b.Id_Empleado = e.Id_Usuario  -- Usuario asociado a la acción
-                    LEFT JOIN Empleados emp ON e.Id_Empleado = emp.Id_Empleado  -- Empleado asociado al usuario
-                    LEFT JOIN OrdenServicio o ON b.Id_Orden = o.Id_Orden  -- Orden asociada a la bitácora
-                    ORDER BY b.Fecha_Accion DESC;";
+SELECT 
+    b.Id_Bitacora,
+    b.Id_Orden,
+    -- Fecha y hora de creación de la orden
+    os.Fecha_Creacion AS FechaCreacionOrden,
+    -- Fecha y hora de la acción del administrador (separadas)
+    CONVERT(VARCHAR(10), b.Fecha_Accion, 120) AS FechaAccionAdmin, -- Formato YYYY-MM-DD
+    b.Accion,
+    
+    -- Nombre del creador de la orden
+    ISNULL(creator.Nombre_Empleado, '') + ' ' + 
+    ISNULL(creator.Apellido_Paterno, '') + ' ' + 
+    ISNULL(creator.Apellido_Materno, '') AS NombreCreador,
+    -- Datos de la bitácora
 
+    CONVERT(VARCHAR(5), b.Fecha_Accion, 108) AS HoraAccionAdmin,    -- Formato HH:MM
+    b.Descripcion,
+    -- Nombre del administrador que actuó
+    ISNULL(admin.Nombre_Empleado, '') + ' ' + 
+    ISNULL(admin.Apellido_Paterno, '') + ' ' + 
+    ISNULL(admin.Apellido_Materno, '') AS NombreAdmin
+FROM 
+    Bitacora AS b
+    INNER JOIN Login AS l ON b.Id_Usuario = l.Id_Usuario
+    INNER JOIN Empleados AS admin ON l.Id_Empleado = admin.Id_Empleado
+    INNER JOIN Empleados AS creator ON b.Id_Empleado = creator.Id_Empleado
+    INNER JOIN OrdenServicio AS os ON b.Id_Orden = os.Id_Orden
+ORDER BY 
+    b.Fecha_Accion DESC;";
+
+                // Ejecutar consulta sin parámetros
                 return conexionBD.ExecuteQuery(query);
             }
             catch (Exception ex)

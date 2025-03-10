@@ -18,7 +18,7 @@ namespace ODS.Datos
         }
 
         // Variable estática para almacenar el estado de la conexión (true o false)
-        public static bool conexionActivaGlobal = true; // False es paara Local y True para Servidor
+        public static bool conexionActivaGlobal = false; // False es paara Local y True para Servidor
 
         // Propiedad estática para configurar el estado global UNA SOLA VEZ
         public static void ConfigurarConexionGlobal(bool conexionActiva)
@@ -44,7 +44,7 @@ namespace ODS.Datos
             else
             {
                 // Conexión 2 si es false
-                connectionString = "Data Source=VÍCTOR-PC\\SQLVICTORPC;Initial Catalog=test;User ID=sa;Password=6433";
+                connectionString = "Data Source=SISTEMASV;Initial Catalog=ODSLocal;User ID=sa;Password=6433";
             }
         }
 
@@ -74,6 +74,9 @@ namespace ODS.Datos
                 throw; // Lanza la excepción para ser manejada por el código que llama a este método
             }
         }
+
+
+
 
 
         // Método para ejecutar una consulta SQL y devolver un DataTable

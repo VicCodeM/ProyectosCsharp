@@ -1,4 +1,5 @@
 ﻿using ClosedXML.Excel;
+using DevExpress.Utils;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid;
 using ODS.Modelo;
@@ -45,41 +46,49 @@ namespace ODS.Forms
                     GridView gridViewBitacora = gridBitacora.MainView as GridView;
                     if (gridViewBitacora != null)
                     {
-                        gridViewBitacora.Columns["Id"].Caption = "Id";
-                        gridViewBitacora.Columns["Id_Orden"].Caption = "Id Órden";
-                        gridViewBitacora.Columns["Administrador"].Caption = "Administrador";
+                        // Configurar columnas con nombres reales de la consulta
+                        gridViewBitacora.Columns["Id_Bitacora"].Caption = "ID Bitácora";
+                        gridViewBitacora.Columns["Id_Orden"].Caption = "ID Orden";
+                        gridViewBitacora.Columns["FechaCreacionOrden"].Caption = "Fecha Creación Orden";
+                        gridViewBitacora.Columns["FechaAccionAdmin"].Caption = "Fecha Acción";
+                        gridViewBitacora.Columns["HoraAccionAdmin"].Caption = "Hora Acción";
                         gridViewBitacora.Columns["Accion"].Caption = "Acción";
-                        gridViewBitacora.Columns["Fecha_Orden"].Caption = "Fecha Óraden";
-                        gridViewBitacora.Columns["Fecha_Accion"].Caption = "Fecha Atención";
-                        gridViewBitacora.Columns["Hora_Orden"].Caption = "Hora Órden";
-                        gridViewBitacora.Columns["Hora_Accion"].Caption = "Hora Atención";
                         gridViewBitacora.Columns["Descripcion"].Caption = "Descripción";
-                        gridViewBitacora.Columns["Nombre_Empleado"].Caption = "Administrador";
+                        gridViewBitacora.Columns["NombreCreador"].Caption = "Creador";
+                        gridViewBitacora.Columns["NombreAdmin"].Caption = "Administrador";
 
-                        // Ajustar el orden: colocar la columna "Hora" después de "Fecha_Registro"
-                        gridViewBitacora.Columns["Id_Orden"].VisibleIndex = 1; // Primera columna
-                        gridViewBitacora.Columns["Hora_Orden"].VisibleIndex = 2;   // Segunda columna
-                        gridViewBitacora.Columns["Fecha_Orden"].VisibleIndex = 3;
+                        // Formato de fechas
+                        gridViewBitacora.Columns["FechaCreacionOrden"].DisplayFormat.FormatType = FormatType.DateTime;
+                        gridViewBitacora.Columns["FechaCreacionOrden"].DisplayFormat.FormatString = "dd-MM-yyyy HH:mm";
+
+                        gridViewBitacora.Columns["FechaAccionAdmin"].DisplayFormat.FormatType = FormatType.DateTime;
+                        gridViewBitacora.Columns["FechaAccionAdmin"].DisplayFormat.FormatString = "dd-MM-yyyy";
+
+                        gridViewBitacora.Columns["HoraAccionAdmin"].DisplayFormat.FormatType = FormatType.DateTime;
+                        gridViewBitacora.Columns["HoraAccionAdmin"].DisplayFormat.FormatString = "HH:mm";
+
+                        // Orden de columnas
+                        gridViewBitacora.Columns["Id_Bitacora"].VisibleIndex = 0;
+                        gridViewBitacora.Columns["Id_Orden"].VisibleIndex = 1;
+                        gridViewBitacora.Columns["FechaCreacionOrden"].VisibleIndex = 2;
+                        gridViewBitacora.Columns["NombreCreador"].VisibleIndex = 3;
                         gridViewBitacora.Columns["Accion"].VisibleIndex = 4;
-                        gridViewBitacora.Columns["Fecha_Accion"].VisibleIndex = 5;
-                        gridViewBitacora.Columns["Descripcion"].VisibleIndex = 6;
-                        gridViewBitacora.Columns["Hora_Accion"].VisibleIndex = 7;
-                        gridViewBitacora.Columns["Administrador"].VisibleIndex = 8;
+                        gridViewBitacora.Columns["FechaAccionAdmin"].VisibleIndex = 5;
+                        gridViewBitacora.Columns["HoraAccionAdmin"].VisibleIndex = 6;
+                        gridViewBitacora.Columns["Descripcion"].VisibleIndex = 7;
+                        gridViewBitacora.Columns["NombreAdmin"].VisibleIndex = 8;
 
-                        //ocultar columnas
-                        gridViewBitacora.Columns["Administrador"].Visible = false;
+                        // Ocultar columnas innecesarias
+                       // gridViewBitacora.Columns["Fecha_Accion"].Visible = false; // Ya está separada en Fecha/Hora
 
-
-
-                        // Ajustar las columnas automáticamente
+                        // Ajustar columnas automáticamente
                         gridViewBitacora.BestFitColumns();
-
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al cargar datos en el GridControl: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error al cargar datos: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         #endregion

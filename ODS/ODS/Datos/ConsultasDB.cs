@@ -153,32 +153,43 @@ namespace ODS.Datos
                 {
                     // Consulta SQL para obtener todas las órdenes
                     string query = @"
-                SELECT 
-                    os.Id_Orden AS Id,
-                    os.Fecha_Creacion AS Fecha_Registro,
-                    os.Fecha_Atendida AS Fecha_Atencion,
-                    os.Fecha_Cerrada AS Fecha_Cierre,
-                    l.Usuario AS Usuario,
-                    d.Nombre_Departamento AS Departamento,
-                    th.Descripcion AS Hardware,
-                    ts.Descripcion AS Software,
-                    os.Descripcion_Problema AS Descripcion,
-                    os.Observaciones AS Observaciones,
-                    os.Estado
-                FROM 
-                    OrdenServicio os
-                LEFT JOIN 
-                    Login l ON os.Id_Usuario = l.Id_Usuario
-                LEFT JOIN 
-                    Empleados e ON l.Id_Empleado = e.Id_Empleado
-                LEFT JOIN 
-                    Departamentos d ON e.Id_Departamento = d.Id_Departamento
-                LEFT JOIN 
-                    TiposFallaHardware th ON os.Id_TipoFallaHardware = th.Id_TipoFallaHardware
-                LEFT JOIN 
-                    TiposFallaSoftware ts ON os.Id_TipoFallaSoftware = ts.Id_TipoFallaSoftware
-                ORDER BY 
-                    os.Fecha_Creacion DESC;
+                                        SELECT
+                    	os.Id_Orden AS Id, 
+                    	os.Fecha_Creacion AS Fecha_Registro, 
+                    	os.Fecha_Atendida AS Fecha_Atencion, 
+                    	os.Fecha_Cerrada AS Fecha_Cierre, 
+                    	l.Usuario AS Usuario, 
+                      e.Nombre_Empleado + ' ' + e.Apellido_Paterno + ' ' + e.Apellido_Materno As NombreCompleto,
+                    	d.Nombre_Departamento AS Departamento, 
+                    	th.Descripcion AS Hardware, 
+                    	ts.Descripcion AS Software, 
+                    	os.Descripcion_Problema AS Descripcion, 
+                    	os.Observaciones AS Observaciones, 
+                    	os.Estado 	
+                    FROM
+                    	dbo.OrdenServicio AS os
+                    	LEFT JOIN
+                    	dbo.Login AS l
+                    	ON 
+                    		os.Id_Usuario = l.Id_Usuario
+                    	LEFT JOIN
+                    	dbo.Empleados AS e
+                    	ON 
+                    		l.Id_Empleado = e.Id_Empleado
+                    	LEFT JOIN
+                    	dbo.Departamentos AS d
+                    	ON 
+                    		e.Id_Departamento = d.Id_Departamento
+                    	LEFT JOIN
+                    	dbo.TiposFallaHardware AS th
+                    	ON 
+                    		os.Id_TipoFallaHardware = th.Id_TipoFallaHardware
+                    	LEFT JOIN
+                    	dbo.TiposFallaSoftware AS ts
+                    	ON 
+                    		os.Id_TipoFallaSoftware = ts.Id_TipoFallaSoftware
+                    ORDER BY
+                    	os.Fecha_Creacion DESC;
             ";
 
                     using (SqlCommand comando = new SqlCommand(query, conexion))
