@@ -391,14 +391,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ODS.exe" size="12131264">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ODS.exe" size="12133312">
       <assemblyIdentity name="ODS" version="1.0.0.1" language="neutral" processorArchitecture="amd64" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>Q7gZAzpMeejE4hZhuobQMSc09ZTGZmiXSSNg6pMlAjk=</dsig:DigestValue>
+        <dsig:DigestValue>O4lUlYkhxnAYIUtmNX9Lu9OJUcFAdpRUlglkjnu6Zq0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

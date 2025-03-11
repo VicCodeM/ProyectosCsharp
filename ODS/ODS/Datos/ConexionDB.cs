@@ -18,7 +18,7 @@ namespace ODS.Datos
         }
 
         // Variable estática para almacenar el estado de la conexión (true o false)
-        public static bool conexionActivaGlobal = false; // False es paara Local y True para Servidor
+        public static bool conexionActivaGlobal = true; // False es paara Local y True para Servidor
 
         // Propiedad estática para configurar el estado global UNA SOLA VEZ
         public static void ConfigurarConexionGlobal(bool conexionActiva)

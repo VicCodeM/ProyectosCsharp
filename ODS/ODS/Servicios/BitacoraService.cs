@@ -93,34 +93,37 @@ namespace ODS.Servicios
 SELECT 
     b.Id_Bitacora,
     b.Id_Orden,
-    -- Fecha y hora de creación de la orden
-    os.Fecha_Creacion AS FechaCreacionOrden,
-    -- Fecha y hora de la acción del administrador (separadas)
-    CONVERT(VARCHAR(10), b.Fecha_Accion, 120) AS FechaAccionAdmin, -- Formato YYYY-MM-DD
+    -- Formatear FechaCreacionOrden correctamente
+    CASE 
+        WHEN os.Fecha_Creacion IS NOT NULL THEN CONVERT(VARCHAR(20), os.Fecha_Creacion, 120)
+        ELSE 'No existe'
+    END AS FechaCreacionOrden,
+    -- Formatear FechaAccionAdmin y HoraAccionAdmin correctamente
+    CONVERT(VARCHAR(10), b.Fecha_Accion, 120) AS FechaAccionAdmin, -- YYYY-MM-DD
     b.Accion,
-    
-    -- Nombre del creador de la orden
-    ISNULL(creator.Nombre_Empleado, '') + ' ' + 
-    ISNULL(creator.Apellido_Paterno, '') + ' ' + 
-    ISNULL(creator.Apellido_Materno, '') AS NombreCreador,
-    -- Datos de la bitácora
-
-    CONVERT(VARCHAR(5), b.Fecha_Accion, 108) AS HoraAccionAdmin,    -- Formato HH:MM
+    -- Concatenar nombres con manejo de NULLs
+    ISNULL(
+        creator.Nombre_Empleado + ' ' + creator.Apellido_Paterno + ' ' + creator.Apellido_Materno,
+        'No disponible'
+    ) AS NombreCreador,
+    -- Formato HH:mm para HoraAccionAdmin
+    RIGHT('0' + CONVERT(VARCHAR(2), DATEPART(HOUR, b.Fecha_Accion)), 2) + ':' + 
+    RIGHT('0' + CONVERT(VARCHAR(2), DATEPART(MINUTE, b.Fecha_Accion)), 2) AS HoraAccionAdmin,
     b.Descripcion,
-    -- Nombre del administrador que actuó
-    ISNULL(admin.Nombre_Empleado, '') + ' ' + 
-    ISNULL(admin.Apellido_Paterno, '') + ' ' + 
-    ISNULL(admin.Apellido_Materno, '') AS NombreAdmin
+    -- Nombre del administrador con manejo de NULLs
+    ISNULL(
+        admin.Nombre_Empleado + ' ' + admin.Apellido_Paterno + ' ' + admin.Apellido_Materno,
+        'No disponible'
+    ) AS NombreAdmin
 FROM 
     Bitacora AS b
     INNER JOIN Login AS l ON b.Id_Usuario = l.Id_Usuario
     INNER JOIN Empleados AS admin ON l.Id_Empleado = admin.Id_Empleado
-    INNER JOIN Empleados AS creator ON b.Id_Empleado = creator.Id_Empleado
-    INNER JOIN OrdenServicio AS os ON b.Id_Orden = os.Id_Orden
+    LEFT JOIN Empleados AS creator ON b.Id_Empleado = creator.Id_Empleado
+    LEFT JOIN OrdenServicio AS os ON b.Id_Orden = os.Id_Orden
 ORDER BY 
     b.Fecha_Accion DESC;";
 
-                // Ejecutar consulta sin parámetros
                 return conexionBD.ExecuteQuery(query);
             }
             catch (Exception ex)
