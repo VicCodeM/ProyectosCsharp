@@ -194,7 +194,7 @@ namespace ODS.Forms
                 // Llenar los controles con los datos obtenidos
                 txtIdOrden.EditValue = row["Id_Orden"];
                 dateEditFechaCreacion.EditValue = row["Fecha_Creacion"];
-                dateEditFechaAtendida.EditValue = row["Fecha_Atendida"] == DBNull.Value ? null : row["Fecha_Atendida"];
+                dateEditFechaAtendida.EditValue = row["Fecha_Atendida"] == DBNull.Value ? DateTime.Now : row["Fecha_Atendida"];
                 dateEditFechaCerrada.EditValue = row["Fecha_Cerrada"] == DBNull.Value ? null : row["Fecha_Cerrada"];
                 lookUpEditListaUsuarios.EditValue = row["Id_Usuario"];
                 lookUpEditHadware.EditValue = row["Id_TipoFallaHardware"] == DBNull.Value ? null : row["Id_TipoFallaHardware"];
