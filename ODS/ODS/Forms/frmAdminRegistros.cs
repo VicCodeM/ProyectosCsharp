@@ -67,7 +67,13 @@ namespace ODS.Forms
             this.AcceptButton = btnActualizar;
             // Forzar el foco al botón
             btnActualizar.Focus();
-            
+
+            // Deshabilitar el campo de fecha de cierre inicialmente
+            radioGroupEstados.EditValueChanged += RadioGroupEstados_EditValueChanged;
+            dateEditFechaCerrada.Enabled = false;
+            dateEditFechaCerrada.Properties.ReadOnly = true;
+
+
         }
         #endregion
 
@@ -251,6 +257,31 @@ namespace ODS.Forms
         #endregion
 
         #region Eventos del Form
+        //fecha radio button fecha de cierre
+        private void RadioGroupEstados_EditValueChanged(object sender, EventArgs e)
+        {
+            // Obtener el estado seleccionado
+            string estadoSeleccionado = radioGroupEstados.EditValue?.ToString();
+
+            if (estadoSeleccionado == "Completado")
+            {
+                // Habilitar el campo de fecha de cierre
+                dateEditFechaCerrada.Enabled = true;
+                dateEditFechaCerrada.Properties.ReadOnly = false;
+
+                // Asignar la fecha actual del sistema
+                dateEditFechaCerrada.EditValue = DateTime.Now;
+            }
+            else
+            {
+                // Deshabilitar el campo de fecha de cierre
+                dateEditFechaCerrada.Enabled = false;
+                dateEditFechaCerrada.Properties.ReadOnly = true;
+
+                // Limpiar el valor del campo
+                dateEditFechaCerrada.EditValue = null;
+            }
+        }
         // Cargar controles con los datos del grid cuando cambia la fila seleccionada
         private void gridControl1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
@@ -339,10 +370,18 @@ namespace ODS.Forms
                     UsuarioLogueado.IdUsuario,
                     "Actualización",
                     mensajeConsolidado);
+                // Validar que la fecha de cierre solo esté presente si el estado es "Completado"
+                if (estado != "Completado" && fechaCerrada.HasValue)
+                {
+                    XtraMessageBox.Show("La fecha de cierre solo puede estar presente si el estado es 'Completado'.",
+                                        "Error de Validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 // Mostrar mensaje de éxito
                 XtraMessageBox.Show("Orden de servicio actualizada con éxito", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 gridAdminRegistros.RefreshDataSource();
                 CargarOrdenes();
+
             }
             catch (Exception ex)
             {
